@@ -1,17 +1,19 @@
 name: Materialize canonical 53-page Pythagoras workbook
 on:
-  push:
+  pull_request:
     branches: [main]
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
 permissions:
   contents: write
 jobs:
   import:
-    if: ${{ github.actor != 'github-actions[bot]' }}
+    if: ${{ github.actor != 'github-actions[bot]' && github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Download pinned complete source archive
@@ -43,7 +45,7 @@ jobs:
           test -f package.json
           test -f SOURCE_OF_TRUTH.md
           test "$(find src/pages -name main.html -type f | wc -l | tr -d ' ')" -eq 53
-          printf '%s\n' '' '## Repository ownership — aaa' '' '`yanivmizrachiy/aaa` is the sole editable source of truth for this standalone Pythagoras workbook after this import.' 'All 53 page sources live directly in this repository and future content/design fixes must be committed here.' 'The historical `razpages` and `pythagoras` repositories are migration inputs only; they must not overwrite later edits made in `aaa`.' >> SOURCE_OF_TRUTH.md
+          printf '%s\n' '' '## Repository ownership — aaa' '' '`yanivmizrachiy/aaa` is the sole editable source of truth for this standalone Pythagoras workbook.' 'All 53 page sources live directly in this repository and future content/design fixes must be committed here.' >> SOURCE_OF_TRUTH.md
 
       - uses: actions/setup-node@v4
         with:
@@ -60,12 +62,18 @@ jobs:
           npm run typecheck
           test "$(find src/pages -name main.html -type f | wc -l | tr -d ' ')" -eq 53
 
-      - name: Commit all 53 editable pages to aaa
+      - name: Commit materialized source to PR branch
         shell: bash
+        env:
+          HEAD_REF: ${{ github.head_ref }}
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
+          if git diff --cached --quiet; then
+            echo 'No materialization changes required'
+            exit 0
+          fi
           git commit -m 'feat: materialize all 53 editable Pythagoras pages in aaa'
-          git push origin HEAD:main
+          git push origin "HEAD:${HEAD_REF}"
