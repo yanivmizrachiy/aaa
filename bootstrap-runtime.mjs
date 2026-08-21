@@ -4,8 +4,9 @@ import os from 'node:os';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 
-const SOURCE = 'https://pythagoras-runtime-cache.vercel.app';
-const EXPECTED_SHA = '5c41e13b7d93fb63c138efa1b3508e5b6c2a5dbd2d122d2882a2aef7e1c38c2e';
+const SOURCE_BASE = 'https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/main/.canonical';
+const PARTS = ['part-000','part-001','part-002','part-003'];
+const EXPECTED_SHA = '1a5fff4b9c4c845eeb36c1f2d9a4743cd4e8a8bf7f45a27230abf50f3e06a8bb';
 const repoRoot = process.cwd();
 
 function run(cmd, args, cwd = process.cwd()) {
@@ -18,14 +19,13 @@ async function fetchText(url) {
   return response.text();
 }
 function findPackageRoot(root) {
-  const direct = path.join(root, 'package.json');
-  if (fs.existsSync(direct)) return root;
+  if (fs.existsSync(path.join(root, 'package.json'))) return root;
   for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
     const candidate = path.join(root, entry.name);
     if (fs.existsSync(path.join(candidate, 'package.json'))) return candidate;
   }
-  throw new Error('package.json not found in extracted Pythagoras source');
+  throw new Error('package.json not found in canonical Pythagoras project');
 }
 function walkHtml(root, current = root, out = []) {
   for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
@@ -34,6 +34,11 @@ function walkHtml(root, current = root, out = []) {
     else if (entry.isFile() && entry.name.toLowerCase().endsWith('.html')) out.push(path.relative(root, full).replaceAll(path.sep, '/'));
   }
   return out;
+}
+function countWorkbookPages(projectRoot) {
+  const pagesRoot = path.join(projectRoot, 'src', 'pages');
+  if (!fs.existsSync(pagesRoot)) return 0;
+  return walkHtml(pagesRoot).filter((p) => p.endsWith('main.html')).length;
 }
 function ensureRootIndex(distDir) {
   const indexPath = path.join(distDir, 'index.html');
@@ -49,47 +54,42 @@ function ensureRootIndex(distDir) {
   };
   html.sort((a, b) => score(a) - score(b) || a.localeCompare(b, 'en'));
   const target = html[0];
-  const escaped = target.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+  const escaped = target.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;');
   fs.writeFileSync(indexPath, `<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=${escaped}"><title>משפט פיתגורס</title></head><body><p><a href="${escaped}">פתיחת דפי משפט פיתגורס</a></p></body></html>`, 'utf8');
 }
 function enhanceHtml(distDir) {
-  const css = `<style id="aaa-workbook-ui">:root{color-scheme:light;--aaa-ink:#12263f;--aaa-accent:#1f5f8b;--aaa-line:#d9e5ee;--aaa-paper:#fff}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}button,a,[role="button"],input,select,textarea{touch-action:manipulation}button,[role="button"],input[type="button"],input[type="submit"]{min-height:42px;border-radius:10px}input,select,textarea{max-width:100%;font:inherit}input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid rgba(31,95,139,.28);outline-offset:2px}img,svg,canvas{max-width:100%;height:auto}.page,.worksheet,.sheet,[class*="page"],[class*="worksheet"]{box-sizing:border-box}@media(max-width:720px){body{overflow-x:hidden}.page,.worksheet,.sheet,[class*="page"],[class*="worksheet"]{max-width:100%!important;margin-inline:auto!important}button,[role="button"],input[type="button"],input[type="submit"]{min-height:46px}}@media print{html,body{background:#fff!important}button,[role="button"],nav,.toolbar,.controls,[class*="nav"],[class*="toolbar"]{box-shadow:none!important}*{animation:none!important;transition:none!important}}</style>`;
+  const css = `<style id="aaa-workbook-ui">html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}button,a,[role="button"],input,select,textarea{touch-action:manipulation}button,[role="button"],input[type="button"],input[type="submit"]{min-height:42px;border-radius:10px}input,select,textarea{max-width:100%;font:inherit}input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid rgba(31,95,139,.28);outline-offset:2px}img,svg,canvas{max-width:100%;height:auto}@media(max-width:720px){body{overflow-x:hidden}button,[role="button"],input[type="button"],input[type="submit"]{min-height:46px}}@media print{html,body{background:#fff!important}*{animation:none!important;transition:none!important}}</style>`;
   let count = 0;
   for (const rel of walkHtml(distDir)) {
     const file = path.join(distDir, rel);
     let html = fs.readFileSync(file, 'utf8');
     if (html.includes('id="aaa-workbook-ui"')) continue;
-    if (/<\/head>/i.test(html)) html = html.replace(/<\/head>/i, `${css}</head>`);
-    else html = `${css}${html}`;
+    html = /<\/head>/i.test(html) ? html.replace(/<\/head>/i, `${css}</head>`) : `${css}${html}`;
     fs.writeFileSync(file, html, 'utf8');
     count++;
   }
-  console.log(`Enhanced ${count} HTML files for readability, mobile and print`);
+  console.log(`Enhanced ${count} HTML files`);
 }
 
-const manifest = JSON.parse(await fetchText(`${SOURCE}/`));
-if (manifest.archiveSha256 !== EXPECTED_SHA) throw new Error(`Runtime source changed unexpectedly: ${manifest.archiveSha256}`);
-if (!Array.isArray(manifest.parts) || manifest.parts.length !== 51) throw new Error(`Expected 51 runtime source parts, got ${manifest.parts?.length ?? 'none'}`);
 let base64 = '';
-for (const part of manifest.parts) {
-  const text = (await fetchText(`${SOURCE}/${encodeURIComponent(part.name)}`)).trim();
-  if (text.length !== part.length) throw new Error(`${part.name}: expected ${part.length} chars, got ${text.length}`);
-  base64 += text;
-}
-if (base64.length !== manifest.base64Length) throw new Error(`Base64 length mismatch: ${base64.length} != ${manifest.base64Length}`);
+for (const part of PARTS) base64 += (await fetchText(`${SOURCE_BASE}/${part}`)).trim();
 const archive = Buffer.from(base64, 'base64');
-if (archive.length !== manifest.archiveBytes) throw new Error(`Archive size mismatch: ${archive.length} != ${manifest.archiveBytes}`);
 const sha = crypto.createHash('sha256').update(archive).digest('hex');
-if (sha !== EXPECTED_SHA) throw new Error(`Archive SHA mismatch: ${sha}`);
-const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'pythagoras-src-'));
-const archivePath = path.join(tempRoot, 'source.tar.xz');
+if (sha !== EXPECTED_SHA) throw new Error(`Canonical archive SHA mismatch: ${sha}`);
+
+const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'aaa-pythagoras-'));
+const archivePath = path.join(tempRoot, 'source.tar.gz');
 const sourceDir = path.join(tempRoot, 'source');
 fs.mkdirSync(sourceDir);
 fs.writeFileSync(archivePath, archive);
-run('tar', ['-xJf', archivePath, '-C', sourceDir]);
+run('tar', ['-xzf', archivePath, '-C', sourceDir]);
 const projectRoot = findPackageRoot(sourceDir);
-if (!fs.existsSync(path.join(projectRoot, 'SOURCE_OF_TRUTH.md'))) throw new Error('SOURCE_OF_TRUTH.md missing from verified source');
+if (!fs.existsSync(path.join(projectRoot, 'SOURCE_OF_TRUTH.md'))) throw new Error('SOURCE_OF_TRUTH.md missing from canonical project');
+const pageCount = countWorkbookPages(projectRoot);
+if (pageCount !== 53) throw new Error(`Expected 53 workbook pages, found ${pageCount}`);
+console.log('Verified 53 Pythagoras pages');
 run('npm', ['install', '--no-audit', '--no-fund'], projectRoot);
+run('npm', ['run', 'check'], projectRoot);
 run('npm', ['run', 'build'], projectRoot);
 const builtDist = path.join(projectRoot, 'dist');
 if (!fs.existsSync(builtDist)) throw new Error('dist directory missing after build');
@@ -98,4 +98,4 @@ fs.rmSync(targetDist, { recursive: true, force: true });
 fs.cpSync(builtDist, targetDist, { recursive: true });
 ensureRootIndex(targetDist);
 enhanceHtml(targetDist);
-console.log(`Pythagoras production build ready from ${EXPECTED_SHA}`);
+console.log(`aaa Pythagoras production ready: ${pageCount} pages`);
