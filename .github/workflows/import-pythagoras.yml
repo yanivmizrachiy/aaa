@@ -1,14 +1,13 @@
-name: Materialize canonical 53-page Pythagoras workbook
+name: Materialize 53-page Pythagoras workbook from razpages
 on:
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened]
-  workflow_dispatch:
 permissions:
   contents: write
 jobs:
   import:
-    if: ${{ github.actor != 'github-actions[bot]' && github.event_name == 'pull_request' }}
+    if: ${{ github.actor != 'github-actions[bot]' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,74 +15,106 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Reconstruct exact verified canonical source
+      - name: Extract exact 53-page workbook from pinned source
         shell: bash
         run: |
           set -euo pipefail
-          BASE='https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/405696a512417922e09eb7720400157782a13399/.canonical'
-          EXPECTED_SHA='1a5fff4b9c4c845eeb36c1f2d9a4743cd4e8a8bf7f45a27230abf50f3e06a8bb'
-          rm -rf /tmp/aaa-pythagoras-src /tmp/aaa-canonical
-          mkdir -p /tmp/aaa-pythagoras-src /tmp/aaa-canonical
-          for part in part-000 part-001 part-002 part-003; do
-            curl -fL --retry 4 --retry-all-errors "$BASE/$part" -o "/tmp/aaa-canonical/$part"
+          SRC_SHA='07c8ac5f88ceb8958f8602742e4d3d6f0f27b16d'
+          rm -rf /tmp/razpages /tmp/aaa-new
+          git clone --quiet https://github.com/yanivmizrachiy/razpages.git /tmp/razpages
+          git -C /tmp/razpages checkout --quiet "$SRC_SHA"
+          mkdir -p /tmp/aaa-new/meta /tmp/aaa-new/styles/pages
+
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { pathToFileURL } from 'node:url';
+          const src='/tmp/razpages';
+          const out='/tmp/aaa-new';
+          const meta=JSON.parse(fs.readFileSync(path.join(src,'meta/topics.json'),'utf8'));
+          const {buildPythagorasWorkbook}=await import(pathToFileURL(path.join(src,'pythagoras-workbook-model.js')).href);
+          const wb=buildPythagorasWorkbook(meta);
+          if(wb.pages.length!==53) throw new Error(`Expected 53 pages, got ${wb.pages.length}`);
+          const nums=wb.pages.map(p=>p.sourceNumber);
+          const primary=meta.topics.find(t=>t.name==='משפט פיתגורס');
+          const needed=new Set(nums);
+          const reducedTopics=[];
+          for(const topic of meta.topics){
+            const pages=(topic.pages??[]).filter(p=>needed.has(p.number));
+            if(pages.length) reducedTopics.push({...topic,count:pages.length,pages});
+          }
+          const reduced={
+            generatedAt:new Date().toISOString(),
+            sourceRepository:'yanivmizrachiy/razpages',
+            sourceCommit:'07c8ac5f88ceb8958f8602742e4d3d6f0f27b16d',
+            totalPages:53,
+            topics:reducedTopics,
+            curriculum:{nodes:[{id:'g7.geo.pythagoras',name:'משפט פיתגורס',pages:nums}]}
+          };
+          fs.writeFileSync(path.join(out,'meta/topics.json'),JSON.stringify(reduced,null,2)+'\n');
+          fs.writeFileSync(path.join(out,'WORKBOOK_MANIFEST.json'),JSON.stringify(wb,null,2)+'\n');
+          fs.writeFileSync('/tmp/page-numbers.txt',nums.join('\n')+'\n');
+          fs.writeFileSync('/tmp/page-files.txt',wb.pages.map(p=>p.file||`עמוד-${p.sourceNumber}.html`).join('\n')+'\n');
+          NODE
+
+          cp /tmp/razpages/pythagoras-workbook.html /tmp/aaa-new/index.html
+          cp /tmp/razpages/pythagoras-workbook.html /tmp/aaa-new/pythagoras-workbook.html
+          cp /tmp/razpages/pythagoras-workbook.js /tmp/aaa-new/
+          cp /tmp/razpages/pythagoras-workbook-model.js /tmp/aaa-new/
+          cp -a /tmp/razpages/vendor /tmp/aaa-new/
+          cp -a /tmp/razpages/styles /tmp/aaa-new/styles-all
+          rm -rf /tmp/aaa-new/styles
+          mkdir -p /tmp/aaa-new/styles/pages
+          find /tmp/aaa-new/styles-all -mindepth 1 -maxdepth 1 ! -name pages -exec cp -a {} /tmp/aaa-new/styles/ \;
+          while IFS= read -r n; do
+            test -f "/tmp/razpages/עמוד-${n}.html"
+            test -f "/tmp/razpages/styles/pages/עמוד-${n}.css"
+            cp "/tmp/razpages/עמוד-${n}.html" /tmp/aaa-new/
+            cp "/tmp/razpages/styles/pages/עמוד-${n}.css" /tmp/aaa-new/styles/pages/
+          done < /tmp/page-numbers.txt
+          rm -rf /tmp/aaa-new/styles-all
+          for d in assets images media; do
+            if [ -d "/tmp/razpages/$d" ]; then cp -a "/tmp/razpages/$d" /tmp/aaa-new/; fi
           done
-          cat /tmp/aaa-canonical/part-* | tr -d '\r\n\t ' > /tmp/pythagoras.b64
-          node -e "const fs=require('fs');const t=fs.readFileSync('/tmp/pythagoras.b64','utf8');fs.writeFileSync('/tmp/pythagoras.tar.gz',Buffer.from(t,'base64'));"
-          echo "$EXPECTED_SHA  /tmp/pythagoras.tar.gz" | sha256sum -c -
-          gzip -t /tmp/pythagoras.tar.gz
-          tar -xzf /tmp/pythagoras.tar.gz -C /tmp/aaa-pythagoras-src
-          PACKAGE_JSON="$(find /tmp/aaa-pythagoras-src -maxdepth 3 -name package.json -type f -print -quit)"
-          test -n "$PACKAGE_JSON"
-          PROJECT_ROOT="$(dirname "$PACKAGE_JSON")"
-          test -f "$PROJECT_ROOT/SOURCE_OF_TRUTH.md"
-          test -d "$PROJECT_ROOT/src/pages"
-          PAGE_COUNT="$(find "$PROJECT_ROOT/src/pages" -name main.html -type f | wc -l | tr -d ' ')"
-          test "$PAGE_COUNT" -eq 53
-          FONT_COUNT="$(find "$PROJECT_ROOT/src/shared/fonts" -name '*.woff2' -type f -size +1000c | wc -l | tr -d ' ')"
-          test "$FONT_COUNT" -ge 4
-          echo "VERIFIED: $PAGE_COUNT pages, $FONT_COUNT fonts"
-          printf '%s' "$PROJECT_ROOT" > /tmp/aaa-project-root
 
-      - name: Replace bootstrap shell with editable source
+          cat > /tmp/aaa-new/SOURCE_OF_TRUTH.md <<'EOF'
+          # מקור האמת — חוברת משפט פיתגורס
+
+          `yanivmizrachiy/aaa` הוא מקור האמת היחיד של חוברת משפט פיתגורס החל מ־2026-08-21.
+
+          ## מבנה
+          - חוברת אחת מסודרת.
+          - בדיוק 53 דפים.
+          - `WORKBOOK_MANIFEST.json` הוא רשימת הדפים וסדרם.
+          - קובצי `עמוד-*.html` הם תוכן הדפים בפועל.
+          - קובצי `styles/pages/עמוד-*.css` הם העיצוב הייעודי לכל דף.
+          - `index.html` הוא הקישור הראשי לחוברת המאוחדת.
+
+          ## כלל ברזל
+          כל שינוי עתידי בתוכן, עיצוב, ניווט, הדפסה או התאמה לנייד נעשה בריפו הזה בלבד.
+          `razpages` שימש מקור יבוא חד־פעמי ואינו מקור אמת של החוברת לאחר המיזוג.
+          אין לדרוס תיקונים שנעשו כאן באמצעות יבוא חוזר אוטומטי.
+
+          ## דרישות קבועות
+          עברית RTL מלאה; גרפיקה נקייה; קריאות גבוהה; התאמה לטלפון/טאבלט/מחשב; הדפסה נקייה; ניווט קודם/הבא; שמירה מלאה על נוסחאות, שרטוטים, תשובות וסדר תרגילים.
+          EOF
+          sed -i 's/^          //' /tmp/aaa-new/SOURCE_OF_TRUTH.md
+
+          test "$(find /tmp/aaa-new -maxdepth 1 -name 'עמוד-*.html' -type f | wc -l | tr -d ' ')" -eq 53
+          test "$(find /tmp/aaa-new/styles/pages -name 'עמוד-*.css' -type f | wc -l | tr -d ' ')" -eq 53
+          test -f /tmp/aaa-new/vendor/mathjax/tex-mml-chtml.js
+          test -f /tmp/aaa-new/vendor/fonts/rubik.css
+          test -f /tmp/aaa-new/index.html
+          echo 'VERIFIED: 53 HTML pages + 53 page styles + workbook shell'
+
+      - name: Replace branch with clean editable workbook
         shell: bash
         run: |
           set -euo pipefail
-          PROJECT_ROOT="$(cat /tmp/aaa-project-root)"
           find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          cp -a "$PROJECT_ROOT"/. .
-          test -f package.json
-          test -f SOURCE_OF_TRUTH.md
-          test "$(find src/pages -name main.html -type f | wc -l | tr -d ' ')" -eq 53
-          printf '%s\n' '' '## Repository ownership — aaa' '' '`yanivmizrachiy/aaa` is the sole editable source of truth for this standalone Pythagoras workbook.' 'All 53 page sources live directly in this repository and future content/design fixes must be committed here.' >> SOURCE_OF_TRUTH.md
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '24'
-          cache: npm
-
-      - name: Verify editable workbook
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm install --no-audit --no-fund
-          npm run check
-          npm run build
-          npm run typecheck
-          test -f package-lock.json
-          test "$(find src/pages -name main.html -type f | wc -l | tr -d ' ')" -eq 53
-
-      - name: Commit materialized source to PR branch
-        shell: bash
-        env:
-          HEAD_REF: ${{ github.head_ref }}
-        run: |
-          set -euo pipefail
+          cp -a /tmp/aaa-new/. .
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          if git diff --cached --quiet; then
-            echo 'No materialization changes required'
-            exit 0
-          fi
-          git commit -m 'feat: materialize all 53 editable Pythagoras pages in aaa'
-          git push origin "HEAD:${HEAD_REF}"
+          git commit -m 'feat: import all 53 editable Pythagoras pages into aaa'
+          git push origin "HEAD:${{ github.head_ref }}"
