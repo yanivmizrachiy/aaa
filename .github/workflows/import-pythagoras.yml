@@ -16,14 +16,16 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Download pinned complete source archive
+      - name: Download verified complete source archive
         shell: bash
         run: |
           set -euo pipefail
-          SOURCE='https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/52e8f54425bdbe66ec30859cdd9b81628514c90f/pythagoras-bootstrap.tar.gz'
+          SOURCE='https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/2eed94cde014954b0aac6d61758766dc47a5c091/pythagoras-bootstrap.tar.gz'
           rm -rf /tmp/aaa-pythagoras-src
           mkdir -p /tmp/aaa-pythagoras-src
           curl -fL --retry 4 --retry-all-errors "$SOURCE" -o /tmp/pythagoras-bootstrap.tar.gz
+          echo "archive-bytes=$(wc -c < /tmp/pythagoras-bootstrap.tar.gz)"
+          gzip -t /tmp/pythagoras-bootstrap.tar.gz
           tar -xzf /tmp/pythagoras-bootstrap.tar.gz -C /tmp/aaa-pythagoras-src
           PACKAGE_JSON="$(find /tmp/aaa-pythagoras-src -maxdepth 3 -name package.json -type f -print -quit)"
           test -n "$PACKAGE_JSON"
