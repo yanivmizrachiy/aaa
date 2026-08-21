@@ -1,0 +1,23 @@
+@import url("../topics/pythagoras-foundations.css");
+
+.page-650 .question-block {
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+/* בתרגול המעורב, שטח פנוי הופך למרחב דרך פתרון אמיתי. */
+.page-650 .foundation-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+.page-650 .foundation-card {
+  min-height: 0;
+}
+
+.page-650 .foundation-card .full-solution-space,
+.page-650 .foundation-card .work-lines {
+  flex: 1 1 auto;
+  min-height: 150px;
+}

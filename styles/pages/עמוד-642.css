@@ -1,0 +1,54 @@
+@import url("../topics/pythagoras-foundations.css");
+@import url("../topics/pythagoras-power-practice.css");
+
+.page-642 {
+  --power-question-gap: 8px;
+  --power-instruction-font-size: 15px;
+  --power-instruction-line-height: 1.35;
+}
+
+.page-642 .compact-approx-note {
+  padding: 8px 12px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.page-642 .side-table {
+  flex: 0 0 auto;
+}
+
+.page-642 .side-table th,
+.page-642 .side-table td {
+  height: 38px;
+  padding: 4px 6px;
+  font-size: 15px;
+}
+
+.page-642 .side-table .foundation-fill {
+  height: 26px;
+}
+
+.page-642 .approximation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.page-642 .approximation-grid .stacked-answer-card {
+  min-height: 72px;
+  padding: 7px 8px;
+  gap: 5px;
+}
+
+.page-642 .compact-work-lines {
+  flex: 0 0 auto;
+  min-height: 56px;
+  height: 56px;
+}
+
+@media print {
+  .page-642 .approximation-grid,
+  .page-642 .side-table {
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,105 @@
+.pythagoras-workbook-shell {
+  margin: 0;
+  min-height: 100vh;
+  background: #eef2f7;
+  font-family: 'Rubik', Arial, sans-serif;
+  color: #0f172a;
+}
+
+.workbook-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #cbd5e1;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.workbook-brand,
+.workbook-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.workbook-brand strong { font-size: 18px; }
+#workbook-status { color: #475569; font-size: 13px; }
+
+.workbook-actions button,
+.workbook-actions input {
+  min-height: 40px;
+  border: 1px solid #94a3b8;
+  border-radius: 8px;
+  background: #fff;
+  color: #0f172a;
+  font: inherit;
+}
+
+.workbook-actions button { padding: 0 14px; cursor: pointer; }
+.workbook-actions input { width: 68px; padding: 0 8px; text-align: center; }
+
+.workbook-pages {
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+  padding: 24px 12px 48px;
+}
+
+.workbook-page-wrap {
+  position: relative;
+  width: fit-content;
+  scroll-margin-top: var(--pythagoras-toolbar-offset, 76px);
+}
+
+.workbook-page-wrap > .a4-page {
+  margin: 0 !important;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+}
+
+/* שכבת אחידות חוברת: ממשק Rubik; מתמטיקה ממשיכה להירנדר בגופני TeX המקומיים של MathJax. */
+.workbook-page-wrap > .a4-page,
+.workbook-page-wrap > .a4-page button,
+.workbook-page-wrap > .a4-page input,
+.workbook-page-wrap > .a4-page textarea {
+  font-family: 'Rubik', Arial, sans-serif;
+}
+
+/* דפי היישום 375–380 נשארים גם בגאומטריה ז', אך בתוך חוברת פיתגורס מקבלים את שכבת פיתגורס המשותפת. */
+.workbook-page-wrap > .a4-page.geo7-page svg.chart text[direction="ltr"],
+.workbook-page-wrap > .a4-page.geo7-page svg.chart text:not([direction]) {
+  font-family: 'PytTeX', Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+}
+
+.workbook-error {
+  width: min(794px, calc(100vw - 24px));
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ef4444;
+  border-radius: 10px;
+  color: #991b1b;
+}
+
+@media (max-width: 760px) {
+  .workbook-toolbar { align-items: flex-start; flex-direction: column; }
+  .workbook-actions { width: 100%; flex-wrap: wrap; }
+  .workbook-actions button { flex: 1 1 auto; }
+  .workbook-pages { padding-inline: 4px; }
+  .workbook-page-wrap { transform-origin: top center; max-width: 100%; }
+}
+
+@media print {
+  @page { size: A4; margin: 0; }
+  .pythagoras-workbook-shell { background: #fff; }
+  .workbook-toolbar { display: none !important; }
+  .workbook-pages { display: block; padding: 0; }
+  .workbook-page-wrap { width: 210mm; height: 297mm; margin: 0; break-after: page; page-break-after: always; }
+  .workbook-page-wrap:last-child { break-after: auto; page-break-after: auto; }
+  .workbook-page-wrap > .a4-page { box-shadow: none !important; }
+}

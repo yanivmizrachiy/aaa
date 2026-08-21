@@ -1,0 +1,50 @@
+{
+  "version": 3,
+  "student_pages": 21,
+  "answer_key_pages_expected": 7,
+  "original_question_content_preserved": true,
+  "pages_reordered_for_prerequisites": true,
+  "split_pages": [
+    "comparative-language",
+    "error-analysis"
+  ],
+  "critical_fixes": [
+    "exclusive axis classification at origin",
+    "y=2x table stays inside y<=6",
+    "all equal-y pairs requested in park map",
+    "strict interior specified in rectangle challenge",
+    "units and square units added to geometry",
+    "integer-point graph convention clarified",
+    "distance page moved before geometry",
+    "deterministic v3 runtime plus separate modular source bundle",
+    "separate teacher answer key with fixed footer added"
+  ],
+  "counts": {
+    "sheets": 21,
+    "footers": 21,
+    "qcards": 107,
+    "svgs": 31,
+    "answer_key_pages": 7,
+    "answer_key_footers": 7
+  },
+  "sha256": {
+    "רביע-ראשון.html": "2bdac39aab6d14b3684b6c28eb46d78966a25f11bcb9fcf18ec7ee94a6675df4",
+    "רביע-ראשון-עצמאי.html": "1901766da20d145433c0e4121a2da0bf44e255b18c159384e9f6b02bf404c3b9",
+    "assets/first-quadrant/workbook-v3.css": "978d9686e2cf1386b1190e910679710bfb3f42d284537ebe376faa53a0c52129",
+    "assets/first-quadrant/workbook-v3.js": "ab8ff4720eaf8b018db6cd8b1db3bea7b8e61bde8abc968b851051f4e862b0bc",
+    "מפתח-תשובות-רביע-ראשון.html": "42648df950303e59d96e5f9b36818d6b362df9cc3d0da609af2b586cb4b159ab",
+    "gzip": "7efdca28607e6d514dcc938902996c161904044a74262c5105ce11dff41aa925"
+  },
+  "automated_checks": {
+    "screen_layout": "passed",
+    "print_layout": "passed",
+    "horizontal_overflow": 0,
+    "vertical_overflow": 0,
+    "svg_answer_box_collisions": 0,
+    "student_pdf_pages": 21,
+    "answer_key_pdf_pages": 7,
+    "student_footers": 21,
+    "answer_key_footers": 7,
+    "all_rendered_pages_visually_checked": 28
+  }
+}

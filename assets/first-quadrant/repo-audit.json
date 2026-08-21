@@ -1,0 +1,30 @@
+{
+  "title": "רביע ראשון",
+  "html_pages": 15,
+  "pdf_pages": 15,
+  "qcards": 77,
+  "svg_drawings": 20,
+  "footer_lines": [
+    "יניב רז - מדריך מחוזי חט\"ב בעיר ירושלים",
+    "הדרכה במחוז ירושלים והעיר ירושלים - מנח\"י, בהובלת איילת קריספין"
+  ],
+  "footer_present_on_all_pages": true,
+  "render_checks": [
+    {"page":1,"width":992,"height":1404,"footer_nonwhite_pixels":33251},
+    {"page":2,"width":992,"height":1404,"footer_nonwhite_pixels":33254},
+    {"page":3,"width":992,"height":1404,"footer_nonwhite_pixels":33253},
+    {"page":4,"width":992,"height":1404,"footer_nonwhite_pixels":33248},
+    {"page":5,"width":992,"height":1404,"footer_nonwhite_pixels":33254},
+    {"page":6,"width":992,"height":1404,"footer_nonwhite_pixels":33252},
+    {"page":7,"width":992,"height":1404,"footer_nonwhite_pixels":33255},
+    {"page":8,"width":992,"height":1404,"footer_nonwhite_pixels":33254},
+    {"page":9,"width":992,"height":1404,"footer_nonwhite_pixels":33254},
+    {"page":10,"width":992,"height":1404,"footer_nonwhite_pixels":33264},
+    {"page":11,"width":992,"height":1404,"footer_nonwhite_pixels":33263},
+    {"page":12,"width":992,"height":1404,"footer_nonwhite_pixels":33265},
+    {"page":13,"width":992,"height":1404,"footer_nonwhite_pixels":33263},
+    {"page":14,"width":992,"height":1404,"footer_nonwhite_pixels":33262},
+    {"page":15,"width":992,"height":1404,"footer_nonwhite_pixels":33265}
+  ],
+  "source_question_content_preserved": true
+}

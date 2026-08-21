@@ -1,0 +1,143 @@
+@import url("../topics/pythagoras-foundations.css");
+
+.page-636 .question-block {
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.page-636 .foundation-note {
+  padding-block: 9px;
+}
+
+.page-636 > .question-block > .foundation-card {
+  min-height: 0;
+}
+
+.page-636 .example-card {
+  min-height: 136px;
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  align-items: center;
+  gap: 14px;
+  padding: 7px 14px;
+}
+
+.page-636 .example-card .foundation-svg.hero {
+  width: 210px;
+  max-width: 210px;
+  height: 104px;
+}
+
+.page-636 .example-caption {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.page-636 .foundation-grid {
+  min-height: 0;
+}
+
+.page-636 .leg-practice-grid {
+  gap: 9px 12px;
+}
+
+.page-636 .leg-practice-grid .foundation-card {
+  min-height: 162px;
+  padding: 7px 10px;
+}
+
+.page-636 .leg-practice-grid .foundation-svg {
+  height: 98px;
+  max-width: 210px;
+}
+
+.page-636 .leg-practice-grid p {
+  font-size: 16px;
+}
+
+.page-636 .compact-instruction,
+.page-636 .synthesis-instruction {
+  margin-top: 0;
+}
+
+.page-636 .concept-check-grid {
+  gap: 9px;
+}
+
+.page-636 .concept-check {
+  min-height: 88px;
+  padding: 8px 12px;
+  justify-content: flex-start;
+}
+
+.page-636 .concept-check p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.page-636 .synthesis-drawing-card {
+  min-height: 132px;
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 8px 14px;
+}
+
+.page-636 .drawing-space-wide {
+  width: 100%;
+  min-height: 108px;
+  border: 1.5px dashed #94a3b8;
+  border-radius: 8px;
+  background: var(--bg-paper);
+}
+
+.page-636 .short-line {
+  min-width: 68px;
+}
+
+/* עמוד 3 — רכיבים מקומיים בלבד. אסור לכוונן תיבות/אותיות דרך שכבת הנושא בגלל אפקט צד על דפים אחרים. */
+.page-636 .pyt-vertex-label {
+  font-family: 'PytTeXMathItalic', Georgia, 'Times New Roman', serif;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.01em;
+}
+
+.page-636 .pyt-leg-answer {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.page-636 .pyt-blank {
+  height: 26px;
+  border: 1.15px solid #334155;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: none;
+  vertical-align: -5px;
+  margin-inline: 2px;
+}
+
+.page-636 .pyt-blank-leg {
+  width: 64px;
+}
+
+.page-636 .pyt-blank-inline-short {
+  width: 60px;
+}
+
+.page-636 .pyt-blank-inline-medium {
+  width: 86px;
+}
+
+.page-636 .pyt-fill-line {
+  line-height: 1.65;
+}

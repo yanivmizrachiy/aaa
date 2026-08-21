@@ -1,0 +1,44 @@
+@import url("../topics/pythagoras-foundations.css");
+
+.page-637 .question-block {
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+/* פוסטר מלא-עמוד: משולשים ישרי־זווית בגדלים ובכיוונים שונים, מפוזרים. */
+.page-637 .hyp-poster {
+  flex: 1 1 auto;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  display: block;
+}
+
+.page-637 .hyp-poster .poster-bg {
+  fill: #fcfdff;
+  stroke: rgba(96, 165, 250, 0.35);
+  stroke-width: 1.5;
+}
+
+.page-637 .hyp-poster .edge {
+  fill: none;
+  stroke: var(--accent-dark);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.page-637 .hyp-poster .mark {
+  fill: none;
+  stroke: var(--accent-dark);
+  stroke-width: 1.3;
+  vector-effect: non-scaling-stroke;
+}
+
+.page-637 .hyp-poster .tag {
+  fill: #64748b;
+  font-family: 'PytTeX', Georgia, serif;
+  font-size: 19px;
+  text-anchor: middle;
+}

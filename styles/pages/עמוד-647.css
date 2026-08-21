@@ -1,0 +1,31 @@
+@import url("../topics/pythagoras-foundations.css");
+
+/* שש שאלות חישוביות בעמוד: שני טורים, שרטוט ברור ומשטח משבצות מהשכבה המשותפת. */
+.page-647 .full-solution-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 14px;
+}
+
+.page-647 .full-solution-card {
+  min-height: 266px;
+  padding: 7px 10px;
+  gap: 5px;
+  justify-content: flex-start;
+}
+
+.page-647 .full-solution-card .foundation-svg {
+  height: 116px;
+  max-width: 235px;
+  flex: 0 0 auto;
+}
+
+.page-647 .full-solution-space {
+  min-height: 112px;
+  flex: 1 1 auto;
+}
+
+.page-647 .student-final-answer {
+  flex: 0 0 auto;
+  border-top: 0;
+  padding-top: 0;
+}

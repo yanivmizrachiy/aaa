@@ -1,0 +1,613 @@
+{
+  "generatedAt": "2026-08-21T16:00:28.200Z",
+  "sourceRepository": "yanivmizrachiy/razpages",
+  "sourceCommit": "07c8ac5f88ceb8958f8602742e4d3d6f0f27b16d",
+  "totalPages": 53,
+  "topics": [
+    {
+      "name": "משפט פיתגורס",
+      "count": 47,
+      "pages": [
+        {
+          "number": 634,
+          "file": "עמוד-634.html",
+          "title": "עמוד 1 — מושגים בסיסיים",
+          "h1": "מושגים בסיסיים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-634.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-634.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 635,
+          "file": "עמוד-635.html",
+          "title": "עמוד 2 — מושגים בסיסיים",
+          "h1": "מושגים בסיסיים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-635.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-635.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 636,
+          "file": "עמוד-636.html",
+          "title": "עמוד 3 — מושגים בסיסיים",
+          "h1": "מושגים בסיסיים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-636.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-636.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 637,
+          "file": "עמוד-637.html",
+          "title": "עמוד 4 — מושגים בסיסיים",
+          "h1": "מושגים בסיסיים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-637.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-637.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 638,
+          "file": "עמוד-638.html",
+          "title": "עמוד 5 — מושגים בסיסיים",
+          "h1": "מושגים בסיסיים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-638.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-638.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 639,
+          "file": "עמוד-639.html",
+          "title": "עמוד 6 — חזקות ושורשים",
+          "h1": "חזקות ושורשים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-639.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-639.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 640,
+          "file": "עמוד-640.html",
+          "title": "עמוד 7 — חזקות ושורשים",
+          "h1": "חזקות ושורשים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-640.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-640.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 641,
+          "file": "עמוד-641.html",
+          "title": "עמוד 8 — חזקות ושורשים",
+          "h1": "חזקות ושורשים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-641.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-641.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 651,
+          "file": "עמוד-651.html",
+          "title": "עמוד 9 — חזקות ושורשים",
+          "h1": "חזקות ושורשים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-651.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-651.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 642,
+          "file": "עמוד-642.html",
+          "title": "עמוד 10 — חזקות ושורשים",
+          "h1": "חזקות ושורשים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-642.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-642.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 652,
+          "file": "עמוד-652.html",
+          "title": "עמוד 11 — חזקות ושורשים",
+          "h1": "חזקות ושורשים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-652.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-652.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 643,
+          "file": "עמוד-643.html",
+          "title": "עמוד 12 — חזקות ושורשים",
+          "h1": "חזקות ושורשים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-643.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-643.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 644,
+          "file": "עמוד-644.html",
+          "title": "עמוד 13 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-644.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-644.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 645,
+          "file": "עמוד-645.html",
+          "title": "עמוד 14 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-645.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-645.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 646,
+          "file": "עמוד-646.html",
+          "title": "עמוד 15 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-646.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-646.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 647,
+          "file": "עמוד-647.html",
+          "title": "עמוד 16 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-647.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-647.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 653,
+          "file": "עמוד-653.html",
+          "title": "עמוד 17 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-653.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-653.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 648,
+          "file": "עמוד-648.html",
+          "title": "עמוד 18 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-648.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-648.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 649,
+          "file": "עמוד-649.html",
+          "title": "עמוד 19 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-649.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-649.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 650,
+          "file": "עמוד-650.html",
+          "title": "עמוד 20 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-650.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-650.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 9,
+          "file": "עמוד-9.html",
+          "title": "עמוד 21 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-9.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-9.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 10,
+          "file": "עמוד-10.html",
+          "title": "עמוד 22 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-10.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-10.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 11,
+          "file": "עמוד-11.html",
+          "title": "עמוד 23 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-11.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-11.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 12,
+          "file": "עמוד-12.html",
+          "title": "עמוד 24 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-12.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-12.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 13,
+          "file": "עמוד-13.html",
+          "title": "עמוד 25 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-13.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-13.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 14,
+          "file": "עמוד-14.html",
+          "title": "עמוד 26 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-14.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-14.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 15,
+          "file": "עמוד-15.html",
+          "title": "עמוד 27 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-15.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-15.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 16,
+          "file": "עמוד-16.html",
+          "title": "עמוד 28 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-16.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-16.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 17,
+          "file": "עמוד-17.html",
+          "title": "עמוד 29 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-17.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-17.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 18,
+          "file": "עמוד-18.html",
+          "title": "עמוד 30 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-18.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-18.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 19,
+          "file": "עמוד-19.html",
+          "title": "עמוד 31 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-19.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-19.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 20,
+          "file": "עמוד-20.html",
+          "title": "עמוד 32 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-20.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-20.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 21,
+          "file": "עמוד-21.html",
+          "title": "עמוד 33 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-21.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-21.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 654,
+          "file": "עמוד-654.html",
+          "title": "עמוד 34 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-654.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-654.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 22,
+          "file": "עמוד-22.html",
+          "title": "עמוד 35 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-22.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-22.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 23,
+          "file": "עמוד-23.html",
+          "title": "עמוד 36 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-23.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-23.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 24,
+          "file": "עמוד-24.html",
+          "title": "עמוד 37 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-24.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-24.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 25,
+          "file": "עמוד-25.html",
+          "title": "עמוד 38 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-25.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-25.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 26,
+          "file": "עמוד-26.html",
+          "title": "עמוד 39 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-26.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-26.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 27,
+          "file": "עמוד-27.html",
+          "title": "עמוד 40 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-27.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-27.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 28,
+          "file": "עמוד-28.html",
+          "title": "עמוד 41 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-28.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-28.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 29,
+          "file": "עמוד-29.html",
+          "title": "עמוד 42 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-29.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-29.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 30,
+          "file": "עמוד-30.html",
+          "title": "עמוד 43 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-30.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-30.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 41,
+          "file": "עמוד-41.html",
+          "title": "עמוד 44 — משפט פיתגורס",
+          "h1": "משפט פיתגורס",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-41.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-41.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 655,
+          "file": "עמוד-655.html",
+          "title": "עמוד 45 — שאלות מתוך תוכנית הלימודים",
+          "h1": "שאלות מתוך תוכנית הלימודים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-655.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-655.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 656,
+          "file": "עמוד-656.html",
+          "title": "עמוד 46 — שאלות מתוך תוכנית הלימודים",
+          "h1": "שאלות מתוך תוכנית הלימודים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-656.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-656.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 657,
+          "file": "עמוד-657.html",
+          "title": "עמוד 47 — שאלות מתוך תוכנית הלימודים",
+          "h1": "שאלות מתוך תוכנית הלימודים",
+          "topic": "משפט פיתגורס",
+          "previewPath": "/עמוד-657.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-657.html",
+          "curriculumId": "g7.geo.pythagoras"
+        }
+      ]
+    },
+    {
+      "name": "גאומטריה ז",
+      "count": 6,
+      "pages": [
+        {
+          "number": 375,
+          "file": "עמוד-375.html",
+          "title": "עמוד 56 — גאומטריה ז",
+          "h1": "גאומטריה ז",
+          "topic": "גאומטריה ז",
+          "previewPath": "/עמוד-375.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-375.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 376,
+          "file": "עמוד-376.html",
+          "title": "עמוד 57 — גאומטריה ז",
+          "h1": "גאומטריה ז",
+          "topic": "גאומטריה ז",
+          "previewPath": "/עמוד-376.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-376.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 377,
+          "file": "עמוד-377.html",
+          "title": "עמוד 58 — גאומטריה ז",
+          "h1": "גאומטריה ז",
+          "topic": "גאומטריה ז",
+          "previewPath": "/עמוד-377.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-377.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 378,
+          "file": "עמוד-378.html",
+          "title": "עמוד 59 — גאומטריה ז",
+          "h1": "גאומטריה ז",
+          "topic": "גאומטריה ז",
+          "previewPath": "/עמוד-378.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-378.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 379,
+          "file": "עמוד-379.html",
+          "title": "עמוד 60 — גאומטריה ז",
+          "h1": "גאומטריה ז",
+          "topic": "גאומטריה ז",
+          "previewPath": "/עמוד-379.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-379.html",
+          "curriculumId": "g7.geo.pythagoras"
+        },
+        {
+          "number": 380,
+          "file": "עמוד-380.html",
+          "title": "עמוד 61 — גאומטריה ז",
+          "h1": "גאומטריה ז",
+          "topic": "גאומטריה ז",
+          "previewPath": "/עמוד-380.html",
+          "siteUrl": "https://yanivmizrachiy.github.io/razpages/עמוד-380.html",
+          "curriculumId": "g7.geo.pythagoras"
+        }
+      ]
+    }
+  ],
+  "curriculum": {
+    "nodes": [
+      {
+        "id": "g7.geo.pythagoras",
+        "name": "משפט פיתגורס",
+        "pages": [
+          634,
+          635,
+          636,
+          637,
+          638,
+          639,
+          640,
+          641,
+          651,
+          642,
+          652,
+          643,
+          644,
+          645,
+          646,
+          647,
+          653,
+          648,
+          649,
+          650,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          654,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          41,
+          655,
+          656,
+          657,
+          375,
+          376,
+          377,
+          378,
+          379,
+          380
+        ]
+      }
+    ]
+  }
+}

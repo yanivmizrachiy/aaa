@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>משפט פיתגורס — החוברת המלאה</title>
+  <link rel="stylesheet" href="vendor/fonts/rubik.css" />
+  <link rel="stylesheet" href="styles/a4-base.css" />
+  <link rel="stylesheet" href="styles/topics/pythagoras.css" />
+  <link rel="stylesheet" href="styles/pythagoras-workbook.css" />
+  <script>MathJax={tex:{inlineMath:[["\\(","\\)"]]},chtml:{fontURL:'vendor/mathjax/tex-font/chtml/woff2'}};</script>
+  <script id="MathJax-script" src="vendor/mathjax/tex-mml-chtml.js"></script>
+  <script type="module" src="pythagoras-workbook.js?v=__MOBILE_VERSION__"></script>
+</head>
+<body class="pythagoras-workbook-shell">
+  <header class="workbook-toolbar" aria-label="כלי החוברת">
+    <div class="workbook-brand">
+      <strong>משפט פיתגורס</strong>
+      <span id="workbook-status" role="status" aria-live="polite" aria-atomic="true">טוען את החוברת…</span>
+    </div>
+    <div class="workbook-actions">
+      <button id="prev-page" type="button" disabled>הקודם</button>
+      <label>עמוד <input id="page-jump" type="number" min="1" inputmode="numeric" aria-label="מספר עמוד בחוברת" disabled /></label>
+      <button id="next-page" type="button" disabled>הבא</button>
+      <button id="print-workbook" type="button" disabled>הדפסת החוברת</button>
+    </div>
+  </header>
+  <main id="workbook" class="workbook-pages"></main>
+  <noscript>יש להפעיל JavaScript כדי לפתוח את החוברת המאוחדת.</noscript>
+</body>
+</html>
