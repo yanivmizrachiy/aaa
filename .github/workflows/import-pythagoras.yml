@@ -16,17 +16,23 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Download verified complete source archive
+      - name: Reconstruct verified canonical source
         shell: bash
         run: |
           set -euo pipefail
-          SOURCE='https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/2eed94cde014954b0aac6d61758766dc47a5c091/pythagoras-bootstrap.tar.gz'
-          rm -rf /tmp/aaa-pythagoras-src
-          mkdir -p /tmp/aaa-pythagoras-src
-          curl -fL --retry 4 --retry-all-errors "$SOURCE" -o /tmp/pythagoras-bootstrap.tar.gz
-          echo "archive-bytes=$(wc -c < /tmp/pythagoras-bootstrap.tar.gz)"
-          gzip -t /tmp/pythagoras-bootstrap.tar.gz
-          tar -xzf /tmp/pythagoras-bootstrap.tar.gz -C /tmp/aaa-pythagoras-src
+          BASE='https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/405696a512417922e09eb7720400157782a13399/.canonical'
+          EXPECTED_SHA='1a5fff4b9c4c845eeb36c1f2d9a4743cd4e8a8bf7f45a27230abf50f3e06a8bb'
+          rm -rf /tmp/aaa-pythagoras-src /tmp/aaa-canonical
+          mkdir -p /tmp/aaa-pythagoras-src /tmp/aaa-canonical
+          : > /tmp/pythagoras.tar.gz
+          for part in part-000 part-001 part-002 part-003; do
+            curl -fL --retry 4 --retry-all-errors "$BASE/$part" -o "/tmp/aaa-canonical/$part.b64"
+            tr -d '\r\n\t ' < "/tmp/aaa-canonical/$part.b64" | base64 -d > "/tmp/aaa-canonical/$part.bin"
+            cat "/tmp/aaa-canonical/$part.bin" >> /tmp/pythagoras.tar.gz
+          done
+          echo "$EXPECTED_SHA  /tmp/pythagoras.tar.gz" | sha256sum -c -
+          gzip -t /tmp/pythagoras.tar.gz
+          tar -xzf /tmp/pythagoras.tar.gz -C /tmp/aaa-pythagoras-src
           PACKAGE_JSON="$(find /tmp/aaa-pythagoras-src -maxdepth 3 -name package.json -type f -print -quit)"
           test -n "$PACKAGE_JSON"
           PROJECT_ROOT="$(dirname "$PACKAGE_JSON")"
