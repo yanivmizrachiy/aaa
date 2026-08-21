@@ -43,14 +43,7 @@ jobs:
           test -f package.json
           test -f SOURCE_OF_TRUTH.md
           test "$(find src/pages -name main.html -type f | wc -l | tr -d ' ')" -eq 53
-          cat >> SOURCE_OF_TRUTH.md <<'EOF'
-
-## Repository ownership — aaa
-
-`yanivmizrachiy/aaa` is the sole editable source of truth for this standalone Pythagoras workbook after this import.
-All 53 page sources live directly in this repository and future content/design fixes must be committed here.
-The historical `razpages` and `pythagoras` repositories are migration inputs only; they must not overwrite later edits made in `aaa`.
-EOF
+          printf '%s\n' '' '## Repository ownership — aaa' '' '`yanivmizrachiy/aaa` is the sole editable source of truth for this standalone Pythagoras workbook after this import.' 'All 53 page sources live directly in this repository and future content/design fixes must be committed here.' 'The historical `razpages` and `pythagoras` repositories are migration inputs only; they must not overwrite later edits made in `aaa`.' >> SOURCE_OF_TRUTH.md
 
       - uses: actions/setup-node@v4
         with:
