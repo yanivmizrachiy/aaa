@@ -1,0 +1,5 @@
+{
+  "outputDirectory": "dist",
+  "installCommand": "echo aaa-pythagoras",
+  "buildCommand": "node bootstrap-runtime.mjs"
+}
