@@ -4,7 +4,7 @@ import os from 'node:os';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 
-const SOURCE_BASE = 'https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/main/.canonical';
+const SOURCE_BASE = 'https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/405696a512417922e09eb7720400157782a13399/.canonical';
 const PARTS = ['part-000','part-001','part-002','part-003'];
 const EXPECTED_SHA = '1a5fff4b9c4c845eeb36c1f2d9a4743cd4e8a8bf7f45a27230abf50f3e06a8bb';
 const repoRoot = process.cwd();
@@ -71,9 +71,12 @@ function enhanceHtml(distDir) {
   console.log(`Enhanced ${count} HTML files`);
 }
 
-let base64 = '';
-for (const part of PARTS) base64 += (await fetchText(`${SOURCE_BASE}/${part}`)).trim();
-const archive = Buffer.from(base64, 'base64');
+const decodedParts = [];
+for (const part of PARTS) {
+  const text = (await fetchText(`${SOURCE_BASE}/${part}`)).replace(/\s+/g, '');
+  decodedParts.push(Buffer.from(text, 'base64'));
+}
+const archive = Buffer.concat(decodedParts);
 const sha = crypto.createHash('sha256').update(archive).digest('hex');
 if (sha !== EXPECTED_SHA) throw new Error(`Canonical archive SHA mismatch: ${sha}`);
 
