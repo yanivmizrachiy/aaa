@@ -52,6 +52,21 @@ function ensureRootIndex(distDir) {
   const escaped = target.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
   fs.writeFileSync(indexPath, `<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0;url=${escaped}"><title>משפט פיתגורס</title></head><body><p><a href="${escaped}">פתיחת דפי משפט פיתגורס</a></p></body></html>`, 'utf8');
 }
+function enhanceHtml(distDir) {
+  const css = `<style id="aaa-workbook-ui">:root{color-scheme:light;--aaa-ink:#12263f;--aaa-accent:#1f5f8b;--aaa-line:#d9e5ee;--aaa-paper:#fff}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}button,a,[role="button"],input,select,textarea{touch-action:manipulation}button,[role="button"],input[type="button"],input[type="submit"]{min-height:42px;border-radius:10px}input,select,textarea{max-width:100%;font:inherit}input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:3px solid rgba(31,95,139,.28);outline-offset:2px}img,svg,canvas{max-width:100%;height:auto}.page,.worksheet,.sheet,[class*="page"],[class*="worksheet"]{box-sizing:border-box}@media(max-width:720px){body{overflow-x:hidden}.page,.worksheet,.sheet,[class*="page"],[class*="worksheet"]{max-width:100%!important;margin-inline:auto!important}button,[role="button"],input[type="button"],input[type="submit"]{min-height:46px}}@media print{html,body{background:#fff!important}button,[role="button"],nav,.toolbar,.controls,[class*="nav"],[class*="toolbar"]{box-shadow:none!important}*{animation:none!important;transition:none!important}}</style>`;
+  let count = 0;
+  for (const rel of walkHtml(distDir)) {
+    const file = path.join(distDir, rel);
+    let html = fs.readFileSync(file, 'utf8');
+    if (html.includes('id="aaa-workbook-ui"')) continue;
+    if (/<\/head>/i.test(html)) html = html.replace(/<\/head>/i, `${css}</head>`);
+    else html = `${css}${html}`;
+    fs.writeFileSync(file, html, 'utf8');
+    count++;
+  }
+  console.log(`Enhanced ${count} HTML files for readability, mobile and print`);
+}
+
 const manifest = JSON.parse(await fetchText(`${SOURCE}/`));
 if (manifest.archiveSha256 !== EXPECTED_SHA) throw new Error(`Runtime source changed unexpectedly: ${manifest.archiveSha256}`);
 if (!Array.isArray(manifest.parts) || manifest.parts.length !== 51) throw new Error(`Expected 51 runtime source parts, got ${manifest.parts?.length ?? 'none'}`);
@@ -82,4 +97,5 @@ const targetDist = path.join(repoRoot, 'dist');
 fs.rmSync(targetDist, { recursive: true, force: true });
 fs.cpSync(builtDist, targetDist, { recursive: true });
 ensureRootIndex(targetDist);
+enhanceHtml(targetDist);
 console.log(`Pythagoras production build ready from ${EXPECTED_SHA}`);
