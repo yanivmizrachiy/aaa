@@ -1,4 +1,4 @@
-name: Import canonical 53-page Pythagoras workbook
+name: Materialize canonical 53-page Pythagoras workbook
 on:
   push:
     branches: [main]
@@ -13,32 +13,51 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Download verified canonical workbook
+
+      - name: Download pinned complete source archive
         shell: bash
         run: |
           set -euo pipefail
-          base='https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/main/.canonical'
-          mkdir -p /tmp/pythagoras-canonical
-          for part in part-000 part-001 part-002 part-003; do
-            curl -fsSL "$base/$part" -o "/tmp/pythagoras-canonical/$part"
-          done
-          cat /tmp/pythagoras-canonical/part-* > /tmp/pythagoras.b64
-          base64 -d /tmp/pythagoras.b64 > /tmp/pythagoras.tar.gz
-          echo '1a5fff4b9c4c845eeb36c1f2d9a4743cd4e8a8bf7f45a27230abf50f3e06a8bb  /tmp/pythagoras.tar.gz' | sha256sum -c -
-      - name: Replace repo with complete ordered workbook
+          SOURCE='https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/52e8f54425bdbe66ec30859cdd9b81628514c90f/pythagoras-bootstrap.tar.gz'
+          rm -rf /tmp/aaa-pythagoras-src
+          mkdir -p /tmp/aaa-pythagoras-src
+          curl -fL --retry 4 --retry-all-errors "$SOURCE" -o /tmp/pythagoras-bootstrap.tar.gz
+          tar -xzf /tmp/pythagoras-bootstrap.tar.gz -C /tmp/aaa-pythagoras-src
+          PACKAGE_JSON="$(find /tmp/aaa-pythagoras-src -maxdepth 3 -name package.json -type f -print -quit)"
+          test -n "$PACKAGE_JSON"
+          PROJECT_ROOT="$(dirname "$PACKAGE_JSON")"
+          test -f "$PROJECT_ROOT/SOURCE_OF_TRUTH.md"
+          test -d "$PROJECT_ROOT/src/pages"
+          PAGE_COUNT="$(find "$PROJECT_ROOT/src/pages" -name main.html -type f | wc -l | tr -d ' ')"
+          test "$PAGE_COUNT" -eq 53
+          echo "VERIFIED: $PAGE_COUNT Pythagoras pages"
+          printf '%s' "$PROJECT_ROOT" > /tmp/aaa-project-root
+
+      - name: Replace bootstrap shell with editable source
         shell: bash
         run: |
           set -euo pipefail
+          PROJECT_ROOT="$(cat /tmp/aaa-project-root)"
           find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
-          tar -xzf /tmp/pythagoras.tar.gz
-          test -f SOURCE_OF_TRUTH.md
+          cp -a "$PROJECT_ROOT"/. .
           test -f package.json
-          test "$(find src/pages -name main.html -type f | wc -l)" -eq 53
+          test -f SOURCE_OF_TRUTH.md
+          test "$(find src/pages -name main.html -type f | wc -l | tr -d ' ')" -eq 53
+          cat >> SOURCE_OF_TRUTH.md <<'EOF'
+
+## Repository ownership — aaa
+
+`yanivmizrachiy/aaa` is the sole editable source of truth for this standalone Pythagoras workbook after this import.
+All 53 page sources live directly in this repository and future content/design fixes must be committed here.
+The historical `razpages` and `pythagoras` repositories are migration inputs only; they must not overwrite later edits made in `aaa`.
+EOF
+
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: npm
-      - name: Verify build
+
+      - name: Verify editable workbook
         shell: bash
         run: |
           set -euo pipefail
@@ -46,12 +65,14 @@ jobs:
           npm run check
           npm run build
           npm run typecheck
-      - name: Commit canonical workbook to aaa
+          test "$(find src/pages -name main.html -type f | wc -l | tr -d ' ')" -eq 53
+
+      - name: Commit all 53 editable pages to aaa
         shell: bash
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m 'feat: import complete canonical 53-page Pythagoras workbook'
+          git commit -m 'feat: materialize all 53 editable Pythagoras pages in aaa'
           git push origin HEAD:main
