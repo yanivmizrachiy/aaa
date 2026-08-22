@@ -1,143 +1,261 @@
 @import url("../topics/pythagoras-foundations.css");
+@import url("../topics/pythagoras-inline-units.css");
 
+/*
+ * עמוד 3 — ניצבים בלבד.
+ * מבנה שטוח, ללא כרטיס בתוך כרטיס, עם ניצול מלא של גובה ה-A4.
+ */
 .page-636 .question-block {
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.page-636 .foundation-note {
-  padding-block: 9px;
-}
-
-.page-636 > .question-block > .foundation-card {
-  min-height: 0;
-}
-
-.page-636 .example-card {
-  min-height: 136px;
   display: grid;
-  grid-template-columns: 210px 1fr;
-  align-items: center;
-  gap: 14px;
-  padding: 7px 14px;
-}
-
-.page-636 .example-card .foundation-svg.hero {
-  width: 210px;
-  max-width: 210px;
-  height: 104px;
-}
-
-.page-636 .example-caption {
-  margin: 0;
-  font-size: 17px;
-  line-height: 1.5;
-  text-align: right;
-}
-
-.page-636 .foundation-grid {
+  grid-template-rows: 46px minmax(260px, 1.05fr) minmax(250px, .95fr) 118px 118px;
+  gap: 10px;
   min-height: 0;
+  overflow: hidden;
 }
 
-.page-636 .leg-practice-grid {
-  gap: 9px 12px;
-}
-
-.page-636 .leg-practice-grid .foundation-card {
-  min-height: 162px;
-  padding: 7px 10px;
-}
-
-.page-636 .leg-practice-grid .foundation-svg {
-  height: 98px;
-  max-width: 210px;
-}
-
-.page-636 .leg-practice-grid p {
-  font-size: 16px;
-}
-
-.page-636 .compact-instruction,
-.page-636 .synthesis-instruction {
-  margin-top: 0;
-}
-
-.page-636 .concept-check-grid {
-  gap: 9px;
-}
-
-.page-636 .concept-check {
-  min-height: 88px;
-  padding: 8px 12px;
-  justify-content: flex-start;
-}
-
-.page-636 .concept-check p {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.5;
-  text-align: center;
-}
-
-.page-636 .synthesis-drawing-card {
-  min-height: 132px;
-  align-items: stretch;
-  justify-content: stretch;
-  padding: 8px 14px;
-}
-
-.page-636 .drawing-space-wide {
-  width: 100%;
-  min-height: 108px;
-  border: 1.5px dashed #94a3b8;
-  border-radius: 8px;
-  background: var(--bg-paper);
-}
-
-.page-636 .short-line {
-  min-width: 68px;
-}
-
-/* עמוד 3 — רכיבים מקומיים בלבד. אסור לכוונן תיבות/אותיות דרך שכבת הנושא בגלל אפקט צד על דפים אחרים. */
-.page-636 .pyt-vertex-label {
-  font-family: 'PytTeXMathItalic', Georgia, 'Times New Roman', serif;
-  font-size: 20px;
-  font-weight: 600;
-  font-style: italic;
-  letter-spacing: 0.01em;
-}
-
-.page-636 .pyt-leg-answer {
-  margin: 0;
+.page-636 .legs-concept-row {
+  min-height: 0;
+  height: 46px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
+  justify-content: flex-start;
+  gap: 7px;
+  padding: 7px 12px;
+  font-size: 15.5px;
+  line-height: 1.2;
   white-space: nowrap;
 }
 
-.page-636 .pyt-blank {
-  height: 26px;
-  border: 1.15px solid #334155;
-  border-radius: 7px;
+.page-636 .legs-term-fill {
+  width: 112px;
+  height: 23px;
+  flex: 0 0 auto;
+}
+
+.page-636 .legs-identify-section,
+.page-636 .vertex-section,
+.page-636 .quick-fill-section {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 6px;
+  overflow: hidden;
+}
+
+.page-636 .q-main {
+  margin: 0;
+  min-height: 0;
+}
+
+.page-636 .q-text {
+  font-size: 14.8px;
+  line-height: 1.28;
+}
+
+/* ארבעה תרגילי זיהוי בשורה אחת — ללא מעטפת נוספת. */
+.page-636 .legs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  min-height: 0;
+}
+
+.page-636 .leg-card {
+  min-height: 0;
+  height: 100%;
+  border: 1px solid #dbe4ef;
+  border-radius: 10px;
   background: #fff;
-  box-shadow: none;
-  vertical-align: -5px;
-  margin-inline: 2px;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-items: center;
+  padding: 8px 9px 9px;
+  overflow: hidden;
 }
 
-.page-636 .pyt-blank-leg {
-  width: 64px;
+.page-636 .leg-svg,
+.page-636 .vertex-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
 }
 
-.page-636 .pyt-blank-inline-short {
-  width: 60px;
+.page-636 .leg-svg .edge,
+.page-636 .vertex-svg .edge {
+  fill: none;
+  stroke: #111827;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
 }
 
-.page-636 .pyt-blank-inline-medium {
-  width: 86px;
+.page-636 .leg-svg .mark,
+.page-636 .vertex-svg .mark {
+  fill: none;
+  stroke: #111827;
+  stroke-width: 1.45;
+  vector-effect: non-scaling-stroke;
 }
 
-.page-636 .pyt-fill-line {
-  line-height: 1.65;
+.page-636 .vertex {
+  font-family: 'PytTeXMathItalic', Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 600;
+  fill: #111827;
+}
+
+.page-636 .leg-answer {
+  min-height: 30px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 5px;
+  white-space: nowrap;
+  font-size: 13.8px;
+}
+
+.page-636 .answer-line,
+.page-636 .short-answer,
+.page-636 .inline-answer {
+  display: inline-block;
+  border-bottom: 1.2px solid #334155;
+  height: 18px;
+  vertical-align: baseline;
+}
+
+.page-636 .answer-line { width: 50px; }
+.page-636 .short-answer { width: 46px; }
+
+/* משימות "מידע -> שרטוט": התלמיד מסמן קודקודים על פי שמות הניצבים הנתונים. */
+.page-636 .vertex-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  min-height: 0;
+}
+
+.page-636 .vertex-task {
+  min-height: 0;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 30px minmax(0, 1fr) 28px;
+  gap: 3px;
+  padding: 5px 10px 7px;
+  border-top: 1px solid #dbe4ef;
+  border-bottom: 1px solid #dbe4ef;
+  background: transparent;
+  overflow: hidden;
+}
+
+.page-636 .given-legs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14.5px;
+}
+
+.page-636 .vertex-box {
+  fill: #fff;
+  stroke: #94a3b8;
+  stroke-width: 1.2;
+  stroke-dasharray: 3 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.page-636 .right-vertex-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  font-size: 13.8px;
+  white-space: nowrap;
+}
+
+/* השלמות קצרות — פס שטוח, בלי שלוש תיבות בתוך מסגרת. */
+.page-636 .quick-fill-section {
+  border-top: 1px solid #dbe4ef;
+  border-bottom: 1px solid #dbe4ef;
+  padding-block: 5px;
+}
+
+.page-636 .compact-heading .q-text { font-size: 14.5px; }
+
+.page-636 .quick-fill-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  min-height: 0;
+}
+
+.page-636 .quick-fill-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 5px 12px;
+  text-align: center;
+  font-size: 13.8px;
+  line-height: 1.35;
+}
+
+.page-636 .quick-fill-item + .quick-fill-item {
+  border-right: 1px solid #e2e8f0;
+}
+
+.page-636 .inline-answer.short { width: 54px; }
+.page-636 .inline-answer.medium { width: 86px; }
+
+.page-636 .degree-answer-unit {
+  display: inline-flex;
+  align-items: baseline;
+  direction: ltr;
+}
+
+/* שתי בדיקות סיום קונקרטיות, ללא שאלת הסבר פתוחה. */
+.page-636 .closing-check {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  align-items: stretch;
+  border: 1px solid #dbe4ef;
+  border-radius: 9px;
+  overflow: hidden;
+  background: #fbfdff;
+}
+
+.page-636 .closing-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.page-636 .closing-divider { background: #dbe4ef; }
+
+/* בחוברת A4 המבנה נשמר; המסך הצר מקטין את העמוד כיחידה אחת. */
+@media (max-width: 760px) {
+  .page-636 .legs-concept-row {
+    font-size: 14.4px;
+    gap: 5px;
+  }
+}
+
+@media print {
+  .page-636 .leg-card,
+  .page-636 .vertex-task,
+  .page-636 .quick-fill-section,
+  .page-636 .closing-check {
+    break-inside: avoid;
+  }
 }
