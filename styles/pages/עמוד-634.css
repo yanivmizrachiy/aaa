@@ -164,17 +164,17 @@
 
 .page-634 .guided-ray-svg .guide-point { fill: var(--accent-dark); }
 
-/* משימת סיכום מתאימה למושגי היסוד: בנייה של מרובע עם בדיוק שתי זוויות ישרות. */
+/* משימת סיכום קונקרטית: הוראה + מלבן וקטורי בלבד, ללא תיבה בתוך תיבה. */
 .page-634 .final-build-task {
   height: 100%;
   min-height: 0;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  gap: 6px;
-  padding: 8px 10px 9px;
-  border: 1.35px solid var(--accent-dark);
-  border-radius: 9px;
-  background: var(--bg-subtle);
+  gap: 4px;
+  padding: 4px 10px 2px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .page-634 .final-build-instruction .q-text {
@@ -184,12 +184,29 @@
 .page-634 .final-build-area {
   min-height: 0;
   width: 100%;
-  border: 1.35px dashed #94a3b8;
-  border-radius: 7px;
-  background-color: #ffffff;
-  background-image: radial-gradient(#d7dee8 1px, transparent 1.1px);
-  background-size: 16px 16px;
-  background-position: 8px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.page-634 .final-rectangle-svg {
+  width: min(460px, 76%);
+  height: 100%;
+  min-height: 76px;
+  max-height: 98px;
+  display: block;
+  overflow: visible;
+  shape-rendering: geometricPrecision;
+}
+
+.page-634 .final-rectangle-svg rect {
+  fill: none;
+  stroke: var(--accent-dark);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
 }
 
 /* Tablet / narrow desktop: standalone page may tighten, not collapse. */
