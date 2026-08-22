@@ -53,7 +53,7 @@
   line-height: 1 !important;
 }
 
-/* עמוד 1 — שורת המושג ושאלת ההסקה נשארות בפריסת A4 גם במסך צר. */
+/* עמוד 1 — שורת המושג ומשימת הסיכום נשארות בפריסת A4 גם במסך צר. */
 .pythagoras-workbook-shell .page-634 .foundation-note-one-line {
   display: flex !important;
   flex-wrap: nowrap !important;
@@ -68,6 +68,57 @@
 
 .pythagoras-workbook-shell .page-634 .angle-name-fill { width: 78px !important; }
 .pythagoras-workbook-shell .page-634 .degrees-fill { width: 50px !important; }
-.pythagoras-workbook-shell .page-634 .mcq-options {
+.pythagoras-workbook-shell .page-634 .final-build-task {
+  display: grid !important;
+  grid-template-rows: auto minmax(0, 1fr) !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* עמוד 2 — A4 קנוני: אין reflow לפי רוחב החלון ואין גלישה לתוך הקרדיט. */
+.pythagoras-workbook-shell .page-635 .question-block {
+  display: grid !important;
+  grid-template-rows: auto auto 86px 118px 168px minmax(0, 1fr) !important;
+  gap: 7px !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.pythagoras-workbook-shell .page-635 .foundation-note-one-line {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  font-size: 15.5px !important;
+  gap: 5px !important;
+  padding: 5px 11px !important;
+}
+
+.pythagoras-workbook-shell .page-635 .triangle-choice-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  height: 100% !important;
+  min-height: 0 !important;
+}
+
+.pythagoras-workbook-shell .page-635 .mc-triangle-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  min-height: 0 !important;
+}
+
+.pythagoras-workbook-shell .page-635 .construction-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  min-height: 0 !important;
+}
+
+.pythagoras-workbook-shell .page-635 .hunt-section {
+  height: 100% !important;
+  min-height: 0 !important;
+  grid-template-rows: auto minmax(0, 1fr) 32px 56px !important;
+  overflow: hidden !important;
+}
+
+.pythagoras-workbook-shell .page-635 .geometry-hunt-card,
+.pythagoras-workbook-shell .page-635 .triangle-hunt-svg {
+  height: 100% !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
 }
