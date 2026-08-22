@@ -7,10 +7,10 @@
     {
       "workbookPage": 1,
       "status": "locked",
-      "reason": "עמוד 1 עודכן לפי בקשת המשתמש: משימת הסיום היא משימה קונקרטית על מלבן, והגרפיקה וקטורית ונקייה ללא תיבה בתוך תיבה; הכותרת ושורת המושג נשמרות בפריסת A4 קנונית.",
+      "reason": "עמוד 1 מאושר: משימת הסיום דורשת מהתלמיד לצייר בעצמו מרובע שיש בו בדיוק שתי זוויות ישרות ולסמן את שתי הזוויות הישרות; אין מלבן מוכן. הכותרת, שורת המושג ושאר התרגילים נשמרים בפריסת A4 קנונית.",
       "files": [
-        {"path": "עמוד-634.html", "gitBlobSha": "9baa607aaed648e1f4660a57b72c048a88d1b813"},
-        {"path": "styles/pages/עמוד-634.css", "gitBlobSha": "89d265d5ba3c41d0f75adf5735e6567befe617d3"}
+        {"path": "עמוד-634.html", "gitBlobSha": "cc3deb28f58a425677d886dc8d9a1a9ceca20642"},
+        {"path": "styles/pages/עמוד-634.css", "gitBlobSha": "6ebe5b82c3f99ffb93887a28207ab0cc5f476143"}
       ],
       "sharedDependencies": [
         {"path": "styles/a4-base.css", "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"},
