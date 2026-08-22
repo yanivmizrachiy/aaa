@@ -7,15 +7,15 @@
     {
       "workbookPage": 1,
       "status": "locked",
-      "reason": "עמוד 1 עבר תיקונים ואישור; שינויים בעמודים אחרים או בשכבות משותפות אינם רשאים לשנות אותו בלי אימות מחדש. הפריסה משתמשת בכל גובה ה-A4 באופן מאוזן ואינה משאירה שטח לבן גדול בתחתית.",
+      "reason": "עמוד 1 עודכן לפי בקשת המשתמש: שאלת הסיום הוחלפה במשימת בנייה של מרובע עם בדיוק שתי זוויות ישרות; הכותרת ושורת המושג נשמרות בפריסת A4 קנונית.",
       "files": [
         {
           "path": "עמוד-634.html",
-          "gitBlobSha": "8401f0f46eee75102943a52c68b1378fb102ec76"
+          "gitBlobSha": "4773f9bb7639ae9f0f963bdae176abf1442b38ca"
         },
         {
           "path": "styles/pages/עמוד-634.css",
-          "gitBlobSha": "fb688c35d30fd510632c0a9eea9c0f3082b7425b"
+          "gitBlobSha": "0da41ba18fb84417919f6b32f52c1708511fc58b"
         }
       ],
       "sharedDependencies": [
@@ -38,6 +38,55 @@
         {
           "path": "styles/pythagoras-workbook.css",
           "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"
+        },
+        {
+          "path": "styles/workbook-canonical-locks.css",
+          "gitBlobSha": "1a6c88e067f93463bc90863692a693e3c3e3fb2f"
+        },
+        {
+          "path": "pythagoras-workbook.js",
+          "gitBlobSha": "32ab155557f1aff03e548d21b2326533536c8ca6"
+        }
+      ]
+    },
+    {
+      "workbookPage": 2,
+      "status": "locked",
+      "reason": "עמוד 2 סודר מחדש בפריסת A4 קבועה: אין חפיפה עם הקרדיט, 6 כרטיסי הזיהוי נשארים בשורה, 5 אפשרויות הבחירה נשארות בשורה ושתי מסגרות AB נשארות זו לצד זו.",
+      "files": [
+        {
+          "path": "עמוד-635.html",
+          "gitBlobSha": "54d324d35763216c4c730bbf96f60810a47a00c4"
+        },
+        {
+          "path": "styles/pages/עמוד-635.css",
+          "gitBlobSha": "732b467564c8717ba99282334239fe806ae95a20"
+        }
+      ],
+      "sharedDependencies": [
+        {
+          "path": "styles/a4-base.css",
+          "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"
+        },
+        {
+          "path": "styles/topics/pythagoras.css",
+          "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"
+        },
+        {
+          "path": "styles/topics/pythagoras-foundations.css",
+          "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"
+        },
+        {
+          "path": "styles/topics/pythagoras-inline-units.css",
+          "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"
+        },
+        {
+          "path": "styles/pythagoras-workbook.css",
+          "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"
+        },
+        {
+          "path": "styles/workbook-canonical-locks.css",
+          "gitBlobSha": "1a6c88e067f93463bc90863692a693e3c3e3fb2f"
         },
         {
           "path": "pythagoras-workbook.js",
