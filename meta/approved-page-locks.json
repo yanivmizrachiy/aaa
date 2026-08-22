@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "authority": "SOURCE_OF_TRUTH.md",
+  "purpose": "נגזרת אוטומטית להגנה על דפים שאושרו; אינה מקור דרישות נוסף ואינה רשאית לסתור את SOURCE_OF_TRUTH.md.",
+  "unlockPolicy": "מעדכנים נעילה רק בעקבות בקשה מפורשת של המשתמש לשנות את אותו עמוד ולא כחלק משינוי רוחבי או תיקון בעמוד אחר.",
+  "pages": [
+    {
+      "workbookPage": 1,
+      "status": "locked",
+      "reason": "עמוד 1 עבר תיקונים ואישור; שינויים בעמודים אחרים אינם רשאים לשנות אותו.",
+      "files": [
+        {
+          "path": "עמוד-634.html",
+          "gitBlobSha": "8401f0f46eee75102943a52c68b1378fb102ec76"
+        },
+        {
+          "path": "styles/pages/עמוד-634.css",
+          "gitBlobSha": "fd9c4ef833ed0c3e126db79781745c2e5c383e9c"
+        }
+      ]
+    }
+  ]
+}
