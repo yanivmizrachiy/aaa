@@ -15,7 +15,7 @@
     minmax(108px, .72fr)
     auto
     minmax(118px, .82fr)
-    minmax(106px, .72fr);
+    minmax(116px, .78fr);
   gap: 9px;
   align-content: stretch;
   min-height: 0;
@@ -46,13 +46,15 @@
 .page-634 .degrees-fill { width: 50px; }
 
 .page-634 .compact-instruction,
-.page-634 .drawing-instruction {
+.page-634 .drawing-instruction,
+.page-634 .final-build-instruction {
   margin: 0;
   min-height: 0;
 }
 
 .page-634 .compact-instruction .q-text,
-.page-634 .drawing-instruction .q-text {
+.page-634 .drawing-instruction .q-text,
+.page-634 .final-build-instruction .q-text {
   line-height: 1.25;
 }
 
@@ -162,44 +164,32 @@
 
 .page-634 .guided-ray-svg .guide-point { fill: var(--accent-dark); }
 
-.page-634 .thinking-mcq {
+/* משימת סיכום מתאימה למושגי היסוד: בנייה של מרובע עם בדיוק שתי זוויות ישרות. */
+.page-634 .final-build-task {
   height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 6px;
+  padding: 8px 10px 9px;
   border: 1.35px solid var(--accent-dark);
   border-radius: 9px;
   background: var(--bg-subtle);
-  padding: 9px 12px 10px;
-  display: grid;
-  align-content: center;
-  gap: 9px;
 }
 
-.page-634 .thinking-title {
-  font-size: 15.5px;
-  line-height: 1.3;
+.page-634 .final-build-instruction .q-text {
+  font-size: 14.8px;
 }
 
-.page-634 .mcq-options {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px 18px;
-}
-
-.page-634 .mcq-option {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  font-size: 14.5px;
-  line-height: 1.25;
-}
-
-.page-634 .choice-circle {
-  width: 14px;
-  height: 14px;
-  border: 1.35px solid var(--text-main);
-  border-radius: 50%;
-  flex: 0 0 auto;
-  margin-top: 2px;
-  background: #fff;
+.page-634 .final-build-area {
+  min-height: 0;
+  width: 100%;
+  border: 1.35px dashed #94a3b8;
+  border-radius: 7px;
+  background-color: #ffffff;
+  background-image: radial-gradient(#d7dee8 1px, transparent 1.1px);
+  background-size: 16px 16px;
+  background-position: 8px 8px;
 }
 
 /* Tablet / narrow desktop: standalone page may tighten, not collapse. */
@@ -213,7 +203,6 @@
   }
   .page-634 .angle-name-fill { width: 68px; }
   .page-634 .degrees-fill { width: 46px; }
-  .page-634 .mcq-options { grid-template-columns: 1fr; }
 }
 
 /* Only a genuinely small phone may wrap the concept row. */
@@ -227,7 +216,7 @@
 
 @media print {
   .page-634 .foundation-note-one-line,
-  .page-634 .thinking-mcq,
+  .page-634 .final-build-task,
   .page-634 .classification-card,
   .page-634 .drawing-card { break-inside: avoid; }
 }
