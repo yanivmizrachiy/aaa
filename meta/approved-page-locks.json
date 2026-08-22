@@ -15,7 +15,7 @@
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "9d125de52877a7deb24bd796249002adc549a468"},
         {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
-        {"path": "vercel.json", "gitBlobSha": "7ab2c023234f6f6247f11ccc12ea8ea30548ede5"},
+        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
         {"path": "styles/a4-base.css", "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"},
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
@@ -36,7 +36,7 @@
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "9d125de52877a7deb24bd796249002adc549a468"},
         {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
-        {"path": "vercel.json", "gitBlobSha": "7ab2c023234f6f6247f11ccc12ea8ea30548ede5"},
+        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
         {"path": "styles/a4-base.css", "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"},
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
@@ -57,7 +57,7 @@
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "9d125de52877a7deb24bd796249002adc549a468"},
         {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
-        {"path": "vercel.json", "gitBlobSha": "7ab2c023234f6f6247f11ccc12ea8ea30548ede5"},
+        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
         {"path": "styles/a4-base.css", "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"},
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
