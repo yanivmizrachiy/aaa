@@ -3,7 +3,7 @@
 
 .page-635 .question-block {
   justify-content: flex-start;
-  gap: 8px;
+  gap: 6px;
 }
 
 /* כמו בעמוד 1: משפט מושג אחד, קומפקטי, עם שתי השלמות קצרות. */
@@ -30,23 +30,46 @@
 .page-635 .angle-type-fill { width: 74px; }
 .page-635 .degrees-fill { width: 50px; }
 
-.page-635 .hunt-instruction,
-.page-635 .proof-instruction {
+/* השאלה הראשונה נשמרת: זיהוי בסיסי לפני המשימה המורכבת. */
+.page-635 .compact-instruction,
+.page-635 .hunt-instruction {
   margin: 0;
   min-height: 0;
 }
 
-.page-635 .hunt-instruction .q-text,
-.page-635 .proof-instruction .q-text {
-  font-size: 15.5px;
-  line-height: 1.35;
+.page-635 .compact-instruction .q-text,
+.page-635 .hunt-instruction .q-text {
+  font-size: 15px;
+  line-height: 1.3;
 }
 
-/* חידת גאומטריה מרכזית: ציור אחד גדול, מדויק וניתן לצביעה. */
+.page-635 .triangle-choice-grid {
+  gap: 6px 8px;
+  min-height: 0;
+}
+
+.page-635 .triangle-choice-grid .foundation-card {
+  min-height: 92px;
+  padding: 4px 7px;
+  gap: 2px;
+}
+
+.page-635 .triangle-choice-grid .foundation-svg {
+  max-width: 210px;
+  height: 68px;
+}
+
+.page-635 .triangle-choice-grid .check {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+
+/* פסיפס גאומטרי מורכב: 13 אזורים משולשים, ללא סימוני תשובה. */
 .page-635 .geometry-hunt-card {
   width: 100%;
   min-height: 0;
-  padding: 4px 10px 2px;
+  padding: 2px 8px;
   border: 1px solid var(--border-light);
   border-radius: 10px;
   background: var(--bg-paper);
@@ -55,50 +78,22 @@
 
 .page-635 .triangle-hunt-svg {
   width: 100%;
-  height: 410px;
+  height: 292px;
   display: block;
   shape-rendering: geometricPrecision;
 }
 
-.page-635 .triangle-hunt-svg .hunt-lines {
+.page-635 .triangle-hunt-svg .mosaic-lines {
   fill: none;
   stroke: var(--accent-dark);
-  stroke-width: 1.7;
+  stroke-width: 1.65;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
 }
 
-.page-635 .triangle-hunt-svg .hunt-points {
+.page-635 .triangle-hunt-svg .mosaic-points {
   fill: var(--accent-dark);
-}
-
-.page-635 .triangle-hunt-svg .hunt-labels {
-  fill: var(--text-main);
-  font-family: 'PytTeXMathItalic', Georgia, 'Times New Roman', serif;
-  font-size: 17px;
-  font-style: italic;
-  text-anchor: middle;
-}
-
-.page-635 .compact-reason {
-  gap: 4px;
-}
-
-.page-635 .triangle-name-line {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 25px;
-  font-size: 14.5px;
-}
-
-.page-635 .triangle-response {
-  min-width: 110px;
-}
-
-.page-635 .compact-reason .reason-space {
-  min-height: 54px;
 }
 
 .page-635 .hunt-total {
@@ -106,18 +101,18 @@
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-  min-height: 40px;
-  padding: 6px 10px;
+  min-height: 38px;
+  padding: 5px 10px;
   border: 1.35px solid #1f2a44;
   border-radius: 8px;
   background: var(--bg-subtle);
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 500;
 }
 
 .page-635 .hunt-count-fill {
   width: 58px;
-  height: 28px;
+  height: 27px;
   flex: 0 0 auto;
 }
 
@@ -127,16 +122,21 @@
     white-space: normal;
   }
 
+  .page-635 .triangle-choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .page-635 .triangle-hunt-svg {
     height: auto;
-    min-height: 300px;
+    min-height: 260px;
   }
 }
 
 @media print {
   .page-635 .foundation-note-one-line,
   .page-635 .geometry-hunt-card,
-  .page-635 .hunt-total {
+  .page-635 .hunt-total,
+  .page-635 .triangle-choice-grid .foundation-card {
     break-inside: avoid;
   }
 }
