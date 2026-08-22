@@ -1,13 +1,13 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "authority": "SOURCE_OF_TRUTH.md",
   "purpose": "נגזרת אוטומטית להגנה על דפים שאושרו; אינה מקור דרישות נוסף ואינה רשאית לסתור את SOURCE_OF_TRUTH.md.",
-  "unlockPolicy": "מעדכנים נעילה רק בעקבות בקשה מפורשת של המשתמש לשנות את אותו עמוד ולא כחלק משינוי רוחבי או תיקון בעמוד אחר.",
+  "unlockPolicy": "מעדכנים נעילה רק בעקבות בקשה מפורשת של המשתמש לשנות את אותו עמוד, או לאחר שינוי משותף שהשפעתו על העמוד נבדקה בפועל ואושרה מחדש. שינוי משותף ללא אימות מחדש חייב להיכשל ב-CI.",
   "pages": [
     {
       "workbookPage": 1,
       "status": "locked",
-      "reason": "עמוד 1 עבר תיקונים ואישור; שינויים בעמודים אחרים אינם רשאים לשנות אותו. הפריסה משתמשת בכל גובה ה-A4 באופן מאוזן ואינה משאירה שטח לבן גדול בתחתית.",
+      "reason": "עמוד 1 עבר תיקונים ואישור; שינויים בעמודים אחרים או בשכבות משותפות אינם רשאים לשנות אותו בלי אימות מחדש. הפריסה משתמשת בכל גובה ה-A4 באופן מאוזן ואינה משאירה שטח לבן גדול בתחתית.",
       "files": [
         {
           "path": "עמוד-634.html",
@@ -16,6 +16,32 @@
         {
           "path": "styles/pages/עמוד-634.css",
           "gitBlobSha": "fb688c35d30fd510632c0a9eea9c0f3082b7425b"
+        }
+      ],
+      "sharedDependencies": [
+        {
+          "path": "styles/a4-base.css",
+          "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"
+        },
+        {
+          "path": "styles/topics/pythagoras.css",
+          "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"
+        },
+        {
+          "path": "styles/topics/pythagoras-foundations.css",
+          "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"
+        },
+        {
+          "path": "styles/topics/pythagoras-inline-units.css",
+          "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"
+        },
+        {
+          "path": "styles/pythagoras-workbook.css",
+          "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"
+        },
+        {
+          "path": "pythagoras-workbook.js",
+          "gitBlobSha": "32ab155557f1aff03e548d21b2326533536c8ca6"
         }
       ]
     }
