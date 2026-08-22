@@ -2,7 +2,9 @@ const fs = require('fs');
 const path = require('path');
 
 const root = path.resolve(__dirname, '..');
-const readJson = (file) => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+const readText = (file) => fs.readFileSync(path.join(root, file), 'utf8');
+const readJson = (file) => JSON.parse(readText(file));
+const exists = (file) => fs.existsSync(path.join(root, file));
 
 function fail(message) {
   console.error(message);
@@ -10,9 +12,7 @@ function fail(message) {
 }
 
 const requested = Number(process.argv[2]);
-if (!Number.isInteger(requested)) {
-  fail('שימוש: node tools/page-target.js <מספר עמוד בחוברת>');
-}
+if (!Number.isInteger(requested)) fail('שימוש: node tools/page-target.js <מספר עמוד בחוברת>');
 
 const manifest = readJson('WORKBOOK_MANIFEST.json');
 const pages = Array.isArray(manifest.pages) ? manifest.pages : [];
@@ -21,26 +21,53 @@ if (requested < 1 || requested > pages.length) fail(`מספר עמוד חייב 
 
 const page = pages[requested - 1];
 if (!page?.file) fail(`לעמוד ${requested} אין file במניפסט.`);
+const html = page.file;
+const css = `styles/pages/${html.replace(/\.html$/u, '.css')}`;
+if (!exists(html)) fail(`קובץ HTML חסר: ${html}`);
+if (!exists(css)) fail(`קובץ CSS חסר: ${css}`);
 
-const css = `styles/pages/${page.file.replace(/\.html$/u, '.css')}`;
-const locksPath = path.join(root, 'meta/approved-page-locks.json');
-let lock = null;
-if (fs.existsSync(locksPath)) {
-  const locks = readJson('meta/approved-page-locks.json');
-  lock = (locks.pages || []).find((item) => item.workbookPage === requested && item.status === 'locked') || null;
-}
+const htmlText = readText(html);
+const h1 = htmlText.match(/<h1[^>]*class=["'][^"']*page-title[^"']*["'][^>]*>([\s\S]*?)<\/h1>/iu)?.[1]
+  ?.replace(/<[^>]+>/g, '')
+  ?.trim() || null;
+
+const locks = exists('meta/approved-page-locks.json') ? readJson('meta/approved-page-locks.json') : { pages: [] };
+const lock = (locks.pages || []).find((item) => item.workbookPage === requested && item.status === 'locked') || null;
+const sharedDependencies = (lock?.sharedDependencies || []).map((item) => item.path);
 
 const result = {
+  authority: 'SOURCE_OF_TRUTH.md',
+  runtimeIndex: 'WORKBOOK_MANIFEST.json',
   workbookPage: requested,
-  html: page.file,
+  sourceNumber: page.sourceNumber ?? null,
+  title: h1,
+  html,
   css,
-  sourceNumber: page.sourceNumber ?? page.number ?? null,
-  title: page.title ?? page.h1 ?? null,
   locked: Boolean(lock),
   lockReason: lock?.reason ?? null,
-  rule: lock
-    ? 'העמוד נעול. משנים אותו רק בעקבות בקשה מפורשת של המשתמש לעמוד הזה, ואז מעדכנים את הנעילה לאחר האימות.'
-    : 'משנים רק את קבצי היעד הנדרשים; דפים אחרים נשארים מחוץ להיקף השינוי.',
+  readBeforeEdit: [
+    'SOURCE_OF_TRUTH.md',
+    'WORKBOOK_MANIFEST.json',
+    html,
+    css,
+    ...(lock ? ['meta/approved-page-locks.json', ...sharedDependencies] : []),
+  ],
+  defaultWriteSet: [html, css],
+  conditionalWriteSet: lock
+    ? ['meta/approved-page-locks.json — רק לאחר שינוי מפורש בעמוד ואימות התוצאה']
+    : [],
+  forbiddenByDefault: [
+    'כל קובץ HTML של עמוד אחר',
+    'styles/a4-base.css',
+    'styles/topics/*',
+    'styles/pythagoras-workbook.css',
+    'styles/workbook-canonical-locks.css',
+    'pythagoras-workbook.js',
+    'index.html',
+    'WORKBOOK_MANIFEST.json',
+    'vercel.json',
+  ],
+  rule: 'שינוי מקומי קודם. עוברים לשכבה משותפת רק אם הדרישה באמת רוחבית ולא ניתן להשיג אותה בבטחה בקובצי העמוד.',
 };
 
 console.log(JSON.stringify(result, null, 2));
