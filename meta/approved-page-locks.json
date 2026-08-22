@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "authority": "SOURCE_OF_TRUTH.md",
   "purpose": "נגזרת אוטומטית להגנה על דפים שאושרו; אינה מקור דרישות נוסף ואינה רשאית לסתור את SOURCE_OF_TRUTH.md.",
   "unlockPolicy": "מעדכנים נעילה רק בעקבות בקשה מפורשת של המשתמש לשנות את אותו עמוד, או לאחר שינוי משותף שהשפעתו על העמוד נבדקה בפועל ואושרה מחדש. שינוי משותף ללא אימות מחדש חייב להיכשל ב-CI.",
@@ -7,55 +7,64 @@
     {
       "workbookPage": 1,
       "status": "locked",
-      "reason": "עמוד 1 מאושר: משימת הסיום דורשת מהתלמיד לצייר בעצמו מרובע שיש בו בדיוק שתי זוויות ישרות ולסמן אותן. אין מלבן מוכן ואין מסגרת סביב שטח השרטוט; הכותרת, שורת המושג ושאר התרגילים נשמרים בפריסת A4 קנונית.",
+      "reason": "עמוד 1 מאושר לפי SOURCE_OF_TRUTH.md: כותרת ומושגים בסיסיים, משימת סיום לציור מרובע עם בדיוק שתי זוויות ישרות, ללא מרובע מוכן וללא מסגרת סביב שטח השרטוט.",
       "files": [
         {"path": "עמוד-634.html", "gitBlobSha": "cc3deb28f58a425677d886dc8d9a1a9ceca20642"},
         {"path": "styles/pages/עמוד-634.css", "gitBlobSha": "c0981c6454921cf11968c3c210b62271b5975535"}
       ],
       "sharedDependencies": [
+        {"path": "index.html", "gitBlobSha": "9d125de52877a7deb24bd796249002adc549a468"},
+        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
+        {"path": "vercel.json", "gitBlobSha": "7ab2c023234f6f6247f11ccc12ea8ea30548ede5"},
         {"path": "styles/a4-base.css", "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"},
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
         {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "5d5b826fcec930eff1e61b3f9176eebb5736c7fd"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "32ab155557f1aff03e548d21b2326533536c8ca6"}
+        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
+        {"path": "pythagoras-workbook.js", "gitBlobSha": "5a4c2059a3da69467145d3489a41f9efb316de71"}
       ]
     },
     {
       "workbookPage": 2,
       "status": "locked",
-      "reason": "עמוד 2 מאושר בפריסת A4: ששת משולשי הזיהוי מגוונים בכיוון ובצורה, 3 ישרי־זווית ו־3 שאינם; אזור AB משתמש בפריסה שטוחה ללא תיבה חיצונית, ושאלת ההמשך היא השלמה סגורה על צלעות מאונכות. אין חפיפה עם הקרדיט.",
+      "reason": "עמוד 2 מאושר לפי SOURCE_OF_TRUTH.md: 3 משולשים ישרי־זווית ו-3 שאינם, שאלה אמריקאית 4+1, AB שטוח ללא תיבה חיצונית, השלמה סגורה על מאונכות, ומשימת חיפוש ללא שאלת הסבר פתוחה וללא תיבה בתוך תיבה.",
       "files": [
-        {"path": "עמוד-635.html", "gitBlobSha": "2dd322364f294723f9deebffd2e822ff90852647"},
-        {"path": "styles/pages/עמוד-635.css", "gitBlobSha": "a332c0203ab2ab7a4f3151193cf421ea274bba70"}
+        {"path": "עמוד-635.html", "gitBlobSha": "34947a4fad428b1d46464c50548bc7eb7a11e6d6"},
+        {"path": "styles/pages/עמוד-635.css", "gitBlobSha": "6132e7788f41b479207c6da0640937e991b93985"}
       ],
       "sharedDependencies": [
+        {"path": "index.html", "gitBlobSha": "9d125de52877a7deb24bd796249002adc549a468"},
+        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
+        {"path": "vercel.json", "gitBlobSha": "7ab2c023234f6f6247f11ccc12ea8ea30548ede5"},
         {"path": "styles/a4-base.css", "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"},
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
         {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "5d5b826fcec930eff1e61b3f9176eebb5736c7fd"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "32ab155557f1aff03e548d21b2326533536c8ca6"}
+        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
+        {"path": "pythagoras-workbook.js", "gitBlobSha": "5a4c2059a3da69467145d3489a41f9efb316de71"}
       ]
     },
     {
       "workbookPage": 3,
       "status": "locked",
-      "reason": "עמוד 3 מאושר כנושא ניצבים בלבד: ניצול מלא של A4, ארבעה שרטוטי זיהוי בכיוונים שונים, השלמות מפורשות של שמות צלעות, משימות סימון קודקודים לפי ניצבים נתונים, השלמות קצרות עם אותיות ושאלה אמריקאית עם מסיחים מתמטיים. אין שאלות פתוחות כלליות ואין כפילות עם עמוד 4 העוסק ביתר.",
+      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md: ניצבים בלבד, 4 משימות זיהוי, 2 משימות קודקודים, 3 השלמות קונקרטיות ושאלה אמריקאית אחת; פריסת A4 מלאה וללא שאלות כלליות.",
       "files": [
         {"path": "עמוד-636.html", "gitBlobSha": "dc8277af0613edbf7f354b8b30b757a24676324f"},
         {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "27647c5b0b3bb8602314d192bbb2c9c073b73934"}
       ],
       "sharedDependencies": [
+        {"path": "index.html", "gitBlobSha": "9d125de52877a7deb24bd796249002adc549a468"},
+        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
+        {"path": "vercel.json", "gitBlobSha": "7ab2c023234f6f6247f11ccc12ea8ea30548ede5"},
         {"path": "styles/a4-base.css", "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"},
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
         {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "5d5b826fcec930eff1e61b3f9176eebb5736c7fd"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "32ab155557f1aff03e548d21b2326533536c8ca6"}
+        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
+        {"path": "pythagoras-workbook.js", "gitBlobSha": "5a4c2059a3da69467145d3489a41f9efb316de71"}
       ]
     }
   ]
