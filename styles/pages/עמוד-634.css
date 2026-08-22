@@ -176,12 +176,27 @@
   background: #fff;
 }
 
+/* Tablet / narrow desktop: preserve the approved single-line concept row. */
 @media (max-width: 760px) {
+  .page-634 .foundation-note-one-line {
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    font-size: 14.4px;
+    gap: 4px;
+    padding-inline: 8px;
+  }
+  .page-634 .angle-name-fill { width: 68px; }
+  .page-634 .degrees-fill { width: 46px; }
+  .page-634 .mcq-options { grid-template-columns: 1fr; }
+}
+
+/* Only a genuinely small phone may wrap the concept row. */
+@media (max-width: 520px) {
   .page-634 .foundation-note-one-line {
     flex-wrap: wrap;
     white-space: normal;
+    row-gap: 6px;
   }
-  .page-634 .mcq-options { grid-template-columns: 1fr; }
 }
 
 @media print {
