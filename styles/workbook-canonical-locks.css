@@ -53,7 +53,6 @@
   line-height: 1 !important;
 }
 
-/* עמוד 1 — שורת המושג ומשימת הסיכום נשארות בפריסת A4 גם במסך צר. */
 .pythagoras-workbook-shell .page-634 .foundation-note-one-line {
   display: flex !important;
   flex-wrap: nowrap !important;
@@ -85,7 +84,7 @@
   box-shadow: none !important;
 }
 
-/* עמוד 2 — A4 קנוני: אין reflow לפי רוחב החלון ואין גלישה לתוך הקרדיט. */
+/* עמוד 2 — A4 קנוני: אין reflow ואין תיבה בתוך תיבה. */
 .pythagoras-workbook-shell .page-635 .question-block {
   display: grid !important;
   grid-template-rows: auto auto 86px 118px 168px minmax(0, 1fr) !important;
@@ -129,13 +128,66 @@
 .pythagoras-workbook-shell .page-635 .hunt-section {
   height: 100% !important;
   min-height: 0 !important;
-  grid-template-rows: auto minmax(0, 1fr) 32px 56px !important;
+  grid-template-rows: auto minmax(0, 1fr) 28px 34px !important;
   overflow: hidden !important;
+}
+
+.pythagoras-workbook-shell .page-635 .hunt-total {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.pythagoras-workbook-shell .page-635 .hunt-count-fill {
+  border: 0 !important;
+  border-bottom: 1.2px solid var(--accent-dark) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .pythagoras-workbook-shell .page-635 .geometry-hunt-card,
 .pythagoras-workbook-shell .page-635 .triangle-hunt-svg {
   height: 100% !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* עמוד 3 — ניצבים בלבד: מבנה A4 קבוע, מגוון ולא דחוס. */
+.pythagoras-workbook-shell .page-636 .question-block {
+  display: grid !important;
+  grid-template-rows: 46px minmax(252px, 1fr) minmax(244px, .94fr) 116px 142px !important;
+  gap: 9px !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.pythagoras-workbook-shell .page-636 .legs-concept-row {
+  white-space: nowrap !important;
+  height: 46px !important;
+}
+
+.pythagoras-workbook-shell .page-636 .legs-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  min-height: 0 !important;
+}
+
+.pythagoras-workbook-shell .page-636 .vertex-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  min-height: 0 !important;
+}
+
+.pythagoras-workbook-shell .page-636 .quick-fill-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  min-height: 0 !important;
+}
+
+.pythagoras-workbook-shell .page-636 .legs-mcq {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr) !important;
   min-height: 0 !important;
   overflow: hidden !important;
 }
