@@ -49,9 +49,9 @@
     {
       "workbookPage": 3,
       "status": "locked",
-      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md: ניצבים בלבד, 4 משימות זיהוי, 2 משימות קודקודים, 3 השלמות קונקרטיות ושאלה אמריקאית אחת; פריסת A4 מלאה וללא שאלות כלליות.",
+      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md: ניצבים בלבד, 4 משימות זיהוי, 2 משימות קודקודים עם גאומטריה ישרת־זווית מדויקת, 3 השלמות קונקרטיות ושאלה אמריקאית אחת; פריסת A4 מלאה וללא שאלות כלליות.",
       "files": [
-        {"path": "עמוד-636.html", "gitBlobSha": "dc8277af0613edbf7f354b8b30b757a24676324f"},
+        {"path": "עמוד-636.html", "gitBlobSha": "d6b6423fd33859dd497f0aa8e8db6642bfbcf4a2"},
         {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "27647c5b0b3bb8602314d192bbb2c9c073b73934"}
       ],
       "sharedDependencies": [
