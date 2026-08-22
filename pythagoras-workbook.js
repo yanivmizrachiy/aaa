@@ -6,6 +6,8 @@ const workbookRoot = document.querySelector('#workbook');
 const toolbar = document.querySelector('.workbook-toolbar');
 const statusEl = document.querySelector('#workbook-status');
 const jumpInput = document.querySelector('#page-jump');
+const pageTotalLabel = document.querySelector('#page-total-label');
+const progressBar = document.querySelector('#workbook-progress-bar');
 const prevButton = document.querySelector('#prev-page');
 const nextButton = document.querySelector('#next-page');
 const printButton = document.querySelector('#print-workbook');
@@ -109,8 +111,6 @@ function normalizePage(main, pageMeta, total) {
   const visibleNumber = main.querySelector('.page-number');
   if (visibleNumber) visibleNumber.textContent = String(localNumber);
 
-  /* דף רשאי להישאר שייך גם לחוברת/נושא אחר במקור. בתוך חוברת פיתגורס
-     הכותרת המקומית משקפת את ההקשר בלי לשנות את קובץ המקור. */
   if (pageMeta.primaryTopic !== 'משפט פיתגורס') {
     const pageTitle = main.querySelector('.page-title');
     if (pageTitle) pageTitle.textContent = 'משפט פיתגורס';
@@ -125,6 +125,14 @@ function updateLoadStatus(total) {
     statusEl.textContent = `${loadedPages} / ${total} דפים נטענו · ${failedPages} נכשלו`;
   } else {
     statusEl.textContent = `${loadedPages} / ${total} דפים נטענו`;
+  }
+}
+
+function updateNavigationDisplay(page) {
+  if (pageTotalLabel) pageTotalLabel.textContent = `מתוך ${totalPages || 53}`;
+  if (progressBar) {
+    const progress = totalPages ? Math.max(0, Math.min(100, (page / totalPages) * 100)) : 0;
+    progressBar.style.width = `${progress}%`;
   }
 }
 
@@ -207,6 +215,7 @@ function setActivePage(localNumber, { syncUrl = false } = {}) {
   jumpInput.value = String(target);
   prevButton.disabled = target <= 1;
   nextButton.disabled = target >= totalPages;
+  updateNavigationDisplay(target);
   if (syncUrl) syncUrlPage(target);
   return target;
 }
@@ -223,6 +232,13 @@ function installNavigation() {
   prevButton.addEventListener('click', () => goToPage(activePage - 1));
   nextButton.addEventListener('click', () => goToPage(activePage + 1));
   jumpInput.addEventListener('change', () => goToPage(jumpInput.value));
+  jumpInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      jumpInput.blur();
+      goToPage(jumpInput.value);
+    }
+  });
   printButton.addEventListener('click', () => window.print());
 
   const observer = new IntersectionObserver((entries) => {
@@ -295,6 +311,7 @@ async function boot() {
   totalPages = pages.length;
   loadedPages = 0;
   failedPages = 0;
+  updateNavigationDisplay(1);
   statusEl.textContent = `0 / ${totalPages} דפים נטענו`;
 
   const tasks = pages.map((pageMeta) => {
