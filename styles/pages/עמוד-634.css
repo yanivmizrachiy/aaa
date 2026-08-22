@@ -1,4 +1,5 @@
 @import url("../topics/pythagoras-foundations.css");
+@import url("../topics/pythagoras-inline-units.css");
 
 .page-634 .question-block {
   justify-content: flex-start;
@@ -42,7 +43,6 @@
 
 .page-634 .foundation-grid { min-height: 0; }
 
-/* זיהוי: שש דוגמאות, אך בגובה חסכוני. */
 .page-634 .angle-choice-grid {
   gap: 7px 9px;
 }
@@ -64,7 +64,6 @@
   margin: 0;
 }
 
-/* מיון: חמש זוויות בשורה אחת + תשובה קצרה מתחת לכל אחת. */
 .page-634 .classification-card {
   justify-content: flex-start;
   gap: 4px;
@@ -109,7 +108,6 @@
   border-radius: 5px;
 }
 
-/* בנייה: שתי מסגרות נקיות בלי הוראות כפולות בתוך הכרטיס. */
 .page-634 .drawing-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
@@ -140,7 +138,6 @@
 
 .page-634 .guided-ray-svg .guide-point { fill: var(--accent-dark); }
 
-/* שאלה אמריקאית של הסקה: בודקת הבנה ולא זיהוי חזותי. */
 .page-634 .thinking-mcq {
   border: 1.35px solid var(--accent-dark);
   border-radius: 9px;
