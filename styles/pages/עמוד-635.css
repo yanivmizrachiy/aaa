@@ -1,9 +1,13 @@
 @import url("../topics/pythagoras-foundations.css");
 @import url("../topics/pythagoras-inline-units.css");
 
+/* פריסת ספר: כל גובה העבודה מחולק בצורה עקבית; אין רווח auto יחיד שיוצר "חור" באמצע. */
 .page-635 .question-block {
-  justify-content: flex-start;
-  gap: 6px;
+  display: grid;
+  grid-template-rows: auto auto auto auto auto minmax(0, 1fr);
+  align-content: stretch;
+  gap: 10px;
+  min-height: 0;
 }
 
 .page-635 .foundation-note-one-line {
@@ -47,20 +51,20 @@
 
 .page-635 .triangle-choice-grid {
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 6px;
+  gap: 7px;
   min-height: 0;
 }
 
 .page-635 .triangle-choice-grid .foundation-card {
-  min-height: 91px;
-  padding: 4px 5px;
-  gap: 2px;
+  min-height: 94px;
+  padding: 5px 5px;
+  gap: 3px;
 }
 
 .page-635 .triangle-choice-grid .foundation-svg {
   width: 100%;
   max-width: 112px;
-  height: 66px;
+  height: 68px;
 }
 
 .page-635 .triangle-choice-grid .check {
@@ -72,12 +76,12 @@
 /* שאלה אמריקאית: בדיוק 5 אפשרויות, ארבע ישרות-זווית ואחת שאינה. */
 .page-635 .mc-triangle-section {
   display: grid;
-  gap: 5px;
-  padding: 6px 9px 7px;
+  gap: 6px;
+  padding: 7px 9px 8px;
   border: 1px solid var(--border-light);
   border-radius: 10px;
   background: var(--bg-paper);
-  min-height: 126px;
+  min-height: 130px;
 }
 
 .page-635 .mc-triangle-question {
@@ -88,15 +92,15 @@
 .page-635 .mc-triangle-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 7px;
+  gap: 8px;
 }
 
 .page-635 .mc-triangle-card {
-  min-height: 88px;
+  min-height: 90px;
   border: 1px solid var(--border-light);
   border-radius: 8px;
   background: var(--bg-subtle);
-  padding: 2px 5px 5px;
+  padding: 3px 5px 5px;
   display: grid;
   grid-template-rows: 1fr auto;
   align-items: center;
@@ -106,7 +110,7 @@
 .page-635 .mc-triangle-card svg {
   width: 100%;
   max-width: 116px;
-  height: 64px;
+  height: 66px;
   display: block;
 }
 
@@ -140,22 +144,22 @@
 /* משימת בנייה: שתי השלמות שונות לאותו קטע, כדי להבין שהזווית הישרה יכולה להופיע בקודקודים שונים. */
 .page-635 .construction-task {
   display: grid;
-  gap: 6px;
-  padding: 7px 9px 8px;
+  gap: 7px;
+  padding: 8px 9px 9px;
   border: 1px solid var(--border-light);
   border-radius: 10px;
   background: var(--bg-paper);
-  min-height: 158px;
+  min-height: 170px;
 }
 
 .page-635 .construction-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 12px;
 }
 
 .page-635 .construction-card {
-  min-height: 94px;
+  min-height: 102px;
   border: 1px dashed var(--grid-line);
   border-radius: 8px;
   background: var(--bg-subtle);
@@ -167,7 +171,7 @@
 
 .page-635 .construction-svg {
   width: 100%;
-  height: 88px;
+  height: 96px;
   display: block;
   direction: ltr;
 }
@@ -178,9 +182,7 @@
   vector-effect: non-scaling-stroke;
 }
 
-.page-635 .construction-svg circle {
-  fill: var(--accent-dark);
-}
+.page-635 .construction-svg circle { fill: var(--accent-dark); }
 
 .page-635 .construction-svg text {
   font-family: 'Rubik', sans-serif;
@@ -202,27 +204,32 @@
   vertical-align: baseline;
 }
 
-/* המשימה המורכבת נשארת המשימה האחרונה ומוצמדת לתחתית הדף. */
+/* המשימה האחרונה מקבלת את יתרת הגובה. כך השטח הפנוי הופך לאיור גדול במקום לרווח לבן. */
 .page-635 .hunt-section {
-  margin-top: auto;
+  margin-top: 0;
   display: grid;
-  gap: 5px;
+  grid-template-rows: auto minmax(202px, 1fr) auto auto;
+  gap: 6px;
   min-height: 0;
+  height: 100%;
 }
 
 .page-635 .geometry-hunt-card {
   width: 100%;
-  min-height: 0;
-  padding: 1px 8px;
+  height: 100%;
+  min-height: 202px;
+  padding: 3px 8px;
   border: 1px solid var(--border-light);
   border-radius: 10px;
   background: var(--bg-paper);
   break-inside: avoid;
+  overflow: hidden;
 }
 
 .page-635 .triangle-hunt-svg {
   width: 100%;
-  height: 202px;
+  height: 100%;
+  min-height: 202px;
   display: block;
   shape-rendering: geometricPrecision;
 }
@@ -236,17 +243,15 @@
   vector-effect: non-scaling-stroke;
 }
 
-.page-635 .triangle-hunt-svg .mosaic-points {
-  fill: var(--accent-dark);
-}
+.page-635 .triangle-hunt-svg .mosaic-points { fill: var(--accent-dark); }
 
 .page-635 .hunt-total {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-  min-height: 36px;
-  padding: 4px 10px;
+  min-height: 38px;
+  padding: 5px 10px;
   border: 1.25px solid #1f2a44;
   border-radius: 8px;
   background: var(--bg-subtle);
@@ -262,10 +267,10 @@
 
 .page-635 .hunt-reason {
   border-top: 1px dashed var(--grid-line);
-  padding: 6px 8px 0;
+  padding: 7px 8px 0;
   display: grid;
   gap: 5px;
-  min-height: 62px;
+  min-height: 66px;
 }
 
 .page-635 .hunt-reason-text {
@@ -274,17 +279,23 @@
 }
 
 .page-635 .hunt-write-lines {
-  min-height: 30px;
+  min-height: 34px;
   background: repeating-linear-gradient(
     to bottom,
     transparent 0,
-    transparent 14px,
-    var(--grid-line) 15px,
-    transparent 16px
+    transparent 15px,
+    var(--grid-line) 16px,
+    transparent 17px
   );
 }
 
 @media (max-width: 760px) {
+  .page-635 .question-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .page-635 .foundation-note-one-line {
     flex-wrap: wrap;
     white-space: normal;
@@ -298,23 +309,20 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .page-635 .mc-triangle-section {
-    min-height: 0;
-  }
+  .page-635 .mc-triangle-section { min-height: 0; }
 
-  .page-635 .construction-grid {
-    grid-template-columns: 1fr;
-  }
+  .page-635 .construction-grid { grid-template-columns: 1fr; }
+  .page-635 .construction-task { min-height: 0; }
 
-  .page-635 .construction-task {
-    min-height: 0;
+  .page-635 .hunt-section {
+    margin-top: 8px;
+    height: auto;
+    grid-template-rows: auto auto auto auto;
   }
-
-  .page-635 .hunt-section { margin-top: 8px; }
 
   .page-635 .triangle-hunt-svg {
     height: auto;
-    min-height: 210px;
+    min-height: 220px;
   }
 }
 
