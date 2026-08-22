@@ -15,7 +15,7 @@
     minmax(108px, .72fr)
     auto
     minmax(118px, .82fr)
-    minmax(116px, .78fr);
+    minmax(104px, .68fr);
   gap: 9px;
   align-content: stretch;
   min-height: 0;
@@ -164,14 +164,17 @@
 
 .page-634 .guided-ray-svg .guide-point { fill: var(--accent-dark); }
 
-/* משימת סיום: התלמיד בונה בעצמו מרובע עם בדיוק שתי זוויות ישרות. */
+/*
+ * משימת סיום: התלמיד בונה בעצמו מרובע עם בדיוק שתי זוויות ישרות.
+ * אין מלבן מוכן ואין מסגרת סביב שטח השרטוט; הרווח הלבן עצמו הוא אזור העבודה.
+ */
 .page-634 .final-build-task {
   height: 100%;
   min-height: 0;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  gap: 5px;
-  padding: 4px 10px 2px;
+  gap: 4px;
+  padding: 4px 10px 0;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -182,11 +185,12 @@
 }
 
 .page-634 .final-build-area {
-  min-height: 78px;
+  min-height: 64px;
   width: 100%;
-  border: 1.25px dashed #a8b4c4;
-  border-radius: 7px;
-  background: #fff;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 /* Tablet / narrow desktop: standalone page may tighten, not collapse. */
