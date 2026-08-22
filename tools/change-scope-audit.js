@@ -61,13 +61,17 @@ for (const file of changed) {
   }
 }
 
-/* שינוי משותף עלול להשפיע על כל עמוד נעול ולכן מחייב אימות מחדש של הנעילות. */
-const sharedChange = changed.some((file) =>
-  file === 'styles/a4-base.css' ||
-  file === 'styles/pythagoras-workbook.css' ||
-  file === 'pythagoras-workbook.js' ||
-  file.startsWith('styles/topics/')
-);
+/* כל שכבה שיכולה לשנות runtime/פריסה של כמה דפים נחשבת משותפת. */
+const sharedFiles = new Set([
+  'index.html',
+  'WORKBOOK_MANIFEST.json',
+  'vercel.json',
+  'styles/a4-base.css',
+  'styles/pythagoras-workbook.css',
+  'styles/workbook-canonical-locks.css',
+  'pythagoras-workbook.js',
+]);
+const sharedChange = changed.some((file) => sharedFiles.has(file) || file.startsWith('styles/topics/'));
 if (sharedChange && !lockFileChanged && (locks?.pages || []).some((page) => page.status === 'locked')) {
   fail('שינוי בשכבה משותפת בוצע בלי עדכון meta/approved-page-locks.json. יש לאמת מחדש כל עמוד נעול לפני פרסום.');
 } else if (sharedChange) {
@@ -84,13 +88,11 @@ for (const file of changed.filter((name) => /^styles\/pages\/עמוד-\d+\.css$/
       fail(`${file}: אסור selector גלובלי בקובץ CSS ייעודי לעמוד: ${selector}`);
       continue;
     }
-    if (!selector.includes(rootClass)) {
-      fail(`${file}: selector אינו תחום ל-${rootClass}: ${selector}`);
-    }
+    if (!selector.includes(rootClass)) fail(`${file}: selector אינו תחום ל-${rootClass}: ${selector}`);
   }
 }
 
-/* תיקון עמוד אחד אינו רשאי לגרור שינוי לעמוד HTML אחר בלי שהוא חלק מהבקשה המפורשת. */
+/* תיקון עמוד אחד אינו רשאי לגרור שינוי לעמוד HTML אחר בלי הצדקה מפורשת. */
 const changedPageHtml = changed.filter((name) => /^עמוד-\d+\.html$/u.test(name));
 if (changedPageHtml.length > 1) {
   console.warn(`⚠ השתנו ${changedPageHtml.length} דפי HTML באותו change-set: ${changedPageHtml.join(', ')}. שינוי רוחבי כזה דורש הצדקה מפורשת.`);
