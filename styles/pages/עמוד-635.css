@@ -67,6 +67,72 @@
   margin: 0;
 }
 
+/* תרגול מעבר: משתמש בשטח הפנוי להבנה, נימוק ובנייה — לא למילוי דקורטיבי. */
+.page-635 .bridge-practice {
+  display: grid;
+  gap: 6px;
+  padding: 7px 9px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  background: var(--bg-paper);
+  min-height: 132px;
+}
+
+.page-635 .bridge-fill-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 30px;
+  font-size: 14.7px;
+  line-height: 1.3;
+}
+
+.page-635 .bridge-short-fill {
+  width: 48px;
+  height: 26px;
+  flex: 0 0 auto;
+}
+
+.page-635 .bridge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  min-height: 88px;
+}
+
+.page-635 .bridge-card {
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  padding: 7px 9px;
+  min-height: 88px;
+}
+
+.page-635 .bridge-question {
+  font-size: 14.3px;
+  line-height: 1.35;
+}
+
+.page-635 .bridge-writing-lines {
+  min-height: 44px;
+  margin-top: 4px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 18px,
+    var(--grid-line) 19px,
+    transparent 20px
+  );
+}
+
+.page-635 .bridge-draw-space {
+  min-height: 54px;
+  margin-top: 4px;
+  border: 1px dashed var(--grid-line);
+  border-radius: 6px;
+  background: var(--bg-paper);
+}
+
 /* המשימה המורכבת היא תמיד המשימה האחרונה ומוצמדת לתחתית אזור העבודה. */
 .page-635 .hunt-section {
   margin-top: auto;
@@ -88,7 +154,7 @@
 
 .page-635 .triangle-hunt-svg {
   width: 100%;
-  height: 252px;
+  height: 240px;
   display: block;
   shape-rendering: geometricPrecision;
 }
@@ -161,16 +227,26 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .page-635 .bridge-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-635 .bridge-practice {
+    min-height: 0;
+  }
+
   .page-635 .hunt-section { margin-top: 8px; }
 
   .page-635 .triangle-hunt-svg {
     height: auto;
-    min-height: 250px;
+    min-height: 240px;
   }
 }
 
 @media print {
   .page-635 .foundation-note-one-line,
+  .page-635 .bridge-practice,
+  .page-635 .bridge-card,
   .page-635 .geometry-hunt-card,
   .page-635 .hunt-total,
   .page-635 .hunt-reason,
