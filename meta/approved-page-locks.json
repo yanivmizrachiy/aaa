@@ -7,10 +7,10 @@
     {
       "workbookPage": 1,
       "status": "locked",
-      "reason": "עמוד 1 מאושר: משימת הסיום דורשת מהתלמיד לצייר בעצמו מרובע שיש בו בדיוק שתי זוויות ישרות ולסמן את שתי הזוויות הישרות; אין מלבן מוכן. הכותרת, שורת המושג ושאר התרגילים נשמרים בפריסת A4 קנונית.",
+      "reason": "עמוד 1 מאושר: משימת הסיום דורשת מהתלמיד לצייר בעצמו מרובע שיש בו בדיוק שתי זוויות ישרות ולסמן אותן. אין מלבן מוכן ואין מסגרת סביב שטח השרטוט; הכותרת, שורת המושג ושאר התרגילים נשמרים בפריסת A4 קנונית.",
       "files": [
         {"path": "עמוד-634.html", "gitBlobSha": "cc3deb28f58a425677d886dc8d9a1a9ceca20642"},
-        {"path": "styles/pages/עמוד-634.css", "gitBlobSha": "6ebe5b82c3f99ffb93887a28207ab0cc5f476143"}
+        {"path": "styles/pages/עמוד-634.css", "gitBlobSha": "c0981c6454921cf11968c3c210b62271b5975535"}
       ],
       "sharedDependencies": [
         {"path": "styles/a4-base.css", "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"},
@@ -18,7 +18,7 @@
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
         {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "1a6c88e067f93463bc90863692a693e3c3e3fb2f"},
+        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "5d5b826fcec930eff1e61b3f9176eebb5736c7fd"},
         {"path": "pythagoras-workbook.js", "gitBlobSha": "32ab155557f1aff03e548d21b2326533536c8ca6"}
       ]
     },
@@ -36,7 +36,25 @@
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
         {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "1a6c88e067f93463bc90863692a693e3c3e3fb2f"},
+        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "5d5b826fcec930eff1e61b3f9176eebb5736c7fd"},
+        {"path": "pythagoras-workbook.js", "gitBlobSha": "32ab155557f1aff03e548d21b2326533536c8ca6"}
+      ]
+    },
+    {
+      "workbookPage": 3,
+      "status": "locked",
+      "reason": "עמוד 3 מאושר כנושא ניצבים בלבד: ניצול מלא של A4, ארבעה שרטוטי זיהוי בכיוונים שונים, השלמות מפורשות של שמות צלעות, משימות סימון קודקודים לפי ניצבים נתונים, השלמות קצרות עם אותיות ושאלה אמריקאית עם מסיחים מתמטיים. אין שאלות פתוחות כלליות ואין כפילות עם עמוד 4 העוסק ביתר.",
+      "files": [
+        {"path": "עמוד-636.html", "gitBlobSha": "dc8277af0613edbf7f354b8b30b757a24676324f"},
+        {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "27647c5b0b3bb8602314d192bbb2c9c073b73934"}
+      ],
+      "sharedDependencies": [
+        {"path": "styles/a4-base.css", "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"},
+        {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
+        {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
+        {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
+        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"},
+        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "5d5b826fcec930eff1e61b3f9176eebb5736c7fd"},
         {"path": "pythagoras-workbook.js", "gitBlobSha": "32ab155557f1aff03e548d21b2326533536c8ca6"}
       ]
     }
