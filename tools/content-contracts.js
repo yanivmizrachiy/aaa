@@ -42,12 +42,19 @@ function isRightTriangle(points) {
   return false;
 }
 
-function pathDsBetween(html, startToken, endToken) {
+function segment(html, startToken, endToken) {
   const start = html.indexOf(startToken);
   const end = html.indexOf(endToken, start + startToken.length);
-  if (start < 0 || end < 0) return [];
-  const segment = html.slice(start, end);
-  return [...segment.matchAll(/<path[^>]*\sd="([^"]+)"[^>]*>/g)].map((m) => m[1]);
+  if (start < 0 || end < 0) return '';
+  return html.slice(start, end);
+}
+
+function pathDsBetween(html, startToken, endToken) {
+  return [...segment(html, startToken, endToken).matchAll(/<path[^>]*\sd="([^"]+)"[^>]*>/g)].map((m) => m[1]);
+}
+
+function edgePathDsBetween(html, startToken, endToken) {
+  return [...segment(html, startToken, endToken).matchAll(/<path[^>]*class="edge"[^>]*\sd="([^"]+)"[^>]*>/g)].map((m) => m[1]);
 }
 
 const truth = read('SOURCE_OF_TRUTH.md');
@@ -128,6 +135,7 @@ requireTokens('עמוד 3', p3, [
   'הן הניצבים.',
   'קודקוד הזווית הישרה:',
   'איזה זוג צלעות הוא זוג הניצבים?',
+  'א. <span dir="ltr">AB</span> ו־<span dir="ltr">BC</span>',
 ]);
 forbidTokens('עמוד 3', p3, ['היתר']);
 const page3Counts = [
@@ -141,6 +149,19 @@ for (const [className, expected] of page3Counts) {
   if (actual === expected) pass(`עמוד 3: ${className} = ${expected}.`);
   else fail(`עמוד 3: ${className} צריך להיות ${expected}, נמצא ${actual}.`);
 }
+
+const page3Legs = edgePathDsBetween(p3, 'legs-grid', 'vertex-section').map(parseTrianglePath).filter(Boolean);
+if (page3Legs.length === 4 && page3Legs.every(isRightTriangle)) pass('עמוד 3: כל ארבעת משולשי הזיהוי ישרי־זווית מתמטית.');
+else fail(`עמוד 3: משולשי הזיהוי אינם כולם ישרי־זווית מדויקים (${page3Legs.filter(isRightTriangle).length}/${page3Legs.length}).`);
+
+const page3VertexTasks = edgePathDsBetween(p3, 'vertex-grid', 'quick-fill-section').map(parseTrianglePath).filter(Boolean);
+if (page3VertexTasks.length === 2 && page3VertexTasks.every(isRightTriangle)) pass('עמוד 3: שתי משימות הקודקודים משתמשות במשולשים ישרי־זווית מדויקים.');
+else fail(`עמוד 3: משימות הקודקודים אינן מדויקות מתמטית (${page3VertexTasks.filter(isRightTriangle).length}/${page3VertexTasks.length}).`);
+
+const page3Mcq = edgePathDsBetween(p3, 'mcq-triangle', '</svg>').map(parseTrianglePath).filter(Boolean);
+if (page3Mcq.length === 1 && isRightTriangle(page3Mcq[0])) pass('עמוד 3: משולש השאלה האמריקאית ישר־זווית מדויק.');
+else fail('עמוד 3: משולש השאלה האמריקאית אינו ישר־זווית מדויק.');
+
 requireTokens('CSS עמוד 3', p3css, [
   'grid-template-columns: repeat(4, minmax(0, 1fr));',
   'grid-template-columns: repeat(2, minmax(0, 1fr));',
