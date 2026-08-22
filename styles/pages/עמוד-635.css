@@ -6,7 +6,7 @@
   gap: 6px;
 }
 
-/* כמו בעמוד 1: משפט מושג אחד, קומפקטי, עם שתי השלמות קצרות. */
+/* משפט המושג העליון נשאר שורה אחת קומפקטית. */
 .page-635 .foundation-note-one-line {
   display: flex;
   align-items: center;
@@ -30,7 +30,6 @@
 .page-635 .angle-type-fill { width: 74px; }
 .page-635 .degrees-fill { width: 50px; }
 
-/* השאלה הראשונה נשמרת: זיהוי בסיסי לפני המשימה המורכבת. */
 .page-635 .compact-instruction,
 .page-635 .hunt-instruction {
   margin: 0;
@@ -39,24 +38,27 @@
 
 .page-635 .compact-instruction .q-text,
 .page-635 .hunt-instruction .q-text {
-  font-size: 15px;
+  font-size: 14.8px;
   line-height: 1.3;
 }
 
+/* שאלה 1: שש דוגמאות בשורה אחת כדי לשמור את החלק העליון קומפקטי. */
 .page-635 .triangle-choice-grid {
-  gap: 6px 8px;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
   min-height: 0;
 }
 
 .page-635 .triangle-choice-grid .foundation-card {
-  min-height: 92px;
-  padding: 4px 7px;
+  min-height: 91px;
+  padding: 4px 5px;
   gap: 2px;
 }
 
 .page-635 .triangle-choice-grid .foundation-svg {
-  max-width: 210px;
-  height: 68px;
+  width: 100%;
+  max-width: 112px;
+  height: 66px;
 }
 
 .page-635 .triangle-choice-grid .check {
@@ -65,11 +67,19 @@
   margin: 0;
 }
 
-/* פסיפס גאומטרי מורכב: 13 אזורים משולשים, ללא סימוני תשובה. */
+/* המשימה המורכבת היא תמיד המשימה האחרונה ומוצמדת לתחתית אזור העבודה. */
+.page-635 .hunt-section {
+  margin-top: auto;
+  display: grid;
+  gap: 5px;
+  min-height: 0;
+}
+
+/* איור חיפוש עשיר: קווים נקיים, חדים וללא סימוני תשובה. */
 .page-635 .geometry-hunt-card {
   width: 100%;
   min-height: 0;
-  padding: 2px 8px;
+  padding: 1px 8px;
   border: 1px solid var(--border-light);
   border-radius: 10px;
   background: var(--bg-paper);
@@ -78,7 +88,7 @@
 
 .page-635 .triangle-hunt-svg {
   width: 100%;
-  height: 292px;
+  height: 252px;
   display: block;
   shape-rendering: geometricPrecision;
 }
@@ -86,7 +96,7 @@
 .page-635 .triangle-hunt-svg .mosaic-lines {
   fill: none;
   stroke: var(--accent-dark);
-  stroke-width: 1.65;
+  stroke-width: 1.55;
   stroke-linecap: round;
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
@@ -101,19 +111,44 @@
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-  min-height: 38px;
-  padding: 5px 10px;
-  border: 1.35px solid #1f2a44;
+  min-height: 36px;
+  padding: 4px 10px;
+  border: 1.25px solid #1f2a44;
   border-radius: 8px;
   background: var(--bg-subtle);
-  font-size: 15.5px;
+  font-size: 15.2px;
   font-weight: 500;
 }
 
 .page-635 .hunt-count-fill {
   width: 58px;
-  height: 27px;
+  height: 26px;
   flex: 0 0 auto;
+}
+
+/* שאלת הסקה אחרונה: מצדיקה את השטח התחתון ומבקשת נימוק מתמטי. */
+.page-635 .hunt-reason {
+  border-top: 1px dashed var(--grid-line);
+  padding: 6px 8px 0;
+  display: grid;
+  gap: 5px;
+  min-height: 70px;
+}
+
+.page-635 .hunt-reason-text {
+  font-size: 14.5px;
+  line-height: 1.35;
+}
+
+.page-635 .hunt-write-lines {
+  min-height: 38px;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 17px,
+    var(--grid-line) 18px,
+    transparent 19px
+  );
 }
 
 @media (max-width: 760px) {
@@ -126,9 +161,11 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .page-635 .hunt-section { margin-top: 8px; }
+
   .page-635 .triangle-hunt-svg {
     height: auto;
-    min-height: 260px;
+    min-height: 250px;
   }
 }
 
@@ -136,6 +173,7 @@
   .page-635 .foundation-note-one-line,
   .page-635 .geometry-hunt-card,
   .page-635 .hunt-total,
+  .page-635 .hunt-reason,
   .page-635 .triangle-choice-grid .foundation-card {
     break-inside: avoid;
   }
