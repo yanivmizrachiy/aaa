@@ -1,4 +1,4 @@
-const BUILD_VERSION = new URL(import.meta.url).searchParams.get('v') || 'dev';
+const BUILD_VERSION = String(Date.now());
 const MANIFEST_URL = 'WORKBOOK_MANIFEST.json';
 const workbookRoot = document.querySelector('#workbook');
 const toolbar = document.querySelector('.workbook-toolbar');
@@ -156,7 +156,7 @@ async function loadSourcePage(pageMeta, total, wrapper) {
   const htmlFile = sourceFile(pageMeta);
   try {
     await addStylesheet(cssFile(pageMeta));
-    const response = await fetch(versioned(htmlFile), { cache: 'no-cache' });
+    const response = await fetch(versioned(htmlFile), { cache: 'no-store' });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
     const html = await response.text();
     const parsed = new DOMParser().parseFromString(html, 'text/html');
@@ -311,7 +311,7 @@ function validateManifest(manifest) {
 }
 
 async function boot() {
-  const manifestResponse = await fetch(versioned(MANIFEST_URL), { cache: 'no-cache' });
+  const manifestResponse = await fetch(versioned(MANIFEST_URL), { cache: 'no-store' });
   if (!manifestResponse.ok) throw new Error(`לא ניתן לקרוא ${MANIFEST_URL}`);
   const manifest = await manifestResponse.json();
   const pages = validateManifest(manifest);
