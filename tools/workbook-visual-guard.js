@@ -57,6 +57,48 @@ if (exists('pythagoras-workbook.js')) {
   }
 }
 
+/*
+ * Topic CSS must not expose sensitive structural selectors globally.
+ * A sensitive selector is allowed only when it starts with an explicit class scope
+ * that is different from the sensitive class itself (for example .geo7-page .page-title).
+ */
+const sensitive = new Set([
+  'header-container', 'page-title', 'page-number', 'question-block', 'q-main', 'q-sub',
+]);
+
+function selectorHeaders(css) {
+  const clean = css.replace(/\/\*[\s\S]*?\*\//g, '');
+  const headers = [];
+  const re = /([^{}]+)\{/g;
+  let match;
+  while ((match = re.exec(clean))) {
+    const header = match[1].trim();
+    if (!header || header.startsWith('@')) continue;
+    if (/^(from|to|\d+(?:\.\d+)?%)$/u.test(header)) continue;
+    headers.push(...header.split(',').map((part) => part.trim()).filter(Boolean));
+  }
+  return headers;
+}
+
+const topicDir = path.join(root, 'styles/topics');
+if (fs.existsSync(topicDir)) {
+  for (const file of fs.readdirSync(topicDir).filter((name) => name.endsWith('.css'))) {
+    const rel = `styles/topics/${file}`;
+    for (const selector of selectorHeaders(read(rel))) {
+      const touched = [...sensitive].filter((name) => selector.includes(`.${name}`));
+      if (!touched.length) continue;
+      const firstClass = selector.match(/^\.([\w-]+)/u)?.[1] || null;
+      const explicitlyScoped = firstClass && !touched.includes(firstClass);
+      if (!explicitlyScoped) {
+        fail(`${rel}: selector מבני רגיש אינו תחום למשפחה מפורשת: ${selector}`);
+      }
+    }
+  }
+  if (!errors.some((m) => m.includes('styles/topics/'))) {
+    pass('כל selectors המבניים הרגישים ב-styles/topics תחומים למשפחה מפורשת.');
+  }
+}
+
 console.log('\n=== Workbook Visual Guard ===');
 ok.forEach((m) => console.log(`✓ ${m}`));
 errors.forEach((m) => console.error(`✗ ${m}`));
