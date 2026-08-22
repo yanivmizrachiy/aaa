@@ -2,38 +2,17 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>משפט פיתגורס — החוברת המלאה</title>
-  <link rel="stylesheet" href="vendor/fonts/rubik.css" />
-  <link rel="stylesheet" href="styles/a4-base.css" />
-  <link rel="stylesheet" href="styles/topics/pythagoras.css" />
-  <link rel="stylesheet" href="styles/pythagoras-workbook.css?v=20260823-p123fix2" />
-  <link rel="stylesheet" href="styles/workbook-canonical-locks.css?v=20260823-p123fix2" />
-  <script>MathJax={tex:{inlineMath:[["\\(","\\)"]]},chtml:{fontURL:'vendor/mathjax/tex-font/chtml/woff2'}};</script>
-  <script id="MathJax-script" src="vendor/mathjax/tex-mml-chtml.js"></script>
-  <script type="module" src="pythagoras-workbook.js?v=20260823-p123fix2"></script>
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="/" />
+  <title>מעבר לחוברת משפט פיתגורס</title>
+  <script>
+    const target = new URL('/', location.origin);
+    target.search = location.search;
+    target.hash = location.hash;
+    location.replace(target.href);
+  </script>
 </head>
-<body class="pythagoras-workbook-shell">
-  <header class="workbook-toolbar" aria-label="כלי החוברת">
-    <div class="workbook-toolbar-inner">
-      <div class="workbook-brand">
-        <span class="workbook-eyebrow">חוברת דיגיטלית · 53 דפים</span>
-        <div class="workbook-brand-line">
-          <strong>משפט פיתגורס</strong>
-          <span id="workbook-status" role="status" aria-live="polite" aria-atomic="true">טוען את החוברת…</span>
-        </div>
-      </div>
-      <div class="workbook-actions">
-        <button id="prev-page" class="nav-action" type="button" aria-label="לעמוד הקודם" disabled>הקודם</button>
-        <label class="page-jump-control"><span>עמוד</span><input id="page-jump" type="number" min="1" inputmode="numeric" aria-label="מספר עמוד בחוברת" disabled /><span id="page-total-label">מתוך 53</span></label>
-        <button id="next-page" class="nav-action" type="button" aria-label="לעמוד הבא" disabled>הבא</button>
-        <button id="print-workbook" class="print-action" type="button" disabled>הדפסת החוברת</button>
-      </div>
-    </div>
-    <div class="workbook-progress" aria-hidden="true"><span id="workbook-progress-bar"></span></div>
-  </header>
-  <main id="workbook" class="workbook-pages"></main>
-  <noscript>יש להפעיל JavaScript כדי לפתוח את החוברת המאוחדת.</noscript>
+<body>
+  <noscript><a href="/">מעבר לחוברת משפט פיתגורס</a></noscript>
 </body>
 </html>
