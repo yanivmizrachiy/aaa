@@ -1,0 +1,23 @@
+name: Pythagoras Style Audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  style-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout workbook
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify style, scope and workbook consistency
+        run: node tools/style-audit.js
