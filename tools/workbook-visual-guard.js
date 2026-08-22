@@ -14,17 +14,31 @@ if (!exists(lockPath)) {
   fail('חסר styles/workbook-canonical-locks.css.');
 } else {
   const css = read(lockPath);
-  const required = [
+  const page1Required = [
     '.page-634 > .header-container',
     '.header-container > .page-title',
     '.header-container > .page-number',
     '.page-634 .foundation-note-one-line',
-    '.page-634 .mcq-options',
+    '.page-634 .final-build-task',
     '!important',
   ];
-  const missing = required.filter((token) => !css.includes(token));
-  if (missing.length) fail(`נעילת עמוד 1 חסרה רכיבים: ${missing.join(', ')}`);
+  const page2Required = [
+    '.page-635 .question-block',
+    'grid-template-rows: auto auto 86px 118px 168px minmax(0, 1fr)',
+    '.page-635 .triangle-choice-grid',
+    'repeat(6, minmax(0, 1fr))',
+    '.page-635 .mc-triangle-grid',
+    'repeat(5, minmax(0, 1fr))',
+    '.page-635 .construction-grid',
+    '.page-635 .hunt-section',
+    'overflow: hidden !important',
+  ];
+  const missing1 = page1Required.filter((token) => !css.includes(token));
+  const missing2 = page2Required.filter((token) => !css.includes(token));
+  if (missing1.length) fail(`נעילת עמוד 1 חסרה רכיבים: ${missing1.join(', ')}`);
   else pass('נעילת התצוגה הקנונית של עמוד 1 מלאה.');
+  if (missing2.length) fail(`נעילת עמוד 2 חסרה רכיבים: ${missing2.join(', ')}`);
+  else pass('נעילת התצוגה הקנונית של עמוד 2 מלאה.');
 }
 
 for (const entry of ['index.html', 'pythagoras-workbook.html']) {
@@ -57,11 +71,6 @@ if (exists('pythagoras-workbook.js')) {
   }
 }
 
-/*
- * Topic CSS must not expose sensitive structural selectors globally.
- * A sensitive selector is allowed only when it starts with an explicit class scope
- * that is different from the sensitive class itself (for example .geo7-page .page-title).
- */
 const sensitive = new Set([
   'header-container', 'page-title', 'page-number', 'question-block', 'q-main', 'q-sub',
 ]);
@@ -89,14 +98,10 @@ if (fs.existsSync(topicDir)) {
       if (!touched.length) continue;
       const firstClass = selector.match(/^\.([\w-]+)/u)?.[1] || null;
       const explicitlyScoped = firstClass && !touched.includes(firstClass);
-      if (!explicitlyScoped) {
-        fail(`${rel}: selector מבני רגיש אינו תחום למשפחה מפורשת: ${selector}`);
-      }
+      if (!explicitlyScoped) fail(`${rel}: selector מבני רגיש אינו תחום למשפחה מפורשת: ${selector}`);
     }
   }
-  if (!errors.some((m) => m.includes('styles/topics/'))) {
-    pass('כל selectors המבניים הרגישים ב-styles/topics תחומים למשפחה מפורשת.');
-  }
+  if (!errors.some((m) => m.includes('styles/topics/'))) pass('כל selectors המבניים הרגישים ב-styles/topics תחומים למשפחה מפורשת.');
 }
 
 console.log('\n=== Workbook Visual Guard ===');
