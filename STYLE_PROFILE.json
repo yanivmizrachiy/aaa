@@ -1,6 +1,7 @@
 {
   "schemaVersion": 2,
   "project": "yanivmizrachiy/aaa",
+  "authority": "SOURCE_OF_TRUTH.md",
   "scope": {
     "subject": "משפט פיתגורס בלבד",
     "manifest": "WORKBOOK_MANIFEST.json",
