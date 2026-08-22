@@ -1,0 +1,67 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "https://raw.githubusercontent.com/yanivmizrachiy/aaa/main/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "https://raw.githubusercontent.com/yanivmizrachiy/aaa/main/$1"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/",
+      "headers": [
+        { "key": "Content-Type", "value": "text/html; charset=utf-8" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; frame-src 'self'" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=60" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        { "key": "Content-Type", "value": "text/html; charset=utf-8" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self' blob:; frame-src 'self'" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=60" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.css",
+      "headers": [
+        { "key": "Content-Type", "value": "text/css; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=60" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.js",
+      "headers": [
+        { "key": "Content-Type", "value": "application/javascript; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=60" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=60, s-maxage=60" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.svg",
+      "headers": [
+        { "key": "Content-Type", "value": "image/svg+xml" },
+        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=300" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.woff2",
+      "headers": [
+        { "key": "Content-Type", "value": "font/woff2" },
+        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=3600" }
+      ]
+    }
+  ]
+}
