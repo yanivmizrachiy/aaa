@@ -1,7 +1,5 @@
 const BUILD_VERSION = new URL(import.meta.url).searchParams.get('v') || 'dev';
-const { buildPythagorasWorkbook } = await import(`./pythagoras-workbook-model.js?v=${encodeURIComponent(BUILD_VERSION)}`);
-
-const META_URL = 'meta/topics.json';
+const MANIFEST_URL = 'WORKBOOK_MANIFEST.json';
 const workbookRoot = document.querySelector('#workbook');
 const toolbar = document.querySelector('.workbook-toolbar');
 const statusEl = document.querySelector('#workbook-status');
@@ -21,8 +19,8 @@ let loadedPages = 0;
 let failedPages = 0;
 
 const pageId = (local) => `workbook-page-${local}`;
-const sourceFile = (number) => `עמוד-${number}.html`;
-const cssFile = (number) => `styles/pages/עמוד-${number}.css`;
+const sourceFile = (pageMeta) => pageMeta.file;
+const cssFile = (pageMeta) => `styles/pages/${pageMeta.file.replace(/\.html$/u, '.css')}`;
 const versioned = (href) => {
   const url = new URL(href, document.baseURI);
   url.searchParams.set('v', BUILD_VERSION);
@@ -100,21 +98,16 @@ function namespaceSvgIds(root, prefix) {
 }
 
 function normalizePage(main, pageMeta, total) {
-  const sourceNumber = pageMeta.sourceNumber;
+  const sourceNumber = pageMeta.sourceNumber ?? pageMeta.number;
   const localNumber = pageMeta.workbookNumber;
   main.classList.add('pythagoras', 'pythagoras-workbook-page');
   main.dataset.sourcePage = String(sourceNumber);
   main.dataset.workbookPage = String(localNumber);
-  main.dataset.primaryTopic = pageMeta.primaryTopic || '';
+  main.dataset.primaryTopic = pageMeta.primaryTopic || 'משפט פיתגורס';
   main.setAttribute('aria-label', `משפט פיתגורס — עמוד ${localNumber} מתוך ${total}`);
 
   const visibleNumber = main.querySelector('.page-number');
   if (visibleNumber) visibleNumber.textContent = String(localNumber);
-
-  if (pageMeta.primaryTopic !== 'משפט פיתגורס') {
-    const pageTitle = main.querySelector('.page-title');
-    if (pageTitle) pageTitle.textContent = 'משפט פיתגורס';
-  }
 
   namespaceSvgIds(main, `pyt-${localNumber}`);
   return main;
@@ -159,11 +152,11 @@ function unlockWorkbookActions() {
 }
 
 async function loadSourcePage(pageMeta, total, wrapper) {
-  const sourceNumber = pageMeta.sourceNumber;
   const localNumber = pageMeta.workbookNumber;
+  const htmlFile = sourceFile(pageMeta);
   try {
-    await addStylesheet(cssFile(sourceNumber));
-    const response = await fetch(versioned(sourceFile(sourceNumber)), { cache: 'no-cache' });
+    await addStylesheet(cssFile(pageMeta));
+    const response = await fetch(versioned(htmlFile), { cache: 'no-cache' });
     if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
     const html = await response.text();
     const parsed = new DOMParser().parseFromString(html, 'text/html');
@@ -181,7 +174,7 @@ async function loadSourcePage(pageMeta, total, wrapper) {
     const message = document.createElement('div');
     message.className = 'workbook-error';
     message.setAttribute('role', 'alert');
-    message.textContent = `שגיאה בטעינת עמוד ${localNumber} (${sourceFile(sourceNumber)}): ${error.message}`;
+    message.textContent = `שגיאה בטעינת עמוד ${localNumber} (${htmlFile}): ${error.message}`;
     wrapper.replaceChildren(message);
     updateLoadStatus(total);
     console.error(`Pythagoras workbook page ${localNumber} failed`, error);
@@ -300,13 +293,28 @@ async function typesetMath() {
   if (window.MathJax?.typesetPromise) await window.MathJax.typesetPromise([workbookRoot]);
 }
 
+function validateManifest(manifest) {
+  const pages = Array.isArray(manifest?.pages) ? manifest.pages : [];
+  if (pages.length !== 53) throw new Error(`WORKBOOK_MANIFEST.json חייב להכיל בדיוק 53 דפים; נמצאו ${pages.length}`);
+  const files = new Set();
+  return pages.map((page, index) => {
+    if (!page?.file || typeof page.file !== 'string') throw new Error(`חסר file לעמוד ${index + 1} במניפסט`);
+    if (files.has(page.file)) throw new Error(`קובץ כפול במניפסט: ${page.file}`);
+    files.add(page.file);
+    return {
+      ...page,
+      workbookNumber: index + 1,
+      sourceNumber: page.sourceNumber ?? page.number,
+      primaryTopic: page.primaryTopic || 'משפט פיתגורס',
+    };
+  });
+}
+
 async function boot() {
-  const metaResponse = await fetch(versioned(META_URL), { cache: 'no-cache' });
-  if (!metaResponse.ok) throw new Error(`לא ניתן לקרוא ${META_URL}`);
-  const meta = await metaResponse.json();
-  const workbook = buildPythagorasWorkbook(meta);
-  const pages = workbook.pages;
-  if (!pages.length) throw new Error('חוברת פיתגורס אינה מכילה דפים');
+  const manifestResponse = await fetch(versioned(MANIFEST_URL), { cache: 'no-cache' });
+  if (!manifestResponse.ok) throw new Error(`לא ניתן לקרוא ${MANIFEST_URL}`);
+  const manifest = await manifestResponse.json();
+  const pages = validateManifest(manifest);
 
   totalPages = pages.length;
   loadedPages = 0;
