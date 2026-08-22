@@ -21,10 +21,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Verify source of truth and workbook consistency
+      - name: Verify shared style rules
         run: node tools/style-audit.js
       - name: Verify repository architecture and deep page locks
         run: node tools/repo-guard.js
+      - name: Verify approved content contracts
+        run: node tools/content-contracts.js
       - name: Verify canonical workbook visuals
         run: node tools/workbook-visual-guard.js
       - name: Verify surgical change scope
