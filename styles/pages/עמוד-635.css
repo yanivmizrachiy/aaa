@@ -1,13 +1,17 @@
 @import url("../topics/pythagoras-foundations.css");
 @import url("../topics/pythagoras-inline-units.css");
 
-/* פריסת ספר: כל גובה העבודה מחולק בצורה עקבית; אין רווח auto יחיד שיוצר "חור" באמצע. */
+/*
+ * עמוד 2 נשאר יחידת A4 אחת. לכל יחידה מוקצה גובה ברור,
+ * והמשימה התחתונה מקבלת את יתרת הגובה בלי לגלוש אל הקרדיט.
+ */
 .page-635 .question-block {
   display: grid;
-  grid-template-rows: auto auto auto auto auto minmax(0, 1fr);
+  grid-template-rows: auto auto 86px 118px 168px minmax(0, 1fr);
   align-content: stretch;
-  gap: 10px;
+  gap: 7px;
   min-height: 0;
+  overflow: hidden;
 }
 
 .page-635 .foundation-note-one-line {
@@ -45,72 +49,81 @@
 .page-635 .hunt-instruction .q-text,
 .page-635 .construction-instruction .q-text,
 .page-635 .mc-triangle-heading .q-text {
-  font-size: 14.8px;
-  line-height: 1.3;
+  font-size: 14.4px;
+  line-height: 1.25;
 }
 
+/* ששת השרטוטים הראשונים נשארים בשורה אחת בגובה קבוע. */
 .page-635 .triangle-choice-grid {
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 7px;
+  height: 100%;
   min-height: 0;
 }
 
 .page-635 .triangle-choice-grid .foundation-card {
-  min-height: 94px;
-  padding: 5px 5px;
-  gap: 3px;
+  min-height: 0;
+  height: 100%;
+  padding: 4px 5px;
+  gap: 2px;
 }
 
 .page-635 .triangle-choice-grid .foundation-svg {
   width: 100%;
-  max-width: 112px;
-  height: 68px;
+  max-width: 108px;
+  height: 58px;
 }
 
 .page-635 .triangle-choice-grid .check {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   margin: 0;
 }
 
-/* שאלה אמריקאית: בדיוק 5 אפשרויות, ארבע ישרות-זווית ואחת שאינה. */
+/* שאלה אמריקאית קומפקטית: 5 אפשרויות בשורה אחת. */
 .page-635 .mc-triangle-section {
+  height: 100%;
+  min-height: 0;
   display: grid;
-  gap: 6px;
-  padding: 7px 9px 8px;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 5px;
+  padding: 6px 9px;
   border: 1px solid var(--border-light);
   border-radius: 10px;
   background: var(--bg-paper);
-  min-height: 130px;
+  overflow: hidden;
 }
 
 .page-635 .mc-triangle-question {
-  font-size: 14.8px;
-  line-height: 1.3;
+  font-size: 14.4px;
+  line-height: 1.25;
 }
 
 .page-635 .mc-triangle-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
+  min-height: 0;
 }
 
 .page-635 .mc-triangle-card {
-  min-height: 90px;
+  min-height: 0;
+  height: 100%;
   border: 1px solid var(--border-light);
   border-radius: 8px;
   background: var(--bg-subtle);
-  padding: 3px 5px 5px;
+  padding: 2px 5px 4px;
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: minmax(0, 1fr) auto;
   align-items: center;
   justify-items: center;
+  overflow: hidden;
 }
 
 .page-635 .mc-triangle-card svg {
   width: 100%;
-  max-width: 116px;
-  height: 66px;
+  max-width: 112px;
+  height: 54px;
   display: block;
 }
 
@@ -129,37 +142,43 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
-  font-size: 13px;
+  font-size: 12.5px;
+  line-height: 1;
 }
 
 .page-635 .mc-radio {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   border: 1.4px solid var(--accent-dark);
   border-radius: 50%;
   background: var(--bg-paper);
   flex: 0 0 auto;
 }
 
-/* משימת בנייה: שתי השלמות שונות לאותו קטע, כדי להבין שהזווית הישרה יכולה להופיע בקודקודים שונים. */
+/* שתי השלמות לאותו קטע AB — ללא גובה עודף. */
 .page-635 .construction-task {
+  height: 100%;
+  min-height: 0;
   display: grid;
-  gap: 7px;
-  padding: 8px 9px 9px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 5px;
+  padding: 7px 9px;
   border: 1px solid var(--border-light);
   border-radius: 10px;
   background: var(--bg-paper);
-  min-height: 170px;
+  overflow: hidden;
 }
 
 .page-635 .construction-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
+  min-height: 0;
 }
 
 .page-635 .construction-card {
-  min-height: 102px;
+  min-height: 0;
+  height: 100%;
   border: 1px dashed var(--grid-line);
   border-radius: 8px;
   background: var(--bg-subtle);
@@ -171,7 +190,7 @@
 
 .page-635 .construction-svg {
   width: 100%;
-  height: 96px;
+  height: 76px;
   display: block;
   direction: ltr;
 }
@@ -191,34 +210,39 @@
 }
 
 .page-635 .construction-reflection {
-  font-size: 14.2px;
-  line-height: 1.35;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 20px;
+  font-size: 13.8px;
+  line-height: 1.25;
+  white-space: nowrap;
 }
 
 .page-635 .construction-answer-line {
   display: inline-block;
-  width: min(250px, 42%);
-  height: 18px;
-  margin-inline-start: 6px;
+  flex: 1 1 auto;
+  min-width: 120px;
+  height: 16px;
   border-bottom: 1px solid var(--grid-line);
-  vertical-align: baseline;
 }
 
-/* המשימה האחרונה מקבלת את יתרת הגובה. כך השטח הפנוי הופך לאיור גדול במקום לרווח לבן. */
+/* המשימה האחרונה משתמשת רק בגובה שנותר בתוך question-block. */
 .page-635 .hunt-section {
-  margin-top: 0;
-  display: grid;
-  grid-template-rows: auto minmax(202px, 1fr) auto auto;
-  gap: 6px;
-  min-height: 0;
+  margin: 0;
   height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) 32px 56px;
+  gap: 5px;
+  overflow: hidden;
 }
 
 .page-635 .geometry-hunt-card {
   width: 100%;
   height: 100%;
-  min-height: 202px;
-  padding: 3px 8px;
+  min-height: 0;
+  padding: 2px 8px;
   border: 1px solid var(--border-light);
   border-radius: 10px;
   background: var(--bg-paper);
@@ -229,7 +253,7 @@
 .page-635 .triangle-hunt-svg {
   width: 100%;
   height: 100%;
-  min-height: 202px;
+  min-height: 0;
   display: block;
   shape-rendering: geometricPrecision;
 }
@@ -246,83 +270,62 @@
 .page-635 .triangle-hunt-svg .mosaic-points { fill: var(--accent-dark); }
 
 .page-635 .hunt-total {
+  height: 32px;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
-  min-height: 38px;
-  padding: 5px 10px;
+  gap: 9px;
+  padding: 3px 9px;
   border: 1.25px solid #1f2a44;
   border-radius: 8px;
   background: var(--bg-subtle);
-  font-size: 15.2px;
+  font-size: 14.3px;
   font-weight: 500;
+  overflow: hidden;
 }
 
 .page-635 .hunt-count-fill {
-  width: 58px;
-  height: 26px;
+  width: 54px;
+  height: 23px;
   flex: 0 0 auto;
 }
 
 .page-635 .hunt-reason {
+  height: 56px;
+  min-height: 0;
   border-top: 1px dashed var(--grid-line);
-  padding: 7px 8px 0;
+  padding: 5px 8px 0;
   display: grid;
-  gap: 5px;
-  min-height: 66px;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 3px;
+  overflow: hidden;
 }
 
 .page-635 .hunt-reason-text {
-  font-size: 14.5px;
-  line-height: 1.35;
+  font-size: 13.6px;
+  line-height: 1.25;
 }
 
 .page-635 .hunt-write-lines {
-  min-height: 34px;
+  min-height: 0;
   background: repeating-linear-gradient(
     to bottom,
     transparent 0,
-    transparent 15px,
-    var(--grid-line) 16px,
-    transparent 17px
+    transparent 13px,
+    var(--grid-line) 14px,
+    transparent 15px
   );
 }
 
+/*
+ * גם במסך צר עמוד 2 אינו משנה מבנה פנימי; הוא נשאר A4 ומוקטן כיחידה אחת.
+ * כך media query לא יכול להפוך 6 כרטיסים ל-2 או את שתי מסגרות AB לעמודה אחת.
+ */
 @media (max-width: 760px) {
-  .page-635 .question-block {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
   .page-635 .foundation-note-one-line {
-    flex-wrap: wrap;
-    white-space: normal;
-  }
-
-  .page-635 .triangle-choice-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .page-635 .mc-triangle-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .page-635 .mc-triangle-section { min-height: 0; }
-
-  .page-635 .construction-grid { grid-template-columns: 1fr; }
-  .page-635 .construction-task { min-height: 0; }
-
-  .page-635 .hunt-section {
-    margin-top: 8px;
-    height: auto;
-    grid-template-rows: auto auto auto auto;
-  }
-
-  .page-635 .triangle-hunt-svg {
-    height: auto;
-    min-height: 220px;
+    font-size: 14.4px;
+    gap: 4px;
   }
 }
 
