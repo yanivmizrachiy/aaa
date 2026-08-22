@@ -1,0 +1,157 @@
+/* מערכת משוואות בשני נעלמים — שכבת נושא */
+.systems2-page {
+    --systems-ink: #17213a;
+    --systems-blue: #1d4ed8;
+    --systems-soft: #f7f9fc;
+    --systems-line: #cbd5e1;
+    --systems-border: #d7dfec;
+    --systems-grid: rgba(96, 165, 250, 0.42);
+    --systems-grid-border: #60a5fa;
+    padding: 10mm 15mm 9mm;
+}
+.systems2-page .header-container { align-items: center; margin-bottom: 7px; padding-bottom: 7px; border-bottom: 1px solid var(--systems-blue); }
+.systems2-page .title-wrap { display: flex; flex-direction: column; gap: 3px; }
+.systems2-page .page-title { color: var(--systems-ink); font-size: 25px; font-weight: 650; line-height: 1.15; }
+.systems2-page .page-subtitle { color: #475569; font-size: 13.5px; line-height: 1.35; }
+.systems2-page .page-number { color: var(--systems-blue); border-color: var(--systems-blue); font-weight: 650; }
+.systems2-page .question-block { justify-content: flex-start; gap: 7px; min-height: 0; }
+.systems2-page .instruction { display: flex; align-items: center; gap: 9px; min-height: 34px; padding: 7px 11px; border-right: 4px solid var(--systems-blue); background: var(--systems-soft); color: var(--systems-ink); font-size: 15.5px; font-weight: 550; line-height: 1.35; }
+.systems2-page .instruction::before { content: ""; width: 8px; height: 8px; flex: 0 0 8px; border-radius: 50%; background: #000; }
+/* הכרטיסים נמתחים שווה בשווה על גובה העמוד, כך שמרחב הפתרון של כל תרגיל
+   הוא הגדול ביותר שהעמוד מאפשר (CLAUDE.md §4.3). */
+.systems2-page .systems-list { display: grid; grid-template-columns: 1fr; grid-auto-rows: 1fr; gap: 8px; min-height: 0; flex: 1 1 auto; }
+/* תרגילים קלים (נעלם מבודד) — 6 בעמוד, שני טורים ימין ושמאל (§4.6). */
+.systems2-page.systems-two-col .systems-list { grid-template-columns: 1fr 1fr; column-gap: 10px; }
+/* כרטיס מערכת: אין כדור שחור כשיש סוגריים מסולסלות — הסוגריים הן הסימון
+   (CLAUDE.md §4.6). התרגיל בראש, אזור הכתיבה במרכז, התשובה הסופית בתחתית. */
+.systems2-page .system-card { display: grid; direction: ltr; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; grid-template-areas: "system" "work" "answer"; row-gap: 5px; align-items: start; min-height: 0; padding: 7px 12px; border: 1px solid #9bbcf2; border-radius: 8px; background: #fff; box-shadow: 0 1px 2px rgba(30, 64, 175, 0.06); break-inside: avoid; }
+.systems2-page .qdot { width: 8px; height: 8px; border-radius: 50%; background: #000; align-self: start; }
+.systems2-page .system-card > .qdot { display: none; }
+.systems2-page .system-math { grid-area: system; direction: ltr; unicode-bidi: isolate; text-align: left; color: #000; font-size: 13px; min-width: 0; width: 100%; }
+.systems2-page .system-math mjx-container[display="true"] { margin: 0.15em 0 !important; text-align: left !important; }
+.systems2-page .work-lines {
+    grid-area: work;
+    align-self: stretch;
+    display: block;
+    min-width: 0;
+    width: 100%;
+    min-height: 120px;
+    border: 1px solid var(--systems-grid-border);
+    border-radius: 5px;
+    background-color: #fff;
+    background-image:
+        linear-gradient(to right, var(--systems-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--systems-grid) 1px, transparent 1px);
+    background-size: 12px 12px;
+    background-position: -1px -1px;
+    box-shadow: inset 0 0 0 1px rgba(219, 234, 254, 0.55);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+.systems2-page .work-line { display: none; }
+/* התשובה הסופית צמודה מיד מתחת למרחב הפתרון של התלמיד ומיושרת לצד שמאל
+   של הדף — הזוג הסדור בשורה האחרונה של הפתרון (CLAUDE.md §4.6). */
+.systems2-page .final-answer { grid-area: answer; align-self: end; display: flex; justify-content: flex-end; align-items: center; gap: 7px; width: 100%; min-height: 30px; margin-top: 0; padding-top: 6px; border-top: 1px solid var(--systems-blue); direction: rtl; color: #334155; font-size: 12.5px; white-space: nowrap; }
+.systems2-page .answer-pair { display: inline-flex; align-items: center; gap: 5px; direction: ltr; unicode-bidi: isolate; color: #000; font-size: 17px; }
+.systems2-page .answer-box { width: 42px; height: 23px; margin: 0; transform: none; border: 1px solid #94a3b8; border-radius: 4px; background: #fff; }
+.systems2-page .answer-box::before { left: 5px; right: 5px; bottom: 4px; border-bottom-color: #cbd5e1; }
+.systems2-page > .gz-footer { margin-top: 5px; border-top-color: var(--systems-blue); }
+.systems2-page.systems-dense .system-card { row-gap: 4px; padding-top: 6px; padding-bottom: 6px; }
+.systems2-page.systems-dense .work-lines { min-height: 120px; }
+.systems2-page.systems-wide .system-card { padding: 10px 12px 8px; }
+.systems2-page.systems-wide .qdot { margin-top: 15px; }
+.systems2-page.systems-wide .system-math { text-align: left; font-size: 13px; }
+.systems2-page.systems-wide .work-lines { min-height: 120px; }
+@media print { .systems2-page { padding: 10mm 15mm 9mm; } }
+
+/* Drive sync extension: basic, stories, classification and challenge pages */
+.systems2-page.systems-intro .system-card { min-height: 132px; }
+.systems2-page.systems-intro .system-math { text-align: left; font-size: 13px; }
+.systems2-page.systems-intro .work-lines { min-height: 120px; }
+.systems2-page.systems-stories .question-block { gap: 6px; }
+.systems2-page .story-list { display: grid; grid-template-columns: 1fr; gap: 7px; flex: 1 1 auto; min-height: 0; }
+.systems2-page .story-card { display: grid; grid-template-columns: 12px 1fr; gap: 9px; padding: 8px 11px; border: 1px solid var(--systems-border); border-radius: 8px; background: #fff; break-inside: avoid; }
+.systems2-page .story-card .qdot { margin-top: 7px; }
+.systems2-page .story-content { min-width: 0; }
+.systems2-page .story-text { margin: 0 0 3px; color: #111827; font-size: 14.5px; line-height: 1.45; }
+.systems2-page .story-hint { margin: 0 0 5px; color: #475569; font-size: 12px; line-height: 1.35; }
+.systems2-page .model-grid { display: grid; grid-template-columns: 112px 1fr; gap: 4px 8px; align-items: end; color: #334155; font-size: 11.5px; }
+.systems2-page .model-line { height: 18px; border-bottom: 1px solid var(--systems-line); }
+.systems2-page.systems-fractions .system-math { text-align: left; font-size: 13px; }
+.systems2-page .classification-list { display: grid; gap: 9px; flex: 1 1 auto; }
+.systems2-page .classification-card { display: grid; grid-template-columns: 12px 1fr; grid-template-areas: "dot math" ". choices" ". reason"; gap: 7px 10px; padding: 12px; border: 1px solid var(--systems-border); border-radius: 9px; background: #fff; }
+.systems2-page .classification-card .qdot { grid-area: dot; margin-top: 14px; }
+.systems2-page .classification-math { grid-area: math; direction: ltr; unicode-bidi: isolate; font-size: 13px; text-align: left; }
+.systems2-page .classification-math mjx-container[display="true"] { margin: 0.15em 0 !important; text-align: left !important; }
+.systems2-page .choice-row { grid-area: choices; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.systems2-page .choice-chip, .systems2-page .option-chip { display: inline-flex; align-items: center; justify-content: center; min-height: 28px; padding: 3px 11px; border: 1px solid #94a3b8; border-radius: 999px; background: #fff; color: #0f172a; font-size: 12.5px; }
+.systems2-page .choice-chip::before, .systems2-page .option-chip::before { content: ""; width: 10px; height: 10px; margin-left: 6px; border: 1px solid #64748b; border-radius: 50%; }
+.systems2-page .classification-reason { grid-area: reason; display: flex; align-items: end; gap: 7px; color: #475569; font-size: 12px; }
+.systems2-page .reason-line { flex: 1; height: 18px; border-bottom: 1px solid var(--systems-line); }
+.systems2-page .challenge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; flex: 1 1 auto; min-height: 0; }
+.systems2-page .challenge-card { display: grid; grid-template-columns: 10px 1fr; grid-template-areas: "dot math" ". options"; gap: 4px 7px; align-items: center; padding: 6px 8px; border: 1px solid var(--systems-border); border-radius: 8px; background: #fff; break-inside: avoid; }
+.systems2-page .challenge-card .qdot { grid-area: dot; width: 7px; height: 7px; margin-top: 9px; }
+.systems2-page .challenge-math { grid-area: math; direction: ltr; unicode-bidi: isolate; text-align: left; font-size: 13px; }
+.systems2-page .challenge-math mjx-container[display="true"] { margin: 0.08em 0 !important; text-align: left !important; }
+.systems2-page .option-row { grid-area: options; display: flex; justify-content: center; gap: 4px; direction: ltr; }
+.systems2-page .option-chip { min-height: 23px; padding: 1px 6px; font-size: 10.5px; }
+.systems2-page .option-chip::before { width: 7px; height: 7px; margin-left: 3px; }
+.systems2-page .challenge-finish { margin-top: 4px; padding: 6px 10px; border: 1px dashed var(--systems-blue); border-radius: 7px; text-align: center; color: #1e3a8a; font-size: 12px; font-weight: 550; }
+
+/* RTL story-card grid correction */
+.systems2-page .story-card {
+    grid-template-areas: "dot content";
+    direction: ltr;
+}
+.systems2-page .story-card .qdot {
+    grid-area: dot;
+}
+.systems2-page .story-content {
+    grid-area: content;
+    direction: rtl;
+}
+
+/* Five-story application page: preserve readable print size while compressing scaffolds. */
+.systems2-page.systems-stories-five { padding-top: 8.5mm; padding-bottom: 7.5mm; }
+.systems2-page.systems-stories-five .header-container { margin-bottom: 5px; padding-bottom: 5px; }
+.systems2-page.systems-stories-five .question-block { gap: 5px; }
+.systems2-page.systems-stories-five .instruction { min-height: 31px; padding: 5px 9px; font-size: 14.2px; line-height: 1.3; }
+.systems2-page.systems-stories-five .story-list { gap: 5px; }
+.systems2-page.systems-stories-five .story-card { gap: 7px; padding: 6px 9px; border-radius: 7px; }
+.systems2-page.systems-stories-five .story-card .qdot { margin-top: 6px; width: 7px; height: 7px; }
+.systems2-page.systems-stories-five .story-text { margin-bottom: 2px; font-size: 13.4px; line-height: 1.36; }
+.systems2-page.systems-stories-five .story-hint { margin-bottom: 4px; font-size: 11.2px; line-height: 1.28; }
+.systems2-page.systems-stories-five .model-grid { grid-template-columns: 126px 1fr; gap: 3px 8px; font-size: 10.9px; }
+.systems2-page.systems-stories-five .model-line { height: 16px; }
+.systems2-page.systems-stories-five .model-grid-quick {
+    grid-template-columns: 62px minmax(80px, 0.8fr) 54px minmax(130px, 1.45fr);
+    gap: 3px 7px;
+}
+.systems2-page.systems-stories-five .model-grid-quick .model-wide-label { grid-column: 1; }
+.systems2-page.systems-stories-five .model-grid-quick .model-wide-line { grid-column: 2 / -1; }
+.systems2-page.systems-stories-five .story-card-focus,
+.systems2-page.systems-stories-five .story-card-parking { background: #fbfdff; border-color: #bfdbfe; }
+.systems2-page.systems-stories-five .story-card-focus { border-right: 4px solid #2563eb; }
+.systems2-page.systems-stories-five .story-card-parking { border-right: 4px solid #0f766e; }
+.systems2-page.systems-stories-five > .gz-footer { margin-top: 3px; }
+
+/* BEGIN systems reasoning page 616 */
+.systems2-page.systems-reasoning { padding-top: 9mm; padding-bottom: 8mm; }
+.systems2-page.systems-reasoning .question-block { gap: 7px; }
+.systems2-page.systems-reasoning .instruction { min-height: 34px; font-size: 14.5px; }
+.systems2-page.systems-reasoning .reasoning-list { display: grid; grid-template-columns: 1fr; gap: 8px; flex: 1 1 auto; min-height: 0; }
+.systems2-page.systems-reasoning .reasoning-card { display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 10px 12px; border: 1px solid var(--systems-border); border-radius: 9px; background: #fff; break-inside: avoid; }
+.systems2-page.systems-reasoning .reasoning-card-structure { border-right: 4px solid #2563eb; }
+.systems2-page.systems-reasoning .reasoning-card-one-calc { border-right: 4px solid #0f766e; }
+.systems2-page.systems-reasoning .reasoning-card-conditions { border-right: 4px solid #7c3aed; }
+.systems2-page.systems-reasoning .reasoning-badge { display: flex; align-items: center; justify-content: center; width: 30px; height: 30px; border: 1px solid #94a3b8; border-radius: 50%; color: #0f172a; font-size: 15px; font-weight: 700; }
+.systems2-page.systems-reasoning .reasoning-content { min-width: 0; }
+.systems2-page.systems-reasoning .reasoning-content h2 { margin: 0 0 4px; color: #17213a; font-size: 16px; line-height: 1.25; }
+.systems2-page.systems-reasoning .reasoning-content p { margin: 0 0 5px; color: #111827; font-size: 14px; line-height: 1.4; }
+.systems2-page.systems-reasoning .reasoning-system { direction: ltr; text-align: left; font-size: 13px; }
+.systems2-page.systems-reasoning .reasoning-system mjx-container[display="true"] { margin: 0.1em 0 !important; text-align: left !important; }
+.systems2-page.systems-reasoning .reasoning-parts { margin: 4px 0 5px; padding-right: 22px; color: #111827; font-size: 13.5px; line-height: 1.38; }
+.systems2-page.systems-reasoning .reasoning-parts li { margin-bottom: 2px; }
+.systems2-page.systems-reasoning .reasoning-answer-grid { display: grid; grid-template-columns: 122px 1fr; gap: 3px 8px; align-items: end; color: #334155; font-size: 11.5px; }
+.systems2-page.systems-reasoning .reasoning-line { height: 17px; border-bottom: 1px solid var(--systems-line); }
+/* END systems reasoning page 616 */

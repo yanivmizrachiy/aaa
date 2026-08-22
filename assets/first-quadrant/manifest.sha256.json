@@ -1,0 +1,19 @@
+{
+  "assets/first-quadrant/README.md": "0dc5d270d06f351345f12b435c90c337c027b46865ea654fed09e79ce6fc4108",
+  "assets/first-quadrant/layout-audit.json": "9bc55db1dace9f651869a11ab68cfe6ebbf16f70c1b488996407d13c293f1e62",
+  "assets/first-quadrant/pdf-inspect.txt": "77ad02869248f81efc42b42f645a5120bf964d74474dea110392e51579505b92",
+  "assets/first-quadrant/repo-audit.json": "ac3fd1214fc935788dff4c3d2e26f55aac9c220737fbb85383c27b5eeba47a9e",
+  "assets/first-quadrant/source-00.b64": "9f35cedccb1cd7285780245100ab341f55ae15a78cf15c1efc3eaf04c8f98473",
+  "assets/first-quadrant/source-01.b64": "45f719999c0acab317a21dcdc2fd3992da69e2b0eba68cf3ac67b1fb80cf663b",
+  "assets/first-quadrant/source-02.b64": "df8f3f46277c4bc014c5cdefeac7a50b47016c118d763ab7f249a6ede6686727",
+  "assets/first-quadrant/source-03.b64": "e52a3b104bbed3755b09100412517ebd2a04ed16b0f9ca0ed7bc3acdf771eedd",
+  "assets/first-quadrant/source-04.b64": "b77b15a5434527c74c727e91b634e3d23c18c12b1cd32f92cb38b06ef40f550d",
+  "רביע-ראשון.html": "0d0562f8b92f1a4e29583e084a9780c165288b0f426ad84bb99efe6c9dd64457",
+  "metadata": {
+    "source_chunk_count": 5,
+    "html_uncompressed_bytes": 216267,
+    "question_cards": 77,
+    "svg_drawings": 20,
+    "pages": 15
+  }
+}

@@ -1,0 +1,59 @@
+@import url("../topics/pythagoras-foundations.css");
+
+.page-638 .question-block {
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+/* הגובה הפנוי הופך לשטח פעילות בתוך הכרטיסים ובנימוק, לא לרווח בין סעיפים. */
+.page-638 .foundation-grid,
+.page-638 .length-rule-check {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.page-638 .foundation-grid {
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+.page-638 .foundation-card {
+  min-height: 0;
+  padding: 6px 8px;
+  gap: 4px;
+}
+
+.page-638 .foundation-svg {
+  height: 118px;
+}
+
+.page-638 .foundation-card p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.page-638 .statement-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  margin-top: 4px;
+}
+
+.page-638 .statement-grid .statement:last-child {
+  grid-column: 1 / -1;
+}
+
+.page-638 .length-rule-check {
+  grid-template-rows: auto auto auto minmax(56px, 1fr);
+}
+
+.page-638 .length-rule-check .statement {
+  background: var(--bg-paper);
+  font-size: 15px;
+  padding: 7px 10px;
+}
+
+.page-638 .length-rule-check .reason-wrap,
+.page-638 .length-rule-check .reason-space {
+  min-height: 0;
+  height: 100%;
+}

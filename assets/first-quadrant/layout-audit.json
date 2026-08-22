@@ -1,0 +1,36 @@
+{
+  "pages_html": 15,
+  "pages_pdf": 15,
+  "qcards_before": 77,
+  "qcards_after": 77,
+  "question_text_preserved_ignoring_blank_markers": true,
+  "svg_count_before": 20,
+  "svg_count_after": 20,
+  "short_answer_boxes": [
+    {
+      "label": "כתבו: ציר x",
+      "class": ["axis-answer-box", "answer-term"],
+      "expected_words": "2"
+    },
+    {
+      "label": "כתבו: ציר y",
+      "class": ["axis-answer-box", "answer-term"],
+      "expected_words": "2"
+    },
+    {
+      "label": "כתבו: ראשית הצירים",
+      "class": ["axis-answer-box", "answer-phrase"],
+      "expected_words": "2"
+    }
+  ],
+  "checks": [
+    "15 A4 pages",
+    "No HTML sheet overflow in screen or print media",
+    "No answer box inside coordinate SVG",
+    "Short factual answers use bounded widths",
+    "Page 2 plotting task reflowed inside A4",
+    "All original question cards and coordinate drawings retained"
+  ],
+  "question_order_adjusted_for_A4_layout": true,
+  "qcard_multiset_match": true
+}

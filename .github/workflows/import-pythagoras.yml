@@ -1,9 +1,8 @@
-name: Materialize canonical 53-page Pythagoras workbook
+name: Materialize verified 53-page Pythagoras workbook
 on:
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened]
-  workflow_dispatch:
 permissions:
   contents: write
 jobs:
@@ -16,26 +15,54 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
-      - name: Download pinned complete source archive
+      - name: Download verified runtime source
         shell: bash
         run: |
           set -euo pipefail
-          SOURCE='https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/52e8f54425bdbe66ec30859cdd9b81628514c90f/pythagoras-bootstrap.tar.gz'
-          rm -rf /tmp/aaa-pythagoras-src
-          mkdir -p /tmp/aaa-pythagoras-src
-          curl -fL --retry 4 --retry-all-errors "$SOURCE" -o /tmp/pythagoras-bootstrap.tar.gz
-          tar -xzf /tmp/pythagoras-bootstrap.tar.gz -C /tmp/aaa-pythagoras-src
-          PACKAGE_JSON="$(find /tmp/aaa-pythagoras-src -maxdepth 3 -name package.json -type f -print -quit)"
+          rm -rf /tmp/aaa-runtime-source
+          mkdir -p /tmp/aaa-runtime-source
+          node - <<'NODE'
+          const fs = require('fs');
+          const crypto = require('crypto');
+          const { execFileSync } = require('child_process');
+          const SOURCE = 'https://pythagoras-runtime-cache.vercel.app';
+          const EXPECTED_SHA = '5c41e13b7d93fb63c138efa1b3508e5b6c2a5dbd2d122d2882a2aef7e1c38c2e';
+          async function getText(url) {
+            const r = await fetch(url, { redirect: 'follow', cache: 'no-store' });
+            if (!r.ok) throw new Error(`HTTP ${r.status} ${url}`);
+            return r.text();
+          }
+          const manifest = JSON.parse(await getText(`${SOURCE}/`));
+          if (manifest.archiveSha256 !== EXPECTED_SHA) throw new Error(`manifest sha ${manifest.archiveSha256}`);
+          if (!Array.isArray(manifest.parts) || manifest.parts.length !== 51) throw new Error(`parts=${manifest.parts?.length}`);
+          let base64 = '';
+          for (const part of manifest.parts) {
+            const text = (await getText(`${SOURCE}/${encodeURIComponent(part.name)}`)).trim();
+            if (text.length !== part.length) throw new Error(`${part.name}: ${text.length} != ${part.length}`);
+            base64 += text;
+          }
+          if (base64.length !== manifest.base64Length) throw new Error(`base64 length ${base64.length} != ${manifest.base64Length}`);
+          const archive = Buffer.from(base64, 'base64');
+          if (archive.length !== manifest.archiveBytes) throw new Error(`archive bytes ${archive.length} != ${manifest.archiveBytes}`);
+          const sha = crypto.createHash('sha256').update(archive).digest('hex');
+          if (sha !== EXPECTED_SHA) throw new Error(`archive sha ${sha}`);
+          fs.writeFileSync('/tmp/aaa-source.tar.xz', archive);
+          execFileSync('tar', ['-xJf', '/tmp/aaa-source.tar.xz', '-C', '/tmp/aaa-runtime-source'], { stdio: 'inherit' });
+          console.log(`VERIFIED runtime archive ${sha}, ${manifest.parts.length} parts`);
+          NODE
+          PACKAGE_JSON="$(find /tmp/aaa-runtime-source -maxdepth 3 -name package.json -type f -print -quit)"
           test -n "$PACKAGE_JSON"
           PROJECT_ROOT="$(dirname "$PACKAGE_JSON")"
           test -f "$PROJECT_ROOT/SOURCE_OF_TRUTH.md"
           test -d "$PROJECT_ROOT/src/pages"
           PAGE_COUNT="$(find "$PROJECT_ROOT/src/pages" -name main.html -type f | wc -l | tr -d ' ')"
           test "$PAGE_COUNT" -eq 53
-          echo "VERIFIED: $PAGE_COUNT Pythagoras pages"
+          FONT_COUNT="$(find "$PROJECT_ROOT/src/shared/fonts" -name '*.woff2' -type f -size +1000c | wc -l | tr -d ' ')"
+          test "$FONT_COUNT" -ge 4
+          echo "VERIFIED: $PAGE_COUNT pages, $FONT_COUNT fonts"
           printf '%s' "$PROJECT_ROOT" > /tmp/aaa-project-root
 
-      - name: Replace bootstrap shell with editable source
+      - name: Materialize editable source into aaa
         shell: bash
         run: |
           set -euo pipefail
@@ -45,14 +72,14 @@ jobs:
           test -f package.json
           test -f SOURCE_OF_TRUTH.md
           test "$(find src/pages -name main.html -type f | wc -l | tr -d ' ')" -eq 53
-          printf '%s\n' '' '## Repository ownership — aaa' '' '`yanivmizrachiy/aaa` is the sole editable source of truth for this standalone Pythagoras workbook.' 'All 53 page sources live directly in this repository and future content/design fixes must be committed here.' >> SOURCE_OF_TRUTH.md
+          printf '%s\n' '' '## Repository ownership — aaa' '' '`yanivmizrachiy/aaa` is the sole editable source of truth for this standalone Pythagoras workbook.' 'All 53 page sources live directly in this repository. Future content, design, navigation, mobile and print fixes must be committed here.' 'Historical repositories and runtime caches are migration inputs only and must never overwrite later edits in `aaa`.' >> SOURCE_OF_TRUTH.md
 
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
           cache: npm
 
-      - name: Verify editable workbook
+      - name: Verify full editable workbook
         shell: bash
         run: |
           set -euo pipefail
@@ -60,9 +87,10 @@ jobs:
           npm run check
           npm run build
           npm run typecheck
+          test -f package-lock.json
           test "$(find src/pages -name main.html -type f | wc -l | tr -d ' ')" -eq 53
 
-      - name: Commit materialized source to PR branch
+      - name: Commit all editable pages to PR branch
         shell: bash
         env:
           HEAD_REF: ${{ github.head_ref }}
@@ -71,9 +99,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          if git diff --cached --quiet; then
-            echo 'No materialization changes required'
-            exit 0
-          fi
-          git commit -m 'feat: materialize all 53 editable Pythagoras pages in aaa'
+          git commit -m 'feat: materialize verified 53-page Pythagoras workbook in aaa'
           git push origin "HEAD:${HEAD_REF}"

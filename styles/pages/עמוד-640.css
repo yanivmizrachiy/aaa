@@ -1,0 +1,25 @@
+@import url("../topics/pythagoras-foundations.css");
+@import url("../topics/pythagoras-power-practice.css");
+
+/* עמוד 640 משנה רק משתנים; המבנה והטיפוגרפיה נשארים בשכבה המשותפת. */
+.page-640 {
+  --power-question-gap: 8px;
+  --power-grid-columns: 4;
+  --power-grid-gap: 7px;
+  --power-card-min-height: 74px;
+  --power-card-padding: 7px 6px;
+  --power-instruction-font-size: 15px;
+  --power-instruction-line-height: 1.35;
+  --power-sentence-columns: 2;
+}
+
+.page-640 .missing-base-grid {
+  grid-auto-rows: 1fr;
+}
+
+@media print {
+  .page-640 .power-grid,
+  .page-640 .power-sentence-grid {
+    break-inside: avoid;
+  }
+}

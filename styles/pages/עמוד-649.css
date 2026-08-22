@@ -1,0 +1,14 @@
+@import url("../topics/pythagoras-foundations.css");
+
+/* עמוד 19 כולל דוגמה מלאה וארבעה תרגילים. שומרים את כל 5 שורות הדרך,
+   וחוסכים גובה רק בשרטוט ובמעטפת הכרטיס. */
+.page-649 .question-block { gap: 8px; }
+.page-649 .foundation-note { padding-block: 8px; }
+.page-649 .worked-example.compact { padding: 6px 12px; margin-bottom: 0; }
+.page-649 .worked-example.compact .solution-stack { gap: 4px; }
+.page-649 .worked-example.compact .solution-step { min-height: 21px; line-height: 1.2; }
+.page-649 .foundation-grid { gap: 8px; }
+.page-649 .full-solution-card { padding: 6px; gap: 5px; }
+.page-649 .full-solution-card .foundation-svg { height: 98px; max-width: 190px; }
+.page-649 .full-solution-space { min-height: 140px; }
+.page-649 .student-final-answer { min-height: 34px; padding-top: 4px; }

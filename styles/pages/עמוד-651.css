@@ -1,0 +1,89 @@
+@import url("../topics/pythagoras-foundations.css");
+
+.page-651 .question-block {
+  gap: 8px;
+}
+
+/* דוגמה אחת קצרה בלבד — כל השטח שנחסך עובר לתרגול. */
+.page-651 .compact-worked-example {
+  padding: 7px 10px;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-651 .compact-worked-example .example-label {
+  flex: 0 0 auto;
+  margin: 0;
+  font-size: 15px;
+}
+
+.page-651 .compact-solution-flow {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 1 1 auto;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.page-651 .solution-arrow {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+
+.page-651 .compact-final-answer {
+  border: 1.35px solid #1f2a44;
+  border-radius: 7px;
+  padding: 3px 8px;
+  background: #fff;
+}
+
+.page-651 .q-text {
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.page-651 .equation-practice-grid {
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 8px 10px;
+}
+
+.page-651 .equation-practice-card {
+  min-height: 0;
+  padding: 7px 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-651 .practice-equation {
+  font-size: 18px;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+.page-651 .work-lines.short {
+  min-height: 44px;
+  flex: 1 1 auto;
+  margin-top: 2px;
+}
+
+.page-651 .student-final-answer {
+  min-height: 34px;
+  padding-top: 4px;
+  font-size: 15px;
+}
+
+@media print {
+  .page-651 .compact-worked-example,
+  .page-651 .equation-practice-card {
+    break-inside: avoid;
+  }
+}

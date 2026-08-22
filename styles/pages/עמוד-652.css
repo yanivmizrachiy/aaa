@@ -1,0 +1,23 @@
+@import url("../topics/pythagoras-foundations.css");
+
+.page-652 .question-block {
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+/* רשת התרגול ממלאת את הגובה הפנוי; כל כרטיס נותן יותר מקום לדרך. */
+.page-652 .equation-practice-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+.page-652 .equation-practice-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-652 .equation-practice-card .work-lines {
+  flex: 1 1 auto;
+  min-height: 150px;
+}

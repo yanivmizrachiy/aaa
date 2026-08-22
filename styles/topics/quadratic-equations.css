@@ -1,0 +1,390 @@
+/* שכבת נושא: משוואות ריבועיות — חוברת מקורית ומדורגת לכיתה ט'. */
+
+.quadratic-page {
+  --quad-navy: #172554;
+  --quad-blue: #1d4ed8;
+  --quad-blue-soft: #eff6ff;
+  --quad-cyan: #0891b2;
+  --quad-amber: #b45309;
+  --quad-line: #cbd5e1;
+  --quad-ink-soft: #475569;
+  color: var(--text-main);
+  gap: 0;
+}
+
+.quadratic-page .header-container {
+  align-items: center;
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom-color: var(--quad-blue);
+}
+
+.quadratic-page .title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.quadratic-page .page-title {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0 7px;
+  direction: rtl;
+  color: var(--quad-navy);
+  font-size: 23px;
+  line-height: 1.22;
+  font-weight: 500 !important;
+}
+
+.quadratic-page .title-formula {
+  display: inline-flex;
+  direction: ltr;
+  unicode-bidi: isolate;
+  white-space: nowrap;
+}
+
+.quadratic-page .page-title.long-formula {
+  font-size: 20px;
+  line-height: 1.16;
+}
+
+.quadratic-page .page-title.long-formula .title-text,
+.quadratic-page .page-title.long-formula .title-formula {
+  flex: 1 1 100%;
+}
+
+.quadratic-page .page-title.long-formula .title-formula {
+  justify-content: flex-start;
+  font-size: 0.82em;
+}
+
+.quadratic-page .page-title mjx-container {
+  font-size: 88% !important;
+}
+
+.quadratic-page .page-number {
+  width: 36px;
+  height: 36px;
+  border-color: var(--quad-blue);
+  color: var(--quad-blue);
+  font-weight: 500 !important;
+  flex: 0 0 auto;
+}
+
+.quadratic-page .question-block {
+  flex: 1;
+  min-height: 0;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.quadratic-page .q-main {
+  flex: 0 0 auto;
+  margin: 0;
+  min-height: 24px;
+}
+
+.quadratic-page .q-main .q-text {
+  color: var(--quad-navy);
+  font-size: 14px;
+  font-weight: 500 !important;
+  line-height: 21px;
+}
+
+.quadratic-page .bullet-large {
+  background: var(--quad-blue);
+}
+
+.quadratic-page .exercise-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  direction: rtl;
+}
+
+.quadratic-page.count-6 .exercise-grid,
+.quadratic-page.count-5 .exercise-grid {
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
+.quadratic-page.count-4 .exercise-grid {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.quadratic-page.count-5 .exercise-card:last-child {
+  grid-column: 1 / -1;
+}
+
+.quadratic-page .exercise-card {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: inset 0 3px 0 #dbeafe;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  overflow: hidden;
+}
+
+.quadratic-page .exercise-head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 22px;
+}
+
+.quadratic-page .exercise-index {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--quad-navy);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 500 !important;
+  direction: ltr;
+  flex: 0 0 auto;
+}
+
+.quadratic-page .equation {
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.2;
+  unicode-bidi: isolate;
+}
+
+.quadratic-page.count-4 .equation {
+  min-height: 38px;
+  font-size: 18px;
+}
+
+.quadratic-page .equation mjx-container {
+  margin: 0 !important;
+  max-width: 100%;
+}
+
+.quadratic-page .work-area {
+  flex: 1;
+  min-height: 30px;
+  border: 1px solid #dbe4ef;
+  border-radius: 7px;
+  background-color: #fcfdff;
+  background-image:
+    linear-gradient(to bottom, transparent 19px, rgba(148, 163, 184, 0.35) 19px, rgba(148, 163, 184, 0.35) 20px),
+    linear-gradient(to right, transparent 19px, rgba(203, 213, 225, 0.28) 19px, rgba(203, 213, 225, 0.28) 20px);
+  background-size: 20px 20px;
+}
+
+.quadratic-page.count-4 .work-area {
+  min-height: 82px;
+}
+
+.quadratic-page .response-area {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px 10px;
+  min-height: 24px;
+  padding-top: 4px;
+  border-top: 1px solid #e2e8f0;
+  color: var(--quad-ink-soft);
+  font-size: 9px;
+}
+
+.quadratic-page .response-area.has-domain {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 3px;
+}
+
+.quadratic-page .response-area.has-domain .domain-entry,
+.quadratic-page .response-area.has-domain .answer-entry {
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.quadratic-page .response-area.has-domain .pair-entry {
+  justify-content: flex-start;
+}
+
+.quadratic-page .domain-entry,
+.quadratic-page .answer-entry {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  min-width: 0;
+}
+
+.quadratic-page .domain-entry {
+  flex: 1 1 130px;
+}
+
+.quadratic-page .answer-entry {
+  flex: 1 1 100px;
+}
+
+.quadratic-page .pair-entry {
+  justify-content: flex-end;
+  white-space: nowrap;
+}
+
+.quadratic-page .pair-entry > span,
+.quadratic-page .pair-entry mjx-container {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.quadratic-page .write-line {
+  flex: 1;
+  min-width: 60px;
+  height: 13px;
+  border-bottom: 1.2px solid #64748b;
+}
+
+.quadratic-page .domain-line {
+  min-width: 74px;
+}
+
+.quadratic-page .phrase-line {
+  min-width: 110px;
+}
+
+.quadratic-page .root-box {
+  width: 42px;
+  height: 17px;
+  border: 1px solid #94a3b8;
+  border-radius: 4px;
+  background: #ffffff;
+}
+
+.quadratic-page.count-4 .root-box {
+  width: 58px;
+}
+
+.quadratic-page .answers-panel {
+  flex: 0 0 auto;
+  margin-top: 7px;
+  padding: 5px 8px 6px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: #f8fafc;
+}
+
+.quadratic-page .answers-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  color: var(--quad-navy);
+  font-size: 10px;
+  font-weight: 500 !important;
+}
+
+.quadratic-page .answers-heading small {
+  color: #64748b;
+  font-size: 8px;
+  font-weight: 400 !important;
+}
+
+.quadratic-page .solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3px 7px;
+  direction: rtl;
+}
+
+.quadratic-page.count-4 .solutions-grid,
+.quadratic-page.count-5 .solutions-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.quadratic-page .solution-item {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 5px;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #1e293b;
+  font-size: 7.6px;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+.quadratic-page .solution-index {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #dbeafe;
+  color: var(--quad-blue);
+  font-size: 7px;
+  font-weight: 500 !important;
+  direction: ltr;
+  flex: 0 0 auto;
+}
+
+.quadratic-page .solution-domain {
+  margin-inline-start: auto;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  color: var(--quad-amber);
+  font-size: 6.8px;
+  direction: rtl;
+}
+
+.quadratic-page .solution-item mjx-container {
+  margin: 0 !important;
+}
+
+.quadratic-page .quadratic-footer {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1px;
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 3px double var(--quad-blue);
+  color: #475569;
+  font-size: 8px;
+  line-height: 1.25;
+}
+
+.quadratic-page .quadratic-footer span:first-child {
+  color: var(--quad-navy);
+  font-weight: 500 !important;
+}
+
+@media print {
+  .quadratic-page .exercise-card,
+  .quadratic-page .answers-panel {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}

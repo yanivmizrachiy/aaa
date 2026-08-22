@@ -1,0 +1,42 @@
+PDF: /mnt/data/first_quadrant_workbook_v2.pdf
+Pages: 19
+Encrypted: False
+Page sizes (pt, rounded):
+  - 595 x 842 (19 page(s))
+Metadata:
+  /CreationDate: D:20260718200540+00'00'
+  /Creator: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/144.0.0.0 Safari/537.36
+  /ModDate: D:20260718200540+00'00'
+  /Producer: Skia/PDF m144
+  /Title: רביע ראשון - מערכת צירים - 19 דפי עבודה
+Outline items: 0
+Form fields: 0
+Attachments: 0
+Annotations: 0
+
+Fonts (pdffonts, first 25 lines):
+name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+AAAAAA+NotoSansHebrew-Bold           CID TrueType      Identity-H       yes yes yes      4  0
+BAAAAA+NotoSansHebrew-SemiBold       CID TrueType      Identity-H       yes yes yes      5  0
+CAAAAA+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes      6  0
+DAAAAA+NotoSansHebrew-ExtraBold      CID TrueType      Identity-H       yes yes yes      8  0
+EAAAAA+NotoSansHebrew-Regular        CID TrueType      Identity-H       yes yes yes      9  0
+FAAAAA+DejaVuSans                    CID TrueType      Identity-H       yes yes yes     10  0
+EAAAAA+NotoSansHebrew-Regular        CID TrueType      Identity-H       yes yes yes     12  0
+FAAAAA+DejaVuSans                    CID TrueType      Identity-H       yes yes yes     13  0
+CAAAAA+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes     14  0
+AAAAAA+NotoSansHebrew-Bold           CID TrueType      Identity-H       yes yes yes     15  0
+GAAAAA+NotoSansHebrew-Black          CID TrueType      Identity-H       yes yes yes     16  0
+BAAAAA+NotoSansHebrew-SemiBold       CID TrueType      Identity-H       yes yes yes     17  0
+AAAAAA+NotoSansHebrew-Bold           CID TrueType      Identity-H       yes yes yes     54  0
+CAAAAA+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes     55  0
+EAAAAA+NotoSansHebrew-Regular        CID TrueType      Identity-H       yes yes yes     56  0
+FAAAAA+DejaVuSans                    CID TrueType      Identity-H       yes yes yes     57  0
+CAAAAA+DejaVuSans-Bold               Type 3            Custom           yes yes yes     60  0
+CAAAAA+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes     61  0
+CAAAAA+DejaVuSans-Bold               Type 3            Custom           yes yes yes     62  0
+CAAAAA+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes     65  0
+CAAAAA+DejaVuSans-Bold               Type 3            Custom           yes yes yes     97  0
+CAAAAA+DejaVuSans-Bold               Type 3            Custom           yes yes yes    240  0
+CAAAAA+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes    241  0

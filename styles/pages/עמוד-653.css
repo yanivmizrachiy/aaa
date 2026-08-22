@@ -1,0 +1,24 @@
+@import url("../topics/pythagoras-foundations.css");
+
+.page-653 .question-block {
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+.page-653 .equation-practice-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+.page-653 .equation-practice-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 0;
+}
+
+.page-653 .equation-practice-card .full-solution-space {
+  flex: 1 1 auto;
+  min-height: 140px;
+}

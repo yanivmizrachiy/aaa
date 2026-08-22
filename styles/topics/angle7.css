@@ -1,0 +1,73 @@
+/* styles/topics/angle7.css — עיצוב משותף לנושא "זווית לכיתה ז'" (עמוד-268, עמוד-269)
+   כל ה-selectors scoped ל-.angle7-page בלבד. התוכן נאמן 1:1 למקור של יניב. */
+
+.angle7-page { color: var(--text-main); }
+.angle7-page .question-block { justify-content: flex-start; gap: 6px; }
+
+/* כותרת ראשית + כותרת משנה */
+.angle7-page .title-wrap { display: flex; flex-direction: column; gap: 2px; }
+.angle7-page .page-subtitle { font-size: 14px; color: #475569; font-weight: 400 !important; margin: 0; }
+
+/* פס כותרת המאגר */
+.angle7-page .chapter-bar { display: flex; align-items: baseline; gap: 10px; background: var(--bg-subtle); border: 1px solid var(--border-light); border-right: 4px solid var(--title-blue); border-radius: 10px; padding: 7px 12px; margin: 0; }
+.angle7-page .chapter-name { font-size: 17px; font-weight: 500 !important; }
+.angle7-page .chapter-sub { margin-inline-start: auto; font-size: 12px; color: #475569; font-weight: 400 !important; }
+
+/* כרטיס שאלה */
+.angle7-page .q { border: 1px solid var(--border-light); border-radius: 10px; background: #fff; padding: 6px 12px 7px; break-inside: avoid; page-break-inside: avoid; }
+.angle7-page .qrow { display: flex; align-items: flex-start; }
+.angle7-page .qbody { flex: 1; font-size: 15px; line-height: 1.5; }
+
+/* LTR למספרים, נקודות ואותיות לועזיות */
+.angle7-page .ltr { direction: ltr; unicode-bidi: isolate; }
+
+/* סימן זווית וקטורי כמו בספרי הלימוד — משמאל לאותיות */
+.angle7-page .angname { display: inline-flex; align-items: baseline; white-space: nowrap; }
+.angle7-page .ang { width: 15px; height: 12px; flex: 0 0 auto; align-self: center; margin-right: 3px; transform: translateY(1px); }
+
+/* רב-ברירה — ארבע אפשרויות בשורה */
+.angle7-page .mc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px 14px; margin: 5px 0 0; }
+.angle7-page .opt { display: flex; gap: 8px; align-items: baseline; }
+.angle7-page .ol { width: 21px; height: 21px; border: 1.5px solid var(--grid-line); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500 !important; color: #475569; flex: 0 0 auto; }
+.angle7-page .ot { flex: 1; }
+
+/* רב-ברירה בת שלוש אפשרויות */
+.angle7-page .mc.mc3 { grid-template-columns: repeat(3, 1fr); }
+
+/* משפטי נכון / לא נכון */
+.angle7-page .stmts { margin-top: 4px; }
+.angle7-page .stmt { display: flex; gap: 8px; align-items: baseline; margin: 6px 0 0; }
+.angle7-page .slab { color: var(--title-blue); font-weight: 500 !important; flex: 0 0 auto; min-width: 18px; }
+.angle7-page .stext { flex: 1; }
+.angle7-page .tfrow { display: inline-flex; gap: 16px; flex: 0 0 auto; }
+
+/* שורות הסבר */
+.angle7-page .lines { margin: 6px 0 0; }
+.angle7-page .ln { height: 24px; border-bottom: 1.5px dotted #94a3b8; }
+
+/* אזור עבודה: מערכת צירים לצד שדות תשובה */
+.angle7-page .workrow { display: flex; align-items: center; justify-content: center; gap: 34px; flex-wrap: wrap; margin-top: 3px; }
+.angle7-page .pairs-col { display: flex; flex-direction: column; gap: 18px; }
+
+/* זוגות סדורים למילוי */
+.angle7-page .ansrow { display: flex; align-items: baseline; gap: 26px; flex-wrap: wrap; margin: 5px 0 0; }
+.angle7-page .pair { direction: ltr; unicode-bidi: isolate; display: inline-flex; align-items: baseline; gap: 5px; font-size: 15px; }
+.angle7-page .pl { color: var(--text-main); font-weight: 500 !important; }
+.angle7-page .pblank { display: inline-block; width: 36px; height: 16px; border-bottom: 1.5px solid #111827; }
+
+/* איור וקטורי — מערכת צירים רביע ראשון */
+.angle7-page .figure { margin: 4px auto 0; text-align: center; break-inside: avoid; page-break-inside: avoid; }
+.angle7-page .fig-angle { max-width: 256px; margin-inline: auto; }
+.angle7-page .fig-b { width: 232px; flex: 0 0 auto; margin: 0; }
+
+/* עמוד 2 מרווח יותר — סרטוטים גדולים יותר */
+.page-269 .fig-angle { max-width: 320px; }
+.page-269 .fig-b { width: 280px; }
+
+/* עמוד 3 צפוף יותר — סרטוט הסימון מוקטן מעט */
+.page-270 .fig-angle { max-width: 238px; }
+.angle7-page svg.chart { display: block; margin: 2px auto; max-width: 100%; height: auto; shape-rendering: geometricPrecision; text-rendering: geometricPrecision; }
+.angle7-page svg.chart line,
+.angle7-page svg.chart path,
+.angle7-page svg.chart circle { vector-effect: non-scaling-stroke; }
+.angle7-page svg.chart text { font-family: 'Rubik', sans-serif; }

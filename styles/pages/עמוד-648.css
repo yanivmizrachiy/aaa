@@ -1,0 +1,23 @@
+@import url("../topics/pythagoras-foundations.css");
+
+.page-648 .question-block {
+  justify-content: flex-start;
+  gap: 14px;
+}
+
+/* את השטח הפנוי משקיעים בדרך הפתרון שהתלמיד כותב ביד. */
+.page-648 .foundation-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  grid-auto-rows: minmax(0, 1fr);
+}
+
+.page-648 .foundation-card {
+  min-height: 0;
+}
+
+.page-648 .foundation-card .full-solution-space,
+.page-648 .foundation-card .work-lines {
+  flex: 1 1 auto;
+  min-height: 150px;
+}

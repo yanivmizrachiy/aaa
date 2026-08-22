@@ -1,0 +1,94 @@
+/* משוואות — עיצוב משותף לפי CLAUDE.md.
+   מבוסס על טוקני styles/a4-base.css, ללא שינוי תוכן לימודי. */
+
+.equations-page {
+  --equations-border: var(--border-light);
+  --equations-grid: var(--grid-line);
+  --equations-bg: var(--bg-paper);
+  --equations-soft: var(--bg-subtle);
+  --equations-title: var(--title-blue);
+  --equations-text: var(--text-main);
+  font-family: 'Rubik', sans-serif;
+}
+
+.equations-page .question-block {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.equations-page .pdf-wrap {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--equations-border);
+  border-radius: 8px;
+  background: var(--equations-bg);
+}
+
+.equations-page .pdf-page {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  display: block;
+  transform: none;
+  transform-origin: center center;
+}
+
+.equations-page .pdf-wrap img,
+.equations-page svg {
+  max-width: 100%;
+}
+
+.equations-page svg,
+.equations-page svg * {
+  vector-effect: non-scaling-stroke;
+}
+
+.equations-page .q-main,
+.equations-page .q-sub {
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.equations-page .q-text {
+  color: var(--equations-text);
+  line-height: 1.55;
+}
+
+.equations-page .answer-box {
+  vertical-align: middle;
+  transform: none;
+}
+
+.equations-page .explain-box {
+  margin-top: 8px;
+}
+
+.equations-page .math-table td,
+.equations-page .label-cell,
+.equations-page .ordered-pair,
+.equations-page .sym-item,
+.equations-page .axis-label {
+  font-family: 'Rubik', sans-serif;
+}
+
+@media print {
+  .a4-page.equations-page {
+    width: 100%;
+    height: 297mm;
+    max-width: none;
+    margin: 0;
+    padding: 10mm 18mm;
+    box-shadow: none;
+    zoom: 1 !important;
+  }
+}
