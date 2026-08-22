@@ -1,14 +1,11 @@
 @import url("../topics/pythagoras-foundations.css");
 @import url("../topics/pythagoras-inline-units.css");
 
-/*
- * עמוד 3 — ניצבים בלבד.
- * מבנה שטוח, ללא כרטיס בתוך כרטיס, עם ניצול מלא של גובה ה-A4.
- */
+/* עמוד 3 — ניצבים בלבד: עמוד A4 מלא, שטוח וממוקד. */
 .page-636 .question-block {
   display: grid;
-  grid-template-rows: 46px minmax(260px, 1.05fr) minmax(250px, .95fr) 118px 118px;
-  gap: 10px;
+  grid-template-rows: 46px minmax(252px, 1fr) minmax(244px, .94fr) 116px 142px;
+  gap: 9px;
   min-height: 0;
   overflow: hidden;
 }
@@ -42,17 +39,10 @@
   overflow: hidden;
 }
 
-.page-636 .q-main {
-  margin: 0;
-  min-height: 0;
-}
+.page-636 .q-main { margin: 0; min-height: 0; }
+.page-636 .q-text { font-size: 14.8px; line-height: 1.28; }
 
-.page-636 .q-text {
-  font-size: 14.8px;
-  line-height: 1.28;
-}
-
-/* ארבעה תרגילי זיהוי בשורה אחת — ללא מעטפת נוספת. */
+/* ארבעה שרטוטים בכיוונים שונים. */
 .page-636 .legs-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -67,14 +57,15 @@
   border-radius: 10px;
   background: #fff;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: minmax(0, 1fr) 48px;
   align-items: center;
-  padding: 8px 9px 9px;
+  padding: 7px 8px 8px;
   overflow: hidden;
 }
 
 .page-636 .leg-svg,
-.page-636 .vertex-svg {
+.page-636 .vertex-svg,
+.page-636 .mcq-triangle {
   width: 100%;
   height: 100%;
   display: block;
@@ -83,7 +74,8 @@
 }
 
 .page-636 .leg-svg .edge,
-.page-636 .vertex-svg .edge {
+.page-636 .vertex-svg .edge,
+.page-636 .mcq-triangle .edge {
   fill: none;
   stroke: #111827;
   stroke-width: 1.7;
@@ -93,7 +85,8 @@
 }
 
 .page-636 .leg-svg .mark,
-.page-636 .vertex-svg .mark {
+.page-636 .vertex-svg .mark,
+.page-636 .mcq-triangle .mark {
   fill: none;
   stroke: #111827;
   stroke-width: 1.45;
@@ -109,13 +102,16 @@
 }
 
 .page-636 .leg-answer {
-  min-height: 30px;
+  min-height: 0;
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: 5px;
-  white-space: nowrap;
-  font-size: 13.8px;
+  align-content: center;
+  flex-wrap: wrap;
+  gap: 3px 4px;
+  text-align: center;
+  font-size: 12.6px;
+  line-height: 1.25;
 }
 
 .page-636 .answer-line,
@@ -127,10 +123,10 @@
   vertical-align: baseline;
 }
 
-.page-636 .answer-line { width: 50px; }
+.page-636 .answer-line { width: 43px; }
 .page-636 .short-answer { width: 46px; }
 
-/* משימות "מידע -> שרטוט": התלמיד מסמן קודקודים על פי שמות הניצבים הנתונים. */
+/* מידע נתון -> סימון קודקודים. */
 .page-636 .vertex-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -142,9 +138,9 @@
   min-height: 0;
   height: 100%;
   display: grid;
-  grid-template-rows: 30px minmax(0, 1fr) 28px;
-  gap: 3px;
-  padding: 5px 10px 7px;
+  grid-template-rows: 29px minmax(0, 1fr) 27px;
+  gap: 2px;
+  padding: 5px 10px 6px;
   border-top: 1px solid #dbe4ef;
   border-bottom: 1px solid #dbe4ef;
   background: transparent;
@@ -176,11 +172,11 @@
   white-space: nowrap;
 }
 
-/* השלמות קצרות — פס שטוח, בלי שלוש תיבות בתוך מסגרת. */
+/* השלמות עם שמות צלעות וקודקודים — בלי מלל כללי. */
 .page-636 .quick-fill-section {
   border-top: 1px solid #dbe4ef;
   border-bottom: 1px solid #dbe4ef;
-  padding-block: 5px;
+  padding-block: 4px;
 }
 
 .page-636 .compact-heading .q-text { font-size: 14.5px; }
@@ -197,65 +193,80 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 4px;
-  padding: 5px 12px;
+  gap: 3px 4px;
+  padding: 4px 11px;
   text-align: center;
+  font-size: 13.2px;
+  line-height: 1.34;
+}
+
+.page-636 .quick-fill-item + .quick-fill-item { border-right: 1px solid #e2e8f0; }
+.page-636 .inline-answer.short { width: 50px; }
+.page-636 .inline-answer.medium { width: 82px; }
+
+/* שאלה אמריקאית: מסיחים מבוססים על שלושת זוגות הצלעות האפשריים. */
+.page-636 .legs-mcq {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr);
+  gap: 12px;
+  padding: 7px 10px;
+  border: 1px solid #dbe4ef;
+  border-radius: 10px;
+  background: #fbfdff;
+  overflow: hidden;
+}
+
+.page-636 .mcq-prompt {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 118px;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-636 .mcq-prompt .q-text {
   font-size: 13.8px;
   line-height: 1.35;
 }
 
-.page-636 .quick-fill-item + .quick-fill-item {
-  border-right: 1px solid #e2e8f0;
-}
+.page-636 .mcq-triangle { height: 92px; }
 
-.page-636 .inline-answer.short { width: 54px; }
-.page-636 .inline-answer.medium { width: 86px; }
-
-.page-636 .degree-answer-unit {
-  display: inline-flex;
-  align-items: baseline;
-  direction: ltr;
-}
-
-/* שתי בדיקות סיום קונקרטיות, ללא שאלת הסבר פתוחה. */
-.page-636 .closing-check {
+.page-636 .mcq-options-grid {
   min-height: 0;
   display: grid;
-  grid-template-columns: 1fr 1px 1fr;
-  align-items: stretch;
-  border: 1px solid #dbe4ef;
-  border-radius: 9px;
-  overflow: hidden;
-  background: #fbfdff;
+  grid-template-columns: 1fr 1fr;
+  align-content: center;
+  gap: 9px 12px;
 }
 
-.page-636 .closing-item {
+.page-636 .mcq-choice {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 5px;
-  padding: 10px 15px;
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.4;
+  gap: 6px;
+  min-height: 34px;
+  padding: 5px 7px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 13.5px;
+  white-space: nowrap;
 }
 
-.page-636 .closing-divider { background: #dbe4ef; }
+.page-636 .choice-circle {
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  border: 1.3px solid #334155;
+  border-radius: 50%;
+  background: #fff;
+}
 
-/* בחוברת A4 המבנה נשמר; המסך הצר מקטין את העמוד כיחידה אחת. */
 @media (max-width: 760px) {
-  .page-636 .legs-concept-row {
-    font-size: 14.4px;
-    gap: 5px;
-  }
+  .page-636 .legs-concept-row { font-size: 14.4px; gap: 5px; }
 }
 
 @media print {
   .page-636 .leg-card,
   .page-636 .vertex-task,
   .page-636 .quick-fill-section,
-  .page-636 .closing-check {
-    break-inside: avoid;
-  }
+  .page-636 .legs-mcq { break-inside: avoid; }
 }
