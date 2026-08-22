@@ -1,4 +1,4 @@
-name: Pythagoras Style Audit
+name: Pythagoras Repository Guard
 
 on:
   push:
@@ -10,14 +10,22 @@ permissions:
   contents: read
 
 jobs:
-  style-audit:
+  repository-guard:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout workbook
+      - name: Checkout workbook with history
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Verify style, scope and workbook consistency
+      - name: Verify source of truth and workbook consistency
         run: node tools/style-audit.js
+      - name: Verify repository architecture and deep page locks
+        run: node tools/repo-guard.js
+      - name: Verify surgical change scope
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: node tools/change-scope-audit.js
