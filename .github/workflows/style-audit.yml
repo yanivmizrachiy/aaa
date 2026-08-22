@@ -25,6 +25,8 @@ jobs:
         run: node tools/style-audit.js
       - name: Verify repository architecture and deep page locks
         run: node tools/repo-guard.js
+      - name: Verify canonical workbook visuals
+        run: node tools/workbook-visual-guard.js
       - name: Verify surgical change scope
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
