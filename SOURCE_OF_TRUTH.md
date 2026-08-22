@@ -16,7 +16,7 @@
 ## מבנה קנוני של הריפו
 - חוברת אחת מסודרת, בדיוק 53 דפים.
 - `index.html` הוא **נקודת הכניסה היחידה** לחוברת המאוחדת.
-- אין להחזיק `pythagoras-workbook.html` או entrypoint HTML מקביל. הכתובת הישנה, אם נדרשת לתאימות, מופנית אל `/` ברמת Vercel בלבד.
+- `pythagoras-workbook.html` אינו קיים ואינו נתיב ציבורי נוסף. כתובת החוברת היחידה היא `/` תחת כתובת ה־Production הקבועה.
 - `WORKBOOK_MANIFEST.json` הוא רשימת הדפים וסדרם והוא **מקור ה־runtime היחיד**.
 - `pythagoras-workbook.js` טוען את הדפים ישירות ורק מתוך `WORKBOOK_MANIFEST.json`; אין מודל בנייה שני ואין fallback למקור אחר.
 - `meta/topics.json` ו־`pythagoras-workbook-model.js` אינם חלק מהריפו הפעיל ואין להחזירם.
