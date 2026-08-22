@@ -66,15 +66,16 @@ else pass('אין מודל runtime כפול.');
 if (exists('meta/topics.json')) fail('meta/topics.json חזר לריפו ועלול ליצור מקור metadata מתחרה.');
 else pass('אין meta/topics.json ישן בריפו הפעיל.');
 
-/* פרסום: redirect למסלול הישן + no-store לקבצי עבודה. */
+/* פרסום: נתיב ציבורי יחיד + no-store לקבצי עבודה. */
 if (!exists('vercel.json')) fail('חסר vercel.json.');
 else {
   const vercel = readJson('vercel.json');
   if (vercel) {
     const redirects = Array.isArray(vercel.redirects) ? vercel.redirects : [];
-    const legacyRedirect = redirects.some((r) => r.source === '/pythagoras-workbook.html' && r.destination === '/');
-    if (legacyRedirect) pass('המסלול הישן מפנה ל-entrypoint היחיד.');
-    else fail('חסר redirect מ-/pythagoras-workbook.html ל-/.');
+    const alternateWorkbookRedirect = redirects.some((r) => String(r.destination || '').includes('pythagoras-workbook.html'));
+    if (alternateWorkbookRedirect) fail('vercel.json מפנה ל-entrypoint חלופי של החוברת.');
+    else pass('Vercel אינו מגדיר entrypoint חלופי לחוברת.');
+
     const headers = Array.isArray(vercel.headers) ? vercel.headers : [];
     const runtimePatterns = ['/', '/(.*)\\.html', '/(.*)\\.css', '/(.*)\\.js', '/(.*)\\.json', '/(.*)\\.svg'];
     for (const pattern of runtimePatterns) {
@@ -114,7 +115,6 @@ if (manifest) {
     if (!exists(page.file)) fail(`${page.file || `עמוד ${index + 1}`}: קובץ הדף חסר.`);
   });
 
-  /* דפי legacy מותרים כהיסטוריה בלבד; הם אינם רשאים להיכנס למסלול runtime. */
   const active = new Set(files);
   const rootHtml = fs.readdirSync(root).filter((name) => /^עמוד-\d+\.html$/u.test(name));
   const inactive = rootHtml.filter((name) => !active.has(name));
