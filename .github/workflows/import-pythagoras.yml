@@ -1,0 +1,96 @@
+name: Materialize canonical 53-page Pythagoras workbook
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    if: ${{ github.actor != 'github-actions[bot]' && github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Reconstruct exact verified canonical source
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE='https://raw.githubusercontent.com/yanivmizrachiy/pythagoras/405696a512417922e09eb7720400157782a13399/.canonical'
+          EXPECTED_SHA='1a5fff4b9c4c845eeb36c1f2d9a4743cd4e8a8bf7f45a27230abf50f3e06a8bb'
+          rm -rf /tmp/aaa-pythagoras-src /tmp/aaa-canonical
+          mkdir -p /tmp/aaa-pythagoras-src /tmp/aaa-canonical
+          for part in part-000 part-001 part-002 part-003; do
+            curl -fL --retry 4 --retry-all-errors "$BASE/$part" -o "/tmp/aaa-canonical/$part"
+          done
+          node - <<'NODE'
+          const fs = require('fs');
+          const dir = '/tmp/aaa-canonical';
+          const names = ['part-000','part-001','part-002','part-003'];
+          const text = names.map(n => fs.readFileSync(`${dir}/${n}`, 'utf8')).join('').replace(/\s+/g, '');
+          fs.writeFileSync('/tmp/pythagoras.tar.gz', Buffer.from(text, 'base64'));
+          NODE
+          ACTUAL_SHA="$(sha256sum /tmp/pythagoras.tar.gz | awk '{print $1}')"
+          echo "canonical-sha=$ACTUAL_SHA"
+          test "$ACTUAL_SHA" = "$EXPECTED_SHA"
+          gzip -t /tmp/pythagoras.tar.gz
+          tar -xzf /tmp/pythagoras.tar.gz -C /tmp/aaa-pythagoras-src
+          PACKAGE_JSON="$(find /tmp/aaa-pythagoras-src -maxdepth 3 -name package.json -type f -print -quit)"
+          test -n "$PACKAGE_JSON"
+          PROJECT_ROOT="$(dirname "$PACKAGE_JSON")"
+          test -f "$PROJECT_ROOT/SOURCE_OF_TRUTH.md"
+          test -d "$PROJECT_ROOT/src/pages"
+          PAGE_COUNT="$(find "$PROJECT_ROOT/src/pages" -name main.html -type f | wc -l | tr -d ' ')"
+          test "$PAGE_COUNT" -eq 53
+          FONT_COUNT="$(find "$PROJECT_ROOT/src/shared/fonts" -name '*.woff2' -type f -size +1000c | wc -l | tr -d ' ')"
+          test "$FONT_COUNT" -ge 4
+          echo "VERIFIED: $PAGE_COUNT pages, $FONT_COUNT fonts"
+          printf '%s' "$PROJECT_ROOT" > /tmp/aaa-project-root
+
+      - name: Replace bootstrap shell with editable source
+        shell: bash
+        run: |
+          set -euo pipefail
+          PROJECT_ROOT="$(cat /tmp/aaa-project-root)"
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf {} +
+          cp -a "$PROJECT_ROOT"/. .
+          test -f package.json
+          test -f SOURCE_OF_TRUTH.md
+          test "$(find src/pages -name main.html -type f | wc -l | tr -d ' ')" -eq 53
+          printf '%s\n' '' '## Repository ownership — aaa' '' '`yanivmizrachiy/aaa` is the sole editable source of truth for this standalone Pythagoras workbook.' 'All 53 page sources live directly in this repository and future content/design fixes must be committed here.' >> SOURCE_OF_TRUTH.md
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Verify editable workbook
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-audit --no-fund
+          npm run check
+          npm run build
+          npm run typecheck
+          test -f package-lock.json
+          test "$(find src/pages -name main.html -type f | wc -l | tr -d ' ')" -eq 53
+
+      - name: Commit materialized source to PR branch
+        shell: bash
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No materialization changes required'
+            exit 0
+          fi
+          git commit -m 'feat: materialize all 53 editable Pythagoras pages in aaa'
+          git push origin "HEAD:${HEAD_REF}"
