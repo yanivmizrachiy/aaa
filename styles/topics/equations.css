@@ -55,7 +55,7 @@
 
 .equations-page .q-main,
 .equations-page .q-sub {
-  align-items: flex-start;
+  align-items: first baseline;
   margin-bottom: 8px;
 }
 
