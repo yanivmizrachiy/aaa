@@ -213,6 +213,26 @@
     0 2px 8px rgba(15, 23, 42, 0.06);
 }
 
+/*
+ * Canonical A4 mode:
+ * The combined workbook scales each approved A4 page as one unit.
+ * Viewport-responsive rules from a standalone page must not reflow the page
+ * merely because the outer browser viewport is narrow.
+ */
+.pythagoras-workbook-shell .page-634 .foundation-note-one-line {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  font-size: 15.5px;
+  gap: 5px;
+  padding: 5px 11px;
+}
+
+.pythagoras-workbook-shell .page-634 .angle-name-fill { width: 78px; }
+.pythagoras-workbook-shell .page-634 .degrees-fill { width: 50px; }
+.pythagoras-workbook-shell .page-634 .mcq-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .workbook-page-wrap > .a4-page,
 .workbook-page-wrap > .a4-page button,
 .workbook-page-wrap > .a4-page input,
