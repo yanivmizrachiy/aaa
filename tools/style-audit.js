@@ -79,10 +79,48 @@ else {
   if (truth.includes('אזור המושג העליון חייב להיות שורה אחת קומפקטית בלבד')) {
     pass('מקור האמת נועל את שורת המושג של עמוד 1 לשורה אחת.');
   } else fail('מקור האמת אינו נועל את שורת המושג של עמוד 1.');
+  if (truth.includes('מקור ה־runtime היחיד') && truth.includes('WORKBOOK_MANIFEST.json')) {
+    pass('מקור האמת מגדיר במפורש runtime יחיד מה-manifest.');
+  } else fail('מקור האמת אינו מגדיר runtime יחיד מה-manifest.');
+  if (truth.includes('פריסת ה־A4 הקנונית') && truth.includes('החוברת המאוחדת')) {
+    pass('מקור האמת מגדיר תצוגת A4 קנונית בתוך החוברת המאוחדת.');
+  } else fail('חסר חוזה A4 קנוני לחוברת המאוחדת במקור האמת.');
 }
 
 if (!exists('STYLE_ENGINE.md')) fail('חסר STYLE_ENGINE.md.');
 else pass('מנגנון סיווג והפצת שינויי הסגנון קיים.');
+
+/* runtime יחיד: החוברת המאוחדת קוראת רק מהמניפסט. */
+if (!exists('pythagoras-workbook.js')) {
+  fail('חסר pythagoras-workbook.js.');
+} else {
+  const workbookJs = read('pythagoras-workbook.js');
+  if (workbookJs.includes("const MANIFEST_URL = 'WORKBOOK_MANIFEST.json'")) {
+    pass('החוברת המאוחדת טוענת את WORKBOOK_MANIFEST.json ישירות.');
+  } else fail('pythagoras-workbook.js אינו מצביע ישירות על WORKBOOK_MANIFEST.json.');
+
+  if (!workbookJs.includes('meta/topics.json') && !workbookJs.includes('buildPythagorasWorkbook')) {
+    pass('אין fallback runtime ל-meta/topics.json או למודל בנייה נוסף.');
+  } else fail('נמצא runtime כפול: meta/topics.json או buildPythagorasWorkbook עדיין פעילים.');
+}
+
+if (exists('pythagoras-workbook-model.js')) {
+  fail('pythagoras-workbook-model.js הישן קיים ועלול ליצור מקור runtime שני.');
+} else {
+  pass('מודל runtime הישן הוסר; אין מקור בנייה כפול לחוברת.');
+}
+
+if (!exists('styles/pythagoras-workbook.css')) {
+  fail('חסר styles/pythagoras-workbook.css.');
+} else {
+  const workbookCss = read('styles/pythagoras-workbook.css');
+  if (
+    workbookCss.includes('.pythagoras-workbook-shell .page-634 .foundation-note-one-line') &&
+    workbookCss.includes('.pythagoras-workbook-shell .page-634 .mcq-options')
+  ) {
+    pass('עמוד 1 מוגן בתוך החוברת מפני reflow של responsive עצמאי.');
+  } else fail('חסרה הגנת canonical A4 לעמוד 1 בתוך החוברת המאוחדת.');
+}
 
 if (!exists('styles/a4-base.css')) fail('חסר styles/a4-base.css.');
 else {
@@ -144,6 +182,9 @@ if (exists('עמוד-635.html')) {
   if (page2.includes('איזה מהמשולשים <strong>אינו</strong> משולש ישר־זווית?')) {
     pass('עמוד 2 מכיל את השאלה האמריקאית המאושרת.');
   } else fail('חסרה בעמוד 2 השאלה האמריקאית המאושרת.');
+  if (page2.includes('מה הקשר בין שתי הצלעות שנפגשות בזווית הישרה?')) {
+    pass('עמוד 2 מכיל את ניסוח ההמשך העדכני.');
+  } else fail('עמוד 2 אינו מכיל את ניסוח ההמשך העדכני.');
 }
 
 if (manifest) {
