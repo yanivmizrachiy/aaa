@@ -35,11 +35,14 @@ if (!exists('pythagoras-workbook.js')) {
   } else fail('ה-loader אינו מצביע ישירות על WORKBOOK_MANIFEST.json.');
   if (loader.includes('meta/topics.json') || loader.includes('buildPythagorasWorkbook')) {
     fail('נמצא מקור runtime חלופי או fallback ישן.');
-  } else pass('אין fallback runtime ל-meta/topics.json או למודל בנייה ישן.');
+  } else pass('אין fallback runtime למקור ישן.');
 }
 
 if (exists('pythagoras-workbook-model.js')) fail('pythagoras-workbook-model.js הישן חזר לריפו.');
 else pass('אין מודל runtime כפול.');
+
+if (exists('meta/topics.json')) fail('meta/topics.json חזר לריפו ועלול ליצור מקור metadata מתחרה.');
+else pass('אין meta/topics.json ישן בריפו הפעיל.');
 
 /* שני entrypoints מותרים רק כל עוד הם זהים לחלוטין. */
 if (exists('index.html') && exists('pythagoras-workbook.html')) {
@@ -47,17 +50,39 @@ if (exists('index.html') && exists('pythagoras-workbook.html')) {
   else fail('index.html ו-pythagoras-workbook.html התפצלו; אסור להחזיק שתי גרסאות שונות של החוברת.');
 }
 
-/* המניפסט קובע רק את החוברת הפעילה; שדות legacy אינם רשאים להשפיע על runtime. */
+/* מניפסט קנוני וסגור: runtime בלבד, ללא metadata legacy. */
 if (manifest) {
+  const allowedRootKeys = ['schemaVersion', 'id', 'name', 'authority', 'totalPages', 'pages'];
+  const allowedPageKeys = ['file', 'sourceNumber', 'workbookNumber', 'curriculumId', 'primaryTopic'];
+  const rootKeys = Object.keys(manifest);
+  const forbiddenRootKeys = rootKeys.filter((key) => !allowedRootKeys.includes(key));
+  if (forbiddenRootKeys.length) fail(`שדות לא מורשים במניפסט: ${forbiddenRootKeys.join(', ')}`);
+  else pass('המניפסט מכיל רק שדות runtime קנוניים.');
+
+  if (manifest.schemaVersion === 2) pass('schemaVersion של המניפסט הוא 2.');
+  else fail('schemaVersion של המניפסט חייב להיות 2.');
+  if (manifest.authority === 'SOURCE_OF_TRUTH.md') pass('המניפסט מצביע על SOURCE_OF_TRUTH.md כסמכות היחידה.');
+  else fail('המניפסט אינו מצביע על SOURCE_OF_TRUTH.md כסמכות היחידה.');
+  if (manifest.totalPages === 53) pass('totalPages במניפסט הוא 53.');
+  else fail('totalPages במניפסט חייב להיות 53.');
+
   const pages = Array.isArray(manifest.pages) ? manifest.pages : [];
   if (pages.length === 53) pass('המניפסט מכיל 53 דפים.');
   else fail(`המניפסט מכיל ${pages.length} דפים במקום 53.`);
+
   const files = pages.map((page) => page.file).filter(Boolean);
   if (new Set(files).size === files.length) pass('אין קובצי דף כפולים במניפסט.');
   else fail('נמצאו קובצי דף כפולים במניפסט.');
-  if (manifest.source === 'meta/topics.json') {
-    warn('WORKBOOK_MANIFEST.json עדיין מכיל metadata היסטורי source=meta/topics.json; ה-loader אינו משתמש בו. יש להסירו במיגרציית metadata נפרדת ולא תוך תיקון דף.');
-  }
+
+  pages.forEach((page, index) => {
+    const extra = Object.keys(page).filter((key) => !allowedPageKeys.includes(key));
+    if (extra.length) fail(`${page.file || `עמוד ${index + 1}`}: שדות legacy במניפסט: ${extra.join(', ')}`);
+    if (page.workbookNumber !== index + 1) fail(`${page.file || `עמוד ${index + 1}`}: workbookNumber אינו רציף.`);
+    if (page.curriculumId !== 'g7.geo.pythagoras') fail(`${page.file || `עמוד ${index + 1}`}: curriculumId שגוי.`);
+    if (page.primaryTopic !== 'משפט פיתגורס') fail(`${page.file || `עמוד ${index + 1}`}: primaryTopic אינו משפט פיתגורס.`);
+    if (!exists(page.file)) fail(`${page.file || `עמוד ${index + 1}`}: קובץ הדף חסר.`);
+  });
+  if (!errors.some((message) => message.includes('workbookNumber'))) pass('מספור workbookNumber רציף 1–53.');
 }
 
 /* נעילה עמוקה: גם קובצי הדף וגם כל תלות משותפת חייבים להישאר בדיוק בגרסה שאומתה. */
@@ -89,7 +114,7 @@ if (locks) {
   }
 }
 
-/* CSS של עמוד חייב להיות מקומי. בדיקה זו חלה על מבני ליבה רגישים במיוחד. */
+/* CSS של עמוד חייב להיות מקומי. */
 const sensitiveClasses = [
   'page-title', 'header-container', 'question-block', 'q-main', 'q-sub',
   'gz-footer', 'foundation-note', 'foundation-grid', 'foundation-card',
