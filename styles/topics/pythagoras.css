@@ -12,6 +12,11 @@
   font-display: swap;
 }
 
+/* Scope Guard: aaa הוא חוברת פיתגורס בלבד. ניווט נושאים היסטורי מוסתר בכל דפי החוברת. */
+body:has(:is(.pythagoras, .page-375, .page-376, .page-377, .page-378, .page-379, .page-380)) .preview-nav-topics {
+  display: none !important;
+}
+
 /* 375–380 יכולים להמשיך להופיע גם בגאומטריה ז', אך הם חברים בחוברת פיתגורס ולכן
    מקבלים את שכבת האחידות גם כשה-HTML המקורי אינו נושא class="pythagoras". */
 :is(.pythagoras, .page-375, .page-376, .page-377, .page-378, .page-379, .page-380).a4-page {
