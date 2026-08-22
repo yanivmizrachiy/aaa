@@ -73,6 +73,16 @@
   grid-template-rows: auto minmax(0, 1fr) !important;
   min-height: 0 !important;
   overflow: hidden !important;
+  border: 0 !important;
+  background: transparent !important;
+}
+.pythagoras-workbook-shell .page-634 .final-build-area {
+  min-height: 64px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  outline: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 /* עמוד 2 — A4 קנוני: אין reflow לפי רוחב החלון ואין גלישה לתוך הקרדיט. */
@@ -102,6 +112,13 @@
 .pythagoras-workbook-shell .page-635 .mc-triangle-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
   min-height: 0 !important;
+}
+
+.pythagoras-workbook-shell .page-635 .construction-task {
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .pythagoras-workbook-shell .page-635 .construction-grid {
