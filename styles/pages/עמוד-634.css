@@ -9,6 +9,32 @@
   padding-block: 8px;
 }
 
+.page-634 .foundation-note-compact {
+  display: grid;
+  gap: 3px;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.page-634 .foundation-note-compact > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: nowrap;
+}
+
+.page-634 .foundation-fill-inline {
+  width: 88px;
+  height: 22px;
+  border-radius: 6px;
+  flex: 0 0 auto;
+}
+
+.page-634 .degrees-fill {
+  width: 58px;
+}
+
 .page-634 .foundation-grid {
   min-height: 0;
 }
