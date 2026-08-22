@@ -156,8 +156,8 @@
 }
 
 /*
- * משימת AB — פריסה שטוחה ויוקרתית: אין מסגרת חיצונית סביב שתי מסגרות פנימיות.
- * ההיררכיה נוצרת באמצעות רווח, קו וקטורי עדין ושני משטחי שרטוט עצמאיים.
+ * משימת AB — פריסה שטוחה: אין מסגרת חיצונית סביב שתי מסגרות פנימיות.
+ * ההיררכיה נוצרת באמצעות רווח ושני משטחי שרטוט עצמאיים.
  */
 .page-635 .construction-task {
   height: 100%;
@@ -234,13 +234,13 @@
   border-bottom: 1px solid var(--accent-dark);
 }
 
-/* המשימה האחרונה משתמשת רק בגובה שנותר בתוך question-block. */
+/* המשימה האחרונה: ציור מרכזי + שתי פעולות קצרות וברורות, ללא שאלת הסבר פתוחה. */
 .page-635 .hunt-section {
   margin: 0;
   height: 100%;
   min-height: 0;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) 32px 56px;
+  grid-template-rows: auto minmax(0, 1fr) 28px 34px;
   gap: 5px;
   overflow: hidden;
 }
@@ -276,17 +276,18 @@
 
 .page-635 .triangle-hunt-svg .mosaic-points { fill: var(--accent-dark); }
 
+/* שורת ספירה נקייה: אין תיבה חיצונית ואין תיבה בתוך תיבה. */
 .page-635 .hunt-total {
-  height: 32px;
+  height: 28px;
   min-height: 0;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: flex-start;
   gap: 9px;
-  padding: 3px 9px;
-  border: 1.25px solid #1f2a44;
-  border-radius: 8px;
-  background: var(--bg-subtle);
+  padding: 1px 2px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   font-size: 14.3px;
   font-weight: 500;
   overflow: hidden;
@@ -294,18 +295,23 @@
 
 .page-635 .hunt-count-fill {
   width: 54px;
-  height: 23px;
+  height: 18px;
   flex: 0 0 auto;
+  border: 0;
+  border-bottom: 1.2px solid var(--accent-dark);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .page-635 .hunt-reason {
-  height: 56px;
+  height: 34px;
   min-height: 0;
-  border-top: 1px dashed var(--grid-line);
-  padding: 5px 8px 0;
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  gap: 3px;
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  padding: 5px 2px 0;
+  display: flex;
+  align-items: flex-start;
   overflow: hidden;
 }
 
@@ -314,20 +320,7 @@
   line-height: 1.25;
 }
 
-.page-635 .hunt-write-lines {
-  min-height: 0;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 13px,
-    var(--grid-line) 14px,
-    transparent 15px
-  );
-}
-
-/*
- * גם במסך צר עמוד 2 אינו משנה מבנה פנימי; הוא נשאר A4 ומוקטן כיחידה אחת.
- */
+/* גם במסך צר עמוד 2 אינו משנה מבנה פנימי; הוא נשאר A4 ומוקטן כיחידה אחת. */
 @media (max-width: 760px) {
   .page-635 .foundation-note-one-line {
     font-size: 14.4px;
