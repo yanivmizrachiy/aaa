@@ -1,68 +1,218 @@
 .pythagoras-workbook-shell {
+  --wb-ink: #0f172a;
+  --wb-muted: #64748b;
+  --wb-line: #dbe3ee;
+  --wb-soft: #f8fafc;
+  --wb-blue: #1d4ed8;
+  --wb-blue-soft: #eff6ff;
   margin: 0;
+  width: 100%;
+  min-width: 0;
   min-height: 100vh;
-  background: #eef2f7;
+  display: block;
+  background:
+    radial-gradient(circle at 50% 0, rgba(59, 130, 246, 0.08), transparent 34rem),
+    #eef2f7;
   font-family: 'Rubik', Arial, sans-serif;
-  color: #0f172a;
+  color: var(--wb-ink);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .workbook-toolbar {
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid rgba(203, 213, 225, 0.86);
+  box-shadow: 0 8px 26px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+}
+
+.workbook-toolbar-inner {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding: 10px clamp(10px, 2vw, 22px) 9px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.96);
-  border-bottom: 1px solid #cbd5e1;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  gap: 18px;
 }
 
-.workbook-brand,
+.workbook-brand {
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.workbook-eyebrow {
+  color: var(--wb-blue);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.workbook-brand-line {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+.workbook-brand strong {
+  color: var(--wb-ink);
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.2;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+#workbook-status {
+  max-width: 26rem;
+  overflow: hidden;
+  color: var(--wb-muted);
+  font-size: 12px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .workbook-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-end;
+  gap: 8px;
+  flex: 0 0 auto;
 }
-
-.workbook-brand strong { font-size: 18px; }
-#workbook-status { color: #475569; font-size: 13px; }
 
 .workbook-actions button,
 .workbook-actions input {
-  min-height: 40px;
-  border: 1px solid #94a3b8;
-  border-radius: 8px;
-  background: #fff;
-  color: #0f172a;
+  min-height: 42px;
+  border: 1px solid #cbd5e1;
+  border-radius: 11px;
   font: inherit;
 }
 
-.workbook-actions button { padding: 0 14px; cursor: pointer; }
-.workbook-actions input { width: 68px; padding: 0 8px; text-align: center; }
+.workbook-actions button {
+  padding: 0 15px;
+  background: #fff;
+  color: var(--wb-ink);
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  transition: transform 120ms ease, border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+}
+
+.workbook-actions button:not(:disabled):hover {
+  border-color: #93c5fd;
+  background: var(--wb-blue-soft);
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.10);
+  transform: translateY(-1px);
+}
+
+.workbook-actions button:not(:disabled):active {
+  transform: translateY(0);
+}
+
+.workbook-actions button:focus-visible,
+.workbook-actions input:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.24);
+  outline-offset: 2px;
+}
+
+.workbook-actions button:disabled,
+.workbook-actions input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.workbook-actions .print-action {
+  border-color: #0f172a;
+  background: #0f172a;
+  color: #fff;
+}
+
+.workbook-actions .print-action:not(:disabled):hover {
+  border-color: #1e293b;
+  background: #1e293b;
+  color: #fff;
+}
+
+.page-jump-control {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px 0 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 11px;
+  background: var(--wb-soft);
+  color: #475569;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.workbook-actions input {
+  width: 58px;
+  min-height: 32px;
+  padding: 0 6px;
+  border-color: #d7dee8;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--wb-ink);
+  text-align: center;
+  font-weight: 700;
+  -moz-appearance: textfield;
+}
+
+.workbook-actions input::-webkit-outer-spin-button,
+.workbook-actions input::-webkit-inner-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+
+.workbook-progress {
+  width: 100%;
+  height: 3px;
+  overflow: hidden;
+  background: #e8eef6;
+}
+
+#workbook-progress-bar {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2563eb, #38bdf8);
+  transition: width 180ms ease;
+}
 
 .workbook-pages {
+  width: 100%;
   display: grid;
   justify-items: center;
-  gap: 24px;
-  padding: 24px 12px 48px;
+  gap: 26px;
+  padding: 24px 10px 56px;
 }
 
 .workbook-page-wrap {
   position: relative;
   width: fit-content;
-  scroll-margin-top: var(--pythagoras-toolbar-offset, 76px);
+  max-width: 100%;
+  scroll-margin-top: var(--pythagoras-toolbar-offset, 82px);
 }
 
 .workbook-page-wrap > .a4-page {
   margin: 0 !important;
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(203, 213, 225, 0.7);
+  box-shadow:
+    0 18px 44px rgba(15, 23, 42, 0.12),
+    0 2px 8px rgba(15, 23, 42, 0.06);
 }
 
-/* שכבת אחידות חוברת: ממשק Rubik; מתמטיקה ממשיכה להירנדר בגופני TeX המקומיים של MathJax. */
 .workbook-page-wrap > .a4-page,
 .workbook-page-wrap > .a4-page button,
 .workbook-page-wrap > .a4-page input,
@@ -70,7 +220,6 @@
   font-family: 'Rubik', Arial, sans-serif;
 }
 
-/* דפי היישום 375–380 נשארים גם בגאומטריה ז', אך בתוך חוברת פיתגורס מקבלים את שכבת פיתגורס המשותפת. */
 .workbook-page-wrap > .a4-page.geo7-page svg.chart text[direction="ltr"],
 .workbook-page-wrap > .a4-page.geo7-page svg.chart text:not([direction]) {
   font-family: 'PytTeX', Georgia, 'Times New Roman', serif;
@@ -80,26 +229,133 @@
 .workbook-error {
   width: min(794px, calc(100vw - 24px));
   padding: 20px;
+  border: 1px solid #fecaca;
+  border-radius: 14px;
   background: #fff;
-  border: 1px solid #ef4444;
-  border-radius: 10px;
   color: #991b1b;
+  box-shadow: 0 10px 24px rgba(127, 29, 29, 0.08);
 }
 
-@media (max-width: 760px) {
-  .workbook-toolbar { align-items: flex-start; flex-direction: column; }
-  .workbook-actions { width: 100%; flex-wrap: wrap; }
-  .workbook-actions button { flex: 1 1 auto; }
-  .workbook-pages { padding-inline: 4px; }
-  .workbook-page-wrap { transform-origin: top center; max-width: 100%; }
+@media (max-width: 860px) {
+  .workbook-toolbar-inner {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 8px;
+    padding-block: 8px;
+  }
+
+  .workbook-brand {
+    padding-inline: 2px;
+  }
+
+  .workbook-brand-line {
+    justify-content: space-between;
+  }
+
+  #workbook-status {
+    max-width: 48vw;
+  }
+
+  .workbook-actions {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr minmax(138px, auto) 1fr auto;
+    gap: 7px;
+  }
+
+  .workbook-actions button {
+    min-width: 0;
+    padding-inline: 10px;
+  }
+}
+
+@media (max-width: 590px) {
+  .workbook-toolbar-inner {
+    padding: 7px 7px 6px;
+  }
+
+  .workbook-eyebrow {
+    display: none;
+  }
+
+  .workbook-brand-line {
+    align-items: center;
+    gap: 8px;
+  }
+
+  .workbook-brand strong {
+    font-size: 17px;
+  }
+
+  #workbook-status {
+    max-width: 55vw;
+    font-size: 11px;
+    text-align: left;
+  }
+
+  .workbook-actions {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .page-jump-control {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-content: center;
+    min-height: 38px;
+  }
+
+  .nav-action,
+  .print-action {
+    grid-row: 2;
+    min-height: 42px !important;
+  }
+
+  .workbook-actions .print-action {
+    padding-inline: 8px;
+  }
+
+  .workbook-pages {
+    gap: 16px;
+    padding: 12px 4px 40px;
+  }
+
+  .workbook-page-wrap {
+    transform-origin: top center;
+  }
+
+  .workbook-page-wrap > .a4-page {
+    border-inline: 0;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.10);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #workbook-progress-bar,
+  .workbook-actions button {
+    transition: none;
+  }
+
+  html:focus-within {
+    scroll-behavior: auto;
+  }
 }
 
 @media print {
   @page { size: A4; margin: 0; }
-  .pythagoras-workbook-shell { background: #fff; }
+  .pythagoras-workbook-shell { width: auto; background: #fff; }
   .workbook-toolbar { display: none !important; }
-  .workbook-pages { display: block; padding: 0; }
-  .workbook-page-wrap { width: 210mm; height: 297mm; margin: 0; break-after: page; page-break-after: always; }
+  .workbook-pages { display: block; width: auto; padding: 0; }
+  .workbook-page-wrap {
+    width: 210mm;
+    max-width: none;
+    height: 297mm;
+    margin: 0;
+    break-after: page;
+    page-break-after: always;
+  }
   .workbook-page-wrap:last-child { break-after: auto; page-break-after: auto; }
-  .workbook-page-wrap > .a4-page { box-shadow: none !important; }
+  .workbook-page-wrap > .a4-page {
+    border: 0 !important;
+    box-shadow: none !important;
+  }
 }
