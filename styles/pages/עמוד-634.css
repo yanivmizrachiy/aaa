@@ -1,9 +1,24 @@
 @import url("../topics/pythagoras-foundations.css");
 @import url("../topics/pythagoras-inline-units.css");
 
+/*
+ * עמוד 1 משתמש בכל גובה ה-A4 באופן מאוזן.
+ * אין לדחוס את כל היחידות לראש הדף ואין להשאיר "בור" לבן בתחתית.
+ */
 .page-634 .question-block {
-  justify-content: flex-start;
-  gap: 6px;
+  display: grid;
+  grid-template-rows:
+    auto
+    auto
+    minmax(218px, 1.35fr)
+    auto
+    minmax(108px, .72fr)
+    auto
+    minmax(118px, .82fr)
+    minmax(106px, .72fr);
+  gap: 9px;
+  align-content: stretch;
+  min-height: 0;
 }
 
 /* שורת מושג אחת: שתי השלמות קצרות, ללא בזבוז גובה. */
@@ -44,50 +59,56 @@
 .page-634 .foundation-grid { min-height: 0; }
 
 .page-634 .angle-choice-grid {
-  gap: 7px 9px;
+  gap: 9px 10px;
+  height: 100%;
 }
 
 .page-634 .angle-choice-grid .foundation-card {
-  min-height: 102px;
-  padding: 5px 8px;
-  gap: 2px;
+  min-height: 0;
+  height: 100%;
+  padding: 7px 9px;
+  gap: 4px;
 }
 
 .page-634 .angle-choice-grid .foundation-svg {
   max-width: 220px;
-  height: 82px;
+  height: min(96px, 72%);
+  min-height: 82px;
 }
 
 .page-634 .angle-choice-grid .check {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   margin: 0;
 }
 
 .page-634 .classification-card {
-  justify-content: flex-start;
-  gap: 4px;
-  padding: 6px 10px;
-  min-height: 91px;
+  height: 100%;
+  justify-content: center;
+  gap: 5px;
+  padding: 7px 10px;
+  min-height: 0;
 }
 
 .page-634 .cls-strip {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 7px;
+  align-items: center;
+  gap: 8px;
 }
 
 .page-634 .cls-item {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  justify-content: center;
+  gap: 4px;
 }
 
 .page-634 .cls-svg {
-  width: 90px;
-  height: 58px;
+  width: 94px;
+  height: 66px;
 }
 
 .page-634 .foundation-svg .vx,
@@ -103,26 +124,29 @@
 }
 
 .page-634 .cls-fill {
-  width: 88px;
-  height: 22px;
+  width: 92px;
+  height: 24px;
   border-radius: 5px;
 }
 
 .page-634 .drawing-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 12px;
+  height: 100%;
 }
 
 .page-634 .drawing-card {
-  min-height: 92px;
+  min-height: 0;
+  height: 100%;
   align-items: stretch;
   justify-content: center;
-  padding: 6px 10px;
+  padding: 7px 10px;
 }
 
 .page-634 .guided-ray-svg {
   width: 100%;
-  height: 76px;
+  height: 100%;
+  min-height: 92px;
   border: 1.35px dashed #94a3b8;
   border-radius: 7px;
   background: var(--bg-paper);
@@ -139,12 +163,14 @@
 .page-634 .guided-ray-svg .guide-point { fill: var(--accent-dark); }
 
 .page-634 .thinking-mcq {
+  height: 100%;
   border: 1.35px solid var(--accent-dark);
   border-radius: 9px;
   background: var(--bg-subtle);
-  padding: 7px 11px 8px;
+  padding: 9px 12px 10px;
   display: grid;
-  gap: 6px;
+  align-content: center;
+  gap: 9px;
 }
 
 .page-634 .thinking-title {
@@ -155,7 +181,7 @@
 .page-634 .mcq-options {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 5px 16px;
+  gap: 7px 18px;
 }
 
 .page-634 .mcq-option {
@@ -176,7 +202,7 @@
   background: #fff;
 }
 
-/* Tablet / narrow desktop: preserve the approved single-line concept row. */
+/* Tablet / narrow desktop: standalone page may tighten, not collapse. */
 @media (max-width: 760px) {
   .page-634 .foundation-note-one-line {
     flex-wrap: nowrap;
