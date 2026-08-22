@@ -6,7 +6,6 @@
   gap: 6px;
 }
 
-/* משפט המושג העליון נשאר שורה אחת קומפקטית. */
 .page-635 .foundation-note-one-line {
   display: flex;
   align-items: center;
@@ -42,7 +41,6 @@
   line-height: 1.3;
 }
 
-/* שאלה 1: שש דוגמאות בשורה אחת כדי לשמור את החלק העליון קומפקטי. */
 .page-635 .triangle-choice-grid {
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 6px;
@@ -67,73 +65,74 @@
   margin: 0;
 }
 
-/* תרגול מעבר: משתמש בשטח הפנוי להבנה, נימוק ובנייה — לא למילוי דקורטיבי. */
-.page-635 .bridge-practice {
+/* שאלה אמריקאית: 5 משולשים, 4 ישרי-זווית ואחד שאינו. */
+.page-635 .mc-triangle-section {
   display: grid;
-  gap: 6px;
+  gap: 5px;
   padding: 7px 9px;
   border: 1px solid var(--border-light);
   border-radius: 10px;
   background: var(--bg-paper);
-  min-height: 132px;
+  min-height: 128px;
 }
 
-.page-635 .bridge-fill-row {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  min-height: 30px;
-  font-size: 14.7px;
+.page-635 .mc-triangle-question {
+  font-size: 14.8px;
   line-height: 1.3;
 }
 
-.page-635 .bridge-short-fill {
-  width: 48px;
-  height: 26px;
-  flex: 0 0 auto;
-}
-
-.page-635 .bridge-grid {
+.page-635 .mc-triangle-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-  min-height: 88px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
 }
 
-.page-635 .bridge-card {
+.page-635 .mc-triangle-card {
+  min-height: 91px;
   border: 1px solid var(--border-light);
   border-radius: 8px;
   background: var(--bg-subtle);
-  padding: 7px 9px;
-  min-height: 88px;
+  padding: 3px 5px 5px;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  justify-items: center;
 }
 
-.page-635 .bridge-question {
-  font-size: 14.3px;
-  line-height: 1.35;
+.page-635 .mc-triangle-card svg {
+  width: 100%;
+  max-width: 116px;
+  height: 66px;
+  display: block;
 }
 
-.page-635 .bridge-writing-lines {
-  min-height: 44px;
-  margin-top: 4px;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 18px,
-    var(--grid-line) 19px,
-    transparent 20px
-  );
+.page-635 .mc-triangle-card path {
+  fill: none;
+  stroke: var(--accent-dark);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
 }
 
-.page-635 .bridge-draw-space {
-  min-height: 54px;
-  margin-top: 4px;
-  border: 1px dashed var(--grid-line);
-  border-radius: 6px;
+.page-635 .mc-triangle-answer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 13px;
+}
+
+.page-635 .mc-radio {
+  width: 14px;
+  height: 14px;
+  border: 1.4px solid var(--accent-dark);
+  border-radius: 50%;
   background: var(--bg-paper);
+  flex: 0 0 auto;
 }
 
-/* המשימה המורכבת היא תמיד המשימה האחרונה ומוצמדת לתחתית אזור העבודה. */
 .page-635 .hunt-section {
   margin-top: auto;
   display: grid;
@@ -141,7 +140,6 @@
   min-height: 0;
 }
 
-/* איור חיפוש עשיר: קווים נקיים, חדים וללא סימוני תשובה. */
 .page-635 .geometry-hunt-card {
   width: 100%;
   min-height: 0;
@@ -192,7 +190,6 @@
   flex: 0 0 auto;
 }
 
-/* שאלת הסקה אחרונה: מצדיקה את השטח התחתון ומבקשת נימוק מתמטי. */
 .page-635 .hunt-reason {
   border-top: 1px dashed var(--grid-line);
   padding: 6px 8px 0;
@@ -227,11 +224,11 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .page-635 .bridge-grid {
-    grid-template-columns: 1fr;
+  .page-635 .mc-triangle-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .page-635 .bridge-practice {
+  .page-635 .mc-triangle-section {
     min-height: 0;
   }
 
@@ -245,8 +242,8 @@
 
 @media print {
   .page-635 .foundation-note-one-line,
-  .page-635 .bridge-practice,
-  .page-635 .bridge-card,
+  .page-635 .mc-triangle-section,
+  .page-635 .mc-triangle-card,
   .page-635 .geometry-hunt-card,
   .page-635 .hunt-total,
   .page-635 .hunt-reason,
