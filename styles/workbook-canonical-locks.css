@@ -1,0 +1,73 @@
+/*
+ * אכיפת תצוגה קנונית לדפים נעולים בתוך החוברת המאוחדת.
+ * זהו מנגנון טכני בלבד; SOURCE_OF_TRUTH.md הוא הסמכות היחידה.
+ * הקובץ נטען אחרון ולכן מגן מפני זליגת CSS ומפני media queries של דפים אחרים.
+ */
+
+/* עמוד 1 — כותרת A4 מאושרת. */
+.pythagoras-workbook-shell .workbook-page-wrap > .page-634 > .header-container {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  gap: 12px !important;
+  width: 100% !important;
+  min-height: 40px !important;
+  margin: 0 0 8px !important;
+  padding: 0 0 6px !important;
+  border: 0 !important;
+  border-bottom: 4px double var(--title-blue) !important;
+}
+
+.pythagoras-workbook-shell .workbook-page-wrap > .page-634 > .header-container > .page-title {
+  display: block !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--title-blue) !important;
+  font-family: 'Rubik', Arial, sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 400 !important;
+  line-height: 1.15 !important;
+  letter-spacing: normal !important;
+  white-space: nowrap !important;
+  text-align: right !important;
+}
+
+.pythagoras-workbook-shell .workbook-page-wrap > .page-634 > .header-container > .page-number {
+  display: flex !important;
+  flex: 0 0 32px !important;
+  width: 32px !important;
+  height: 32px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 2px solid var(--title-blue) !important;
+  border-radius: 50% !important;
+  color: var(--title-blue) !important;
+  background: transparent !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+}
+
+/* עמוד 1 — שורת המושג ושאלת ההסקה נשארות בפריסת A4 גם במסך צר. */
+.pythagoras-workbook-shell .page-634 .foundation-note-one-line {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  white-space: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 5px !important;
+  padding: 5px 11px !important;
+  font-size: 15.5px !important;
+  line-height: 1.2 !important;
+}
+
+.pythagoras-workbook-shell .page-634 .angle-name-fill { width: 78px !important; }
+.pythagoras-workbook-shell .page-634 .degrees-fill { width: 50px !important; }
+.pythagoras-workbook-shell .page-634 .mcq-options {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
