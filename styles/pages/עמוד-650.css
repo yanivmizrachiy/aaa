@@ -8,8 +8,8 @@
 
 .page-650 .question-block {
   display: grid;
-  grid-template-rows: 52px 94px minmax(700px, 1fr) 90px;
-  gap: 7px;
+  grid-template-rows: 52px 94px minmax(690px, 1fr) 90px;
+  gap: 5px;
   align-content: stretch;
   width: 100%;
   min-width: 0;
