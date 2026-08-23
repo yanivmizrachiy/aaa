@@ -1,24 +1,110 @@
 @import url("../topics/pythagoras-foundations.css");
 @import url("../topics/pythagoras-power-practice.css");
 
-/* מקום נוסף נמסר לתאים שבהם התלמיד כותב, לא לרווח בין הבלוקים. */
-.page-643 .foundation-grid,
-.page-643 .side-table {
-  flex: 1 1 auto;
-  min-height: 0;
+/* עמוד 12 — מעבר מכוון מצלע לשטח ובחזרה משטח לצלע. */
+.page-643 .question-block.square-area-practice {
+  justify-content: flex-start;
+  gap: 13px;
 }
 
-.page-643 .foundation-grid {
-  grid-auto-rows: minmax(0, 1fr);
+.page-643 .page12-intro {
+  margin-bottom: 1px;
 }
 
-.page-643 .side-table th,
-.page-643 .side-table td {
-  height: auto;
-  min-height: 56px;
-  padding-block: 10px;
+.page-643 .square-relation-card {
+  border-top: 1px solid var(--border-light);
+  padding: 15px 18px 14px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(245px, .8fr);
+  align-items: center;
+  gap: 22px;
+  min-height: 132px;
+  background: transparent;
 }
 
-.page-643 .foundation-card {
-  min-height: 214px;
+.page-643 .square-relation-card:last-child {
+  border-bottom: 1px solid var(--border-light);
+}
+
+.page-643 .square-statement {
+  font-size: 19px;
+  line-height: 1.6;
+  text-align: right;
+}
+
+.page-643 .square-statement strong {
+  font-weight: 700;
+}
+
+.page-643 .square-statement-with-fill {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.page-643 .square-work-stack {
+  unicode-bidi: isolate;
+  display: grid;
+  justify-items: center;
+  gap: 13px;
+  padding-inline-start: 8px;
+}
+
+.page-643 .square-expression {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 23px;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.page-643 .square-answer-line {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-size: 18px;
+}
+
+.page-643 .square-answer-line .foundation-fill,
+.page-643 .square-expression .foundation-fill,
+.page-643 .square-statement-with-fill .foundation-fill {
+  height: 32px;
+}
+
+.page-643 .square-answer-line .foundation-fill {
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1.6px solid var(--text-main);
+  box-shadow: none;
+  background: transparent;
+}
+
+.page-643 .answer-unit {
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.page-643 .symbolic-root .square-expression mjx-container {
+  min-width: 128px;
+}
+
+@media print {
+  .page-643 .square-relation-card {
+    break-inside: avoid;
+  }
+}
+
+@media (max-width: 720px) {
+  body:not(.pythagoras-workbook-shell) .page-643 .square-relation-card {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
 }
