@@ -20,6 +20,7 @@ for (const token of [
   '## מערכת למידת הסגנון — חוזה מחייב',
   '**אין כפל סעיפים:**',
   '**אין להשאיר שטח A4 גדול ריק ללא מטרה.**',
+  '**שטח תשובה מותאם לתשובה הצפויה.**',
   'AAA Exact A4 Preview',
 ]) {
   if (truth.includes(token)) pass(`מקור האמת כולל: ${token}`);
@@ -82,6 +83,7 @@ const p9 = read(pages[8].file);
 const p10 = read(pages[9].file);
 const p10css = read(`styles/pages/${pages[9].file.replace(/\.html$/u, '.css')}`);
 const p11 = read(pages[10].file);
+const p12 = read(pages[11].file);
 const p12css = read(`styles/pages/${pages[11].file.replace(/\.html$/u, '.css')}`);
 const p13 = read(pages[12].file);
 
@@ -104,6 +106,10 @@ else fail('עמוד 11: חזרה לגרסת 10 הכרטיסים הזהים או 
 
 if (!p12css.includes('pythagoras-power-practice.css') && !/@media\s*(?:screen\s+and\s*)?\([^)]*(?:max-width|min-width)[^)]*\)/iu.test(p12css)) pass('עמוד 12: 2×2 נשמר בכל מכשיר ללא תלות משותפת מיותרת.');
 else fail('עמוד 12: חזרה ל-reflow או לתלות CSS מיותרת.');
+
+const page12FitClasses = ['answer-fit-one-digit', 'answer-fit-two-digit', 'answer-fit-symbol-square'];
+if (page12FitClasses.every((token) => p12.includes(token)) && !p12.includes('compact-expression') && p12css.includes('.page-643 .answer-fit-one-digit { width: 34px; }') && p12css.includes('.page-643 .answer-fit-two-digit { width: 46px; }') && p12css.includes('.page-643 .answer-fit-symbol-square { width: 50px; }')) pass('עמוד 12: רוחב כל תשובה מותאם לתוכן הצפוי.');
+else fail('עמוד 12: שטחי התשובה חזרו לרוחב קבוע/גדול שאינו מתאים לתוכן.');
 
 if (p13.includes('page13-figure-task') && p13.includes('page13-relation-task') && p13.includes('page13-reverse-task') && p13.includes('page13-generalize-task')) pass('עמוד 13: גילוי, קשר, כיוון הפוך והכללה נשמרים.');
 else fail('עמוד 13: חסר רצף הגילוי המגוון שאושר.');
