@@ -1,15 +1,14 @@
 @import url("../topics/pythagoras-foundations.css");
 
-/* עמוד 9 — שני פתרונות, עבודה קדימה/אחורה, תיקון טעות ובנייה. */
+/* עמוד 9 — הבחנה חדה בין פעולת שורש לבין משוואה ריבועית, כולל שלושת המצבים של x²=a. */
 .page-651 .question-block {
   display: grid;
-  grid-template-rows: 116px 220px 215px 200px minmax(170px, 1fr);
-  gap: 8px;
+  grid-template-rows: 174px 176px 282px 166px minmax(142px, 1fr);
+  gap: 7px;
   align-content: stretch;
   width: 100%;
   min-width: 0;
   min-height: 0;
-  box-sizing: border-box;
 }
 
 .page-651 .question-block > * {
@@ -21,7 +20,6 @@
   box-sizing: border-box;
 }
 
-/* הכותרת נשארת שורה אחת בתוך המסגרת. */
 .page-651 > .header-container {
   min-width: 0;
   align-items: center;
@@ -33,8 +31,8 @@
   min-width: 0;
   max-width: calc(100% - 44px);
   margin: 0;
-  font-size: 21.5px;
-  line-height: 1.12;
+  font-size: 21px;
+  line-height: 1.1;
   white-space: nowrap;
   text-align: right;
 }
@@ -45,186 +43,253 @@
   min-width: 32px;
 }
 
-/* דוגמה קומפקטית וברורה. */
-.page-651 .compact-worked-example {
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  min-height: 116px;
-  padding: 8px 12px 9px;
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: 62px minmax(0, 1fr);
-  align-items: start;
-  align-content: start;
-  column-gap: 10px;
-  row-gap: 0;
-}
-
-.page-651 .compact-worked-example .example-label {
+.page-651 .q-main {
   margin: 0;
-  padding: 2px 0 0;
-  font-size: 14.5px;
-  line-height: 1.2;
-  text-align: right;
+  min-height: 21px;
 }
 
-.page-651 .compact-worked-example .solution-stack {
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  gap: 2px;
-  align-content: start;
-  justify-items: center;
-}
-
-.page-651 .compact-worked-example .solution-step {
-  width: 100%;
-  min-width: 0;
-  min-height: 19px;
-  font-size: 16px;
+.page-651 .q-text {
+  font-size: 13.7px;
   line-height: 1.18;
-  text-align: center;
 }
 
-.page-651 .compact-worked-example .final-answer {
-  max-width: 100%;
-  margin-top: 2px;
-  padding: 3px 12px;
-  box-sizing: border-box;
-  font-size: 16px;
-  line-height: 1.18;
-  text-align: center;
-}
-
-.page-651 .compact-worked-example mjx-container {
-  max-width: 100%;
-  margin-block: 0 !important;
-}
-
-.page-651 .page9-section,
-.page-651 .page9-final-task {
+.page-651 .page9-cases-task,
+.page-651 .page9-equation-practice,
+.page-651 .page9-root-practice,
+.page-651 .page9-error-task {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  gap: 5px;
+  gap: 4px;
   min-width: 0;
   min-height: 0;
 }
 
-.page-651 .page9-final-task {
-  grid-template-rows: auto minmax(0, 1fr) 27px;
-}
-
-.page-651 .q-main {
-  margin: 0;
-  min-height: 22px;
-}
-
-.page-651 .q-text {
-  font-size: 14.6px;
-  line-height: 1.22;
-}
-
-/* 4 פתרונות ישירים בלבד — מספיק לתרגול השיטה בלי חזרה מיותרת. */
-.page-651 .direct-solution-grid {
+/* ההשוואה המרכזית: שתי פעולות שנראות דומות אך נותנות תשובה אחרת. */
+.page-651 .page9-contrast {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-651 .contrast-card {
+  display: grid;
+  grid-template-rows: 27px auto 1fr auto;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  min-height: 0;
+  padding: 8px 11px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+}
+
+.page-651 .contrast-title {
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  color: #1f2a44;
+}
+
+.page-651 .guided-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-width: 0;
+  font-size: 13.5px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.page-651 .contrast-math {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 18px;
+}
+
+.page-651 .equation-branches {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4px 10px;
+  width: 100%;
+  font-size: 15px;
+  text-align: center;
+}
+
+/* תיבות קטנות לפי התשובה הצפויה. */
+.page-651 .digit-slot { width: 32px; min-width: 32px; }
+.page-651 .two-digit-slot { width: 42px; min-width: 42px; }
+.page-651 .signed-slot { width: 42px; min-width: 42px; }
+.page-651 .signed-two-digit-slot { width: 52px; min-width: 52px; }
+.page-651 .word-slot { width: 72px; min-width: 72px; }
+.page-651 .word-slot.short { width: 58px; min-width: 58px; }
+.page-651 .phrase-slot { width: 92px; min-width: 92px; }
+.page-651 .phrase-slot.wide { width: 104px; min-width: 104px; }
+.page-651 .formula-slot { width: 76px; min-width: 76px; }
+.page-651 .correction-slot { width: 108px; min-width: 108px; }
+
+.page-651 .digit-slot,
+.page-651 .two-digit-slot,
+.page-651 .signed-slot,
+.page-651 .signed-two-digit-slot,
+.page-651 .word-slot,
+.page-651 .phrase-slot,
+.page-651 .formula-slot,
+.page-651 .correction-slot {
+  height: 24px;
+  border-radius: 5px;
+  flex: 0 0 auto;
+}
+
+/* שלושת המצבים של x²=a. */
+.page-651 .case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
   min-width: 0;
   min-height: 0;
 }
 
-.page-651 .direct-card,
-.page-651 .reverse-card,
-.page-651 .error-card {
+.page-651 .case-card {
+  display: grid;
+  grid-template-rows: 28px 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 4px;
   min-width: 0;
   min-height: 0;
   padding: 8px 9px;
   border: 1px solid var(--border-light);
   border-radius: 8px;
-  background: var(--bg-paper);
-  box-sizing: border-box;
+  background: var(--bg-subtle);
+  font-size: 13.5px;
+  line-height: 1.18;
+  text-align: center;
 }
 
-.page-651 .direct-card {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  align-items: center;
-  justify-items: center;
-  gap: 9px;
+.page-651 .case-card > div:first-child {
+  font-size: 17px;
+  font-weight: 700;
 }
 
-.page-651 .equation {
-  font-size: 18px;
-  line-height: 1.2;
-  font-weight: 600;
-}
-
-.page-651 .two-root-answer {
-  display: grid;
-  grid-template-columns: auto 52px auto 52px;
+.page-651 .case-formulas {
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   min-width: 0;
-  font-size: 14.5px;
+  white-space: nowrap;
 }
 
-.page-651 .root-slot,
-.page-651 .reverse-slot,
-.page-651 .build-slot {
-  height: 26px;
-  border-radius: 5px;
+.page-651 .case-note {
+  font-size: 12.5px;
+  color: #475569;
 }
 
-.page-651 .root-slot {
-  width: 52px;
-  min-width: 52px;
-}
-
-/* עבודה לאחור: הפתרון/הזוג נתון, והמשוואה נבנית ממנו. */
-.page-651 .reverse-solution-grid {
+/* תרגול משוואות: חיובי, אפס ושלילי באותו דף. */
+.page-651 .equation-case-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 8px 10px;
+  gap: 7px 9px;
   min-width: 0;
   min-height: 0;
 }
 
-.page-651 .reverse-card {
+.page-651 .equation-case-card {
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  align-content: center;
+  justify-items: center;
+  gap: 3px;
+  min-width: 0;
+  min-height: 0;
+  padding: 6px 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+}
+
+.page-651 .practice-equation {
+  margin-bottom: 2px;
+  font-size: 16.5px;
+  font-weight: 700;
+}
+
+.page-651 .solution-row {
+  display: grid;
+  grid-template-columns: 31px 17px minmax(70px, 1fr);
   align-items: center;
-  gap: 7px;
-  background: var(--bg-subtle);
-  font-size: 14px;
-  line-height: 1.25;
+  width: min(205px, 100%);
+  min-height: 22px;
+  column-gap: 4px;
+  font-size: 13.7px;
+}
+
+.page-651 .single-result-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 32px;
+  font-size: 16px;
+}
+
+.page-651 .no-solution-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+}
+
+.page-651 .result-caption {
+  font-size: 12.2px;
+  line-height: 1.15;
+  color: #475569;
   text-align: center;
 }
 
-.page-651 .reverse-line {
+/* פעולת שורש בלבד — מחדדת שיש ערך אחד וששורש שלילי אינו מוגדר במספרים הממשיים. */
+.page-651 .root-practice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 7px 9px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-651 .root-practice-card {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   min-width: 0;
-  white-space: nowrap;
+  min-height: 0;
+  padding: 7px 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 7px;
+  background: var(--bg-subtle);
   font-size: 15px;
+  white-space: nowrap;
 }
 
-.page-651 .reverse-slot {
-  width: 48px;
-  min-width: 48px;
+.page-651 .negative-root {
+  gap: 9px;
 }
 
-.page-651 .reverse-slot.wide {
-  width: 62px;
-  min-width: 62px;
+.page-651 .root-status {
+  width: 92px;
 }
 
-/* תיקון טעויות — שלוש טעויות מסוגים שונים במקום עוד חישובים זהים. */
-.page-651 .error-solution-grid {
+/* תיקון טעויות מסכם את ההבחנה. */
+.page-651 .error-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
@@ -234,89 +299,26 @@
 
 .page-651 .error-card {
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto 1fr;
   align-items: center;
-  gap: 8px;
-  font-size: 13.7px;
-  line-height: 1.3;
-  text-align: center;
-}
-
-.page-651 .error-question {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-width: 0;
-  font-size: 13.2px;
-}
-
-.page-651 .error-question .response-line {
-  min-width: 82px;
-  height: 20px;
-}
-
-/* משימת סיום: יצירת משוואה שלמה מן הפרמטר k. */
-.page-651 .build-equation-card {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr) 28px minmax(0, 1fr) 28px minmax(0, 1.35fr);
-  align-items: center;
-  gap: 6px;
-  min-width: 0;
-  min-height: 0;
-  padding: 10px 12px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  background: var(--bg-subtle);
-  box-sizing: border-box;
-}
-
-.page-651 .build-step {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  justify-items: center;
   gap: 5px;
   min-width: 0;
-  font-size: 13.4px;
-  line-height: 1.22;
+  min-height: 0;
+  padding: 7px 8px;
+  border-block: 1px solid var(--border-light);
+  background: var(--bg-paper);
+  font-size: 12.9px;
+  line-height: 1.17;
   text-align: center;
-}
-
-.page-651 .build-arrow {
-  text-align: center;
-  color: var(--title-blue);
-  font-size: 18px;
-  font-weight: 700;
-}
-
-.page-651 .build-slot {
-  width: 60px;
-  min-width: 60px;
-}
-
-.page-651 .build-slot.small {
-  width: 44px;
-  min-width: 44px;
-}
-
-.page-651 .final-check {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 27px;
-  padding-top: 4px;
-  border-top: 1px solid var(--border-light);
-  font-size: 13.5px;
-  line-height: 1.2;
 }
 
 @media print {
-  .page-651 .compact-worked-example,
-  .page-651 .direct-card,
-  .page-651 .reverse-card,
-  .page-651 .error-card,
-  .page-651 .build-equation-card {
+  .page-651 .contrast-card,
+  .page-651 .case-card,
+  .page-651 .equation-case-card,
+  .page-651 .root-practice-card,
+  .page-651 .error-card {
     break-inside: avoid;
   }
 }
