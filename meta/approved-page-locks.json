@@ -7,7 +7,7 @@
     {
       "workbookPage": 1,
       "status": "locked",
-      "reason": "עמוד 1 מאושר לפי SOURCE_OF_TRUTH.md; לאחר שינוי המובייל הרוחבי נשמרת פריסת A4 והעמוד מוקטן בשלמותו בנייד ללא גלילה אופקית.",
+      "reason": "עמוד 1 מאושר לפי SOURCE_OF_TRUTH.md; לאחר שינוי המובייל הרוחבי נשמרת פריסת A4 והעמוד מוקטן וממורכז בשלמותו בנייד ללא גלילה אופקית.",
       "files": [
         {"path": "עמוד-634.html", "gitBlobSha": "cc3deb28f58a425677d886dc8d9a1a9ceca20642"},
         {"path": "styles/pages/עמוד-634.css", "gitBlobSha": "c0981c6454921cf11968c3c210b62271b5975535"}
@@ -20,15 +20,15 @@
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "13d265cfde6972b491d1d7c33c45150ed8cf75e2"},
+        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ce7f538b1aa93813fd87cdb36e062ca799566bd5"},
         {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "a60827eddfefb7d4fbf8e14e1096e3e58430bf5c"}
+        {"path": "pythagoras-workbook.js", "gitBlobSha": "5b0c490ae92390565a2d95dadea25659ac902c38"}
       ]
     },
     {
       "workbookPage": 2,
       "status": "locked",
-      "reason": "עמוד 2 מאושר לפי SOURCE_OF_TRUTH.md; לאחר שינוי המובייל הרוחבי נשמרת פריסת A4 והעמוד מוקטן בשלמותו בנייד ללא גלילה אופקית.",
+      "reason": "עמוד 2 מאושר לפי SOURCE_OF_TRUTH.md; לאחר שינוי המובייל הרוחבי נשמרת פריסת A4 והעמוד מוקטן וממורכז בשלמותו בנייד ללא גלילה אופקית.",
       "files": [
         {"path": "עמוד-635.html", "gitBlobSha": "34947a4fad428b1d46464c50548bc7eb7a11e6d6"},
         {"path": "styles/pages/עמוד-635.css", "gitBlobSha": "6132e7788f41b479207c6da0640937e991b93985"}
@@ -41,15 +41,15 @@
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "13d265cfde6972b491d1d7c33c45150ed8cf75e2"},
+        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ce7f538b1aa93813fd87cdb36e062ca799566bd5"},
         {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "a60827eddfefb7d4fbf8e14e1096e3e58430bf5c"}
+        {"path": "pythagoras-workbook.js", "gitBlobSha": "5b0c490ae92390565a2d95dadea25659ac902c38"}
       ]
     },
     {
       "workbookPage": 3,
       "status": "locked",
-      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md: ניצבים בלבד, 4 משימות פתיחה שונות, 2 משימות בנייה, 3 משימות למציאת הניצב השני ושאלה אמריקאית; תיקון המובייל עבר לשכבה המשותפת ואין עוד override גלובלי מקומי בעמוד 3.",
+      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md: ניצבים בלבד, 4 משימות פתיחה שונות, 2 משימות בנייה, 3 משימות למציאת הניצב השני ושאלה אמריקאית; המובייל מטופל בשכבה המשותפת ומציג את מלוא הדף ממורכז ללא חיתוך צדדים.",
       "files": [
         {"path": "עמוד-636.html", "gitBlobSha": "58a4ecf5663740e792445763c68f12f886274151"},
         {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "2c39e5bee1c553eb5415ebbfbeefaa0bd981cd1b"}
@@ -62,15 +62,15 @@
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "13d265cfde6972b491d1d7c33c45150ed8cf75e2"},
+        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ce7f538b1aa93813fd87cdb36e062ca799566bd5"},
         {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "a60827eddfefb7d4fbf8e14e1096e3e58430bf5c"}
+        {"path": "pythagoras-workbook.js", "gitBlobSha": "5b0c490ae92390565a2d95dadea25659ac902c38"}
       ]
     },
     {
       "workbookPage": 5,
       "status": "locked",
-      "reason": "עמוד 5 מאושר לפי SOURCE_OF_TRUTH.md; לאחר שינוי המובייל הרוחבי נשמרת פריסת A4 והעמוד מוקטן בשלמותו בנייד ללא גלילה אופקית.",
+      "reason": "עמוד 5 מאושר לפי SOURCE_OF_TRUTH.md; לאחר שינוי המובייל הרוחבי נשמרת פריסת A4 והעמוד מוקטן וממורכז בשלמותו בנייד ללא גלילה אופקית.",
       "files": [
         {"path": "עמוד-638.html", "gitBlobSha": "586ef9cdd6c3ef27fa3a8114dbaddad0fdc0c142"},
         {"path": "styles/pages/עמוד-638.css", "gitBlobSha": "0d96f181e7c9a0f389f6c8fd65478182bdb1d129"}
@@ -83,9 +83,9 @@
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "13d265cfde6972b491d1d7c33c45150ed8cf75e2"},
+        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ce7f538b1aa93813fd87cdb36e062ca799566bd5"},
         {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "a60827eddfefb7d4fbf8e14e1096e3e58430bf5c"}
+        {"path": "pythagoras-workbook.js", "gitBlobSha": "5b0c490ae92390565a2d95dadea25659ac902c38"}
       ]
     }
   ]
