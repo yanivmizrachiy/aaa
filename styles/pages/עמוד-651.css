@@ -13,6 +13,30 @@
   box-sizing: border-box;
 }
 
+/* כותרת עמוד 9 נשארת שורה אחת בתוך גבולות הכותרת בכל תצוגה. */
+.page-651 > .header-container {
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-651 > .header-container > .page-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: calc(100% - 44px);
+  margin: 0;
+  font-size: 21.5px;
+  line-height: 1.12;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.page-651 > .header-container > .page-number {
+  flex: 0 0 32px;
+  width: 32px;
+  min-width: 32px;
+}
+
 /* הדוגמה העליונה נשארת כולה בתוך המסגרת: תווית מימין, פתרון אנכי במרכז. */
 .page-651 .compact-worked-example {
   width: 100%;
