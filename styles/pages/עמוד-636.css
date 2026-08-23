@@ -263,10 +263,6 @@
   background: #fff;
 }
 
-@media (max-width: 760px) {
-  .page-636 .legs-concept-row { font-size: 14.4px; gap: 5px; }
-}
-
 @media print {
   .page-636 .leg-card,
   .page-636 .construction-task,
