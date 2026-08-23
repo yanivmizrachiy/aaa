@@ -1,59 +1,219 @@
 @import url("../topics/pythagoras-foundations.css");
 
+/* עמוד 5: חזרה מסכמת על ניצבים ויתר — היררכיה שטוחה, קומפקטית ומדויקת. */
 .page-638 .question-block {
+  display: grid;
+  grid-template-rows: auto auto minmax(238px, 1.3fr) auto minmax(126px, .72fr) auto;
+  gap: 9px;
+  align-content: stretch;
+  min-height: 0;
+}
+
+/* שורת המושג העליונה תואמת לעמודים הקודמים: שורה דקה ולא תיבת הסבר גבוהה. */
+.page-638 .foundation-note-one-line {
+  display: flex;
+  align-items: center;
   justify-content: flex-start;
-  gap: 12px;
+  gap: 5px;
+  flex-wrap: nowrap;
+  min-height: 34px;
+  padding: 5px 11px;
+  font-size: 15.2px;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
-/* הגובה הפנוי הופך לשטח פעילות בתוך הכרטיסים ובנימוק, לא לרווח בין סעיפים. */
-.page-638 .foundation-grid,
-.page-638 .length-rule-check {
-  flex: 1 1 auto;
+.page-638 .foundation-fill-inline {
+  display: inline-block;
+  height: 21px;
+  border-radius: 5px;
+  flex: 0 0 auto;
+}
+
+.page-638 .concept-legs-fill { width: 86px; }
+.page-638 .concept-hyp-fill { width: 70px; }
+
+.page-638 .compact-instruction {
+  margin: 0;
   min-height: 0;
 }
 
-.page-638 .foundation-grid {
-  grid-auto-rows: minmax(0, 1fr);
+.page-638 .compact-instruction .q-text {
+  line-height: 1.25;
 }
 
-.page-638 .foundation-card {
+/* ארבעת השרטוטים מוצגים בשורה אחת כדי לאפשר השוואה חזותית מיידית. */
+.page-638 .page5-triangle-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+  height: 100%;
   min-height: 0;
-  padding: 6px 8px;
-  gap: 4px;
+}
+
+.page-638 .triangle-card {
+  height: 100%;
+  min-height: 0;
+  justify-content: space-between;
+  padding: 8px 7px;
+  gap: 5px;
 }
 
 .page-638 .foundation-svg {
-  height: 118px;
+  width: 100%;
+  max-width: 176px;
+  height: 122px;
+  shape-rendering: geometricPrecision;
 }
 
-.page-638 .foundation-card p {
-  margin: 0;
-  font-size: 15px;
+.page-638 .foundation-svg .edge,
+.page-638 .foundation-svg .mark {
+  vector-effect: non-scaling-stroke;
 }
 
-.page-638 .statement-grid {
+.page-638 .edge-answers {
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px 12px;
-  margin-top: 4px;
+  gap: 5px;
+  font-size: 14px;
 }
 
-.page-638 .statement-grid .statement:last-child {
-  grid-column: 1 / -1;
+.page-638 .answer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 27px;
+  white-space: nowrap;
 }
 
-.page-638 .length-rule-check {
-  grid-template-rows: auto auto auto minmax(56px, 1fr);
+.page-638 .edge-answer-fill,
+.page-638 .hyp-answer-fill,
+.page-638 .length-fill,
+.page-638 .claim-fill {
+  height: 24px;
+  border-radius: 5px;
 }
 
-.page-638 .length-rule-check .statement {
-  background: var(--bg-paper);
-  font-size: 15px;
-  padding: 7px 10px;
-}
+.page-638 .edge-answer-fill { width: 45px; }
+.page-638 .hyp-answer-fill { width: 52px; }
 
-.page-638 .length-rule-check .reason-wrap,
-.page-638 .length-rule-check .reason-space {
+/* תרגול אורכים: שלוש פעולות שונות במקום שלוש שאלות זהות. */
+.page-638 .length-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 9px;
   min-height: 0;
   height: 100%;
+}
+
+.page-638 .length-card {
+  min-width: 0;
+  border: 1px solid var(--border-light);
+  border-radius: 9px;
+  background: var(--bg-paper);
+  padding: 10px 11px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 9px;
+}
+
+.page-638 .side-triple {
+  font-family: 'PytTeX', Georgia, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: .2px;
+}
+
+.page-638 .length-answer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-height: 28px;
+  font-size: 14.4px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.page-638 .length-fill { width: 48px; }
+
+/* בדיקת הבנה מסכמת — שורה שטוחה, ללא תיבה בתוך תיבה וללא נימוק פתוח מיותר. */
+.page-638 .claim-check {
+  display: grid;
+  gap: 7px;
+  padding: 8px 11px;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  background: linear-gradient(90deg, transparent, var(--bg-subtle) 18%, var(--bg-subtle) 82%, transparent);
+}
+
+.page-638 .claim-statement {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.page-638 .claim-response-row {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 28px;
+  font-size: 14.5px;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.page-638 .claim-prompt { font-weight: 600; }
+
+.page-638 .claim-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.page-638 .claim-option .check {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.page-638 .claim-completion {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-inline-start: auto;
+  white-space: nowrap;
+}
+
+.page-638 .claim-fill { width: 86px; }
+
+@media (max-width: 760px) {
+  .page-638 .foundation-note-one-line {
+    font-size: 14.2px;
+    gap: 4px;
+    padding-inline: 8px;
+  }
+
+  .page-638 .concept-legs-fill { width: 76px; }
+  .page-638 .concept-hyp-fill { width: 62px; }
+}
+
+@media (max-width: 520px) {
+  .page-638 .foundation-note-one-line {
+    flex-wrap: wrap;
+    white-space: normal;
+    row-gap: 6px;
+  }
+}
+
+@media print {
+  .page-638 .foundation-note-one-line,
+  .page-638 .triangle-card,
+  .page-638 .length-card,
+  .page-638 .claim-check {
+    break-inside: avoid;
+  }
 }
