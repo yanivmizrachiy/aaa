@@ -114,11 +114,8 @@ function normalizePage(main, pageMeta, total) {
 }
 
 function updateLoadStatus(total) {
-  if (failedPages > 0) {
-    statusEl.textContent = `${loadedPages} / ${total} דפים נטענו · ${failedPages} נכשלו`;
-  } else {
-    statusEl.textContent = `${loadedPages} / ${total} דפים נטענו`;
-  }
+  if (failedPages > 0) statusEl.textContent = `${loadedPages} / ${total} דפים נטענו · ${failedPages} נכשלו`;
+  else statusEl.textContent = `${loadedPages} / ${total} דפים נטענו`;
 }
 
 function updateNavigationDisplay(page) {
@@ -134,10 +131,8 @@ function installToolbarOffset() {
     const height = toolbar?.getBoundingClientRect().height ?? 0;
     document.documentElement.style.setProperty('--pythagoras-toolbar-offset', `${Math.ceil(height + 8)}px`);
   };
-
   sync();
   if (!toolbar) return;
-
   if (typeof ResizeObserver === 'function') {
     const observer = new ResizeObserver(sync);
     observer.observe(toolbar);
@@ -240,95 +235,84 @@ function installNavigation() {
       .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
     if (!visible) return;
     const local = Number(visible.target.dataset.localPage);
-    if (Number.isFinite(local) && local !== activePage) {
-      setActivePage(local, { syncUrl: true });
-    }
+    if (Number.isFinite(local) && local !== activePage) setActivePage(local, { syncUrl: true });
   }, { threshold: [0.25, 0.5, 0.75] });
 
   for (const wrapper of document.querySelectorAll('.workbook-page-wrap')) observer.observe(wrapper);
 }
 
 function installResponsiveScaling() {
-  let lastWidth = -1;
   let frame = 0;
 
-  const getViewportWidth = () => Math.max(
+  const viewportWidth = () => Math.max(
     1,
     Math.floor(window.visualViewport?.width || document.documentElement.clientWidth || window.innerWidth || 1),
   );
 
   const resetPage = (wrapper, page) => {
+    wrapper.style.height = '';
+    wrapper.style.overflow = '';
     page.style.position = '';
     page.style.left = '';
+    page.style.right = '';
     page.style.top = '';
     page.style.marginLeft = '';
     page.style.transform = '';
-    page.style.transformOrigin = '';
-    wrapper.style.width = '';
-    wrapper.style.height = '';
+    page.style.removeProperty('transform-origin');
   };
 
-  const applyScale = () => {
+  const fitPages = () => {
     frame = 0;
-    const currentWidth = getViewportWidth();
-    if (currentWidth === lastWidth) return;
-    lastWidth = currentWidth;
-
-    const mobileReader = currentWidth <= 720;
-    document.body.classList.toggle('mobile-reader', mobileReader);
+    const mobile = viewportWidth() <= 720;
+    document.body.classList.toggle('mobile-print-preview', mobile);
+    document.body.classList.remove('mobile-reader');
 
     for (const wrapper of document.querySelectorAll('.workbook-page-wrap')) {
       const page = wrapper.querySelector('.a4-page');
       if (!page) continue;
       resetPage(wrapper, page);
 
-      if (mobileReader) {
-        wrapper.style.width = `${Math.max(1, currentWidth - 12)}px`;
-        wrapper.style.height = 'auto';
-        continue;
-      }
-
-      const available = Math.max(1, Math.min(currentWidth - 24, 900));
+      const available = Math.max(1, wrapper.getBoundingClientRect().width);
       const canonicalWidth = page.offsetWidth;
       const canonicalHeight = page.offsetHeight;
       if (!canonicalWidth || !canonicalHeight) continue;
 
       const scale = Math.min(1, available / canonicalWidth);
-      wrapper.style.width = `${Math.min(available, canonicalWidth)}px`;
-      wrapper.style.height = `${canonicalHeight * scale}px`;
+      const scaledWidth = canonicalWidth * scale;
+      const scaledHeight = canonicalHeight * scale;
+      const left = Math.max(0, (available - scaledWidth) / 2);
+
+      wrapper.style.height = `${scaledHeight}px`;
+      wrapper.style.overflow = 'hidden';
       page.style.position = 'absolute';
-      page.style.left = '50%';
+      page.style.left = `${left}px`;
+      page.style.right = 'auto';
       page.style.top = '0';
-      page.style.marginLeft = `${-(canonicalWidth / 2)}px`;
-      page.style.transformOrigin = 'top center';
+      page.style.marginLeft = '0';
+      page.style.setProperty('transform-origin', 'top left', 'important');
       page.style.transform = `scale(${scale})`;
     }
   };
 
-  const scheduleScale = () => {
-    lastWidth = -1;
+  const scheduleFit = () => {
     if (frame) cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(applyScale);
+    frame = requestAnimationFrame(fitPages);
   };
 
   const resetForPrint = () => {
-    document.body.classList.remove('mobile-reader');
+    document.body.classList.remove('mobile-print-preview', 'mobile-reader');
     for (const wrapper of document.querySelectorAll('.workbook-page-wrap')) {
       const page = wrapper.querySelector('.a4-page');
       if (page) resetPage(wrapper, page);
     }
   };
 
-  const observer = new ResizeObserver(scheduleScale);
-  observer.observe(document.documentElement);
-  window.addEventListener('resize', scheduleScale, { passive: true });
-  window.addEventListener('orientationchange', scheduleScale, { passive: true });
-  window.visualViewport?.addEventListener('resize', scheduleScale, { passive: true });
-
+  window.addEventListener('resize', scheduleFit, { passive: true });
+  window.addEventListener('orientationchange', scheduleFit, { passive: true });
+  window.visualViewport?.addEventListener('resize', scheduleFit, { passive: true });
   window.addEventListener('beforeprint', resetForPrint);
-  window.addEventListener('afterprint', scheduleScale);
-
-  applyScale();
+  window.addEventListener('afterprint', scheduleFit);
+  fitPages();
 }
 
 async function typesetMath() {
