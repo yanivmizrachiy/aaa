@@ -73,8 +73,10 @@ const c = (n) => pageCss[n] || '';
 if (p(5).includes('שני הניצבים יוצרים את הזווית הישרה') && !p(5).includes('הניצבים נפגשים בזווית הישרה')) pass('עמוד 5: שני הניצבים יוצרים את הזווית הישרה בניסוח מתמטי מדויק.');
 else fail('עמוד 5: חזר ניסוח שגוי שלפיו הניצבים נפגשים בזווית.');
 
-if (c(6).includes('flex-direction: column;') && c(6).includes('.square-card:nth-child(-n+3) .square-fill')) pass('עמוד 6: תוצאות ריבוע יורדות שורה ורוחבי תשובה מותאמים.');
-else fail('עמוד 6: תוצאה־מתחת או התאמת רוחב נשברו.');
+const page6Fractions = ['\\left(\\frac{1}{2}\\right)^2=', '\\left(\\frac{3}{4}\\right)^2=', '\\left(\\frac{2}{3}\\right)^2=', '\\left(\\frac{5}{2}\\right)^2='];
+const page6CleanBoxes = c(6).includes('.page-639 .foundation-fill') && c(6).includes('box-shadow: none;') && c(6).includes('background: #fff;') && c(6).includes('border-radius: 4px;');
+if (c(6).includes('flex-direction: column;') && c(6).includes('.square-card:nth-child(-n+3) .square-fill') && p(6).includes('ניתן להיעזר במחשבון.') && page6Fractions.every((t) => p(6).includes(t)) && page6CleanBoxes) pass('עמוד 6: תוצאה מתחת, שברים, ניסוח מחשבון ותיבות נקיות נשמרים.');
+else fail('עמוד 6: נפגעו תוצאה־מתחת, תרגילי השברים, ניסוח המחשבון או סגנון התיבות הנקי.');
 
 if (p(7).includes('match-board') && p(7).includes('error-grid') && c(7).includes('flex-direction: column;')) pass('עמוד 7: גשר מגוון ותוצאה־מתחת נשמרים.');
 else fail('עמוד 7: מבנה הגשר נפגע.');
