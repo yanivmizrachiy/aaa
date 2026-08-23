@@ -13,40 +13,64 @@
   box-sizing: border-box;
 }
 
-/* דוגמה אנכית: שלבי פתרון שורה-שורה ושני פתרונות, ללא שרשרת אופקית. */
+/* הדוגמה העליונה נשארת כולה בתוך המסגרת: תווית מימין, פתרון אנכי במרכז. */
 .page-651 .compact-worked-example {
-  padding: 5px 9px;
-  min-height: 0;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 112px;
+  padding: 8px 12px 9px;
+  box-sizing: border-box;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 62px minmax(0, 1fr);
   align-items: start;
-  gap: 2px;
+  align-content: start;
+  column-gap: 10px;
+  row-gap: 0;
 }
 
 .page-651 .compact-worked-example .example-label {
   margin: 0;
-  padding: 0;
+  padding: 2px 0 0;
   font-size: 14.5px;
-  line-height: 1.15;
+  line-height: 1.2;
   text-align: right;
+  align-self: start;
 }
 
 .page-651 .compact-worked-example .solution-stack {
-  gap: 1px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  gap: 2px;
+  align-content: start;
+  justify-items: center;
+  box-sizing: border-box;
 }
 
 .page-651 .compact-worked-example .solution-step {
+  width: 100%;
+  min-width: 0;
+  min-height: 19px;
   font-size: 16px;
-  line-height: 1.14;
-  min-height: 18px;
+  line-height: 1.18;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .page-651 .compact-worked-example .final-answer {
-  margin-top: 1px;
-  padding: 2px 12px;
+  max-width: 100%;
+  margin-top: 2px;
+  padding: 3px 12px;
+  box-sizing: border-box;
   font-size: 16px;
-  line-height: 1.15;
-  border-width: 1.5px;
+  line-height: 1.18;
+  text-align: center;
+}
+
+.page-651 .compact-worked-example mjx-container {
+  max-width: 100%;
+  margin-block: 0 !important;
 }
 
 .page-651 .q-main {
