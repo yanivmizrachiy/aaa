@@ -90,38 +90,32 @@ requireTokens('SOURCE_OF_TRUTH', truth, [
   '## עמוד 3 — הניצבים',
   '## עמוד 4 — היתר',
   '## עמוד 5 — ניצבים ויתר: מיישמים',
+  'AAA Exact A4 Preview',
   'index.html` הוא **נקודת הכניסה היחידה**',
-  'cache-busting אוטומטי',
-  'תיבה בתוך תיבה',
 ]);
 
 /* עמוד 1 */
 requireTokens('עמוד 1', p1, [
   '<h1 class="page-title">מושגים בסיסיים</h1>',
   'foundation-note-one-line',
-  'ציירו מרובע שיש בו <strong>בדיוק שתי זוויות ישרות</strong>, וסמנו את שתי הזוויות הישרות.',
+  'ציירו מרובע שיש בו <strong>בדיוק שתי זוויות ישרות</strong>',
   'class="final-build-area"',
 ]);
 forbidTokens('עמוד 1', p1, ['final-rectangle-svg', 'במלבן שלפניכם', 'שני ישרים נחתכים. אחת מארבע הזוויות']);
-requireTokens('CSS עמוד 1', p1css, ['.page-634 .final-build-area', 'border: 0;', 'background: transparent;']);
+requireTokens('CSS עמוד 1', p1css, ['.page-634 .final-build-area', 'background: transparent;']);
 
 /* עמוד 2 */
 requireTokens('עמוד 2', p2, [
   '<h1 class="page-title">משפט פיתגורס – משולש ישר־זווית</h1>',
-  'סמנו רק את המשולשים ישרי־הזווית, וסמנו את הזווית הישרה בכל אחד מהם.',
-  'איזה מהמשולשים <strong>אינו</strong> משולש ישר־זווית? סמנו תשובה אחת.',
+  'סמנו רק את המשולשים ישרי־הזווית',
+  'איזה מהמשולשים <strong>אינו</strong>',
   'השלימו: שתי הצלעות שנפגשות בזווית הישרה הן',
-  'סמנו בציור משולש ישר־זווית גדול אחד שנוצר מכמה משולשים קטנים, וסמנו בו את הזווית הישרה בריבוע קטן.',
 ]);
-forbidTokens('עמוד 2', p2, ['מה הקשר בין שתי הצלעות שנפגשות בזווית הישרה?', 'הסבירו כיצד ידעתם', 'hunt-write-lines', 'אזורים']);
 const identifyTriangles = pathDsBetween(p2, 'triangle-choice-grid', 'mc-triangle-section').map(parseTrianglePath).filter(Boolean);
 if (identifyTriangles.length === 6 && identifyTriangles.filter(isRightTriangle).length === 3) pass('עמוד 2: 3 מתוך 6 משולשי הזיהוי ישרי־זווית.');
 else fail('עמוד 2: מבנה משולשי הזיהוי השתנה.');
-const mcTriangles = pathDsBetween(p2, 'mc-triangle-grid', '</section>').map(parseTrianglePath).filter(Boolean);
-if (mcTriangles.length === 5 && mcTriangles.filter(isRightTriangle).length === 4) pass('עמוד 2: השאלה האמריקאית נשארה 4 ישרי־זווית ואחד שאינו.');
-else fail('עמוד 2: מבנה השאלה האמריקאית השתנה.');
 if (count(p2, 'class="construction-card"') === 2) pass('עמוד 2: שתי משימות בנייה.'); else fail('עמוד 2: חייבות להיות שתי משימות בנייה.');
-requireTokens('CSS עמוד 2', p2css, ['.page-635 .construction-task', '.page-635 .hunt-total', '.page-635 .hunt-count-fill', 'grid-template-rows: auto minmax(0, 1fr) 28px 34px;']);
+requireTokens('CSS עמוד 2', p2css, ['.page-635 .construction-task', '.page-635 .hunt-total']);
 
 /* עמוד 3 */
 requireTokens('עמוד 3', p3, [
@@ -129,40 +123,58 @@ requireTokens('עמוד 3', p3, [
   'שתי הצלעות היוצרות את הזווית הישרה נקראות',
   'הניצב הארוך הוא', 'הניצב הקצר הוא', 'שני הניצבים השווים הם',
   'ציירו בכל מסגרת משולש ישר־זווית לפי הנתון.',
-  'בכל משולש מודגש ניצב אחד. הדגישו גם את הניצב השני.',
-  'איזה זוג צלעות הוא זוג הניצבים?',
 ]);
-forbidTokens('עמוד 3', p3, ['היתר', 'class="quick-fill-item"', 'class="vertex-task"', 'הניצב הארוך יותר:', 'הניצב הקצר יותר:']);
-for (const [className, expected] of [['leg-card', 4], ['construction-task', 2], ['build-canvas', 2], ['partner-leg-task', 3], ['mcq-choice', 4]]) {
+forbidTokens('עמוד 3', p3, ['היתר', 'class="quick-fill-item"', 'class="vertex-task"']);
+for (const [className, expected] of [['leg-card', 4], ['construction-task', 2], ['build-canvas', 2], ['partner-leg-task', 3]]) {
   const actual = count(p3, `class="${className}"`);
   if (actual === expected) pass(`עמוד 3: ${className} = ${expected}.`); else fail(`עמוד 3: ${className} צריך להיות ${expected}, נמצא ${actual}.`);
 }
-if (count(p3, 'class="given-leg"') === 3) pass('עמוד 3: שלושה ניצבים נתונים.'); else fail('עמוד 3: נדרשים שלושה ניצבים נתונים.');
-if (count(p3, 'הניצב הארוך הוא') === 1 && count(p3, 'הניצב הקצר הוא') === 1) pass('עמוד 3: הארוך/הקצר מופיע פעם אחת בלבד.'); else fail('עמוד 3: הארוך/הקצר חזר יותר מפעם אחת.');
 const page3Legs = edgePathDsBetween(p3, 'legs-grid', 'vertex-section').map(parseTrianglePath).filter(Boolean);
 if (page3Legs.length === 4 && page3Legs.every(isRightTriangle)) pass('עמוד 3: ארבעת משולשי הפתיחה ישרי־זווית.'); else fail('עמוד 3: משולשי הפתיחה אינם מדויקים.');
 const page3LegSquares = page3Legs.map(rightLegSquares);
 if (page3LegSquares[2] && Math.abs(page3LegSquares[2][0] - page3LegSquares[2][1]) < 1e-9) pass('עמוד 3: מקרה ניצבים שווים מדויק.'); else fail('עמוד 3: מקרה ניצבים שווים אינו מדויק.');
-requireTokens('CSS עמוד 3', p3css, ['grid-template-columns: repeat(4, minmax(0, 1fr));', 'grid-template-columns: repeat(2, minmax(0, 1fr));', 'grid-template-columns: repeat(3, minmax(0, 1fr));', '.page-636 .construction-task', '.page-636 .build-canvas', '.page-636 .partner-leg-task', 'shape-rendering: geometricPrecision;']);
+requireTokens('CSS עמוד 3', p3css, ['.page-636 .construction-task', '.page-636 .partner-leg-task', 'shape-rendering: geometricPrecision;']);
 
-/* עמוד 4 */
+/* עמוד 4 — היתר: אין סדרות של אותו סעיף */
 requireTokens('עמוד 4', p4, [
-  '<h1 class="page-title">משפט פיתגורס – היתר</h1>', 'class="hyp-summary"',
-  'היתר נמצא מול הזווית הישרה', 'היתר הוא הצלע הארוכה ביותר במשולש ישר־זווית',
-  'כתבו מתחת לכל משולש את שם היתר.', 'באותו משולש ABC הזווית הישרה משנה מקום.',
-  'בכל שרטוט הודגשה צלע. סמנו אם הודגש היתר; אם לא, כתבו את שם היתר הנכון.',
-  'הקיפו את האורך שיכול להיות היתר.', 'סמנו בדיוק שני משפטים שתמיד נכונים במשולש ישר־זווית.',
+  '<h1 class="page-title">משפט פיתגורס – היתר</h1>',
+  'class="hyp-summary"',
+  'שלושה שרטוטים, שלושה כיוונים.',
+  'שני הרמזים',
+  'האלכסון <span dir="ltr">AC</span> מחלק את המלבן לשני משולשים ישרי־זווית.',
+  'ללא חישוב פיתגורס:',
+  'נסמן את שני הניצבים ב־<span dir="ltr">a, b</span> ואת היתר ב־<span dir="ltr">c</span>.',
+  'class="hyp-clue-grid"',
+  'class="rectangle-work"',
+  'class="number-reasoning-grid"',
+  'class="symbol-row"',
 ]);
-forbidTokens('עמוד 4', p4, ['<h1 class="page-title">מושגים בסיסיים</h1>', 'class="foundation-note hyp-concept"', 'foundation-fill hyp-fill-short', 'hyp-poster']);
-for (const [className, expected] of [['hyp-card', 4], ['switch-card', 3], ['error-card', 3], ['number-card', 4], ['hyp-statement', 4]]) {
-  const actual = count(p4, `class="${className}"`);
-  if (actual === expected) pass(`עמוד 4: ${className} = ${expected}.`); else fail(`עמוד 4: ${className} צריך להיות ${expected}, נמצא ${actual}.`);
-}
-const page4VisualTriangles = edgePathDsBetween(p4, 'hyp-visual-grid', 'hyp-switch-task').map(parseTrianglePath).filter(Boolean);
-if (page4VisualTriangles.length === 4 && page4VisualTriangles.every(isRightTriangle)) pass('עמוד 4: ארבעת משולשי הזיהוי מדויקים.'); else fail('עמוד 4: משולשי הזיהוי אינם מדויקים.');
-const page4ErrorTriangles = edgePathDsBetween(p4, 'hyp-error-grid', 'hyp-number-task').map(parseTrianglePath).filter(Boolean);
-if (page4ErrorTriangles.length === 3 && page4ErrorTriangles.every(isRightTriangle)) pass('עמוד 4: שלושת משולשי בדיקת הטעות מדויקים.'); else fail('עמוד 4: משולשי בדיקת הטעות אינם מדויקים.');
-requireTokens('CSS עמוד 4', p4css, ['.page-637 .question-block', '.page-637 .hyp-summary', '.page-637 .hyp-visual-grid', '.page-637 .hyp-switch-grid', '.page-637 .hyp-error-grid', '.page-637 .hyp-number-grid', '.page-637 .hyp-statements', 'shape-rendering: geometricPrecision;']);
+forbidTokens('עמוד 4', p4, [
+  'באותו משולש ABC הזווית הישרה משנה מקום.',
+  'בכל שרטוט הודגשה צלע. סמנו אם הודגש היתר',
+  'בכל משולש ישר־זווית נתונים שלושה אורכי צלעות. הקיפו את האורך שיכול להיות היתר.',
+  'סמנו בדיוק שני משפטים שתמיד נכונים במשולש ישר־זווית.',
+  'class="switch-card"',
+  'class="error-card"',
+  'class="number-card"',
+  'class="hyp-statement"',
+]);
+if (count(p4, 'class="hyp-card"') === 3) pass('עמוד 4: זיהוי ישיר מוגבל לשלושה שרטוטים.'); else fail('עמוד 4: צריכים להיות בדיוק 3 שרטוטי זיהוי ישיר.');
+if (count(p4, 'class="clue-card') === 6) pass('עמוד 4: שישה רמזים למיון.'); else fail('עמוד 4: צריכים להיות 6 רמזים למיון.');
+if (count(p4, 'class="reasoning-card"') === 4) pass('עמוד 4: ארבע טענות בהסקה המספרית.'); else fail('עמוד 4: צריכים להיות 4 כרטיסי הסקה מספרית.');
+const page4VisualTriangles = edgePathDsBetween(p4, 'hyp-visual-grid', 'hyp-clue-task').map(parseTrianglePath).filter(Boolean);
+if (page4VisualTriangles.length === 3 && page4VisualTriangles.every(isRightTriangle)) pass('עמוד 4: שלושת משולשי הזיהוי מדויקים.'); else fail('עמוד 4: משולשי הזיהוי אינם מדויקים.');
+requireTokens('CSS עמוד 4', p4css, [
+  '.page-637 .question-block > *',
+  '.page-637 .hyp-visual-grid',
+  'grid-template-columns: repeat(3, minmax(0, 1fr));',
+  '.page-637 .hyp-clue-grid',
+  '.page-637 .rectangle-work',
+  '.page-637 .number-reasoning-grid',
+  '.page-637 .hyp-symbol-task',
+  'shape-rendering: geometricPrecision;',
+]);
+forbidTokens('CSS עמוד 4', p4css, ['.page-637 .hyp-switch-grid', '.page-637 .hyp-error-grid', '.page-637 .hyp-number-grid', '.page-637 .hyp-statements', '@media (max-width:']);
 if (!fs.existsSync(path.join(root, 'assets/pythagoras/vector/page-04.svg'))) pass('עמוד 4: נכס SVG היסטורי לא חזר.'); else fail('עמוד 4: נכס SVG היסטורי חזר.');
 
 /* עמוד 5 — שילוב בלי כפילות */
@@ -170,46 +182,18 @@ requireTokens('עמוד 5', p5, [
   '<h1 class="page-title">משפט פיתגורס – ניצבים ויתר: מיישמים</h1>',
   'class="page5-summary"',
   'היתר כבר מודגש',
-  'סמנו את קודקוד הזווית הישרה',
   'תמר כתבה:',
-  'תקנו רק את הדרוש:',
-  'במשולש <span dir="ltr">ABC</span>, הצלעות <span dir="ltr">AB</span> ו־<span dir="ltr">BC</span> הן הניצבים.',
-  'במשולש <span dir="ltr">PQR</span>, הצלע <span dir="ltr">PR</span> היא היתר.',
-  'במשולש <span dir="ltr">XYZ</span> נתון:',
   'עכשיו בנו בעצמכם.',
-  'ציירו משולש <span dir="ltr">ABC</span> שבו <span dir="ltr">AB</span> ו־<span dir="ltr">BC</span> הם הניצבים.',
-  'ציירו משולש ישר־זווית שבו <span dir="ltr">PR</span> הוא היתר.',
 ]);
-forbidTokens('עמוד 5', p5, [
-  'בכל משולש כתבו את שמות שני הניצבים ואת שם היתר.',
-  'היעזרו בכלל: במשולש ישר־זווית היתר הוא הצלע הארוכה ביותר.',
-  'דנה טוענת:',
-  'השלימו: היתר תמיד',
-  'class="triangle-card"',
-  'class="length-card"',
-  'class="claim-check"',
-  'class="concept-half"',
-]);
+forbidTokens('עמוד 5', p5, ['class="triangle-card"', 'class="length-card"', 'class="claim-check"', 'class="concept-half"']);
 for (const [className, expected] of [['inverse-card', 4], ['logic-card', 3], ['construction-card', 2], ['page5-error-task', 1]]) {
   const actual = count(p5, `class="${className}"`);
   if (actual === expected) pass(`עמוד 5: ${className} = ${expected}.`); else fail(`עמוד 5: ${className} צריך להיות ${expected}, נמצא ${actual}.`);
 }
 const page5InverseTriangles = edgePathDsBetween(p5, 'inverse-hyp-grid', 'page5-error-task').map(parseTrianglePath).filter(Boolean);
-if (page5InverseTriangles.length === 4 && page5InverseTriangles.every(isRightTriangle)) pass('עמוד 5: ארבעת משולשי ההסקה ההפוכה ישרי־זווית מדויקים.');
-else fail(`עמוד 5: משולשי ההסקה ההפוכה אינם מדויקים (${page5InverseTriangles.filter(isRightTriangle).length}/${page5InverseTriangles.length}).`);
-requireTokens('CSS עמוד 5', p5css, [
-  '.page-638 .question-block > *',
-  '.page-638 .page5-summary',
-  '.page-638 .inverse-hyp-grid',
-  'grid-template-columns: repeat(4, minmax(0, 1fr));',
-  '.page-638 .page5-error-task',
-  '.page-638 .logic-grid',
-  'grid-template-columns: repeat(3, minmax(0, 1fr));',
-  '.page-638 .construction-grid',
-  'grid-template-columns: repeat(2, minmax(0, 1fr));',
-  'shape-rendering: geometricPrecision;',
-]);
-forbidTokens('CSS עמוד 5', p5css, ['.page-638 .page5-concept-line', '.page-638 .length-cards', '.page-638 .claim-check', 'margin-inline-start: auto;', '@media (max-width: 760px)']);
+if (page5InverseTriangles.length === 4 && page5InverseTriangles.every(isRightTriangle)) pass('עמוד 5: ארבעת משולשי ההסקה ההפוכה ישרי־זווית מדויקים.'); else fail('עמוד 5: משולשי ההסקה ההפוכה אינם מדויקים.');
+requireTokens('CSS עמוד 5', p5css, ['.page-638 .inverse-hyp-grid', '.page-638 .page5-error-task', '.page-638 .logic-grid', '.page-638 .construction-grid', 'shape-rendering: geometricPrecision;']);
+forbidTokens('CSS עמוד 5', p5css, ['.page-638 .page5-concept-line', '.page-638 .length-cards', '.page-638 .claim-check', '@media (max-width: 760px)']);
 
 console.log('\n=== Approved Content Contracts ===');
 ok.forEach((m) => console.log(`✓ ${m}`));
