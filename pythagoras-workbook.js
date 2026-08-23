@@ -257,39 +257,51 @@ function installResponsiveScaling() {
     Math.floor(window.visualViewport?.width || document.documentElement.clientWidth || window.innerWidth || 1),
   );
 
+  const resetPage = (wrapper, page) => {
+    page.style.position = '';
+    page.style.left = '';
+    page.style.top = '';
+    page.style.marginLeft = '';
+    page.style.transform = '';
+    page.style.transformOrigin = '';
+    wrapper.style.width = '';
+    wrapper.style.height = '';
+  };
+
   const applyScale = () => {
     frame = 0;
     const currentWidth = getViewportWidth();
     if (currentWidth === lastWidth) return;
     lastWidth = currentWidth;
-    const available = Math.max(1, Math.min(currentWidth - 12, 900));
+
+    const mobileReader = currentWidth <= 720;
+    document.body.classList.toggle('mobile-reader', mobileReader);
 
     for (const wrapper of document.querySelectorAll('.workbook-page-wrap')) {
       const page = wrapper.querySelector('.a4-page');
       if (!page) continue;
+      resetPage(wrapper, page);
 
-      page.style.position = 'static';
-      page.style.left = '';
-      page.style.top = '';
-      page.style.transform = 'none';
-      page.style.transformOrigin = 'top center';
-      wrapper.style.width = `${available}px`;
-      wrapper.style.height = '';
+      if (mobileReader) {
+        wrapper.style.width = `${Math.max(1, currentWidth - 12)}px`;
+        wrapper.style.height = 'auto';
+        continue;
+      }
 
+      const available = Math.max(1, Math.min(currentWidth - 24, 900));
       const canonicalWidth = page.offsetWidth;
       const canonicalHeight = page.offsetHeight;
       if (!canonicalWidth || !canonicalHeight) continue;
 
       const scale = Math.min(1, available / canonicalWidth);
-      const scaledHeight = canonicalHeight * scale;
-
-      wrapper.style.width = `${available}px`;
-      wrapper.style.height = `${scaledHeight}px`;
+      wrapper.style.width = `${Math.min(available, canonicalWidth)}px`;
+      wrapper.style.height = `${canonicalHeight * scale}px`;
       page.style.position = 'absolute';
       page.style.left = '50%';
       page.style.top = '0';
+      page.style.marginLeft = `${-(canonicalWidth / 2)}px`;
       page.style.transformOrigin = 'top center';
-      page.style.transform = `translateX(-50%) scale(${scale})`;
+      page.style.transform = `scale(${scale})`;
     }
   };
 
@@ -300,17 +312,10 @@ function installResponsiveScaling() {
   };
 
   const resetForPrint = () => {
+    document.body.classList.remove('mobile-reader');
     for (const wrapper of document.querySelectorAll('.workbook-page-wrap')) {
       const page = wrapper.querySelector('.a4-page');
-      if (page) {
-        page.style.position = '';
-        page.style.left = '';
-        page.style.top = '';
-        page.style.transform = '';
-        page.style.transformOrigin = '';
-      }
-      wrapper.style.width = '';
-      wrapper.style.height = '';
+      if (page) resetPage(wrapper, page);
     }
   };
 
