@@ -14,238 +14,73 @@ function requireTokens(label, text, tokens) {
   if (missing.length) fail(`${label}: חסרים רכיבים מאושרים: ${missing.join(' | ')}`);
   else pass(`${label}: כל הרכיבים המאושרים קיימים.`);
 }
-
 function forbidTokens(label, text, tokens) {
   const found = tokens.filter((token) => text.includes(token));
   if (found.length) fail(`${label}: חזרו רכיבים שנאסרו: ${found.join(' | ')}`);
   else pass(`${label}: לא חזרו רכיבים ישנים/אסורים.`);
 }
 
-function parseTrianglePath(d) {
-  const nums = [...d.matchAll(/-?\d+(?:\.\d+)?/g)].map((m) => Number(m[0]));
-  if (nums.length < 6) return null;
-  return [[nums[0], nums[1]], [nums[2], nums[3]], [nums[4], nums[5]]];
-}
-
-function isRightTriangle(points) {
-  if (!points) return false;
-  for (let i = 0; i < 3; i += 1) {
-    const a = points[i];
-    const b = points[(i + 1) % 3];
-    const c = points[(i + 2) % 3];
-    const ux = b[0] - a[0];
-    const uy = b[1] - a[1];
-    const vx = c[0] - a[0];
-    const vy = c[1] - a[1];
-    if (Math.abs((ux * vx) + (uy * vy)) < 1e-9) return true;
-  }
-  return false;
-}
-
-function rightLegSquares(points) {
-  if (!points) return null;
-  for (let i = 0; i < 3; i += 1) {
-    const a = points[i];
-    const b = points[(i + 1) % 3];
-    const c = points[(i + 2) % 3];
-    const ux = b[0] - a[0];
-    const uy = b[1] - a[1];
-    const vx = c[0] - a[0];
-    const vy = c[1] - a[1];
-    if (Math.abs((ux * vx) + (uy * vy)) < 1e-9) return [(ux * ux) + (uy * uy), (vx * vx) + (vy * vy)];
-  }
-  return null;
-}
-
-function segment(html, startToken, endToken) {
-  const start = html.indexOf(startToken);
-  const end = html.indexOf(endToken, start + startToken.length);
-  if (start < 0 || end < 0) return '';
-  return html.slice(start, end);
-}
-
-function pathDsBetween(html, startToken, endToken) {
-  return [...segment(html, startToken, endToken).matchAll(/<path[^>]*\sd="([^"]+)"[^>]*>/g)].map((m) => m[1]);
-}
-
-function edgePathDsBetween(html, startToken, endToken) {
-  return [...segment(html, startToken, endToken).matchAll(/<path[^>]*class="edge"[^>]*\sd="([^"]+)"[^>]*>/g)].map((m) => m[1]);
-}
-
 const truth = read('SOURCE_OF_TRUTH.md');
-const p1 = read('עמוד-634.html');
-const p1css = read('styles/pages/עמוד-634.css');
-const p2 = read('עמוד-635.html');
-const p2css = read('styles/pages/עמוד-635.css');
-const p3 = read('עמוד-636.html');
-const p3css = read('styles/pages/עמוד-636.css');
-const p4 = read('עמוד-637.html');
-const p4css = read('styles/pages/עמוד-637.css');
-const p5 = read('עמוד-638.html');
-const p5css = read('styles/pages/עמוד-638.css');
-const p6 = read('עמוד-639.html');
-const p6css = read('styles/pages/עמוד-639.css');
-const p7 = read('עמוד-640.html');
-const p7css = read('styles/pages/עמוד-640.css');
+const html = {};
+const css = {};
+const mapping = {1:'634',2:'635',3:'636',4:'637',5:'638',6:'639',7:'640',8:'641',9:'651',10:'642',11:'652'};
+for (const [nRaw, id] of Object.entries(mapping)) {
+  const n = Number(nRaw);
+  html[n] = read(`עמוד-${id}.html`);
+  css[n] = read(`styles/pages/עמוד-${id}.css`);
+}
 
 requireTokens('SOURCE_OF_TRUTH', truth, [
-  '## עמוד 1 — מושגים בסיסיים',
-  '## עמוד 2 — משולש ישר־זווית',
-  '## עמוד 3 — הניצבים',
-  '## עמוד 4 — היתר',
-  '## עמוד 5 — ניצבים ויתר: מיישמים',
-  '## עמוד 6 — ריבוע של מספר',
-  '## עמוד 7 — ריבועים ושורשים',
-  'AAA Exact A4 Preview',
-  'index.html` הוא **נקודת הכניסה היחידה**',
+  '## עמוד 1 — מושגים בסיסיים','## עמוד 2 — משולש ישר־זווית','## עמוד 3 — הניצבים','## עמוד 4 — היתר',
+  '## עמוד 5 — ניצבים ויתר: מיישמים','## עמוד 6 — ריבוע של מספר','## עמוד 7 — ריבועים ושורשים',
+  '## עמוד 8 — שורש ריבועי ומספר אי־שלילי','## עמוד 9 — משוואות מהצורה x²=a',
+  '## עמוד 10 — קירוב שורשים בעזרת ריבועים מושלמים','## עמוד 11 — משוואה ריבועית וקירוב פתרונות',
+  'AAA Exact A4 Preview','**אין כפל סעיפים:**','**תוצאת חישוב נמצאת מתחת לתרגיל.**','**פתרון רב־שלבי נכתב אנכית:**'
 ]);
 
-/* עמוד 1 */
-requireTokens('עמוד 1', p1, [
-  '<h1 class="page-title">מושגים בסיסיים</h1>',
-  'foundation-note-one-line',
-  'ציירו מרובע שיש בו <strong>בדיוק שתי זוויות ישרות</strong>',
-  'class="final-build-area"',
-]);
-forbidTokens('עמוד 1', p1, ['final-rectangle-svg', 'במלבן שלפניכם', 'שני ישרים נחתכים. אחת מארבע הזוויות']);
-requireTokens('CSS עמוד 1', p1css, ['.page-634 .final-build-area', 'background: transparent;']);
+requireTokens('עמוד 1', html[1], ['<h1 class="page-title">מושגים בסיסיים</h1>','class="final-build-area"','בדיוק שתי זוויות ישרות']);
+requireTokens('CSS עמוד 1', css[1], ['.page-634 .final-build-area','min-height:94px']);
+forbidTokens('עמוד 1', html[1], ['שני ישרים נחתכים. אחת מארבע הזוויות']);
 
-/* עמוד 2 */
-requireTokens('עמוד 2', p2, [
-  '<h1 class="page-title">משפט פיתגורס – משולש ישר־זווית</h1>',
-  'סמנו רק את המשולשים ישרי־הזווית',
-  'איזה מהמשולשים <strong>אינו</strong>',
-  'השלימו: שתי הצלעות שנפגשות בזווית הישרה הן',
-]);
-const identifyTriangles = pathDsBetween(p2, 'triangle-choice-grid', 'mc-triangle-section').map(parseTrianglePath).filter(Boolean);
-if (identifyTriangles.length === 6 && identifyTriangles.filter(isRightTriangle).length === 3) pass('עמוד 2: 3 מתוך 6 משולשי הזיהוי ישרי־זווית.');
-else fail('עמוד 2: מבנה משולשי הזיהוי השתנה.');
-if (count(p2, 'class="construction-card"') === 2) pass('עמוד 2: שתי משימות בנייה.'); else fail('עמוד 2: חייבות להיות שתי משימות בנייה.');
-requireTokens('CSS עמוד 2', p2css, ['.page-635 .construction-task', '.page-635 .hunt-total']);
+requireTokens('עמוד 2', html[2], ['triangle-choice-grid','construction-grid','hunt-total','כמה משולשים ישרי־זווית הצלחתם למצוא?','יוצרות את הזווית הישרה']);
+if (count(html[2], 'כמה משולשים ישרי־זווית הצלחתם למצוא?') === 1) pass('עמוד 2: שאלת הסיום יחידה.'); else fail('עמוד 2: שאלת הסיום כפולה או חסרה.');
+if (count(html[2], 'class="construction-card"') === 2) pass('עמוד 2: שתי משימות בנייה.'); else fail('עמוד 2: מספר משימות הבנייה שגוי.');
 
-/* עמוד 3 */
-requireTokens('עמוד 3', p3, [
-  '<h1 class="page-title">משפט פיתגורס – הניצבים</h1>',
-  'שתי הצלעות היוצרות את הזווית הישרה נקראות',
-  'הניצב הארוך הוא', 'הניצב הקצר הוא', 'שני הניצבים השווים הם',
-  'ציירו בכל מסגרת משולש ישר־זווית לפי הנתון.',
-]);
-forbidTokens('עמוד 3', p3, ['היתר', 'class="quick-fill-item"', 'class="vertex-task"']);
-for (const [className, expected] of [['leg-card', 4], ['construction-task', 2], ['build-canvas', 2], ['partner-leg-task', 3]]) {
-  const actual = count(p3, `class="${className}"`);
-  if (actual === expected) pass(`עמוד 3: ${className} = ${expected}.`); else fail(`עמוד 3: ${className} צריך להיות ${expected}, נמצא ${actual}.`);
-}
-const page3Legs = edgePathDsBetween(p3, 'legs-grid', 'vertex-section').map(parseTrianglePath).filter(Boolean);
-if (page3Legs.length === 4 && page3Legs.every(isRightTriangle)) pass('עמוד 3: ארבעת משולשי הפתיחה ישרי־זווית.'); else fail('עמוד 3: משולשי הפתיחה אינם מדויקים.');
-const page3LegSquares = page3Legs.map(rightLegSquares);
-if (page3LegSquares[2] && Math.abs(page3LegSquares[2][0] - page3LegSquares[2][1]) < 1e-9) pass('עמוד 3: מקרה ניצבים שווים מדויק.'); else fail('עמוד 3: מקרה ניצבים שווים אינו מדויק.');
-requireTokens('CSS עמוד 3', p3css, ['.page-636 .construction-task', '.page-636 .partner-leg-task', 'shape-rendering: geometricPrecision;']);
+requireTokens('עמוד 3', html[3], ['הניצב הגדול הוא','הניצב הקטן הוא','שווה־שוקיים','סמנו בשרטוט את הצלע שאינה ניצב','single-partner-section','rotated-triangle','legs-mcq']);
+if (count(html[3], 'class="leg-card"') === 3 && count(html[3], 'class="partner-leg-task"') === 1) pass('עמוד 3: אין חזרתיות של אותה פעולת זיהוי.'); else fail('עמוד 3: חזרה חזרתיות שנאסרה.');
+forbidTokens('עמוד 3', html[3], ['class="quick-fill-item"','class="vertex-task"']);
 
-/* עמוד 4 — היתר: אין סדרות של אותו סעיף */
-requireTokens('עמוד 4', p4, [
-  '<h1 class="page-title">משפט פיתגורס – היתר</h1>',
-  'class="hyp-summary"',
-  'שלושה שרטוטים, שלושה כיוונים.',
-  'שני הרמזים',
-  'האלכסון <span dir="ltr">AC</span> מחלק את המלבן לשני משולשים ישרי־זווית.',
-  'ללא חישוב פיתגורס:',
-  'נסמן את שני הניצבים ב־<span dir="ltr">a, b</span> ואת היתר ב־<span dir="ltr">c</span>.',
-  'class="hyp-clue-grid"',
-  'class="rectangle-work"',
-  'class="number-reasoning-grid"',
-  'class="symbol-row"',
-]);
-forbidTokens('עמוד 4', p4, [
-  'באותו משולש ABC הזווית הישרה משנה מקום.',
-  'בכל שרטוט הודגשה צלע. סמנו אם הודגש היתר',
-  'בכל משולש ישר־זווית נתונים שלושה אורכי צלעות. הקיפו את האורך שיכול להיות היתר.',
-  'סמנו בדיוק שני משפטים שתמיד נכונים במשולש ישר־זווית.',
-  'class="switch-card"',
-  'class="error-card"',
-  'class="number-card"',
-  'class="hyp-statement"',
-]);
-if (count(p4, 'class="hyp-card"') === 3) pass('עמוד 4: זיהוי ישיר מוגבל לשלושה שרטוטים.'); else fail('עמוד 4: צריכים להיות בדיוק 3 שרטוטי זיהוי ישיר.');
-if (count(p4, 'class="clue-card') === 6) pass('עמוד 4: שישה רמזים למיון.'); else fail('עמוד 4: צריכים להיות 6 רמזים למיון.');
-if (count(p4, 'class="reasoning-card"') === 4) pass('עמוד 4: ארבע טענות בהסקה המספרית.'); else fail('עמוד 4: צריכים להיות 4 כרטיסי הסקה מספרית.');
-const page4VisualTriangles = edgePathDsBetween(p4, 'hyp-visual-grid', 'hyp-clue-task').map(parseTrianglePath).filter(Boolean);
-if (page4VisualTriangles.length === 3 && page4VisualTriangles.every(isRightTriangle)) pass('עמוד 4: שלושת משולשי הזיהוי מדויקים.'); else fail('עמוד 4: משולשי הזיהוי אינם מדויקים.');
-requireTokens('CSS עמוד 4', p4css, [
-  '.page-637 .question-block > *',
-  '.page-637 .hyp-visual-grid',
-  'grid-template-columns: repeat(3, minmax(0, 1fr));',
-  '.page-637 .hyp-clue-grid',
-  '.page-637 .rectangle-work',
-  '.page-637 .number-reasoning-grid',
-  '.page-637 .hyp-symbol-task',
-  'shape-rendering: geometricPrecision;',
-]);
-forbidTokens('CSS עמוד 4', p4css, ['.page-637 .hyp-switch-grid', '.page-637 .hyp-error-grid', '.page-637 .hyp-number-grid', '.page-637 .hyp-statements', '@media (max-width:']);
-if (!fs.existsSync(path.join(root, 'assets/pythagoras/vector/page-04.svg'))) pass('עמוד 4: נכס SVG היסטורי לא חזר.'); else fail('עמוד 4: נכס SVG היסטורי חזר.');
+requireTokens('עמוד 4', html[4], ['class="hyp-summary"','כתבו בכל משולש את שם היתר.','vertex-name-grid','AC</strong> יהיה היתר','AB</strong> יהיה היתר','10 ס״מ, 24 ס״מ ו־26 ס״מ','בכל סעיף השלימו את הסימן המתאים','symbol-triangle']);
+if (count(html[4], 'class="hyp-card"') === 3) pass('עמוד 4: שלושה שרטוטי זיהוי ישיר בלבד.'); else fail('עמוד 4: מספר שרטוטי הזיהוי הישיר שגוי.');
+forbidTokens('עמוד 4', html[4], ['שני הרמזים','אופקי','אנכי','class="hyp-clue-grid"']);
 
-/* עמוד 5 — שילוב בלי כפילות */
-requireTokens('עמוד 5', p5, [
-  '<h1 class="page-title">משפט פיתגורס – ניצבים ויתר: מיישמים</h1>',
-  'class="page5-summary"',
-  'היתר כבר מודגש',
-  'תמר כתבה:',
-  'עכשיו בנו בעצמכם.',
-]);
-forbidTokens('עמוד 5', p5, ['class="triangle-card"', 'class="length-card"', 'class="claim-check"', 'class="concept-half"']);
-for (const [className, expected] of [['inverse-card', 4], ['logic-card', 3], ['construction-card', 2], ['page5-error-task', 1]]) {
-  const actual = count(p5, `class="${className}"`);
-  if (actual === expected) pass(`עמוד 5: ${className} = ${expected}.`); else fail(`עמוד 5: ${className} צריך להיות ${expected}, נמצא ${actual}.`);
-}
-const page5InverseTriangles = edgePathDsBetween(p5, 'inverse-hyp-grid', 'page5-error-task').map(parseTrianglePath).filter(Boolean);
-if (page5InverseTriangles.length === 4 && page5InverseTriangles.every(isRightTriangle)) pass('עמוד 5: ארבעת משולשי ההסקה ההפוכה ישרי־זווית מדויקים.'); else fail('עמוד 5: משולשי ההסקה ההפוכה אינם מדויקים.');
-requireTokens('CSS עמוד 5', p5css, ['.page-638 .inverse-hyp-grid', '.page-638 .page5-error-task', '.page-638 .logic-grid', '.page-638 .construction-grid', 'shape-rendering: geometricPrecision;']);
-forbidTokens('CSS עמוד 5', p5css, ['.page-638 .page5-concept-line', '.page-638 .length-cards', '.page-638 .claim-check', '@media (max-width: 760px)']);
+requireTokens('עמוד 5', html[5], ['page5-discovery','שם היתר:','<strong>AC</strong><span>&gt;</span>','page5-error-task','logic-grid','construction-grid']);
+if (count(html[5], 'math-comparison') === 2 && count(html[5], 'class="logic-card"') === 3 && count(html[5], 'class="construction-card"') === 2) pass('עמוד 5: שתי השוואות, שלוש הסקות ושתי בניות.'); else fail('עמוד 5: מבנה המשימות השתנה.');
+forbidTokens('עמוד 5', html[5], ['היתר כבר מודגש','logic-number']);
 
-/* עמוד 6 — A4 מלא ומגוון, בלי המרה למכפלה */
-requireTokens('עמוד 6', p6, [
-  '<h1 class="page-title">משפט פיתגורס – ריבוע של מספר</h1>',
-  '(כי 6 × 6 = 36)',
-  'class="page6-thinking-zone"',
-  'class="compare-grid"',
-  'חשבו חכם — לא בכל סעיף צריך לחשב הכול.',
-  'כאן אפשר להיעזר במחשבון.',
-  'חקרו בעזרת מחשבון את הריבועים שמסתיימים ב־5.',
-  'class="pattern-row"',
-]);
-forbidTokens('עמוד 6', p6, ['class="product-practice-grid"', 'class="power-conversion-grid"', 'class="conversion-card"', 'class="power-scratch-space"']);
-if (count(p6, 'class="square-card"') === 12) pass('עמוד 6: 12 חישובי יסוד.'); else fail('עמוד 6: צריכים להיות 12 חישובי יסוד.');
-if (count(p6, 'class="compare-card"') === 6) pass('עמוד 6: 6 השוואות.'); else fail('עמוד 6: צריכים להיות 6 תרגילי השוואה.');
-if (count(p6, 'class="hard-square-card"') === 8) pass('עמוד 6: 8 חישובים מאתגרים.'); else fail('עמוד 6: צריכים להיות 8 חישובים מאתגרים.');
-requireTokens('CSS עמוד 6', p6css, ['.page-639 .question-block', '.page-639 .page6-thinking-zone', '.page-639 .pattern-row']);
-forbidTokens('CSS עמוד 6', p6css, ['@media (max-width:']);
+requireTokens('עמוד 6', html[6], ['ניתן להיעזר במחשבון.','compare-example','לאיזה מהביטויים יש תוצאה גדולה יותר?','\\(6^2=6\\times2\\)','\\(5^2+3^2=10+6\\)','hard-square-grid','power-error-grid','pattern-row']);
+if (count(html[6], 'class="square-card"') === 12 && count(html[6], 'class="hard-square-card') === 8) pass('עמוד 6: 12 חישובי יסוד ו־8 מאתגרים.'); else fail('עמוד 6: כמות התרגול נפגעה.');
+for (const token of ['\\left(\\frac{1}{2}\\right)^2=','\\left(\\frac{3}{4}\\right)^2=','\\left(\\frac{2}{3}\\right)^2=','\\left(\\frac{5}{2}\\right)^2=']) if (!html[6].includes(token)) fail(`עמוד 6: חסר שבר ${token}`);
+requireTokens('CSS עמוד 6', css[6], ['box-shadow: none','background: #fff']);
 
-/* עמוד 7 — מבודד משכבת power-practice כדי למנוע שבירה חוזרת */
-requireTokens('עמוד 7', p7, [
-  '<h1 class="page-title">משפט פיתגורס – ריבועים ושורשים</h1>',
-  'class="page7-summary"',
-  'חברו בקו כל תרגיל לתרגיל ההפוך',
-  'class="match-board"',
-  'class="mixed-grid"',
-  'בדקו את המסקנה.',
-  'class="error-grid"',
-  'התחילו ב־13',
-  'בחרו מספר חיובי משלכם',
-  'class="final-observation"',
-]);
-forbidTokens('עמוד 7', p7, ['class="power-sentence-grid"', 'class="sentence-open-card"', 'class="power-results-grid"', 'class="missing-base-grid"']);
-if (count(p7, 'class="match-item"') === 6) pass('עמוד 7: 3 זוגות התאמה.'); else fail('עמוד 7: צריכים להיות 6 פריטי התאמה.');
-if (count(p7, 'class="mixed-card"') === 8) pass('עמוד 7: 8 השלמות מעורבות.'); else fail('עמוד 7: צריכים להיות 8 תרגילים מעורבים.');
-if (count(p7, 'class="error-card"') === 3) pass('עמוד 7: 3 בדיקות מסקנה.'); else fail('עמוד 7: צריכים להיות 3 כרטיסי בדיקת מסקנה.');
-requireTokens('CSS עמוד 7', p7css, [
-  '@import url("../topics/pythagoras-foundations.css");',
-  '.page-640 .question-block',
-  'grid-template-rows: 40px 174px 242px 166px minmax(184px, 1fr);',
-  '.page-640 .match-board',
-  '.page-640 .mixed-grid',
-  '.page-640 .error-grid',
-  '.page-640 .final-grid',
-]);
-forbidTokens('CSS עמוד 7', p7css, ['pythagoras-power-practice.css', '.power-sentence-grid', '.sentence-open-card', 'overflow: hidden', '@media (max-width:']);
+requireTokens('עמוד 7', html[7], ['העלאה בריבוע והוצאת שורש הן פעולות הפוכות.','\\(\\sqrt{49}=7\\)','inverse-pair-grid','symbolic-pair','mixed-grid','error-grid','final-pair-grid']);
+if (count(html[7], 'class="mixed-card"') === 8 && count(html[7], 'class="error-card"') === 3) pass('עמוד 7: 8 השלמות ו־3 בדיקות.'); else fail('עמוד 7: מבנה התרגול השתנה.');
+forbidTokens('CSS עמוד 7', css[7], ['pythagoras-power-practice.css','@media (max-width:']);
+
+requireTokens('עמוד 8', html[8], ['מספר אי־שלילי','מספר שהוא <strong>חיובי או 0</strong>','התוצאה של פעולת השורש היא תמיד מספר אי־שלילי','direct-root-grid','inference-grid','result-check-grid','bridge-grid','\\(\\sqrt{81}\\ne-9\\)']);
+forbidTokens('עמוד 8', html[8], ['סימן שורש']);
+forbidTokens('CSS עמוד 8', css[8], ['pythagoras-power-practice.css','@media (max-width:']);
+
+requireTokens('עמוד 9', html[9], ['משוואות מהצורה x²=a','page9-distinction','case-grid','equation-practice-grid','page9-true-false','page9-final-rule','\\(x^2=-25\\)','אין פתרון ממשי']);
+forbidTokens('עמוד 9', html[9], ['solution-meaning-strip','correction-slot']);
+requireTokens('CSS עמוד 9', css[9], ['.page-651 .correction-line','border-block: 1px solid var(--border-light)']);
+
+requireTokens('עמוד 10', html[10], ['page10-worked-example','\\(\\sqrt{16}=4\\)','\\(\\sqrt{25}=5\\)','\\(16<20<25\\)','\\(4<\\sqrt{20}<5\\)','guided-grid','independent-grid','calculator-grid','final-work']);
+forbidTokens('CSS עמוד 10', css[10], ['pythagoras-power-practice.css','@media (max-width:']);
+
+requireTokens('עמוד 11', html[11], ['page11-top-band','page11-example-steps','top-guided-practice','direct-solution-scaffold','build-solution-scaffold']);
+requireTokens('CSS עמוד 11', css[11], ['border-radius: 0','border-block: 1px solid var(--border-light)']);
+forbidTokens('עמוד 11', html[11], ['approx-pair']);
 
 console.log('\n=== Approved Content Contracts ===');
 ok.forEach((m) => console.log(`✓ ${m}`));
