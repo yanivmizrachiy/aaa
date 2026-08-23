@@ -49,10 +49,10 @@
     {
       "workbookPage": 3,
       "status": "locked",
-      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md: ניצבים בלבד, 4 משימות פתיחה מגוונות עם ארוך/קצר ושני ניצבים שווים, 2 משימות קודקודים, 3 משימות שרטוט למציאת הניצב השני ושאלה אמריקאית אחת; כל השרטוטים ישרי־זווית מדויקים ופריסת A4 נשמרת.",
+      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md: ניצבים בלבד, 4 משימות פתיחה מגוונות עם ניסוח פשוט של ניצב ארוך/קצר ומקרה של ניצבים שווים, 2 משימות בנייה שבהן התלמיד מצייר משולש לפי ניצב ארוך וניצב קצר נתונים, 3 משימות למציאת הניצב השני ושאלה אמריקאית אחת.",
       "files": [
-        {"path": "עמוד-636.html", "gitBlobSha": "427ccd000392203c266cfcea4b3db15dae5cb466"},
-        {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "a11530f2f3f96cffceef233dcbc33558c249fcc7"}
+        {"path": "עמוד-636.html", "gitBlobSha": "94dfcc68c2950546d054b1a0198f22857f994920"},
+        {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "2c39e5bee1c553eb5415ebbfbeefaa0bd981cd1b"}
       ],
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "9d125de52877a7deb24bd796249002adc549a468"},
