@@ -1,19 +1,16 @@
 @import url("../topics/pythagoras-foundations.css");
 @import url("../topics/pythagoras-power-practice.css");
 
-/* עמוד 6 — ריבוע של מספר: חישוב בלבד; אין הוראה לכתוב מכפלה. */
-.page-639 {
-  --power-question-gap: 8px;
-  --power-note-gap: 5px;
-  --power-grid-columns: 4;
-  --power-grid-gap: 8px;
-  --power-card-min-height: 72px;
-  --power-card-padding: 7px 6px;
-}
-
+/* עמוד 6 — ריבוע של מספר: A4 מלא, מגוון וללא הוראה לכתוב מכפלה. */
 .page-639 .question-block {
-  gap: 8px;
+  display: grid;
+  grid-template-rows: 38px 236px 206px 150px 150px minmax(118px, 1fr);
+  gap: 7px;
+  align-content: stretch;
+  width: 100%;
+  min-width: 0;
   min-height: 0;
+  box-sizing: border-box;
 }
 
 .page-639 .question-block > * {
@@ -28,19 +25,17 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  min-width: 0;
   min-height: 38px;
-  padding: 6px 11px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
+  padding: 5px 10px;
+  border-block: 1px solid var(--border-light);
   background: var(--bg-subtle);
-  font-size: 14.7px;
-  line-height: 1.22;
+  font-size: 14.5px;
+  line-height: 1.2;
   white-space: nowrap;
 }
 
-.page-639 .square-parenthetical {
-  unicode-bidi: isolate;
-}
+.page-639 .square-parenthetical { unicode-bidi: isolate; }
 
 .page-639 .calculator-note {
   flex: 0 0 auto;
@@ -48,53 +43,46 @@
   color: var(--accent-dark);
 }
 
-.page-639 .power-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-}
-
-.page-639 .power-grid .stacked-answer-card {
-  min-height: 72px;
-  padding: 7px 6px;
-}
-
-/* התחתית: חישובים מאתגרים + בדיקת הבנה. */
-.page-639 .page6-bottom-zone {
-  display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
-  gap: 10px;
+.page-639 .page6-section,
+.page-639 .page6-thinking-task,
+.page-639 .page6-pattern-task {
+  min-width: 0;
   min-height: 0;
 }
 
-.page-639 .page6-bottom-task {
+.page-639 .page6-section {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: 5px;
-  min-width: 0;
-  padding-top: 5px;
-  border-top: 1px solid var(--border-light);
 }
 
-.page-639 .page6-bottom-task .q-main {
+.page-639 .page6-section .q-main,
+.page-639 .page6-thinking-task .q-main,
+.page-639 .page6-pattern-task .q-main {
   margin: 0;
   min-height: 22px;
 }
 
-.page-639 .page6-bottom-task .q-text {
+.page-639 .page6-section .q-text,
+.page-639 .page6-thinking-task .q-text,
+.page-639 .page6-pattern-task .q-text {
   font-size: 14.6px;
-  line-height: 1.24;
+  line-height: 1.22;
 }
 
-.page-639 .hard-square-grid {
+/* 12 חישובי יסוד — מספיק לתרגול, בלי למלא חצי עמוד באותו דבר. */
+.page-639 .page6-basic-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(3, minmax(0, 1fr));
   gap: 7px;
   min-width: 0;
   min-height: 0;
 }
 
-.page-639 .hard-square-card {
+.page-639 .square-card,
+.page-639 .hard-square-card,
+.page-639 .compare-card {
   direction: ltr;
   unicode-bidi: isolate;
   display: flex;
@@ -102,35 +90,125 @@
   justify-content: center;
   gap: 7px;
   min-width: 0;
-  min-height: 54px;
+  min-height: 0;
   padding: 6px 7px;
   border: 1px solid var(--border-light);
   border-radius: 8px;
   background: var(--bg-paper);
+  font-size: 17px;
+  line-height: 1.15;
   box-sizing: border-box;
 }
 
-.page-639 .hard-expression {
-  display: inline-flex;
+.page-639 .square-fill {
+  width: 58px;
+  height: 25px;
+  border-radius: 5px;
+  flex: 0 0 58px;
+}
+
+/* שתי פעולות חשיבה שונות זו לצד זו: השוואה והסקה. */
+.page-639 .page6-thinking-zone {
+  display: grid;
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+  gap: 10px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-639 .page6-thinking-task {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 5px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border-light);
+}
+
+.page-639 .compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-639 .compare-card {
+  gap: 6px;
+  background: var(--bg-subtle);
+  font-size: 15.5px;
+}
+
+.page-639 .compare-fill {
+  width: 32px;
+  height: 23px;
+  border-radius: 5px;
+  flex: 0 0 32px;
+}
+
+.page-639 .reasoning-grid {
+  display: grid;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-639 .reasoning-card {
+  display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
   min-width: 0;
-  font-size: 17px;
-  line-height: 1.15;
-  white-space: nowrap;
+  min-height: 0;
+  padding: 6px 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+  font-size: 13.8px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.page-639 .reasoning-fill {
+  width: 58px;
+  height: 23px;
+  border-radius: 5px;
+}
+
+.page-639 .reasoning-line {
+  width: 150px;
+  height: 23px;
+  border-radius: 5px;
+}
+
+/* חישובים מאתגרים — שימוש מודע במחשבון. */
+.page-639 .hard-square-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-639 .hard-square-card {
+  background: var(--bg-subtle);
+  font-size: 16.2px;
 }
 
 .page-639 .hard-square-fill {
-  width: 74px;
-  height: 26px;
+  width: 70px;
+  height: 25px;
   border-radius: 5px;
-  flex: 0 0 74px;
+  flex: 0 0 70px;
 }
 
+/* בדיקת טעות — אותה מטרה בארבע טענות קצרות, לא עוד רשת חישובים. */
 .page-639 .power-error-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 7px;
   min-width: 0;
   min-height: 0;
@@ -141,33 +219,30 @@
   grid-template-rows: auto auto auto;
   align-content: center;
   justify-items: center;
-  gap: 4px;
+  gap: 5px;
   min-width: 0;
-  min-height: 86px;
-  padding: 6px 7px;
+  min-height: 0;
+  padding: 7px 6px;
   border: 1px solid var(--border-light);
   border-radius: 8px;
-  background: var(--bg-subtle);
+  background: var(--bg-paper);
+  font-size: 12.8px;
+  line-height: 1.15;
   box-sizing: border-box;
 }
 
 .page-639 .error-expression {
   direction: ltr;
   unicode-bidi: isolate;
-  font-size: 17px;
-  line-height: 1.15;
+  font-size: 16px;
   font-weight: 500;
 }
 
-.page-639 .error-choice,
-.page-639 .error-correction {
+.page-639 .error-choice {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  min-width: 0;
-  font-size: 12.9px;
-  line-height: 1.15;
+  gap: 4px;
   white-space: nowrap;
 }
 
@@ -177,17 +252,71 @@
   margin: 0;
 }
 
-.page-639 .error-correction .response-line {
-  min-width: 58px;
+.page-639 .power-error-card .response-line {
+  display: inline-block;
+  min-width: 54px;
   height: 18px;
+}
+
+/* סיום חקר קצר שמנצל את תחתית הדף ומייצר תבנית מספרית חדשה. */
+.page-639 .page6-pattern-task {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 5px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border-light);
+}
+
+.page-639 .pattern-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-639 .pattern-expression {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 0;
+  padding: 6px 7px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  font-size: 15.5px;
+}
+
+.page-639 .pattern-fill {
+  width: 67px;
+  height: 24px;
+  border-radius: 5px;
+}
+
+.page-639 .pattern-observation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 27px;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.page-639 .pattern-short-fill {
+  width: 48px;
+  height: 23px;
+  border-radius: 5px;
 }
 
 @media print {
   .page-639 .page6-summary,
-  .page-639 .power-grid,
-  .page-639 .page6-bottom-zone,
+  .page-639 .square-card,
+  .page-639 .page6-thinking-task,
   .page-639 .hard-square-card,
-  .page-639 .power-error-card {
+  .page-639 .power-error-card,
+  .page-639 .page6-pattern-task {
     break-inside: avoid;
   }
 }
