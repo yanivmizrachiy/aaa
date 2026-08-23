@@ -25,6 +25,7 @@ for (const token of [
   '**שטח תשובה מותאם לתשובה הצפויה:**',
   '**תוצאת חישוב נמצאת מתחת לתרגיל.**',
   '**הסבר מושגי הוא מודרך ואקטיבי:**',
+  '**מושג "פתרון של משוואה" נלמד דרך הצבה.**',
   'AAA Exact A4 Preview',
 ]) {
   if (truth.includes(token)) pass(`מקור האמת כולל: ${token}`);
@@ -81,6 +82,7 @@ for (let n = start; n <= end; n += 1) {
 const p7 = read(pages[6].file);
 const p8 = read(pages[7].file);
 const p9 = read(pages[8].file);
+const p9css = read(`styles/pages/${pages[8].file.replace(/\.html$/u, '.css')}`);
 const p10 = read(pages[9].file);
 const p10css = read(`styles/pages/${pages[9].file.replace(/\.html$/u, '.css')}`);
 const p11 = read(pages[10].file);
@@ -96,9 +98,23 @@ else fail('עמוד 7: חזרה מבנית לגרסה החזרתית הישנה.
 if (p8.includes('direct-root-grid') && p8.includes('reverse-root-grid') && p8.includes('perfect-square-grid') && p8.includes('bridge-grid')) pass('עמוד 8: ארבע פעולות שונות נשמרות.');
 else fail('עמוד 8: חסר מגוון פדגוגי קנוני.');
 
-const page9Required = ['page9-contrast','case-grid','equation-case-grid','root-practice-grid','error-grid','\\(x^2=-7\\)','אין פתרון','\\(\\sqrt9\\)','\\(x=-\\sqrt9\\)'];
-if (page9Required.every((token) => p9.includes(token)) && !p9.includes('reverse-solution-grid') && !p9.includes('build-equation-card')) pass('עמוד 9: ההבחנה שורש/משוואה ושלושת מצבי x²=a נשמרים.');
-else fail('עמוד 9: נפגע חוזה שורש מול משוואה או חזר המבנה הישן.');
+const page9Required = [
+  'משוואה ריבועית מהצורה x²=a',
+  'solution-meaning-strip',
+  'meaning-line',
+  'case-grid',
+  'equation-case-grid',
+  'root-practice-grid',
+  'error-grid',
+  '\\(x^2=-5\\)',
+  '\\((-3)^2=\\)',
+  'הפתרון ה',
+  'מתקבלת תוצאה',
+  '\\(x^2=-7\\)',
+  'אין פתרון',
+];
+if (page9Required.every((token) => p9.includes(token)) && p9css.includes('.page-651 .solution-meaning-strip') && !p9.includes('reverse-solution-grid') && !p9.includes('build-equation-card')) pass('עמוד 9: משוואה ריבועית x²=a נלמדת דרך הצבה, שני פתרונות/פתרון יחיד/אין פתרון והבחנה משורש.');
+else fail('עמוד 9: נפגע חוזה ההצבה, שלושת המצבים או ההבחנה בין שורש למשוואה ריבועית.');
 
 if (!p10.includes('approximation-grid') && p10.includes('bounds-grid') && p10.includes('calculator-grid') && p10.includes('reasonableness-grid') && p10.includes('error-grid') && p10.includes('build-root-card')) pass('עמוד 10: תחימה, קירוב, סבירות, תיקון ובנייה נשמרים.');
 else fail('עמוד 10: מגוון הקירוב נפגע.');
