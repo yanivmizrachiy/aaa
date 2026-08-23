@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "project": "yanivmizrachiy/aaa",
   "authority": "SOURCE_OF_TRUTH.md",
   "scope": {
@@ -11,26 +11,30 @@
     "rule": "תוכן, תצוגה, ניווט, עיצוב ועבודה בריפו הזה מתייחסים לחוברת פיתגורס בלבד. דפי החוברת הפעילים נקבעים אך ורק לפי WORKBOOK_MANIFEST.json."
   },
   "mobileReference": {
-    "id": "aaa-mobile-reader-approved",
+    "id": "aaa-exact-a4-preview",
     "status": "golden-reference",
     "approvedOn": "2026-08-23",
     "referenceProject": "yanivmizrachiy/aaa",
     "referenceUrl": "https://aaa-pythagoras.vercel.app/",
-    "reuseInstruction": "כאשר המשתמש אומר בפרויקט אחר 'תעשה כמו פרויקט aaa' או 'כמו תצוגת המובייל של פיתגורס', הכוונה היא לעקרונות המובייל המאושרים כאן: תוכן קריא ברוחב המסך, reflow טבעי, גלילה אנכית בלבד, ללא הקטנת A4 שלם וללא חיתוך צדדים.",
+    "reuseInstruction": "כאשר המשתמש אומר בפרויקט אחר 'תעשה כמו פרויקט aaa', 'כמו פיתגורס בנייד' או 'תראה לי בדיוק כמו בהדפסה', הכוונה היא לשמור את פריסת A4 הקנונית ללא reflow ולהקטין את כל הדף באופן אחיד וממורכז כך שייכנס לרוחב הטלפון ללא גלילה אופקית.",
     "breakpointMaxPx": 720,
-    "activateBeforeWorkbookLoad": true,
     "horizontalScroll": "forbidden",
-    "mobileA4Scale": "forbidden",
-    "mobileLayout": "responsive-reflow",
-    "contentWidth": "viewport",
-    "pageAlignment": "center",
-    "mediaMaxWidth": "100%",
-    "wideGridPolicy": "reduce-columns-or-stack",
-    "titleWrap": "allowed",
-    "printLayout": "A4",
-    "cachePolicy": "בכל שינוי של CSS/JS ליבה מעלים מזהה גרסה ב-index.html באותו change-set; ה-entrypoint והדפים נטענים ללא הסתמכות על cache ישן.",
+    "mobileLayout": "exact-print-layout-scaled",
+    "contentReflow": "forbidden",
+    "pageCanonicalSize": "210mm x 297mm",
+    "pageAlignment": "mathematically-centered",
+    "scaleFormula": "min(1, availableWidth / canonicalWidth)",
+    "positionFormula": "left = max(0, (availableWidth - canonicalWidth * scale) / 2)",
+    "transformOrigin": "top left",
+    "titleWrapChangeOnMobile": "forbidden",
+    "gridChangeOnMobile": "forbidden",
+    "typographyChangeOnMobile": "forbidden",
+    "pinchZoom": "allowed",
+    "printLayout": "A4-identical",
+    "cachePolicy": "בכל שינוי של נכסי ליבה שמעלה תצוגה חדשה מעלים מזהה גרסה ב-index.html באותו change-set ושומרים no-cache/no-store.",
     "implementationFiles": [
       "index.html",
+      "styles/a4-base.css",
       "styles/pythagoras-workbook.css",
       "styles/workbook-canonical-locks.css",
       "pythagoras-workbook.js"
@@ -60,7 +64,7 @@
     "targetedEditPolicy": "כאשר הבקשה מכוונת לחלק מסוים בדף, כל שאר חלקי הדף וכל שאר הדפים נחשבים נעולים. משנים רק את היעד המבוקש אלא אם המשתמש ביקש במפורש שינוי רחב יותר.",
     "sharedChangePolicy": "שינוי ב-styles/a4-base.css, styles/topics/*, styles/pythagoras-workbook.css או pythagoras-workbook.js נחשב שינוי רחב. כל עמוד נעול שתלוי בשכבה חייב לעבור אימות מחדש ועדכון חתימות לפני פרסום.",
     "cssIsolationPolicy": "CSS ייעודי לעמוד חייב להיות תחום ל-root class של העמוד. CSS משפחתי חייב להיות תחום ל-root class משפחתי. אין selector מבני גלובלי בקובץ עמוד.",
-    "mobileChangePolicy": "כל שינוי משותף בתצוגה חייב לשמר את aaa-mobile-reader-approved. אסור להחזיר במובייל scale של A4 שלם, רוחב קשיח, גלילה אופקית או הפעלה מאוחרת של מצב המובייל.",
+    "mobileChangePolicy": "כל שינוי משותף בתצוגה חייב לשמר את aaa-exact-a4-preview: פריסת ההדפסה נשמרת בדיוק, אין reflow פנימי בנייד, וכל הדף מוקטן וממורכז כיחידה אחת ללא חיתוך או גלילה אופקית.",
     "fastEditCommand": "node tools/smart-edit.js <מספר-עמוד> --check",
     "verification": "לפני כתיבה מריצים tools/smart-edit.js על עמוד היעד כדי לקבל מפת השפעה. אחרי שינוי מריצים אותו עם --check. ב-CI הוא מריץ style-audit, repo-guard, content-contracts, workbook-visual-guard ו-change-scope-audit מול commit הבסיס."
   },
@@ -102,16 +106,16 @@
       "rule": "CSS של עמוד תחום ל-root class של אותו עמוד; CSS משפחתי תחום ל-root class משפחתי; אסור שכלל מקומי ישנה עמוד אחר."
     },
     {
-      "id": "mobile-readable-reference",
+      "id": "mobile-exact-print-preview",
       "scope": "global",
       "status": "locked",
-      "rule": "במובייל הקריאות קודמת לצורת A4: הדף משתמש ברוחב המסך, עובר reflow לפי הצורך, ממורכז, ואינו דורש גלילה אופקית. אין להקטין A4 שלם עד שהטקסט זעיר."
+      "rule": "בנייד רואים את אותו A4 בדיוק כפי שיודפס. אין שינוי בשבירות שורה, עמודות, טיפוגרפיה או מבנה; כל הדף מוקטן באופן אחיד וממורכז לרוחב המסך ללא גלילה אופקית."
     },
     {
-      "id": "mobile-reader-immediate",
+      "id": "mobile-no-reflow",
       "scope": "global",
       "status": "locked",
-      "rule": "מצב mobile-reader מופעל מיד ב-entrypoint לפי רוחב ה-visual viewport, לפני טעינת 53 הדפים ולפני MathJax; אין להמתין לסיום boot כדי לתקן את התצוגה."
+      "rule": "אסור לבצע responsive reflow בתוך דף A4 בנייד. כותרת של שורה אחת בהדפסה נשארת שורה אחת בתצוגת הטלפון."
     },
     {
       "id": "mobile-cache-freshness",
@@ -165,7 +169,7 @@
       "id": "one-page-integrity",
       "scope": "global",
       "status": "locked",
-      "rule": "בהדפסה ובמסך רחב כל דף A4 נשאר יחידה אחת ללא גלישה או כפילויות. במובייל מותר לדף להתארך ולעבור reflow כדי לשמור על קריאות מלאה ללא חיתוך צדדים."
+      "rule": "כל דף A4 נשאר יחידה אחת ללא גלישה או כפילויות. גם בנייד מבנה הדף אינו משתנה; רק קנה המידה של היחידה כולה משתנה."
     },
     {
       "id": "no-cross-topic-navigation",
