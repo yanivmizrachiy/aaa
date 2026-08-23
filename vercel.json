@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "https://raw.githubusercontent.com/yanivmizrachiy/aaa/main/index.html"
+      "destination": "https://raw.githubusercontent.com/yanivmizrachiy/aaa/release/index.html"
     },
     {
       "source": "/(.*)",
-      "destination": "https://raw.githubusercontent.com/yanivmizrachiy/aaa/main/$1"
+      "destination": "https://raw.githubusercontent.com/yanivmizrachiy/aaa/release/$1"
     }
   ],
   "headers": [
