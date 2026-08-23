@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "project": "yanivmizrachiy/aaa",
   "authority": "SOURCE_OF_TRUTH.md",
   "scope": {
@@ -9,6 +9,32 @@
     "curriculumId": "g7.geo.pythagoras",
     "publicUrl": "https://aaa-pythagoras.vercel.app/",
     "rule": "תוכן, תצוגה, ניווט, עיצוב ועבודה בריפו הזה מתייחסים לחוברת פיתגורס בלבד. דפי החוברת הפעילים נקבעים אך ורק לפי WORKBOOK_MANIFEST.json."
+  },
+  "mobileReference": {
+    "id": "aaa-mobile-reader-approved",
+    "status": "golden-reference",
+    "approvedOn": "2026-08-23",
+    "referenceProject": "yanivmizrachiy/aaa",
+    "referenceUrl": "https://aaa-pythagoras.vercel.app/",
+    "reuseInstruction": "כאשר המשתמש אומר בפרויקט אחר 'תעשה כמו פרויקט aaa' או 'כמו תצוגת המובייל של פיתגורס', הכוונה היא לעקרונות המובייל המאושרים כאן: תוכן קריא ברוחב המסך, reflow טבעי, גלילה אנכית בלבד, ללא הקטנת A4 שלם וללא חיתוך צדדים.",
+    "breakpointMaxPx": 720,
+    "activateBeforeWorkbookLoad": true,
+    "horizontalScroll": "forbidden",
+    "mobileA4Scale": "forbidden",
+    "mobileLayout": "responsive-reflow",
+    "contentWidth": "viewport",
+    "pageAlignment": "center",
+    "mediaMaxWidth": "100%",
+    "wideGridPolicy": "reduce-columns-or-stack",
+    "titleWrap": "allowed",
+    "printLayout": "A4",
+    "cachePolicy": "בכל שינוי של CSS/JS ליבה מעלים מזהה גרסה ב-index.html באותו change-set; ה-entrypoint והדפים נטענים ללא הסתמכות על cache ישן.",
+    "implementationFiles": [
+      "index.html",
+      "styles/pythagoras-workbook.css",
+      "styles/workbook-canonical-locks.css",
+      "pythagoras-workbook.js"
+    ]
   },
   "learningProtocol": {
     "readBeforeEveryChange": [
@@ -34,6 +60,7 @@
     "targetedEditPolicy": "כאשר הבקשה מכוונת לחלק מסוים בדף, כל שאר חלקי הדף וכל שאר הדפים נחשבים נעולים. משנים רק את היעד המבוקש אלא אם המשתמש ביקש במפורש שינוי רחב יותר.",
     "sharedChangePolicy": "שינוי ב-styles/a4-base.css, styles/topics/*, styles/pythagoras-workbook.css או pythagoras-workbook.js נחשב שינוי רחב. כל עמוד נעול שתלוי בשכבה חייב לעבור אימות מחדש ועדכון חתימות לפני פרסום.",
     "cssIsolationPolicy": "CSS ייעודי לעמוד חייב להיות תחום ל-root class של העמוד. CSS משפחתי חייב להיות תחום ל-root class משפחתי. אין selector מבני גלובלי בקובץ עמוד.",
+    "mobileChangePolicy": "כל שינוי משותף בתצוגה חייב לשמר את aaa-mobile-reader-approved. אסור להחזיר במובייל scale של A4 שלם, רוחב קשיח, גלילה אופקית או הפעלה מאוחרת של מצב המובייל.",
     "fastEditCommand": "node tools/smart-edit.js <מספר-עמוד> --check",
     "verification": "לפני כתיבה מריצים tools/smart-edit.js על עמוד היעד כדי לקבל מפת השפעה. אחרי שינוי מריצים אותו עם --check. ב-CI הוא מריץ style-audit, repo-guard, content-contracts, workbook-visual-guard ו-change-scope-audit מול commit הבסיס."
   },
@@ -73,6 +100,24 @@
       "scope": "global",
       "status": "locked",
       "rule": "CSS של עמוד תחום ל-root class של אותו עמוד; CSS משפחתי תחום ל-root class משפחתי; אסור שכלל מקומי ישנה עמוד אחר."
+    },
+    {
+      "id": "mobile-readable-reference",
+      "scope": "global",
+      "status": "locked",
+      "rule": "במובייל הקריאות קודמת לצורת A4: הדף משתמש ברוחב המסך, עובר reflow לפי הצורך, ממורכז, ואינו דורש גלילה אופקית. אין להקטין A4 שלם עד שהטקסט זעיר."
+    },
+    {
+      "id": "mobile-reader-immediate",
+      "scope": "global",
+      "status": "locked",
+      "rule": "מצב mobile-reader מופעל מיד ב-entrypoint לפי רוחב ה-visual viewport, לפני טעינת 53 הדפים ולפני MathJax; אין להמתין לסיום boot כדי לתקן את התצוגה."
+    },
+    {
+      "id": "mobile-cache-freshness",
+      "scope": "global",
+      "status": "locked",
+      "rule": "שינוי CSS/JS משותף שמטרתו לתקן תצוגה חייב להגיע למשתמש מיד: מעדכנים מזהה גרסה של נכסי הליבה ב-index.html באותו שינוי ושומרים no-cache/no-store ל-entrypoint ול-loader."
     },
     {
       "id": "real-textbook",
@@ -120,7 +165,7 @@
       "id": "one-page-integrity",
       "scope": "global",
       "status": "locked",
-      "rule": "כל דף A4 נשאר יחידה אחת ללא גלישה או כפילויות; שינוי באזור אחד אינו דוחף או שובר אזור אחר."
+      "rule": "בהדפסה ובמסך רחב כל דף A4 נשאר יחידה אחת ללא גלישה או כפילויות. במובייל מותר לדף להתארך ולעבור reflow כדי לשמור על קריאות מלאה ללא חיתוך צדדים."
     },
     {
       "id": "no-cross-topic-navigation",
