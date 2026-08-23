@@ -1,22 +1,247 @@
 @import url("../topics/pythagoras-foundations.css");
-@import url("../topics/pythagoras-power-practice.css");
 
-.page-641 {
-  --power-question-gap: 8px;
-  --power-grid-columns: 3;
-  --power-grid-gap: 8px;
-  --power-card-min-height: 84px;
-  --power-card-padding: 8px 7px;
-  --power-instruction-font-size: 15px;
-  --power-instruction-line-height: 1.35;
+/* עמוד 8 — שורש ריבועי. פריסה מקומית, מלאה ומגוונת ללא תלות ב-power-practice. */
+.page-641 .question-block {
+  display: grid;
+  grid-template-rows: 42px 190px 178px 176px minmax(238px, 1fr);
+  gap: 8px;
+  align-content: stretch;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
 }
 
-.page-641 .missing-root-card {
-  min-height: 72px;
+.page-641 .question-block > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.page-641 .page8-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 5px 10px;
+  border-block: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+  font-size: 14.5px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.page-641 .page8-summary strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.page-641 .summary-arrow,
+.page-641 .reverse-arrow {
+  color: var(--title-blue);
+  font-weight: 700;
+}
+
+.page-641 .page8-section,
+.page-641 .page8-final-task {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 5px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-641 .page8-final-task {
+  grid-template-rows: auto minmax(0, 1fr) 42px;
+}
+
+.page-641 .q-main {
+  margin: 0;
+  min-height: 22px;
+}
+
+.page-641 .q-text {
+  font-size: 14.6px;
+  line-height: 1.24;
+}
+
+.page-641 .direct-root-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-641 .root-card,
+.page-641 .reverse-card,
+.page-641 .perfect-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+  padding: 7px 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+  box-sizing: border-box;
+}
+
+.page-641 .root-card {
+  font-size: 17px;
+  line-height: 1.15;
+}
+
+.page-641 .root-fill {
+  width: 58px;
+  min-width: 58px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.page-641 .reverse-root-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-641 .reverse-card {
+  background: var(--bg-subtle);
+  font-size: 15.5px;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.page-641 .reverse-fill {
+  width: 54px;
+  min-width: 54px;
+  height: 24px;
+  border-radius: 5px;
+}
+
+.page-641 .perfect-square-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-641 .perfect-card {
+  background: var(--bg-paper);
+  font-size: 16px;
+  line-height: 1.15;
+}
+
+.page-641 .perfect-card .check {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.page-641 .bridge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-641 .bridge-card {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  align-items: center;
+  justify-items: center;
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  box-sizing: border-box;
+}
+
+.page-641 .bridge-title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.page-641 .bridge-expression {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.page-641 .bridge-note {
+  font-size: 13.2px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.page-641 .solution-pair {
+  display: grid;
+  grid-template-columns: auto 58px auto 58px;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.page-641 .bridge-fill {
+  width: 58px;
+  min-width: 58px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.page-641 .error-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  min-height: 42px;
+  padding-top: 5px;
+  border-top: 1px solid var(--border-light);
+  font-size: 13.8px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.page-641 .correction-fill {
+  width: 54px;
+  min-width: 54px;
+  height: 24px;
+  border-radius: 5px;
 }
 
 @media print {
-  .page-641 .power-grid {
+  .page-641 .page8-summary,
+  .page-641 .root-card,
+  .page-641 .reverse-card,
+  .page-641 .perfect-card,
+  .page-641 .bridge-card,
+  .page-641 .error-strip {
     break-inside: avoid;
   }
 }
