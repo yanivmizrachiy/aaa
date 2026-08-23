@@ -250,12 +250,19 @@ function installNavigation() {
 
 function installResponsiveScaling() {
   let lastWidth = -1;
+  let frame = 0;
+
+  const getViewportWidth = () => Math.max(
+    1,
+    Math.floor(window.visualViewport?.width || document.documentElement.clientWidth || window.innerWidth || 1),
+  );
 
   const applyScale = () => {
-    const currentWidth = document.documentElement.clientWidth;
+    frame = 0;
+    const currentWidth = getViewportWidth();
     if (currentWidth === lastWidth) return;
     lastWidth = currentWidth;
-    const available = Math.max(1, Math.min(currentWidth - 8, 900));
+    const available = Math.max(1, Math.min(currentWidth - 12, 900));
 
     for (const wrapper of document.querySelectorAll('.workbook-page-wrap')) {
       const page = wrapper.querySelector('.a4-page');
@@ -265,8 +272,8 @@ function installResponsiveScaling() {
       page.style.left = '';
       page.style.top = '';
       page.style.transform = 'none';
-      page.style.transformOrigin = 'top left';
-      wrapper.style.width = '';
+      page.style.transformOrigin = 'top center';
+      wrapper.style.width = `${available}px`;
       wrapper.style.height = '';
 
       const canonicalWidth = page.offsetWidth;
@@ -274,17 +281,22 @@ function installResponsiveScaling() {
       if (!canonicalWidth || !canonicalHeight) continue;
 
       const scale = Math.min(1, available / canonicalWidth);
-      const scaledWidth = canonicalWidth * scale;
       const scaledHeight = canonicalHeight * scale;
 
-      wrapper.style.width = `${scaledWidth}px`;
+      wrapper.style.width = `${available}px`;
       wrapper.style.height = `${scaledHeight}px`;
       page.style.position = 'absolute';
-      page.style.left = '0';
+      page.style.left = '50%';
       page.style.top = '0';
-      page.style.transformOrigin = 'top left';
-      page.style.transform = `scale(${scale})`;
+      page.style.transformOrigin = 'top center';
+      page.style.transform = `translateX(-50%) scale(${scale})`;
     }
+  };
+
+  const scheduleScale = () => {
+    lastWidth = -1;
+    if (frame) cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(applyScale);
   };
 
   const resetForPrint = () => {
@@ -302,17 +314,14 @@ function installResponsiveScaling() {
     }
   };
 
-  const observer = new ResizeObserver(() => {
-    lastWidth = -1;
-    applyScale();
-  });
+  const observer = new ResizeObserver(scheduleScale);
   observer.observe(document.documentElement);
+  window.addEventListener('resize', scheduleScale, { passive: true });
+  window.addEventListener('orientationchange', scheduleScale, { passive: true });
+  window.visualViewport?.addEventListener('resize', scheduleScale, { passive: true });
 
   window.addEventListener('beforeprint', resetForPrint);
-  window.addEventListener('afterprint', () => {
-    lastWidth = -1;
-    applyScale();
-  });
+  window.addEventListener('afterprint', scheduleScale);
 
   applyScale();
 }
