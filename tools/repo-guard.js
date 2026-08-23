@@ -35,7 +35,7 @@ if (!exists('SOURCE_OF_TRUTH.md')) {
   else fail('SOURCE_OF_TRUTH.md אינו מגדיר היררכיית סמכות ברורה.');
   if (truth.includes('AAA Exact A4 Preview') && truth.includes('aaa-exact-a4-preview')) pass('מקור האמת מגדיר Exact A4 Preview כסטנדרט המובייל.');
   else fail('SOURCE_OF_TRUTH.md חייב להגדיר AAA Exact A4 Preview ואת aaa-exact-a4-preview.');
-  if (/responsive reflow קריא|mobile-first קריא ולא A4 מוקטן/u.test(truth)) fail('נשאר במקור האמת ניסוח מובייל ישן שסותר Exact A4 Preview.');
+  if (/mobile-first קריא ולא A4 מוקטן|המובייל המאושר הוא responsive reflow/u.test(truth)) fail('נשאר במקור האמת ניסוח מובייל ישן שסותר Exact A4 Preview.');
 }
 
 if (profile?.mobileReference?.id === 'aaa-exact-a4-preview' && profile?.mobileReference?.status === 'golden-reference') {
@@ -49,7 +49,7 @@ if (profile?.mobileReference?.contentReflow === 'forbidden' && profile?.mobileRe
   fail('STYLE_PROFILE.json חייב לאסור reflow ולשמור A4-identical.');
 }
 
-/* entrypoint יחיד, מטמון, ומנגנון התאמה חיצוני של A4. */
+/* entrypoint יחיד, מטמון, ו-bootstrap מוקדם למצב תצוגה. */
 if (!exists('index.html')) {
   fail('חסר index.html.');
 } else {
@@ -63,20 +63,12 @@ if (!exists('index.html')) {
   if (hasNoCacheMeta) pass('index.html כולל no-cache/no-store.');
   else fail('index.html חייב לכלול no-cache/no-store/Pragma/Expires.');
 
-  const exactPreviewTokens = [
-    "classList.toggle('mobile-print-preview'",
-    "classList.remove('mobile-reader')",
-    'fitPrintedPages',
-    'const canonicalWidth = page.offsetWidth',
-    'const canonicalHeight = page.offsetHeight',
-    'const scale = Math.min(1, available / canonicalWidth)',
-    'const left = Math.max(0, (available - scaledWidth) / 2)',
-    "page.style.transformOrigin = 'top left'",
-    'page.style.transform = `scale(${scale})`',
-  ];
-  const missing = exactPreviewTokens.filter((token) => !index.includes(token));
-  if (!missing.length) pass('index.html מקיים את חוזה Exact A4 Preview הממורכז.');
-  else fail(`index.html חסר רכיבי Exact A4 Preview: ${missing.join(' | ')}`);
+  const bootstrapOk = index.includes("classList.toggle('mobile-print-preview'")
+    && index.includes("classList.remove('mobile-reader')")
+    && index.includes('window.visualViewport?.width')
+    && index.includes('width <= 720');
+  if (bootstrapOk) pass('index.html מפעיל מוקדם mobile-print-preview ומנטרל mobile-reader.');
+  else fail('index.html חייב להפעיל mobile-print-preview מוקדם לפי visual viewport ולנטרל mobile-reader.');
 
   const coreAssetPatterns = [
     /styles\/a4-base\.css\?v=([^"']+)/u,
@@ -92,7 +84,7 @@ if (!exists('index.html')) {
 if (exists('pythagoras-workbook.html')) fail('אסור entrypoint כפול: pythagoras-workbook.html.');
 else pass('אין entrypoint HTML כפול.');
 
-/* runtime יחיד ורענן. */
+/* runtime יחיד + מנגנון Exact A4 Preview. */
 if (!exists('pythagoras-workbook.js')) {
   fail('חסר pythagoras-workbook.js.');
 } else {
@@ -106,9 +98,24 @@ if (!exists('pythagoras-workbook.js')) {
   const noStoreCount = (loader.match(/cache:\s*'no-store'/g) || []).length;
   if (noStoreCount >= 2) pass('HTML והמניפסט נטענים עם cache:no-store.');
   else fail('טעינות runtime אינן משתמשות כולן ב-cache:no-store.');
+
+  const exactPreviewTokens = [
+    "classList.toggle('mobile-print-preview'",
+    "classList.remove('mobile-reader')",
+    'const available = Math.max(1, wrapper.getBoundingClientRect().width)',
+    'const canonicalWidth = page.offsetWidth',
+    'const canonicalHeight = page.offsetHeight',
+    'const scale = Math.min(1, available / canonicalWidth)',
+    'const left = Math.max(0, (available - scaledWidth) / 2)',
+    "page.style.setProperty('transform-origin', 'top left', 'important')",
+    'page.style.transform = `scale(${scale})`',
+  ];
+  const missing = exactPreviewTokens.filter((token) => !loader.includes(token));
+  if (!missing.length) pass('pythagoras-workbook.js מקיים Exact A4 Preview ממורכז ללא reflow.');
+  else fail(`pythagoras-workbook.js חסר רכיבי Exact A4 Preview: ${missing.join(' | ')}`);
 }
 
-/* מעטפת החוברת חייבת למנוע גלילה אופקית; אין דרישה ל-reflow פנימי. */
+/* מעטפת החוברת מונעת גלילה אופקית. */
 if (!exists('styles/pythagoras-workbook.css')) {
   fail('חסר styles/pythagoras-workbook.css.');
 } else {
