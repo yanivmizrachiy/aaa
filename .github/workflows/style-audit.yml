@@ -22,9 +22,26 @@ jobs:
         with:
           node-version: '20'
       - name: Smart full validation
+        id: guard
+        continue-on-error: true
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
-        run: node tools/smart-edit.js --ci
+        run: node tools/smart-edit.js --ci 2>&1 | tee /tmp/guard-report.txt
+      - name: Publish guard diagnostics
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.guard.outcome == 'failure'
+        run: |
+          git config user.name "Pythagoras Guard"
+          git config user.email "guard@users.noreply.github.com"
+          git checkout --orphan diagnostics-tmp
+          git rm -rf .
+          mkdir -p meta
+          cp /tmp/guard-report.txt meta/last-guard-report.txt
+          git add meta/last-guard-report.txt
+          git commit -m "Store latest repository guard failure"
+          git push --force origin HEAD:diagnostics
       - name: Promote validated commit to release
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.guard.outcome == 'success'
         run: git push origin HEAD:release
+      - name: Fail workflow when guard fails
+        if: steps.guard.outcome == 'failure'
+        run: exit 1
