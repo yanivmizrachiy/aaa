@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 9,
+  "schemaVersion": 10,
   "project": "yanivmizrachiy/aaa",
   "authority": "SOURCE_OF_TRUTH.md",
   "scope": {
@@ -16,6 +16,15 @@
     "primaryUrl": "https://aaa-pythagoras.vercel.app/",
     "startFromWorkbookBeginning": true,
     "deepLink": "optional-addition-only"
+  },
+  "productionGate": {
+    "status": "locked",
+    "workBranch": "main",
+    "productionBranch": "release",
+    "productionReadsOnly": "release",
+    "promotionRule": "main מתקדם ל-release רק אחרי שכל בדיקות smart-edit --ci עוברות. כשל משאיר את Production על הגרסה המאומתת האחרונה.",
+    "validationBase": "last-release",
+    "vercelRewriteSource": "yanivmizrachiy/aaa/release"
   },
   "mobileReference": {
     "id": "aaa-exact-a4-preview",
@@ -51,8 +60,8 @@
     "activeAuditWindow": {
       "status": "active",
       "startPage": 1,
-      "endPage": 13,
-      "rule": "כל תיקון סגנוני שניתן להכללה באחד מעמודים 1–13 מפעיל בדיקה של אותה משפחת בעיות בכל 1–13 לפני סיום."
+      "endPage": 20,
+      "rule": "כל תיקון סגנוני שניתן להכללה באחד מעמודים 1–20 מפעיל בדיקה של אותה משפחת בעיות בכל 1–20 לפני סיום."
     },
     "readBeforeEveryChange": [
       "SOURCE_OF_TRUTH.md",
@@ -65,7 +74,7 @@
     ],
     "defaultChangeScope": "page",
     "newPreference": "כאשר המשתמש נותן תיקון עיצובי או פדגוגי שניתן להכללה, קודם קובעים את טווח ההשפעה. שינוי מקומי נשאר מקומי; כלל משותף נכנס למקור האמת ומפעיל ביקורת רוחבית בטווח העבודה הפעיל.",
-    "generalizationPolicy": "לא מחכים שהמשתמש יחזור על אותה דרישה בעמוד הבא. שטח לבן, חזרתיות, שאלות לא יצירתיות, reflow, זליגת CSS, מבנה לא מנוצל, פריסת פתרון לא נכונה או שטח תשובה שאינו מתאים לתוכן הם כללים שנבדקים יזום בכל חלון העבודה הפעיל.",
+    "generalizationPolicy": "לא מחכים שהמשתמש יחזור על אותה דרישה בעמוד הבא. שטח לבן, חזרתיות, שאלות לא יצירתיות, reflow, זליגת CSS, מבנה לא מנוצל, פריסת פתרון לא נכונה, צד שמאל ריק באמצע פתרון או שטח תשובה שאינו מתאים לתוכן נבדקים יזום בכל חלון העבודה הפעיל.",
     "scopeClassifier": {
       "global": "כלל שחייב להיות נכון בכל 53 דפי החוברת. אינו ברירת מחדל ומחייב בדיקת טווח פגיעה ונעילות.",
       "family": "כלל הנוגע למשפחת דפים בעלת root class משותף וברור. ממומש רק בתוך אותו scope משפחתי.",
@@ -73,15 +82,15 @@
     },
     "conflictPolicy": "אין להשאיר שתי דרישות סותרות. דרישה מפורשת חדשה מעדכנת או מחליפה את הכלל הישן באותו נושא לפני שינוי הקוד.",
     "propagationPolicy": "אין להפיץ שינוי תוכן מתמטי אוטומטית. כלל סגנוני נבדק בכל הטווח הפעיל, אך כל דף מקבל פתרון שמתאים לתפקיד המתמטי שלו ולא העתקה מכנית של עמוד אחר.",
-    "crossPageReviewPolicy": "כל תיקון בעמוד מסוים מפעיל בדיקת התאמה מהירה של דפים קשורים לפי imports, root classes ותלויות משותפות. בתוך חלון 1–13 מתווספת גם ביקורת רוחבית של כל 13 העמודים על אותו כלל סגנון.",
-    "truthSyncPolicy": "כל שינוי ב-HTML או ב-CSS ייעודי של דף חייב להתלוות באותו change-set לעדכון SOURCE_OF_TRUTH.md כך שהגרסה האחרונה בלבד נשארת הקובעת.",
+    "crossPageReviewPolicy": "כל תיקון בעמוד מסוים מפעיל בדיקת התאמה מהירה של דפים קשורים לפי imports, root classes ותלויות משותפות. בתוך חלון 1–20 מתווספת גם ביקורת רוחבית של כל 20 העמודים על אותו כלל סגנון.",
+    "truthSyncPolicy": "כל שינוי ב-HTML או ב-CSS ייעודי של דף חייב להתלוות לעדכון SOURCE_OF_TRUTH.md לפני קידום ל-release, כך שהגרסה האחרונה בלבד נשארת הקובעת.",
     "targetedEditPolicy": "כאשר הבקשה מכוונת לחלק מסוים בדף, התוכן המתמטי מחוץ ליעד נשמר; עם זאת כלל סגנוני חדש שניתן להכללה נבדק רוחבית לפי חלון העבודה הפעיל.",
     "sharedChangePolicy": "שינוי ב-styles/a4-base.css, styles/topics/*, styles/pythagoras-workbook.css או pythagoras-workbook.js נחשב שינוי רחב. כל עמוד נעול שתלוי בשכבה חייב לעבור אימות מחדש ועדכון חתימות לפני פרסום.",
     "cssIsolationPolicy": "CSS ייעודי לעמוד חייב להיות תחום ל-root class של העמוד. CSS משפחתי חייב להיות תחום ל-root class משפחתי. אין selector מבני גלובלי בקובץ עמוד.",
     "mobileChangePolicy": "כל שינוי משותף בתצוגה חייב לשמר את aaa-exact-a4-preview: viewport קנוני width=821, פריסת ההדפסה נשמרת בדיוק, אין reflow פנימי בנייד ואין חיתוך או גלילה אופקית.",
     "completionPolicy": "בסיום כל תיקון שולחים מיד את קישור ה-Production הקבוע מהעמוד הראשון.",
     "fastEditCommand": "node tools/smart-edit.js <מספר-עמוד> --check",
-    "verification": "לפני כתיבה מריצים tools/smart-edit.js על עמוד היעד כדי לקבל מפת השפעה. אחרי שינוי מריצים אותו עם --check. ב-CI הוא מריץ style-audit, repo-guard, content-contracts, workbook-visual-guard, first-13-style-audit ו-change-scope-audit מול commit הבסיס."
+    "verification": "לפני כתיבה מריצים tools/smart-edit.js על עמוד היעד כדי לקבל מפת השפעה. אחרי שינוי מריצים אותו עם --check. ב-CI רצים source-of-truth-health-audit, locked-page-regression-audit, style-audit, repo-guard, content-contracts, workbook-visual-guard, active-window-style-audit, vertical-solution-audit ו-change-scope-audit מול release המאומת האחרון."
   },
   "styleRules": [
     {
@@ -115,6 +124,12 @@
       "rule": "בכל דוגמה או מקום פתרון שבו יש כמה מעברים אלגבריים, כל מעבר נכתב בשורה חדשה וסימני השוויון מיושרים אנכית זה מתחת לזה. אין להציג שרשרת פתרון מלאה בשורה אופקית אחת. הכלל חל גם על דוגמאות וגם על תבניות התשובה של התלמיד."
     },
     {
+      "id": "repeat-left-side-in-vertical-solution",
+      "scope": "global",
+      "status": "locked",
+      "rule": "בפתרון אנכי לא משאירים את הצד השמאלי ריק. כל עוד פותרים את x², כל שורה מתחילה שוב ב-x²; רק במעבר להוצאת שורש עוברים ל-x. הדוגמה ותבנית התלמיד חייבות להיות זהות בכלל זה."
+    },
+    {
       "id": "no-repetitive-same-operation",
       "scope": "global",
       "status": "locked",
@@ -131,6 +146,12 @@
       "scope": "global",
       "status": "locked",
       "rule": "SOURCE_OF_TRUTH.md מתעדכן יחד עם כל תיקון עמוד; דרישה חדשה מחליפה ניסוח ישן סותר ולא מצטברת לידו כגרסה נוספת."
+    },
+    {
+      "id": "validated-release-only",
+      "scope": "global",
+      "status": "locked",
+      "rule": "Production קורא רק מ-release. שינויים ב-main אינם מגיעים למשתמש לפני שכל חומות הבדיקה עברו בהצלחה."
     },
     {
       "id": "surgical-edit-scope",
