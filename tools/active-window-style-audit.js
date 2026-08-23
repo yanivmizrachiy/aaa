@@ -28,7 +28,7 @@ for (const token of [
   '**פתרון רב־שלבי נכתב אנכית:**',
   '**הצד השמאלי אינו נעלם באמצע פתרון:**',
   '**הסבר מושגי הוא מודרך ואקטיבי:**',
-  '**הוראה לתלמיד חייבת לומר מה נתון ומה צריך לעשות.**',
+  '**הוראה לתלמיד חייבת להיות טבעית וברורה, לא ניסוח דמו.**',
   'AAA Exact A4 Preview',
 ]) {
   truth.includes(token) ? pass(`מקור האמת כולל: ${token}`) : fail(`מקור האמת חסר כלל מחייב: ${token}`);
@@ -88,9 +88,10 @@ else fail('עמוד 10: מגוון הקירוב נפגע.');
 if (['page11-top-band','page11-example-steps','top-guided-practice','direct-solution-scaffold','build-solution-scaffold'].every((t) => p(11).includes(t)) && !p(11).includes('approx-pair')) pass('עמוד 11: הדוגמה והתרגול העליון נשמרים.');
 else fail('עמוד 11: חזר מבנה אופקי/מבזבז מקום.');
 
-const page12Required = ['answer-fit-one-digit','answer-fit-two-digit','answer-fit-symbol-square','אם נתונה צלע','אם נתון שטח','<strong>נתון:</strong>','<strong>מצאו:</strong>','<strong>המטרה:</strong>','שטח ריבוע = צלע × צלע.','<strong>השלימו את המשפט:</strong>','<strong>מה כותבים בתיבה?</strong>','לא את אורך הצלע'];
-if (page12Required.every((t) => p(12).includes(t)) && !c(12).includes('pythagoras-power-practice.css')) pass('עמוד 12: 2×2, רוחבי תשובה חכמים והוראות ברורות גם בסעיף התחתון נשמרים.');
-else fail('עמוד 12: פריסה, רוחבי תשובה או בהירות ההוראות נפגעו.');
+const page12Required = ['answer-fit-one-digit','answer-fit-two-digit','answer-fit-symbol-square','מצלע לשטח','משטח לצלע','צלע של ריבוע היא באורך','שטח ריבוע הוא','איזה שטח מתאים לריבוע הזה?','אם שטח הריבוע הוא'];
+const page12Forbidden = ['<strong>נתון:</strong>','<strong>המטרה:</strong>','שלב 1','שלב 2','מה כותבים בתיבה?'];
+if (page12Required.every((t) => p(12).includes(t)) && page12Forbidden.every((t) => !p(12).includes(t)) && !c(12).includes('pythagoras-power-practice.css')) pass('עמוד 12: שפה טבעית של דף עבודה, 2×2 ורוחבי תשובה חכמים נשמרים.');
+else fail('עמוד 12: חזר ניסוח דמו, או שהפריסה/רוחבי התשובה נפגעו.');
 
 if (['page13-figure-task','page13-relation-task','page13-reverse-task','page13-generalize-task','result-below-card'].every((t) => p(13).includes(t))) pass('עמוד 13: רצף הגילוי והתוצאות מתחת נשמרים.');
 else fail('עמוד 13: רצף הגילוי נפגע.');
