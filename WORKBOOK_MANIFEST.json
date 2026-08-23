@@ -2,7 +2,6 @@
   "schemaVersion": 2,
   "id": "pythagoras",
   "name": "משפט פיתגורס",
-  "authority": "SOURCE_OF_TRUTH.md",
   "totalPages": 53,
   "pages": [
     {"file":"עמוד-634.html","sourceNumber":634,"workbookNumber":1,"curriculumId":"g7.geo.pythagoras","primaryTopic":"משפט פיתגורס"},

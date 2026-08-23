@@ -381,7 +381,11 @@ async function typesetMathInBatches() {
 
 function validateManifest(manifest) {
   const pages = Array.isArray(manifest?.pages) ? manifest.pages : [];
-  if (pages.length !== 53) throw new Error(`WORKBOOK_MANIFEST.json חייב להכיל בדיוק 53 דפים; נמצאו ${pages.length}`);
+  if (!pages.length) throw new Error('WORKBOOK_MANIFEST.json אינו מכיל דפים.');
+  const declared = Number(manifest?.totalPages);
+  if (declared && declared !== pages.length) {
+    throw new Error(`WORKBOOK_MANIFEST.json: totalPages (${declared}) אינו תואם למספר הדפים בפועל (${pages.length}).`);
+  }
   const files = new Set();
   return pages.map((page, index) => {
     if (!page?.file || typeof page.file !== 'string') throw new Error(`חסר file לעמוד ${index + 1} במניפסט`);
@@ -403,6 +407,8 @@ async function boot() {
   totalPages = pages.length;
   loadedPages = 0;
   failedPages = 0;
+  const eyebrow = document.querySelector('.workbook-eyebrow');
+  if (eyebrow) eyebrow.textContent = `חוברת דיגיטלית · ${totalPages} דפים`;
   updateNavigationDisplay(1);
   statusEl.textContent = `0 / ${totalPages} דפים נטענו`;
 

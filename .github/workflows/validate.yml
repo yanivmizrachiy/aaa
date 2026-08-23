@@ -1,0 +1,31 @@
+name: Validate & Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # השער היחיד: תקינות מבנית של המניפסט, 53 הדפים וה-CSS.
+      - name: Validate workbook integrity
+        run: node tools/validate.js
+
+      # מקדם ל-release רק אחרי ולידציה שעברה. Production (Vercel) קורא מ-release בלבד.
+      - name: Promote validated main to release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: git push origin HEAD:release

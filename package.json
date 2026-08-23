@@ -1,0 +1,12 @@
+{
+  "name": "pythagoras-workbook",
+  "version": "1.0.0",
+  "description": "חוברת דיגיטלית — משפט פיתגורס · A4 בעברית RTL עם MathJax מקומי",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "validate": "node tools/validate.js",
+    "dev": "node tools/dev-server.js",
+    "start": "node tools/dev-server.js"
+  }
+}

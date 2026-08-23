@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+
+# logs
+*.log
+npm-debug.log*
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*~
+
+# local / temp
+.vercel/
+*.tmp
