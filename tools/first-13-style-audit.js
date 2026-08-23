@@ -20,7 +20,8 @@ for (const token of [
   '## מערכת למידת הסגנון — חוזה מחייב',
   '**אין כפל סעיפים:**',
   '**אין להשאיר שטח A4 גדול ריק ללא מטרה.**',
-  '**שטח תשובה מותאם לתשובה הצפויה.**',
+  '**שטח תשובה מותאם לתשובה הצפויה:**',
+  '**הסבר מושגי הוא מודרך ואקטיבי:**',
   'AAA Exact A4 Preview',
 ]) {
   if (truth.includes(token)) pass(`מקור האמת כולל: ${token}`);
@@ -64,7 +65,6 @@ for (let n = start; n <= end; n += 1) {
   else fail(`עמוד ${n}: נמצא breakpoint מקומי שסותר AAA Exact A4 Preview.`);
 }
 
-/* תלות power-practice נשארת בחלון 1–13 רק בעמוד 6 שבו היא חלק מהתרגול הקנוני. */
 const allowedPowerPractice = new Set([6]);
 for (let n = start; n <= end; n += 1) {
   const meta = pages[n - 1];
@@ -72,11 +72,9 @@ for (let n = start; n <= end; n += 1) {
   const cssPath = `styles/pages/${meta.file.replace(/\.html$/u, '.css')}`;
   if (!exists(cssPath)) continue;
   const css = read(cssPath);
-  const importsPower = css.includes('pythagoras-power-practice.css');
-  if (importsPower && !allowedPowerPractice.has(n)) fail(`עמוד ${n}: תלות power-practice אינה נדרשת ועלולה ליצור זליגת סגנון.`);
+  if (css.includes('pythagoras-power-practice.css') && !allowedPowerPractice.has(n)) fail(`עמוד ${n}: תלות power-practice אינה נדרשת ועלולה ליצור זליגת סגנון.`);
 }
 
-/* חוזים פדגוגיים ממוקדים שנולדו מתיקוני המשתמש ואסור שיחזרו אחורה. */
 const p7 = read(pages[6].file);
 const p8 = read(pages[7].file);
 const p9 = read(pages[8].file);
@@ -93,16 +91,28 @@ else fail('עמוד 7: חזרה מבנית לגרסה החזרתית הישנה.
 if (p8.includes('direct-root-grid') && p8.includes('reverse-root-grid') && p8.includes('perfect-square-grid') && p8.includes('bridge-grid')) pass('עמוד 8: ארבע פעולות שונות נשמרות.');
 else fail('עמוד 8: חסר מגוון פדגוגי קנוני.');
 
-if (!p9.includes('equation-practice-grid') && p9.includes('direct-solution-grid') && p9.includes('reverse-solution-grid') && p9.includes('error-solution-grid')) pass('עמוד 9: אין חזרה ל-12 כרטיסים זהים.');
-else fail('עמוד 9: חזרה לתרגול אחיד מדי.');
+const page9Required = [
+  'page9-contrast',
+  'case-grid',
+  'equation-case-grid',
+  'root-practice-grid',
+  'error-grid',
+  '\\(x^2=-7\\)',
+  'אין פתרון',
+  '\\(\\sqrt9\\)',
+  '\\(x=-\\sqrt9\\)',
+];
+if (page9Required.every((token) => p9.includes(token)) && !p9.includes('reverse-solution-grid') && !p9.includes('build-equation-card')) pass('עמוד 9: ההבחנה שורש/משוואה ושלושת מצבי x²=a נשמרים.');
+else fail('עמוד 9: נפגע חוזה שורש מול משוואה או חזר המבנה הישן.');
 
-if (!p10.includes('approximation-grid') && p10.includes('bounds-grid') && p10.includes('calculator-grid') && p10.includes('reasonableness-grid') && p10.includes('error-grid') && p10.includes('build-root-card')) pass('עמוד 10: תחימה, קירוב, סבירות, תיקון ובנייה נשמרים במקום רצף חזרתי.');
-else fail('עמוד 10: מגוון הקירוב נפגע או חזרה רשת החישובים הישנה.');
+if (!p10.includes('approximation-grid') && p10.includes('bounds-grid') && p10.includes('calculator-grid') && p10.includes('reasonableness-grid') && p10.includes('error-grid') && p10.includes('build-root-card')) pass('עמוד 10: תחימה, קירוב, סבירות, תיקון ובנייה נשמרים.');
+else fail('עמוד 10: מגוון הקירוב נפגע.');
 if (!p10css.includes('pythagoras-power-practice.css')) pass('עמוד 10: CSS מקומי ואינו תלוי בשכבת power-practice.');
-else fail('עמוד 10: חזרה תלות power-practice שעלולה ליצור זליגת סגנון.');
+else fail('עמוד 10: חזרה תלות power-practice.');
 
-if (!p11.includes('page-11-practice-grid') && p11.includes('direct-approx-grid') && p11.includes('bounds-grid') && p11.includes('approx-error-grid') && p11.includes('build-approx-card')) pass('עמוד 11: חישוב, תחימה, תיקון ובנייה נשמרים במקום 10 סעיפים זהים.');
-else fail('עמוד 11: חזרה לגרסת 10 הכרטיסים הזהים או אובדן מגוון.');
+const page11Required = ['page11-example-steps', 'direct-solution-scaffold', 'build-solution-scaffold', 'bounds-grid', 'approx-error-grid'];
+if (page11Required.every((token) => p11.includes(token)) && !p11.includes('approx-pair')) pass('עמוד 11: הדוגמה ותיבות התלמיד מחייבות שורות פתרון מלאות.');
+else fail('עמוד 11: חזר זוג תשובות אופקי או חסרות שורות הפתרון המודרכות.');
 
 if (!p12css.includes('pythagoras-power-practice.css') && !/@media\s*(?:screen\s+and\s*)?\([^)]*(?:max-width|min-width)[^)]*\)/iu.test(p12css)) pass('עמוד 12: 2×2 נשמר בכל מכשיר ללא תלות משותפת מיותרת.');
 else fail('עמוד 12: חזרה ל-reflow או לתלות CSS מיותרת.');
