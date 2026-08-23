@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 5,
+  "schemaVersion": 6,
   "authority": "SOURCE_OF_TRUTH.md",
   "purpose": "נגזרת בלבד להגנה על עמודים שאומתו מול מקור האמת; אינה מקור דרישות נוסף.",
   "unlockPolicy": "משנים נעילה רק כאשר אותו עמוד או שכבה משותפת השתנו לפי SOURCE_OF_TRUTH.md, ואז מעדכנים באותו change-set את החתימות שנבדקו.",
@@ -30,6 +30,11 @@
     {"workbookPage":12,"status":"locked","reason":"עמוד 12: 2×2 קנוני, תוצאות חישוב מתחת ומשבצות לפי התשובה הצפויה.","files":[{"path":"עמוד-643.html","gitBlobSha":"766f13b3631c6b9ed90da7523ee557f90a4878fa"},{"path":"styles/pages/עמוד-643.css","gitBlobSha":"91276007dafcf22707aa86128a43ffac489f9887"}]},
     {"workbookPage":13,"status":"locked","reason":"עמוד 13: גילוי מלא, תוצאות מתחת לתרגילים וניצול כמעט מלא של ה-A4.","files":[{"path":"עמוד-644.html","gitBlobSha":"eec4aa4209310a414474b09ecb8c428ef55886a6"},{"path":"styles/pages/עמוד-644.css","gitBlobSha":"8a22828a4e7d28aa5a4bc1b1e28e68cd0bc2a40b"}]},
     {"workbookPage":14,"status":"locked","reason":"עמוד 14: ניסוח המשפט, תנאי השימוש, מבנה המשוואה ותיקון טעויות בפריסת A4 מלאה ומגוונת.","files":[{"path":"עמוד-645.html","gitBlobSha":"d562fbd6a4f9f4882edda76b6296a495e5905f91"},{"path":"styles/pages/עמוד-645.css","gitBlobSha":"962eec3f40ed80017dee60bbf5fce740537ddcfd"}]},
-    {"workbookPage":15,"status":"locked","reason":"עמוד 15: 6 שרטוטים לבניית משוואה, זיהוי יתר ותיקון טעויות, ללא שטח A4 מבוזבז.","files":[{"path":"עמוד-646.html","gitBlobSha":"ddb743d5bed8f215c6cac8204d06cd6d94bcb630"},{"path":"styles/pages/עמוד-646.css","gitBlobSha":"14dde82130646ab96bf419f80f81aea44f997341"}]}
+    {"workbookPage":15,"status":"locked","reason":"עמוד 15: 6 שרטוטים לבניית משוואה, זיהוי יתר ותיקון טעויות, ללא שטח A4 מבוזבז.","files":[{"path":"עמוד-646.html","gitBlobSha":"ddb743d5bed8f215c6cac8204d06cd6d94bcb630"},{"path":"styles/pages/עמוד-646.css","gitBlobSha":"14dde82130646ab96bf419f80f81aea44f997341"}]},
+    {"workbookPage":16,"status":"locked","reason":"עמוד 16: דוגמה ופתרונות אנכיים, x² נשמר בכל שורת ביניים, 4 שרטוטים, 4 בחירות פעולה ו-4 פתרונות מלאים.","files":[{"path":"עמוד-647.html","gitBlobSha":"349a3db3a9d8150e89c99f1f4ab022105d2f9fe6"},{"path":"styles/pages/עמוד-647.css","gitBlobSha":"61dfcf01979448b0902dc9599641af1130e63b02"}]},
+    {"workbookPage":17,"status":"locked","reason":"עמוד 17: פתרון שורה אחר שורה עם scaffold אנכי וצד שמאל כתוב בכל מעבר.","files":[{"path":"עמוד-653.html","gitBlobSha":"210c08dd23440002bae778ff6d9c88f4f6a3fff1"},{"path":"styles/pages/עמוד-653.css","gitBlobSha":"dea5bca7638d6e2ae581de36f7ddfc5024027001"}]},
+    {"workbookPage":18,"status":"locked","reason":"עמוד 18: מציאת יתר ב-6 תרגילים מלאים, פתרון אנכי ומשימת השוואה מסכמת.","files":[{"path":"עמוד-648.html","gitBlobSha":"7e404fc8cf3e35b31b613fa932647b2b6c58828b"},{"path":"styles/pages/עמוד-648.css","gitBlobSha":"602da144f98560afcc529a1cf8f644289050004a"}]},
+    {"workbookPage":19,"status":"locked","reason":"עמוד 19: מציאת ניצב ב-6 תרגילים מלאים, סדר חיסור נכון ופתרון אנכי עקבי.","files":[{"path":"עמוד-649.html","gitBlobSha":"cfdb9eaf42e2923dc92ea0e01b41291b4af36459"},{"path":"styles/pages/עמוד-649.css","gitBlobSha":"db5850973edf27db13dd2782a9b548b39117546c"}]},
+    {"workbookPage":20,"status":"locked","reason":"עמוד 20: תרגול מעורב, בחירת פעולה, 6 פתרונות מלאים, תיקון טעות והסקה.","files":[{"path":"עמוד-650.html","gitBlobSha":"6d7f04853f66691ff310b57cef54441249761148"},{"path":"styles/pages/עמוד-650.css","gitBlobSha":"62cdf81cf639f2780e739ddd3c1604b62a22359c"}]}
   ]
 }
