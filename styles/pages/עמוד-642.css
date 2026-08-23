@@ -7,10 +7,35 @@
   --power-instruction-line-height: 1.35;
 }
 
-.page-642 .compact-approx-note {
-  padding: 8px 12px;
+.page-642 .approx-summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 34px;
+  padding: 4px 10px;
+  border-block: 1px solid var(--border-light);
+  background: #fff;
   font-size: 15px;
-  line-height: 1.35;
+  line-height: 1.15;
+  white-space: nowrap;
+  direction: rtl;
+}
+
+.page-642 .approx-summary-label {
+  font-weight: 700;
+  color: var(--title-blue);
+}
+
+.page-642 .approx-summary-step {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+.page-642 .approx-summary-arrow {
+  color: #64748b;
+  font-size: 18px;
+  line-height: 1;
 }
 
 .page-642 .side-table {
@@ -47,6 +72,7 @@
 }
 
 @media print {
+  .page-642 .approx-summary,
   .page-642 .approximation-grid,
   .page-642 .side-table {
     break-inside: avoid;
