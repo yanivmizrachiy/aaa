@@ -9,7 +9,7 @@
 
 .page-653 .question-block {
   display: grid;
-  grid-template-rows: 128px 24px minmax(680px, 1fr) 58px;
+  grid-template-rows: 128px 24px minmax(650px, 1fr) 108px;
   gap: 7px;
   align-content: stretch;
   width: 100%;
@@ -78,8 +78,8 @@
 }
 
 .page-653 .example-note {
-  font-size: 13.2px;
-  line-height: 1.3;
+  font-size: 13px;
+  line-height: 1.25;
   text-align: center;
 }
 
@@ -125,7 +125,7 @@
 
 .page-653 .work-row {
   display: grid;
-  grid-template-columns: 28px 18px minmax(100px, 150px);
+  grid-template-columns: 34px 18px minmax(100px, 150px);
   align-items: center;
   gap: 4px;
   min-height: 27px;
@@ -161,24 +161,49 @@
 }
 
 .page-653 .page17-final-check {
-  display: flex;
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
-  gap: 7px;
+  gap: 10px;
   min-width: 0;
   min-height: 0;
-  padding: 6px 10px;
+  padding: 7px 12px;
   border-block: 1px solid var(--border-light);
   background: var(--bg-subtle);
-  font-size: 13.4px;
-  line-height: 1.15;
-  white-space: nowrap;
 }
 
-.page-653 .final-check-fill {
-  width: 54px;
-  height: 24px;
+.page-653 .page17-final-check > strong {
+  font-size: 13.2px;
+  font-weight: 600;
+  text-align: center;
 }
+
+.page-653 .final-check-stack {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 7px;
+  align-items: center;
+  min-width: 0;
+}
+
+.page-653 .final-check-row {
+  display: grid;
+  grid-template-columns: 30px 16px minmax(55px, 1fr);
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+  min-height: 34px;
+  padding: 4px 5px;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  background: #fff;
+  font-family: 'PytTeX', Georgia, 'Times New Roman', serif;
+  font-size: 13px;
+}
+
+.page-653 .final-check-row b { font-weight: 400; text-align: center; }
+.page-653 .final-check-fill { width: 46px; height: 22px; }
+.page-653 .final-check-wide { width: 68px; height: 22px; }
 
 @media print {
   .page-653 .page17-example,
