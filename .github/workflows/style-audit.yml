@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   repository-guard:
@@ -25,3 +25,6 @@ jobs:
         env:
           BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: node tools/smart-edit.js --ci
+      - name: Promote validated commit to release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: git push origin HEAD:release
