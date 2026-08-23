@@ -114,8 +114,9 @@ if (['page16-example','equation-from-diagram','operation-task','full-solve-task'
 else fail('עמוד 16: חזר צד שמאל ריק או חסר רכיב קנוני.');
 
 const blankWorkRow = /<div class="work-row"><span><\/span><b>=<\/b>/u;
-if (['page17-example','page17-practice-grid','page17-final-check','final-check-stack'].every((t) => p(17).includes(t)) && !blankWorkRow.test(p(17))) pass('עמוד 17: כל שורות הפתרון מפורשות והבדיקה הסופית אנכית.');
-else fail('עמוד 17: חזר צד שמאל ריק או בדיקה אופקית.');
+const page17Typography = c(17).includes(".page-653 {") && c(17).includes("font-family: 'Rubik', sans-serif;") && !c(17).includes("'PytTeX'");
+if (['page17-example','page17-practice-grid','page17-final-check','final-check-stack'].every((t) => p(17).includes(t)) && !blankWorkRow.test(p(17)) && page17Typography) pass('עמוד 17: כל שורות הפתרון מפורשות, הבדיקה הסופית אנכית והטיפוגרפיה אחידה ב-Rubik ללא override מקומי של PytTeX.');
+else fail('עמוד 17: חזר צד שמאל ריק/בדיקה אופקית או גופן מקומי שונה מגופן הפרויקט.');
 
 if (['page18-reminder','page18-grid','page18-compare'].every((t) => p(18).includes(t)) && (p(18).match(/page18-card/g) || []).length >= 6 && !blankWorkRow.test(p(18))) pass('עמוד 18: שישה תרגילי יתר עם scaffold מלא נשמרים.');
 else fail('עמוד 18: scaffold מציאת היתר נפגע.');
