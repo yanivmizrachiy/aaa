@@ -397,7 +397,7 @@ function validateManifest(manifest) {
 }
 
 async function boot() {
-  const manifestResponse = await fetchWithRetry(MANIFEST_URL);
+  const manifestResponse = await fetchWithRetry(MANIFEST_URL, { cache: 'no-store' });
   const manifest = await manifestResponse.json();
   const pages = validateManifest(manifest);
   totalPages = pages.length;
