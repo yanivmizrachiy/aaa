@@ -20,6 +20,7 @@ for (const token of [
   '## מערכת למידת הסגנון — חוזה מחייב',
   '**אין כפל סעיפים:**',
   '**אין להשאיר שטח A4 גדול ריק ללא מטרה.**',
+  '**ניצול דף חכם קודם למרכוז.**',
   '**שטח תשובה מותאם לתשובה הצפויה:**',
   '**הסבר מושגי הוא מודרך ואקטיבי:**',
   'AAA Exact A4 Preview',
@@ -81,6 +82,7 @@ const p9 = read(pages[8].file);
 const p10 = read(pages[9].file);
 const p10css = read(`styles/pages/${pages[9].file.replace(/\.html$/u, '.css')}`);
 const p11 = read(pages[10].file);
+const p11css = read(`styles/pages/${pages[10].file.replace(/\.html$/u, '.css')}`);
 const p12 = read(pages[11].file);
 const p12css = read(`styles/pages/${pages[11].file.replace(/\.html$/u, '.css')}`);
 const p13 = read(pages[12].file);
@@ -91,17 +93,7 @@ else fail('עמוד 7: חזרה מבנית לגרסה החזרתית הישנה.
 if (p8.includes('direct-root-grid') && p8.includes('reverse-root-grid') && p8.includes('perfect-square-grid') && p8.includes('bridge-grid')) pass('עמוד 8: ארבע פעולות שונות נשמרות.');
 else fail('עמוד 8: חסר מגוון פדגוגי קנוני.');
 
-const page9Required = [
-  'page9-contrast',
-  'case-grid',
-  'equation-case-grid',
-  'root-practice-grid',
-  'error-grid',
-  '\\(x^2=-7\\)',
-  'אין פתרון',
-  '\\(\\sqrt9\\)',
-  '\\(x=-\\sqrt9\\)',
-];
+const page9Required = ['page9-contrast','case-grid','equation-case-grid','root-practice-grid','error-grid','\\(x^2=-7\\)','אין פתרון','\\(\\sqrt9\\)','\\(x=-\\sqrt9\\)'];
 if (page9Required.every((token) => p9.includes(token)) && !p9.includes('reverse-solution-grid') && !p9.includes('build-equation-card')) pass('עמוד 9: ההבחנה שורש/משוואה ושלושת מצבי x²=a נשמרים.');
 else fail('עמוד 9: נפגע חוזה שורש מול משוואה או חזר המבנה הישן.');
 
@@ -110,9 +102,9 @@ else fail('עמוד 10: מגוון הקירוב נפגע.');
 if (!p10css.includes('pythagoras-power-practice.css')) pass('עמוד 10: CSS מקומי ואינו תלוי בשכבת power-practice.');
 else fail('עמוד 10: חזרה תלות power-practice.');
 
-const page11Required = ['page11-example-steps', 'direct-solution-scaffold', 'build-solution-scaffold', 'bounds-grid', 'approx-error-grid'];
-if (page11Required.every((token) => p11.includes(token)) && !p11.includes('approx-pair')) pass('עמוד 11: הדוגמה ותיבות התלמיד מחייבות שורות פתרון מלאות.');
-else fail('עמוד 11: חזר זוג תשובות אופקי או חסרות שורות הפתרון המודרכות.');
+const page11Required = ['page11-top-band','page11-example-steps','top-guided-practice','direct-solution-scaffold','build-solution-scaffold','bounds-grid','approx-error-grid','\\(x^2=14\\)','\\(x^2=45\\)'];
+if (page11Required.every((token) => p11.includes(token)) && !p11.includes('approx-pair') && p11css.includes('grid-template-columns: minmax(210px, .9fr) minmax(0, 2.1fr)')) pass('עמוד 11: הדוגמה צמודה לימין והשטח העליון מנוצל לתרגול נוסף.');
+else fail('עמוד 11: הדוגמה חזרה למרכוז/רוחב מלא או שהתרגול העליון נעלם.');
 
 if (!p12css.includes('pythagoras-power-practice.css') && !/@media\s*(?:screen\s+and\s*)?\([^)]*(?:max-width|min-width)[^)]*\)/iu.test(p12css)) pass('עמוד 12: 2×2 נשמר בכל מכשיר ללא תלות משותפת מיותרת.');
 else fail('עמוד 12: חזרה ל-reflow או לתלות CSS מיותרת.');
