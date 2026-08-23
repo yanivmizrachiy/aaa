@@ -1,7 +1,7 @@
 @import url("../topics/pythagoras-foundations.css");
 @import url("../topics/pythagoras-power-practice.css");
 
-/* עמוד 6 — ריבוע של מספר: A4 מלא, מגוון וללא הוראה לכתוב מכפלה. */
+/* עמוד 6 — ריבוע של מספר: תיבות נקיות, תוצאה מתחת לתרגיל וגיוון במספרים ובשברים. */
 .page-639 .question-block {
   display: grid;
   grid-template-rows: 38px 236px 206px 150px 150px minmax(118px, 1fr);
@@ -23,6 +23,14 @@
 }
 .page-639 .square-parenthetical { unicode-bidi: isolate; }
 .page-639 .calculator-note { flex: 0 0 auto; font-weight: 600; color: var(--accent-dark); }
+
+/* בעמוד הזה תיבות התשובה שקטות ונקיות: ללא צל, ללא גרדיאנט וללא פינות מנופחות. */
+.page-639 .foundation-fill {
+  background: #fff;
+  box-shadow: none;
+  border: 1.2px solid #64748b;
+  border-radius: 4px;
+}
 
 .page-639 .page6-section,
 .page-639 .page6-thinking-task,
@@ -46,7 +54,7 @@
 .page-639 .compare-card {
   direction: ltr; unicode-bidi: isolate; display: flex; align-items: center; justify-content: center;
   gap: 6px; min-width: 0; min-height: 0; padding: 6px 7px;
-  border: 1px solid var(--border-light); border-radius: 8px; background: var(--bg-paper);
+  border: 1px solid #cbd5e1; border-radius: 6px; background: #fff;
   font-size: 17px; line-height: 1.15; box-sizing: border-box;
 }
 
@@ -55,7 +63,7 @@
 .page-639 .hard-square-card,
 .page-639 .pattern-expression { flex-direction: column; }
 
-.page-639 .square-fill { height: 25px; border-radius: 5px; flex: 0 0 25px; }
+.page-639 .square-fill { height: 25px; border-radius: 4px; flex: 0 0 25px; }
 .page-639 .square-card:nth-child(-n+3) .square-fill { width: 34px; min-width: 34px; }
 .page-639 .square-card:nth-child(n+4):nth-child(-n+9) .square-fill { width: 46px; min-width: 46px; }
 .page-639 .square-card:nth-child(n+10) .square-fill { width: 58px; min-width: 58px; }
@@ -73,32 +81,31 @@
   grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 6px; min-width: 0; min-height: 0;
 }
 .page-639 .compare-card { gap: 6px; background: var(--bg-subtle); font-size: 15.5px; }
-.page-639 .compare-fill { width: 32px; height: 23px; border-radius: 5px; flex: 0 0 32px; }
+.page-639 .compare-fill { width: 32px; height: 23px; border-radius: 4px; flex: 0 0 32px; }
 
 .page-639 .reasoning-grid { display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 6px; min-width: 0; min-height: 0; }
 .page-639 .reasoning-card {
   display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 5px;
-  min-width: 0; min-height: 0; padding: 6px 8px; border: 1px solid var(--border-light);
-  border-radius: 8px; background: var(--bg-paper); font-size: 13.8px; line-height: 1.25; text-align: center;
+  min-width: 0; min-height: 0; padding: 6px 8px; border: 1px solid #cbd5e1;
+  border-radius: 6px; background: #fff; font-size: 13.8px; line-height: 1.25; text-align: center;
 }
-.page-639 .reasoning-fill { width: 58px; height: 23px; border-radius: 5px; }
-.page-639 .reasoning-line { width: 150px; height: 23px; border-radius: 5px; }
+.page-639 .reasoning-fill { width: 58px; height: 23px; border-radius: 4px; }
+.page-639 .reasoning-line { width: 150px; height: 23px; border-radius: 4px; }
 
 .page-639 .hard-square-grid {
   display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 7px; min-width: 0; min-height: 0;
 }
 .page-639 .hard-square-card { background: var(--bg-subtle); font-size: 16.2px; }
-.page-639 .hard-square-fill { height: 25px; border-radius: 5px; flex: 0 0 25px; }
-.page-639 .hard-square-card:nth-child(-n+3) .hard-square-fill { width: 58px; min-width: 58px; }
-.page-639 .hard-square-card:nth-child(n+4):nth-child(-n+7) .hard-square-fill { width: 68px; min-width: 68px; }
-.page-639 .hard-square-card:nth-child(8) .hard-square-fill { width: 78px; min-width: 78px; }
+.page-639 .hard-square-fill { height: 25px; border-radius: 4px; flex: 0 0 25px; width: 64px; min-width: 64px; }
+.page-639 .fraction-square-card { font-size: 15px; }
+.page-639 .fraction-square-card .fraction-fill { width: 74px; min-width: 74px; }
 
 .page-639 .power-error-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; min-width: 0; min-height: 0; }
 .page-639 .power-error-card {
   display: grid; grid-template-rows: auto auto auto; align-content: center; justify-items: center; gap: 5px;
-  min-width: 0; min-height: 0; padding: 7px 6px; border: 1px solid var(--border-light);
-  border-radius: 8px; background: var(--bg-paper); font-size: 12.8px; line-height: 1.15; box-sizing: border-box;
+  min-width: 0; min-height: 0; padding: 7px 6px; border: 1px solid #cbd5e1;
+  border-radius: 6px; background: #fff; font-size: 12.8px; line-height: 1.15; box-sizing: border-box;
 }
 .page-639 .error-expression { direction: ltr; unicode-bidi: isolate; font-size: 16px; font-weight: 500; }
 .page-639 .error-choice { display: flex; align-items: center; justify-content: center; gap: 4px; white-space: nowrap; }
@@ -112,13 +119,13 @@
 .page-639 .pattern-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 7px; min-width: 0; min-height: 0; }
 .page-639 .pattern-expression {
   display: flex; align-items: center; justify-content: center; gap: 4px; min-width: 0; padding: 5px 7px;
-  border: 1px solid var(--border-light); border-radius: 8px; background: var(--bg-subtle); font-size: 15.5px;
+  border: 1px solid #cbd5e1; border-radius: 6px; background: var(--bg-subtle); font-size: 15.5px;
 }
-.page-639 .pattern-fill { height: 24px; border-radius: 5px; }
+.page-639 .pattern-fill { height: 24px; border-radius: 4px; }
 .page-639 .pattern-expression:nth-child(1) .pattern-fill { width: 58px; min-width: 58px; }
 .page-639 .pattern-expression:nth-child(n+2) .pattern-fill { width: 68px; min-width: 68px; }
 .page-639 .pattern-observation { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 27px; font-size: 14px; line-height: 1.2; }
-.page-639 .pattern-short-fill { width: 48px; height: 23px; border-radius: 5px; }
+.page-639 .pattern-short-fill { width: 48px; height: 23px; border-radius: 4px; }
 
 @media print {
   .page-639 .page6-summary,
