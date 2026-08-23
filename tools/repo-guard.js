@@ -24,6 +24,7 @@ function readJson(file) {
 
 const manifest = readJson('WORKBOOK_MANIFEST.json');
 const locks = readJson('meta/approved-page-locks.json');
+const profile = readJson('STYLE_PROFILE.json');
 
 /* סמכות יחידה. */
 if (!exists('SOURCE_OF_TRUTH.md')) fail('חסר SOURCE_OF_TRUTH.md.');
@@ -31,16 +32,52 @@ else {
   const truth = read('SOURCE_OF_TRUTH.md');
   if (truth.includes('הסמכות היחידה') && truth.includes('WORKBOOK_MANIFEST.json')) pass('מקור האמת והיררכיית הסמכות מוגדרים.');
   else fail('SOURCE_OF_TRUTH.md אינו מגדיר היררכיית סמכות ברורה.');
+  if (truth.includes('AAA Mobile Reader') && truth.includes('aaa-mobile-reader-approved')) pass('מקור האמת מגדיר את סטנדרט המובייל המאושר ואת מזהה הייחוס.');
+  else fail('SOURCE_OF_TRUTH.md חייב להגדיר את AAA Mobile Reader ואת aaa-mobile-reader-approved.');
 }
 
-/* כניסה אחת בלבד לחוברת. */
+if (profile?.mobileReference?.id === 'aaa-mobile-reader-approved' && profile?.mobileReference?.status === 'golden-reference') {
+  pass('STYLE_PROFILE.json שומר את AAA Mobile Reader כ-golden reference.');
+} else {
+  fail('STYLE_PROFILE.json אינו שומר את AAA Mobile Reader כ-golden reference.');
+}
+
+/* כניסה אחת בלבד לחוברת + חוזה מובייל מוקדם + גרסאות נכסים. */
 if (!exists('index.html')) fail('חסר index.html — נקודת הכניסה היחידה לחוברת.');
 else {
   const index = read('index.html');
   if (index.includes('pythagoras-workbook.js') && index.includes('styles/workbook-canonical-locks.css')) pass('index.html טוען את ה-loader ואת שכבת הנעילות.');
   else fail('index.html אינו טוען את מנגנון החוברת המלא.');
-  if (/\?v=/.test(index)) fail('index.html מכיל version ידני. אין להשתמש במספרי build ידניים.');
-  else pass('אין version ידני ב-index.html.');
+
+  const hasNoCacheMeta = /Cache-Control[^>]*no-cache[^>]*no-store/is.test(index)
+    && /Pragma[^>]*no-cache/is.test(index)
+    && /Expires[^>]*0/is.test(index);
+  if (hasNoCacheMeta) pass('index.html כולל no-cache/no-store למניעת HTML ישן בצד הלקוח.');
+  else fail('index.html חייב לכלול no-cache/no-store/Pragma/Expires כדי לצמצם שימוש ב-HTML ישן.');
+
+  const bootstrapAt = index.indexOf("classList.toggle('mobile-reader'");
+  const headerAt = index.indexOf('<header');
+  const hasImmediateMobileBootstrap = bootstrapAt >= 0
+    && headerAt >= 0
+    && bootstrapAt < headerAt
+    && index.includes('window.visualViewport?.width')
+    && index.includes("width <= 720");
+  if (hasImmediateMobileBootstrap) pass('mobile-reader מופעל מיד ב-entrypoint לפי visual viewport לפני תוכן החוברת.');
+  else fail('index.html חייב להפעיל mobile-reader מיד, לפי visual viewport ועד 720px, לפני טעינת תוכן החוברת.');
+
+  const coreAssetPatterns = [
+    /styles\/a4-base\.css\?v=([^"']+)/u,
+    /styles\/topics\/pythagoras\.css\?v=([^"']+)/u,
+    /styles\/pythagoras-workbook\.css\?v=([^"']+)/u,
+    /styles\/workbook-canonical-locks\.css\?v=([^"']+)/u,
+    /pythagoras-workbook\.js\?v=([^"']+)/u,
+  ];
+  const versions = coreAssetPatterns.map((pattern) => index.match(pattern)?.[1]).filter(Boolean);
+  if (versions.length === coreAssetPatterns.length && new Set(versions).size === 1) {
+    pass(`נכסי הליבה משתמשים במזהה גרסה אחיד: ${versions[0]}.`);
+  } else {
+    fail('כל נכסי הליבה ב-index.html חייבים לקבל ?v= עם מזהה גרסה אחיד כדי למנוע מטמון מעורב.');
+  }
 }
 if (exists('pythagoras-workbook.html')) fail('pythagoras-workbook.html חזר לריפו. יש entrypoint HTML יחיד בלבד: index.html.');
 else pass('אין entrypoint HTML כפול.');
@@ -59,6 +96,43 @@ if (!exists('pythagoras-workbook.js')) {
   const noStoreCount = (loader.match(/cache:\s*'no-store'/g) || []).length;
   if (noStoreCount >= 2) pass('HTML והמניפסט נטענים עם cache:no-store.');
   else fail('טעינות runtime אינן משתמשות כולן ב-cache:no-store.');
+  if (loader.includes("classList.toggle('mobile-reader'") && loader.includes('window.visualViewport?.width')) {
+    pass('ה-loader ממשיך לסנכרן mobile-reader לאחר ה-bootstrap הראשוני.');
+  } else {
+    fail('pythagoras-workbook.js חייב להמשיך לסנכרן mobile-reader לפי visual viewport.');
+  }
+}
+
+/* חוזה AAA Mobile Reader בשכבות התצוגה. */
+if (!exists('styles/pythagoras-workbook.css')) {
+  fail('חסר styles/pythagoras-workbook.css.');
+} else {
+  const css = read('styles/pythagoras-workbook.css');
+  const requiredMobileTokens = [
+    '.pythagoras-workbook-shell.mobile-reader',
+    'width: 100% !important',
+    'height: auto !important',
+    'min-width: 0 !important',
+    'transform: none !important',
+    'overflow-x: hidden !important',
+    'max-width: 100% !important',
+  ];
+  const missing = requiredMobileTokens.filter((token) => !css.includes(token));
+  if (!missing.length) pass('שכבת החוברת מקיימת את חוזה responsive reflow של AAA Mobile Reader.');
+  else fail(`styles/pythagoras-workbook.css חסר רכיבי חוזה מובייל: ${missing.join(' | ')}`);
+}
+
+if (!exists('styles/workbook-canonical-locks.css')) {
+  fail('חסר styles/workbook-canonical-locks.css.');
+} else {
+  const canonical = read('styles/workbook-canonical-locks.css');
+  if (canonical.includes('.pythagoras-workbook-shell.mobile-reader')
+      && canonical.includes('grid-template-columns: 1fr !important')
+      && canonical.includes('overflow: visible !important')) {
+    pass('נעילות A4 משתחררות במובייל כדי לאפשר reflow קריא.');
+  } else {
+    fail('workbook-canonical-locks.css חייב לכלול overrides מפורשים ל-mobile-reader שמונעים קיבוע A4 בנייד.');
+  }
 }
 
 if (exists('pythagoras-workbook-model.js')) fail('pythagoras-workbook-model.js הישן חזר לריפו.');
@@ -128,6 +202,9 @@ if (locks) {
 
   for (const pageLock of locks.pages || []) {
     if (pageLock.status !== 'locked') continue;
+    if (/מוקטן|scale|zoom/u.test(String(pageLock.reason || ''))) {
+      fail(`עמוד ${pageLock.workbookPage}: reason של הנעילה מכיל ניסוח מובייל ישן שסותר AAA Mobile Reader.`);
+    }
     const allLocks = [
       ...(pageLock.files || []).map((item) => ({ ...item, kind: 'page' })),
       ...(pageLock.sharedDependencies || []).map((item) => ({ ...item, kind: 'shared' })),
