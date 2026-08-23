@@ -19,7 +19,7 @@
 .page-636 .leg-svg .edge,.page-636 .quick-leg-svg .edge,.page-636 .mcq-triangle .edge { fill:none; stroke:#111827; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; }
 .page-636 .leg-svg .mark,.page-636 .quick-leg-svg .mark,.page-636 .mcq-triangle .mark { fill:none; stroke:#111827; stroke-width:1.45; vector-effect:non-scaling-stroke; }
 .page-636 .leg-svg .equal-mark { fill:none; stroke:#475569; stroke-width:1.35; vector-effect:non-scaling-stroke; }
-.page-636 .vertex { font-family:'Rubik',Arial,sans-serif; font-size:16px; font-style:italic; font-weight:500; fill:#111827; }
+.page-636 .vertex { font-family:'Rubik',Arial,sans-serif; font-size:16px; font-style:italic; font-weight:500; fill:#111827; text-anchor:middle; dominant-baseline:middle; }
 .page-636 .leg-answer { min-height:0; display:flex; align-items:center; justify-content:center; text-align:center; font-size:13px; line-height:1.42; padding-inline:2px; flex-wrap:wrap; gap:3px; }
 .page-636 .answer-line,.page-636 .short-answer { display:inline-block; border-bottom:1.2px solid #334155; height:18px; vertical-align:baseline; }
 .page-636 .answer-line { width:48px; }

@@ -3,7 +3,7 @@
 /* עמוד 13 — גילוי מלא של הקשר, עם תוצאה מתחת לתרגיל וניצול חכם של כל ה-A4. */
 .page-644 .question-block {
   display: grid;
-  grid-template-rows: 285px 225px 245px minmax(230px, 1fr);
+  grid-template-rows: 262px 205px 224px minmax(230px, 1fr);
   gap: 8px;
   align-content: stretch;
   min-width: 0;

@@ -1,6 +1,6 @@
 @import url("../topics/pythagoras-foundations.css");
 
-/* עמוד 12 — ארבע השלמות שונות, פריסה מלאה של 2×2 ללא חזרתיות מיותרת וללא מספור סעיפים. */
+/* עמוד 12 — ארבע השלמות שונות, פריסה מלאה של 2 על 2 ללא חזרתיות מיותרת וללא מספור סעיפים. */
 .page-643 .question-block.square-area-practice { justify-content:flex-start; gap:12px; min-height:0; }
 .page-643 .page12-intro { margin-bottom:0; flex:0 0 auto; }
 .page-643 .square-task-grid { flex:1 1 auto; min-height:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); gap:12px; }
