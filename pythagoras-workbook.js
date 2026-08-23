@@ -1,5 +1,4 @@
-const scriptUrl = new URL(import.meta.url);
-const BUILD_VERSION = scriptUrl.searchParams.get('v') || '20260823-universal-device-1';
+const BUILD_VERSION = String(Date.now());
 const MANIFEST_URL = 'WORKBOOK_MANIFEST.json';
 const workbookRoot = document.querySelector('#workbook');
 const toolbar = document.querySelector('.workbook-toolbar');
