@@ -1,6 +1,10 @@
 @import url("../topics/pythagoras-foundations.css");
 
 /* עמוד 17 — פתרון אנכי עקבי, צפוף להדפסה וללא שטחי עבודה לבנים גדולים. */
+.page-653 {
+  font-family: 'Rubik', sans-serif;
+}
+
 .page-653 > .header-container > .page-title {
   font-size: 22px;
   line-height: 1.1;
@@ -52,7 +56,7 @@
   align-content: center;
   gap: 2px;
   direction: ltr;
-  font-family: 'PytTeX', Georgia, 'Times New Roman', serif;
+  font-family: inherit;
 }
 
 .page-653 .solution-row {
@@ -129,7 +133,7 @@
   align-items: center;
   gap: 4px;
   min-height: 27px;
-  font-family: 'PytTeX', Georgia, 'Times New Roman', serif;
+  font-family: inherit;
   font-size: 14.8px;
   line-height: 1.05;
 }
@@ -197,7 +201,7 @@
   border: 1px solid var(--border-light);
   border-radius: 6px;
   background: #fff;
-  font-family: 'PytTeX', Georgia, 'Times New Roman', serif;
+  font-family: inherit;
   font-size: 13px;
 }
 
