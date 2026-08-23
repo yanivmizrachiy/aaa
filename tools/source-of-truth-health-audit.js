@@ -27,6 +27,7 @@ const locked = (locks.pages || []).filter((p) => p.status === 'locked').sort((a,
 const protectedEnd = locked.length ? locked[locked.length - 1].workbookPage : 0;
 const activeStart = profile.learningProtocol?.activeAuditWindow?.startPage;
 const activeEnd = profile.learningProtocol?.activeAuditWindow?.endPage;
+const declaredProtectedEnd = Number(truth.match(/חומת ההגנה הרציפה כרגע היא עמודים \*\*1–(\d+)\*\*/u)?.[1] || 0);
 
 const requiredTruth = [
   '# מקור האמת — חוברת משפט פיתגורס',
@@ -87,6 +88,12 @@ else fail('נמצאו נעילות כפולות לאותו עמוד.');
 for (let n = 1; n <= protectedEnd; n += 1) {
   if (lockNumbers.includes(n)) pass(`עמוד ${n}: מוגן בנעילה.`);
   else fail(`עמוד ${n}: חור בחומת הנעילות.`);
+}
+
+if (protectedEnd === activeEnd && declaredProtectedEnd === activeEnd) {
+  pass(`חומת הנעילות, חלון הלמידה ומקור האמת מסונכרנים עד עמוד ${activeEnd}.`);
+} else {
+  fail(`פער מסוכן בחומת הרגרסיה: locks עד ${protectedEnd}, מקור האמת מצהיר עד ${declaredProtectedEnd}, חלון פעיל עד ${activeEnd}. שלושתם חייבים להיות זהים.`);
 }
 
 for (const lock of locked) {
