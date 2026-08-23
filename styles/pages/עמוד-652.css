@@ -1,9 +1,9 @@
 @import url("../topics/pythagoras-foundations.css");
 
-/* עמוד 11 — קירוב פתרונות: חישוב, תחימה, תיקון טעות ובנייה במקום 10 כרטיסים זהים. */
+/* עמוד 11 — כל פתרון נכתב שורה־שורה: שורש חיובי, קירוב, שורש שלילי, קירוב. */
 .page-652 .question-block {
   display: grid;
-  grid-template-rows: 116px 220px 205px 185px minmax(180px, 1fr);
+  grid-template-rows: 132px 254px 188px 164px minmax(188px, 1fr);
   gap: 8px;
   align-content: stretch;
   width: 100%;
@@ -45,8 +45,8 @@
 .page-652 .compact-worked-example {
   width: 100%;
   min-width: 0;
-  min-height: 116px;
-  padding: 8px 12px 9px;
+  min-height: 132px;
+  padding: 7px 12px;
   display: grid;
   grid-template-columns: 62px minmax(0, 1fr);
   align-items: start;
@@ -56,31 +56,28 @@
 
 .page-652 .compact-worked-example .example-label {
   padding: 2px 0 0;
-  font-size: 14.5px;
+  font-size: 14px;
   line-height: 1.2;
   text-align: right;
 }
 
-.page-652 .compact-worked-example .solution-stack {
+.page-652 .page11-example-steps {
   width: 100%;
   min-width: 0;
   gap: 2px;
   justify-items: center;
 }
 
-.page-652 .compact-worked-example .solution-step {
+.page-652 .page11-example-steps .solution-step {
   width: 100%;
   min-height: 19px;
-  font-size: 16px;
-  line-height: 1.18;
+  font-size: 15.6px;
+  line-height: 1.14;
   text-align: center;
 }
 
-.page-652 .compact-worked-example .final-answer {
-  margin-top: 2px;
-  padding: 3px 12px;
-  font-size: 16px;
-  line-height: 1.18;
+.page-652 .page11-example-steps .example-result-step {
+  font-weight: 600;
 }
 
 .page-652 .compact-worked-example mjx-container {
@@ -98,21 +95,21 @@
 }
 
 .page-652 .page11-bounds-task {
-  grid-template-rows: auto minmax(0, 1fr) 30px;
+  grid-template-rows: auto minmax(0, 1fr) 28px;
 }
 
 .page-652 .page11-final-task {
-  grid-template-rows: auto minmax(0, 1fr) 32px;
+  grid-template-rows: auto minmax(0, 1fr) 30px;
 }
 
 .page-652 .q-main {
   margin: 0;
-  min-height: 22px;
+  min-height: 21px;
 }
 
 .page-652 .q-text {
-  font-size: 14.5px;
-  line-height: 1.24;
+  font-size: 13.8px;
+  line-height: 1.2;
 }
 
 .page-652 .direct-approx-grid {
@@ -135,37 +132,59 @@
 }
 
 .page-652 .direct-approx-card {
-  padding: 9px 7px;
+  padding: 7px 6px;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-rows: 27px minmax(0, 1fr);
   align-items: center;
   justify-items: center;
-  gap: 9px;
+  gap: 5px;
 }
 
 .page-652 .equation {
-  font-size: 18px;
-  line-height: 1.2;
+  font-size: 17px;
+  line-height: 1.15;
   font-weight: 600;
 }
 
-.page-652 .approx-pair {
+.page-652 .direct-solution-scaffold,
+.page-652 .build-solution-scaffold {
   display: grid;
-  grid-template-columns: auto 56px auto 56px;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
+  align-content: center;
+  gap: 4px;
   min-width: 0;
-  font-size: 13.6px;
+  width: 100%;
 }
 
-.page-652 .approx-slot,
-.page-652 .build-slot {
-  width: 56px;
-  min-width: 56px;
-  height: 25px;
-  border-radius: 5px;
+.page-652 .scaffold-row {
+  display: grid;
+  grid-template-columns: 34px 17px minmax(54px, 1fr);
+  align-items: center;
+  column-gap: 4px;
+  min-width: 0;
+  min-height: 27px;
+  font-size: 14.2px;
 }
+
+.page-652 .scaffold-lhs {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.page-652 .scaffold-eq {
+  text-align: center;
+}
+
+.page-652 .root-form-slot,
+.page-652 .approx-slot,
+.page-652 .build-line-slot,
+.page-652 .build-a-slot {
+  height: 24px;
+  border-radius: 5px;
+  justify-self: start;
+}
+
+.page-652 .root-form-slot { width: 72px; }
+.page-652 .approx-slot { width: 54px; }
 
 .page-652 .bounds-grid {
   display: grid;
@@ -176,19 +195,19 @@
 }
 
 .page-652 .bounds-card {
-  padding: 8px 7px;
+  padding: 7px 6px;
   display: grid;
   grid-template-rows: auto 1fr 1fr;
   align-items: center;
   justify-items: center;
-  gap: 4px;
+  gap: 3px;
   background: var(--bg-subtle);
-  font-size: 14.2px;
-  line-height: 1.2;
+  font-size: 13.8px;
+  line-height: 1.18;
 }
 
 .page-652 .bounds-card strong {
-  font-size: 16px;
+  font-size: 15.5px;
   font-weight: 600;
 }
 
@@ -196,11 +215,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 30px;
-  padding-top: 4px;
+  min-height: 28px;
+  padding-top: 3px;
   border-top: 1px solid var(--border-light);
-  font-size: 13.4px;
-  line-height: 1.2;
+  font-size: 12.9px;
+  line-height: 1.18;
   text-align: center;
 }
 
@@ -213,13 +232,13 @@
 }
 
 .page-652 .approx-error-card {
-  padding: 8px 9px;
+  padding: 7px 8px;
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
   align-items: center;
-  gap: 7px;
-  font-size: 13.5px;
-  line-height: 1.28;
+  gap: 6px;
+  font-size: 13.1px;
+  line-height: 1.22;
   text-align: center;
 }
 
@@ -231,24 +250,24 @@
 }
 
 .page-652 .approx-error-card .response-line {
-  min-width: 82px;
-  height: 19px;
+  min-width: 76px;
+  height: 18px;
 }
 
 .page-652 .build-approx-card {
   display: grid;
-  grid-template-columns: 1.45fr 1fr 1.15fr;
+  grid-template-columns: 1.05fr 1.45fr;
   gap: 10px;
   align-items: stretch;
   min-width: 0;
   min-height: 0;
-  padding: 10px 12px;
+  padding: 8px 10px;
   border: 1px solid var(--border-light);
   border-radius: 8px;
   background: var(--bg-subtle);
 }
 
-.page-652 .build-part {
+.page-652 .build-choice {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -256,10 +275,22 @@
   gap: 5px;
   min-width: 0;
   padding: 5px;
-  font-size: 13.4px;
-  line-height: 1.25;
+  font-size: 13px;
+  line-height: 1.2;
   text-align: center;
 }
+
+.page-652 .build-a-slot { width: 46px; }
+
+.page-652 .build-solution-scaffold {
+  padding-inline: 8px;
+}
+
+.page-652 .build-solution-scaffold .scaffold-row {
+  grid-template-columns: 36px 17px minmax(74px, 1fr);
+}
+
+.page-652 .build-line-slot { width: 82px; }
 
 .page-652 .final-reason {
   display: flex;
@@ -267,16 +298,16 @@
   justify-content: center;
   gap: 7px;
   min-width: 0;
-  min-height: 32px;
-  padding-top: 4px;
+  min-height: 30px;
+  padding-top: 3px;
   border-top: 1px solid var(--border-light);
-  font-size: 13.4px;
-  line-height: 1.2;
+  font-size: 12.9px;
+  line-height: 1.18;
 }
 
 .page-652 .final-reason .response-line.long {
-  min-width: 230px;
-  height: 20px;
+  min-width: 220px;
+  height: 19px;
 }
 
 @media print {
