@@ -17,11 +17,13 @@ const start = profile.learningProtocol?.activeAuditWindow?.startPage || 1;
 const end = profile.learningProtocol?.activeAuditWindow?.endPage || 13;
 
 for (const token of [
+  '## חוזה עריכה אטומי — חובה בכל שינוי',
   '## מערכת למידת הסגנון — חוזה מחייב',
   '**אין כפל סעיפים:**',
   '**אין להשאיר שטח A4 גדול ריק ללא מטרה.**',
   '**ניצול דף חכם קודם למרכוז.**',
   '**שטח תשובה מותאם לתשובה הצפויה:**',
+  '**תוצאת חישוב נמצאת מתחת לתרגיל.**',
   '**הסבר מושגי הוא מודרך ואקטיבי:**',
   'AAA Exact A4 Preview',
 ]) {
@@ -86,6 +88,7 @@ const p11css = read(`styles/pages/${pages[10].file.replace(/\.html$/u, '.css')}`
 const p12 = read(pages[11].file);
 const p12css = read(`styles/pages/${pages[11].file.replace(/\.html$/u, '.css')}`);
 const p13 = read(pages[12].file);
+const p13css = read(`styles/pages/${pages[12].file.replace(/\.html$/u, '.css')}`);
 
 if (!p7.includes('power-sentence-grid') && p7.includes('match-board') && p7.includes('error-grid')) pass('עמוד 7: הגשר ריבוע↔שורש נשאר מגוון.');
 else fail('עמוד 7: חזרה מבנית לגרסה החזרתית הישנה.');
@@ -113,8 +116,22 @@ const page12FitClasses = ['answer-fit-one-digit', 'answer-fit-two-digit', 'answe
 if (page12FitClasses.every((token) => p12.includes(token)) && !p12.includes('compact-expression') && p12css.includes('.page-643 .answer-fit-one-digit { width: 34px; }') && p12css.includes('.page-643 .answer-fit-two-digit { width: 46px; }') && p12css.includes('.page-643 .answer-fit-symbol-square { width: 50px; }')) pass('עמוד 12: רוחב כל תשובה מותאם לתוכן הצפוי.');
 else fail('עמוד 12: שטחי התשובה חזרו לרוחב קבוע/גדול שאינו מתאים לתוכן.');
 
-if (p13.includes('page13-figure-task') && p13.includes('page13-relation-task') && p13.includes('page13-reverse-task') && p13.includes('page13-generalize-task')) pass('עמוד 13: גילוי, קשר, כיוון הפוך והכללה נשמרים.');
-else fail('עמוד 13: חסר רצף הגילוי המגוון שאושר.');
+const page13Required = [
+  'page13-figure-task',
+  'page13-relation-task',
+  'page13-reverse-task',
+  'page13-generalize-task',
+  'result-below-card',
+  'relation-workbench',
+  'reverse-workbench',
+  'generalize-workbench',
+  '\\(6^2+8^2=\\)',
+  '\\(10^2-8^2=\\)',
+  '\\(7^2+24^2=\\)',
+];
+const page13ResultBelowCount = (p13.match(/result-below-card/g) || []).length;
+if (page13Required.every((token) => p13.includes(token)) && page13ResultBelowCount >= 10 && p13css.includes('.page-644 .result-below-card') && p13css.includes('grid-template-rows: 285px 225px 245px minmax(230px, 1fr)')) pass('עמוד 13: תוצאות מתחת לתרגילים וה-A4 מנוצל ברצף גילוי מלא.');
+else fail('עמוד 13: חזרה תוצאה אופקית, אובדן תרגול או פגיעה בניצול ה-A4.');
 
 console.log('\n=== First 13 Style Learning Audit ===');
 ok.forEach((m) => console.log(`✓ ${m}`));
