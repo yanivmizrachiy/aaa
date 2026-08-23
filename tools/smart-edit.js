@@ -35,12 +35,13 @@ const ciMode = args.includes('--ci');
 const checkMode = args.includes('--check') || ciMode;
 const pageArg = args.find((arg) => /^\d+$/u.test(arg));
 
-for (const required of ['SOURCE_OF_TRUTH.md', 'STYLE_PROFILE.json', 'WORKBOOK_MANIFEST.json']) {
+for (const required of ['SOURCE_OF_TRUTH.md', 'STYLE_PROFILE.json', 'WORKBOOK_MANIFEST.json', 'meta/approved-page-locks.json']) {
   if (!exists(required)) fail(`חסר ${required}`);
 }
 
 const manifest = json('WORKBOOK_MANIFEST.json');
 const profile = json('STYLE_PROFILE.json');
+const locks = json('meta/approved-page-locks.json');
 const pages = Array.isArray(manifest.pages) ? manifest.pages : [];
 if (pages.length !== 53) fail(`נמצאו ${pages.length} דפים במקום 53.`);
 if (profile.authority !== 'SOURCE_OF_TRUTH.md') fail('STYLE_PROFILE.json אינו כפוף למקור האמת היחיד.');
@@ -76,14 +77,17 @@ if (pageArg) {
     ?.replace(/<[^>]+>/gu, '').trim() || null;
 
   const activeWindow = profile.learningProtocol?.activeAuditWindow || { startPage: 1, endPage: 13 };
+  const lockedPages = (locks.pages || []).filter((p) => p.status === 'locked').map((p) => p.workbookPage).sort((a, b) => a - b);
   const output = {
     authority: 'SOURCE_OF_TRUTH.md',
     target: { workbookPage: requested, file: htmlPath, css: cssPath, title },
     safeWriteSet: [htmlPath, cssPath, 'SOURCE_OF_TRUTH.md'],
     activeStyleAuditWindow: activeWindow,
+    regressionWall: lockedPages.length ? { startPage: lockedPages[0], endPage: lockedPages[lockedPages.length - 1], lockedPages } : null,
     reviewBeforeWrite: related,
     propagationRule: 'דפים קשורים נבדקים להתאמה, אך אינם נערכים אוטומטית. עורכים אותם רק כאשר הדרישה עצמה משותפת ולאחר בדיקת השפעה.',
-    learningRule: 'כל תיקון חוזר או דרישה שניתנת להכללה הופכים לכלל סגנון מפורש במקור האמת. כל עוד חלון 1–13 פעיל, כל בדיקה של עמוד כלשהו מריצה גם ביקורת רוחבית על כל 13 העמודים כדי לאתר את אותה בעיה במקום לחכות שהמשתמש ידווח עליה שוב.',
+    learningRule: 'כל תיקון חוזר או דרישה שניתנת להכללה הופכים לכלל סגנון מפורש במקור האמת. חלון הלמידה נבדק רוחבית, ובנוסף כל עמוד שכבר ננעל מוגן מחזרה לגרסה ישנה.',
+    lockRule: 'אסור לרענן חתימת lock של עמוד שלא השתנה. שינוי בעמוד נעול מחייב יעד מפורש, עדכון מקור אמת, עדכון lock והרצת חומת הרגרסיה.',
     speedRule: 'ממפים יעד וקשרים תחילה, מבצעים שינוי מינימלי, ואז מריצים בדיקות מרוכזות.',
   };
   console.log(JSON.stringify(output, null, 2));
@@ -94,6 +98,8 @@ if (!pageArg && !ciMode) {
 }
 
 if (checkMode) {
+  run('tools/source-of-truth-health-audit.js');
+  run('tools/locked-page-regression-audit.js');
   run('tools/style-audit.js');
   run('tools/repo-guard.js');
   run('tools/content-contracts.js');
