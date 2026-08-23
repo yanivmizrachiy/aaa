@@ -1,6 +1,6 @@
 @import url("../topics/pythagoras-foundations.css");
 
-/* עמוד 5: כותרת זהה בגובה ובהתנהגות לעמוד 1. אין height קשיח ואין overflow שיכול לחתוך טקסט. */
+/* עמוד 5: כותרת זהה בגובה ובהתנהגות לעמוד 1. */
 .page-638 > .header-container,
 .pythagoras-workbook-shell .workbook-page-wrap > .page-638 > .header-container {
   display: flex !important;
@@ -14,6 +14,7 @@
   padding: 0 0 6px !important;
   border: 0 !important;
   border-bottom: 4px double var(--title-blue) !important;
+  box-sizing: border-box !important;
 }
 
 .page-638 > .header-container > .page-title,
@@ -52,27 +53,49 @@
   line-height: 1 !important;
 }
 
-/* עמוד 5: חזרה מסכמת על ניצבים ויתר — היררכיה שטוחה, קומפקטית ומדויקת. */
+/* כל אזור בעמוד נשאר בתוך רוחב התוכן הקנוני. אין רכיב שרשאי לדחוף את הדף שמאלה. */
 .page-638 .question-block {
   display: grid;
   grid-template-rows: auto auto minmax(238px, 1.3fr) auto minmax(126px, .72fr) auto;
   gap: 9px;
   align-content: stretch;
+  width: 100%;
+  min-width: 0;
   min-height: 0;
+  box-sizing: border-box;
 }
 
-/* שורת המושג העליונה תואמת לעמודים הקודמים: שורה דקה ולא תיבת הסבר גבוהה. */
-.page-638 .foundation-note-one-line {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 5px !important;
-  flex-wrap: nowrap !important;
-  min-height: 34px !important;
-  padding: 5px 11px !important;
-  font-size: 15.2px !important;
-  line-height: 1.2 !important;
-  white-space: nowrap !important;
+.page-638 .question-block > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: 0;
+  box-sizing: border-box;
+}
+
+/* ההשלמה העליונה מחולקת לשני חצאים שווים. כך אין שורת nowrap ארוכה שגולשת שמאלה. */
+.page-638 .page5-concept-line {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 5px 10px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  font-size: 14.7px;
+  line-height: 1.2;
+}
+
+.page-638 .concept-half {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .page-638 .foundation-fill-inline {
@@ -82,11 +105,12 @@
   flex: 0 0 auto;
 }
 
-.page-638 .concept-legs-fill { width: 86px; }
-.page-638 .concept-hyp-fill { width: 70px; }
+.page-638 .concept-legs-fill { width: 82px; }
+.page-638 .concept-hyp-fill { width: 66px; }
 
 .page-638 .compact-instruction {
   margin: 0;
+  min-width: 0;
   min-height: 0;
 }
 
@@ -94,26 +118,31 @@
   line-height: 1.25;
 }
 
-/* ארבעת השרטוטים מוצגים בשורה אחת כדי לאפשר השוואה חזותית מיידית. */
+/* ארבעת השרטוטים תמיד בארבע עמודות שוות וממורכזות. */
 .page-638 .page5-triangle-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 9px;
+  width: 100%;
   height: 100%;
+  min-width: 0;
   min-height: 0;
 }
 
 .page-638 .triangle-card {
   height: 100%;
+  min-width: 0;
   min-height: 0;
   justify-content: space-between;
   padding: 8px 7px;
   gap: 5px;
+  box-sizing: border-box;
 }
 
 .page-638 .foundation-svg {
   width: 100%;
   max-width: 176px;
   height: 122px;
+  margin-inline: auto;
   shape-rendering: geometricPrecision;
 }
 
@@ -124,6 +153,7 @@
 
 .page-638 .edge-answers {
   width: 100%;
+  min-width: 0;
   display: grid;
   gap: 5px;
   font-size: 14px;
@@ -134,6 +164,7 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
+  min-width: 0;
   min-height: 27px;
   white-space: nowrap;
 }
@@ -149,11 +180,13 @@
 .page-638 .edge-answer-fill { width: 45px; }
 .page-638 .hyp-answer-fill { width: 52px; }
 
-/* תרגול אורכים: שלוש פעולות שונות במקום שלוש שאלות זהות. */
+/* שלוש משימות האורכים מחלקות את הרוחב שווה בשווה. */
 .page-638 .length-cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 9px;
+  width: 100%;
+  min-width: 0;
   min-height: 0;
   height: 100%;
 }
@@ -168,6 +201,7 @@
   align-content: center;
   justify-items: center;
   gap: 9px;
+  box-sizing: border-box;
 }
 
 .page-638 .side-triple {
@@ -183,6 +217,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 5px;
+  min-width: 0;
   min-height: 28px;
   font-size: 14.4px;
   line-height: 1.25;
@@ -191,26 +226,33 @@
 
 .page-638 .length-fill { width: 48px; }
 
-/* בדיקת הבנה מסכמת — שורה שטוחה, ללא תיבה בתוך תיבה וללא נימוק פתוח מיותר. */
+/* אזור הסיום ממורכז כולו; אין margin-auto שדוחף חצי מהשורה לקצה שמאל. */
 .page-638 .claim-check {
   display: grid;
   gap: 7px;
+  width: 100%;
+  min-width: 0;
   padding: 8px 11px;
   border-top: 1px solid var(--border-light);
   border-bottom: 1px solid var(--border-light);
   background: linear-gradient(90deg, transparent, var(--bg-subtle) 18%, var(--bg-subtle) 82%, transparent);
+  box-sizing: border-box;
 }
 
 .page-638 .claim-statement {
   font-size: 15px;
   font-weight: 600;
   line-height: 1.35;
+  text-align: center;
 }
 
 .page-638 .claim-response-row {
   display: flex;
   align-items: center;
-  gap: 11px;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-width: 0;
   min-height: 28px;
   font-size: 14.5px;
   line-height: 1.25;
@@ -236,25 +278,14 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  margin-inline-start: auto;
+  margin-inline-start: 0;
   white-space: nowrap;
 }
 
-.page-638 .claim-fill { width: 86px; }
-
-@media (max-width: 760px) {
-  .page-638 .foundation-note-one-line {
-    font-size: 14.2px !important;
-    gap: 4px !important;
-    padding-inline: 8px !important;
-  }
-
-  .page-638 .concept-legs-fill { width: 76px; }
-  .page-638 .concept-hyp-fill { width: 62px; }
-}
+.page-638 .claim-fill { width: 82px; }
 
 @media print {
-  .page-638 .foundation-note-one-line,
+  .page-638 .page5-concept-line,
   .page-638 .triangle-card,
   .page-638 .length-card,
   .page-638 .claim-check {
