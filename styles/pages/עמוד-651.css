@@ -1,10 +1,10 @@
 @import url("../topics/pythagoras-foundations.css");
 
-/* עמוד 9 — פעולת שורש מול משוואה ריבועית מהצורה x²=a, עם למידה עצמית דרך הצבה. */
+/* עמוד 9 — משוואות מהצורה x²=a. פריסה שטוחה, ברורה וללא תיבה בתוך תיבה. */
 .page-651 .question-block {
   display: grid;
-  grid-template-rows: 205px 205px 235px 155px minmax(112px, 1fr);
-  gap: 7px;
+  grid-template-rows: 98px 228px 300px 190px minmax(72px, 1fr);
+  gap: 8px;
   align-content: stretch;
   width: 100%;
   min-width: 0;
@@ -31,374 +31,171 @@
   min-width: 0;
   max-width: calc(100% - 44px);
   margin: 0;
-  font-size: 20px;
+  font-size: 22px;
   line-height: 1.1;
   white-space: nowrap;
   text-align: right;
 }
 
-.page-651 > .header-container > .page-number {
-  flex: 0 0 32px;
-  width: 32px;
-  min-width: 32px;
-}
+.page-651 .q-main { margin: 0; min-height: 22px; }
+.page-651 .q-text { font-size: 14.2px; line-height: 1.22; }
 
-.page-651 .q-main {
-  margin: 0;
-  min-height: 21px;
-}
-
-.page-651 .q-text {
-  font-size: 13.4px;
-  line-height: 1.18;
-}
-
-/* תיבות השלמה נקיות ויציבות — ללא צל/גרדיאנט שיכולים להיראות כמו תיבת סימון שבורה. */
 .page-651 .foundation-fill {
+  display: inline-block;
   background: #fff;
   box-shadow: none;
   border: 1.2px solid #64748b;
   border-radius: 4px;
+  vertical-align: middle;
 }
+
+.page-651 .digit-slot { width: 32px; min-width: 32px; height: 23px; }
+.page-651 .two-digit-slot { width: 44px; min-width: 44px; height: 23px; }
+.page-651 .signed-slot { width: 44px; min-width: 44px; height: 23px; }
+.page-651 .signed-two-digit-slot { width: 56px; min-width: 56px; height: 23px; }
+.page-651 .word-slot { width: 62px; min-width: 62px; height: 23px; }
+
+.page-651 .page9-distinction {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  min-width: 0;
+  min-height: 0;
+  border-block: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+}
+
+.page-651 .distinction-side {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 3px;
+  min-width: 0;
+  padding: 8px 14px;
+  text-align: center;
+  font-size: 13.4px;
+  line-height: 1.2;
+}
+
+.page-651 .distinction-side + .distinction-side { border-right: 1px solid var(--border-light); }
+.page-651 .distinction-side strong { color: var(--title-blue); font-size: 14.6px; }
+.page-651 .distinction-side > div { font-size: 18px; }
 
 .page-651 .page9-cases-task,
 .page-651 .page9-equation-practice,
-.page-651 .page9-error-task {
+.page-651 .page9-true-false {
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
-  gap: 4px;
-  min-width: 0;
-  min-height: 0;
-}
-
-.page-651 .page9-root-practice {
-  display: grid;
-  grid-template-rows: auto 30px minmax(0, 1fr);
-  gap: 4px;
-  min-width: 0;
-  min-height: 0;
-}
-
-.page-651 .page9-contrast {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: 110px minmax(0, 1fr);
-  gap: 7px 10px;
-  min-width: 0;
-  min-height: 0;
-}
-
-.page-651 .contrast-card {
-  display: grid;
-  grid-template-rows: 22px auto 1fr auto;
-  align-items: center;
-  gap: 3px;
-  min-width: 0;
-  min-height: 0;
-  padding: 5px 9px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  background: var(--bg-paper);
-}
-
-.page-651 .contrast-title {
-  font-size: 14px;
-  font-weight: 700;
-  text-align: center;
-  color: #1f2a44;
-}
-
-.page-651 .guided-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4px;
-  min-width: 0;
-  font-size: 12.5px;
-  line-height: 1.15;
-  text-align: center;
-}
-
-.page-651 .contrast-math,
-.page-651 .solution-values {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 5px;
-}
-
-.page-651 .contrast-math {
-  flex-direction: column;
-  font-size: 16.5px;
-}
-
-.page-651 .solution-values {
-  font-size: 14.2px;
-}
-
-.page-651 .solution-meaning-strip {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
   min-width: 0;
   min-height: 0;
-}
-
-.page-651 .meaning-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4px;
-  min-width: 0;
-  min-height: 0;
-  padding: 5px 8px;
-  border-block: 1px solid var(--border-light);
-  background: var(--bg-subtle);
-  font-size: 12.2px;
-  line-height: 1.16;
-  text-align: center;
-}
-
-.page-651 .digit-slot { width: 32px; min-width: 32px; }
-.page-651 .two-digit-slot { width: 42px; min-width: 42px; }
-.page-651 .signed-slot { width: 42px; min-width: 42px; }
-.page-651 .signed-two-digit-slot { width: 52px; min-width: 52px; }
-.page-651 .word-slot { width: 72px; min-width: 72px; }
-.page-651 .word-slot.short { width: 58px; min-width: 58px; }
-.page-651 .phrase-slot { width: 92px; min-width: 92px; }
-.page-651 .phrase-slot.wide { width: 104px; min-width: 104px; }
-.page-651 .formula-slot { width: 76px; min-width: 76px; }
-
-.page-651 .digit-slot,
-.page-651 .two-digit-slot,
-.page-651 .signed-slot,
-.page-651 .signed-two-digit-slot,
-.page-651 .word-slot,
-.page-651 .phrase-slot,
-.page-651 .formula-slot {
-  height: 23px;
-  border-radius: 4px;
-  flex: 0 0 auto;
 }
 
 .page-651 .case-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
   min-width: 0;
   min-height: 0;
-}
-
-.page-651 .case-card {
-  display: grid;
-  grid-template-rows: 25px auto minmax(0, 1fr);
-  align-items: center;
-  justify-items: center;
-  gap: 3px;
-  min-width: 0;
-  min-height: 0;
-  padding: 6px 8px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  background: var(--bg-subtle);
-  font-size: 12.5px;
-  line-height: 1.16;
-  text-align: center;
-}
-
-.page-651 .case-heading {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.page-651 .case-formulas {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4px;
-  min-width: 0;
-}
-
-.page-651 .case-explanation {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4px;
-  min-width: 0;
-  font-size: 12px;
-  line-height: 1.18;
-}
-
-.page-651 .equation-case-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 7px 9px;
-  min-width: 0;
-  min-height: 0;
-}
-
-.page-651 .equation-case-card {
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 2px;
-  min-width: 0;
-  min-height: 0;
-  padding: 4px 7px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  background: var(--bg-paper);
-}
-
-.page-651 .practice-equation {
-  margin-bottom: 1px;
-  font-size: 15.6px;
-  font-weight: 700;
-}
-
-.page-651 .solution-row {
-  display: grid;
-  grid-template-columns: 31px 17px minmax(70px, 1fr);
-  align-items: center;
-  width: min(205px, 100%);
-  min-height: 19px;
-  column-gap: 4px;
-  font-size: 13px;
-}
-
-.page-651 .single-result-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  min-height: 28px;
-  font-size: 15px;
-}
-
-.page-651 .no-solution-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 31px;
-}
-
-.page-651 .result-caption {
-  font-size: 11.6px;
-  line-height: 1.14;
-  color: #475569;
-  text-align: center;
-}
-
-.page-651 .negative-root-rule {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 4px;
-  min-width: 0;
-  min-height: 30px;
-  padding: 2px 8px;
   border-block: 1px solid var(--border-light);
-  background: var(--bg-paper);
-  font-size: 12px;
-  line-height: 1.14;
+}
+
+.page-651 .case-column {
+  display: grid;
+  grid-template-rows: 28px 30px minmax(0, 1fr) auto;
+  align-items: center;
+  justify-items: center;
+  gap: 4px;
+  min-width: 0;
+  min-height: 0;
+  padding: 7px 12px;
+  background: #fff;
   text-align: center;
 }
 
-.page-651 .root-practice-grid {
+.page-651 .case-column + .case-column { border-right: 1px solid var(--border-light); }
+.page-651 .case-heading { font-size: 17px; font-weight: 700; }
+.page-651 .case-rule { display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 13.6px; }
+.page-651 .case-example { display: grid; align-content: center; justify-items: start; gap: 2px; width: 100%; max-width: 150px; font-size: 14.4px; line-height: 1.08; }
+.page-651 .positive-case .case-example { grid-template-rows: repeat(5, 1fr); }
+.page-651 .zero-case .case-example,
+.page-651 .negative-case .case-example { justify-items: center; }
+.page-651 .no-real-solution { direction: rtl; font-family: 'Rubik', sans-serif; font-size: 13.8px; }
+.page-651 .case-note { font-size: 12.2px; line-height: 1.18; color: #475569; }
+
+.page-651 .equation-practice-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 5px 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
   min-width: 0;
   min-height: 0;
+  border-block: 1px solid var(--border-light);
 }
 
-.page-651 .root-practice-card {
-  display: flex;
-  flex-direction: column;
+.page-651 .practice-item {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
   align-items: center;
-  justify-content: center;
-  gap: 3px;
+  gap: 12px;
   min-width: 0;
   min-height: 0;
-  padding: 3px 7px;
-  border: 1px solid var(--border-light);
-  border-radius: 7px;
-  background: var(--bg-subtle);
-  font-size: 13.6px;
-  line-height: 1.1;
-  white-space: nowrap;
+  padding: 7px 14px;
 }
 
-.page-651 .root-status {
-  width: 92px;
-}
+.page-651 .practice-item:nth-child(odd) { border-left: 1px solid var(--border-light); }
+.page-651 .practice-item:nth-child(n+3) { border-top: 1px solid var(--border-light); }
+.page-651 .practice-equation { font-size: 17px; font-weight: 600; text-align: center; }
+.page-651 .answer-pair { display: grid; grid-template-columns: auto 44px auto 56px; align-items: center; justify-content: center; gap: 5px; font-size: 13.8px; }
+.page-651 .single-answer { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 14px; }
+.page-651 .open-answer-line { width: 78%; height: 28px; border-bottom: 1.4px solid #334155; justify-self: center; }
 
-.page-651 .page9-error-task {
-  min-height: 0;
-}
-
-.page-651 .error-grid {
+.page-651 .tf-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
   min-width: 0;
   min-height: 0;
+  border-block: 1px solid var(--border-light);
 }
 
-.page-651 .error-card {
+.page-651 .tf-item {
   display: grid;
-  grid-template-rows: 27px 17px minmax(26px, 1fr);
+  grid-template-rows: auto 24px minmax(20px, 1fr);
   align-items: center;
   justify-items: center;
   gap: 3px;
   min-width: 0;
   min-height: 0;
-  padding: 5px 8px;
-  border: 1px solid var(--border-light);
-  border-radius: 7px;
-  background: var(--bg-paper);
-  font-size: 12px;
-  line-height: 1.12;
+  padding: 6px 10px;
+  font-size: 12.6px;
+  line-height: 1.15;
   text-align: center;
 }
 
-.page-651 .error-expression {
-  font-size: 14.5px;
-  font-weight: 600;
-}
+.page-651 .tf-item:nth-child(odd) { border-left: 1px solid var(--border-light); }
+.page-651 .tf-item:nth-child(n+3) { border-top: 1px solid var(--border-light); }
+.page-651 .tf-claim { font-size: 13.8px; font-weight: 500; }
+.page-651 .tf-choice { display: flex; align-items: center; justify-content: center; gap: 5px; white-space: nowrap; }
+.page-651 .tf-dot { width: 13px; height: 13px; border: 1.3px solid #334155; border-radius: 50%; background: #fff; }
+.page-651 .correction-line { display: block; width: 82%; min-width: 0; height: 24px; border-bottom: 1.4px solid #334155; background: transparent; }
 
-.page-651 .error-prompt {
-  font-size: 11.5px;
-  color: #475569;
-}
-
-/* בתיקון טעות כותבים על שורה פתוחה — אין תיבת סימון/תיבת מילוי. */
-.page-651 .correction-line {
-  display: block;
-  width: 82%;
+.page-651 .page9-final-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-width: 0;
-  height: 25px;
-  border-bottom: 1.4px solid #334155;
-  background: transparent;
-  box-sizing: border-box;
+  min-height: 0;
+  padding: 8px 12px;
+  border-top: 1px solid var(--border-light);
+  font-size: 14px;
+  line-height: 1.25;
+  text-align: center;
 }
 
 @media print {
-  .page-651 .contrast-card,
-  .page-651 .solution-meaning-strip,
-  .page-651 .case-card,
-  .page-651 .equation-case-card,
-  .page-651 .negative-root-rule,
-  .page-651 .root-practice-card,
-  .page-651 .error-card {
-    break-inside: avoid;
-  }
+  .page-651 .page9-distinction,
+  .page-651 .case-grid,
+  .page-651 .practice-item,
+  .page-651 .tf-item,
+  .page-651 .page9-final-rule { break-inside: avoid; }
 }
