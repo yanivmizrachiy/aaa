@@ -99,6 +99,7 @@ if (checkMode) {
   run('tools/content-contracts.js');
   run('tools/workbook-visual-guard.js');
   run('tools/first-13-style-audit.js');
+  run('tools/vertical-solution-audit.js');
   if (process.env.BASE_SHA && !/^0+$/u.test(process.env.BASE_SHA)) run('tools/change-scope-audit.js', process.env);
   else console.log('\nℹ BASE_SHA לא זמין — בדיקת diff תתבצע ב-CI.');
 }
