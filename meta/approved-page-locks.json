@@ -1,176 +1,163 @@
 {
-  "schemaVersion": 3,
+  "schemaVersion": 4,
   "authority": "SOURCE_OF_TRUTH.md",
-  "purpose": "נגזרת אוטומטית להגנה על דפים שאושרו; אינה מקור דרישות נוסף ואינה רשאית לסתור את SOURCE_OF_TRUTH.md.",
-  "unlockPolicy": "מעדכנים נעילה רק בעקבות בקשה מפורשת של המשתמש לשנות את אותו עמוד, או לאחר שינוי משותף שהשפעתו על העמוד נבדקה בפועל ואושרה מחדש. שינוי משותף ללא אימות מחדש חייב להיכשל ב-CI.",
+  "purpose": "נגזרת בלבד להגנה על עמודים שאומתו מול מקור האמת; אינה מקור דרישות נוסף.",
+  "unlockPolicy": "משנים נעילה רק כאשר אותו עמוד השתנה לפי SOURCE_OF_TRUTH.md, ואז מעדכנים באותו change-set את חתימות הקבצים שנבדקו.",
   "pages": [
     {
       "workbookPage": 1,
       "status": "locked",
-      "reason": "עמוד 1 מאושר לפי SOURCE_OF_TRUTH.md; אין breakpoint מקומי, ובנייד נשמרת בדיוק פריסת ה-A4 עם viewport קנוני 821, ללא reflow וללא גלילה אופקית.",
+      "reason": "עמוד 1 תואם למקור האמת ול-AAA Exact A4 Preview.",
       "files": [
-        {"path": "עמוד-634.html", "gitBlobSha": "cc3deb28f58a425677d886dc8d9a1a9ceca20642"},
-        {"path": "styles/pages/עמוד-634.css", "gitBlobSha": "aa6b42e7721edb08948c6b0c8aaebf13a0146ad3"}
+        {"path":"עמוד-634.html","gitBlobSha":"cc3deb28f58a425677d886dc8d9a1a9ceca20642"},
+        {"path":"styles/pages/עמוד-634.css","gitBlobSha":"aa6b42e7721edb08948c6b0c8aaebf13a0146ad3"}
       ],
       "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
-        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
-        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
-        {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
-        {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
-        {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
-        {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "38bc22c9c24531da25058961b0f178083863da32"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
+        {"path":"index.html","gitBlobSha":"4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
+        {"path":"WORKBOOK_MANIFEST.json","gitBlobSha":"2d3a8b91de870afb20ba85474de61c6b640ef309"},
+        {"path":"vercel.json","gitBlobSha":"b7e15d051f0d44037a37f693a9b12c1a47b37837"},
+        {"path":"styles/a4-base.css","gitBlobSha":"a0b1cc7042421cf91dcf17b2209249c3f3962388"},
+        {"path":"styles/topics/pythagoras.css","gitBlobSha":"df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
+        {"path":"styles/topics/pythagoras-foundations.css","gitBlobSha":"ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
+        {"path":"styles/topics/pythagoras-inline-units.css","gitBlobSha":"8c8852c66ad4208d3732549e6236037d9b115170"},
+        {"path":"styles/pythagoras-workbook.css","gitBlobSha":"38bc22c9c24531da25058961b0f178083863da32"},
+        {"path":"styles/workbook-canonical-locks.css","gitBlobSha":"15f11b0517083082972a0081f6ae4c6566dd48d7"},
+        {"path":"pythagoras-workbook.js","gitBlobSha":"9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
       ]
     },
     {
       "workbookPage": 2,
       "status": "locked",
-      "reason": "עמוד 2 מאושר לפי SOURCE_OF_TRUTH.md; אין override טיפוגרפי לנייד ובנייד נשמרת בדיוק פריסת ה-A4 ללא reflow.",
+      "reason": "עמוד 2 תואם למקור האמת ול-AAA Exact A4 Preview.",
       "files": [
-        {"path": "עמוד-635.html", "gitBlobSha": "34947a4fad428b1d46464c50548bc7eb7a11e6d6"},
-        {"path": "styles/pages/עמוד-635.css", "gitBlobSha": "292be46fba2cd16cc9ab97743649ccffb4d5a318"}
+        {"path":"עמוד-635.html","gitBlobSha":"34947a4fad428b1d46464c50548bc7eb7a11e6d6"},
+        {"path":"styles/pages/עמוד-635.css","gitBlobSha":"292be46fba2cd16cc9ab97743649ccffb4d5a318"}
       ],
       "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
-        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
-        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
-        {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
-        {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
-        {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
-        {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "38bc22c9c24531da25058961b0f178083863da32"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
+        {"path":"index.html","gitBlobSha":"4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
+        {"path":"WORKBOOK_MANIFEST.json","gitBlobSha":"2d3a8b91de870afb20ba85474de61c6b640ef309"},
+        {"path":"vercel.json","gitBlobSha":"b7e15d051f0d44037a37f693a9b12c1a47b37837"},
+        {"path":"styles/a4-base.css","gitBlobSha":"a0b1cc7042421cf91dcf17b2209249c3f3962388"},
+        {"path":"styles/topics/pythagoras.css","gitBlobSha":"df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
+        {"path":"styles/topics/pythagoras-foundations.css","gitBlobSha":"ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
+        {"path":"styles/topics/pythagoras-inline-units.css","gitBlobSha":"8c8852c66ad4208d3732549e6236037d9b115170"},
+        {"path":"styles/pythagoras-workbook.css","gitBlobSha":"38bc22c9c24531da25058961b0f178083863da32"},
+        {"path":"styles/workbook-canonical-locks.css","gitBlobSha":"15f11b0517083082972a0081f6ae4c6566dd48d7"},
+        {"path":"pythagoras-workbook.js","gitBlobSha":"9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
       ]
     },
     {
       "workbookPage": 3,
       "status": "locked",
-      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md; אין override טיפוגרפי לנייד ובנייד נשמרת בדיוק פריסת ה-A4 ללא reflow.",
+      "reason": "עמוד 3 תואם למקור האמת ול-AAA Exact A4 Preview.",
       "files": [
-        {"path": "עמוד-636.html", "gitBlobSha": "58a4ecf5663740e792445763c68f12f886274151"},
-        {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "b4adc8ee62ac27c914c883e6f14c4869415084b1"}
+        {"path":"עמוד-636.html","gitBlobSha":"58a4ecf5663740e792445763c68f12f886274151"},
+        {"path":"styles/pages/עמוד-636.css","gitBlobSha":"b4adc8ee62ac27c914c883e6f14c4869415084b1"}
       ],
       "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
-        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
-        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
-        {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
-        {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
-        {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
-        {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "38bc22c9c24531da25058961b0f178083863da32"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
+        {"path":"index.html","gitBlobSha":"4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
+        {"path":"WORKBOOK_MANIFEST.json","gitBlobSha":"2d3a8b91de870afb20ba85474de61c6b640ef309"},
+        {"path":"vercel.json","gitBlobSha":"b7e15d051f0d44037a37f693a9b12c1a47b37837"},
+        {"path":"styles/a4-base.css","gitBlobSha":"a0b1cc7042421cf91dcf17b2209249c3f3962388"},
+        {"path":"styles/topics/pythagoras.css","gitBlobSha":"df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
+        {"path":"styles/topics/pythagoras-foundations.css","gitBlobSha":"ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
+        {"path":"styles/topics/pythagoras-inline-units.css","gitBlobSha":"8c8852c66ad4208d3732549e6236037d9b115170"},
+        {"path":"styles/pythagoras-workbook.css","gitBlobSha":"38bc22c9c24531da25058961b0f178083863da32"},
+        {"path":"styles/workbook-canonical-locks.css","gitBlobSha":"15f11b0517083082972a0081f6ae4c6566dd48d7"},
+        {"path":"pythagoras-workbook.js","gitBlobSha":"9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
       ]
     },
     {
       "workbookPage": 4,
       "status": "locked",
-      "reason": "עמוד 4 מאושר לפי SOURCE_OF_TRUTH.md: זיהוי היתר מוגבל לשלושה שרטוטים בלבד, ושאר העמוד עובר למיון רמזים, יישום במלבן, הסקה מספרית והכללה סימבולית; Exact A4 Preview נשמר ללא reflow.",
+      "reason": "עמוד 4 מגוון פדגוגית ותואם למקור האמת.",
       "files": [
-        {"path": "עמוד-637.html", "gitBlobSha": "e33cbbbb13d8ef3bcf2edf59829ed7f7485c28ef"},
-        {"path": "styles/pages/עמוד-637.css", "gitBlobSha": "d5832de52047f2dac6d62992c341909e99ca4730"}
-      ],
-      "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
-        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
-        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
-        {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
-        {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
-        {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
-        {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "38bc22c9c24531da25058961b0f178083863da32"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
+        {"path":"עמוד-637.html","gitBlobSha":"e33cbbbb13d8ef3bcf2edf59829ed7f7485c28ef"},
+        {"path":"styles/pages/עמוד-637.css","gitBlobSha":"d5832de52047f2dac6d62992c341909e99ca4730"}
       ]
     },
     {
       "workbookPage": 5,
       "status": "locked",
-      "reason": "עמוד 5 מאושר לפי SOURCE_OF_TRUTH.md: אין כפל של זיהוי ניצבים/יתר; יש הסקה הפוכה מן היתר לזווית הישרה, תיקון טעות יחיד, שלוש משימות לוגיקה ושתי משימות בנייה; Exact A4 Preview נשמר ללא reflow.",
+      "reason": "עמוד 5 מגוון פדגוגית ותואם למקור האמת.",
       "files": [
-        {"path": "עמוד-638.html", "gitBlobSha": "a80fbbea37b0d455e2792b06a2021948aac298bb"},
-        {"path": "styles/pages/עמוד-638.css", "gitBlobSha": "f81583a2a6deb94dbd6ccf5978910380f70fc0d5"}
-      ],
-      "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
-        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
-        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
-        {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
-        {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
-        {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
-        {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "38bc22c9c24531da25058961b0f178083863da32"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
+        {"path":"עמוד-638.html","gitBlobSha":"a80fbbea37b0d455e2792b06a2021948aac298bb"},
+        {"path":"styles/pages/עמוד-638.css","gitBlobSha":"f81583a2a6deb94dbd6ccf5978910380f70fc0d5"}
       ]
     },
     {
       "workbookPage": 6,
       "status": "locked",
-      "reason": "עמוד 6 מאושר לפי SOURCE_OF_TRUTH.md: מכפלה מופיעה רק בסוגריים בהסבר; ה-A4 מנוצל באמצעות חישובי יסוד, השוואות, הסקה, חישובים מאתגרים, תיקון טעויות וחקר דפוס של ריבועים שמסתיימים ב-5; אין תרגילי המרה חזקה↔מכפלה ואין reflow.",
+      "reason": "עמוד 6: A4 מלא; חישובי ריבוע עם תוצאה מתחת ורוחב תשובה לפי מספר הספרות.",
       "files": [
-        {"path": "עמוד-639.html", "gitBlobSha": "31018b84e4d44325f06d2150f03cc46cb95d35b0"},
-        {"path": "styles/pages/עמוד-639.css", "gitBlobSha": "5e7735fc66e4aa3d3106e5982a2b62db4da9064a"}
+        {"path":"עמוד-639.html","gitBlobSha":"31018b84e4d44325f06d2150f03cc46cb95d35b0"},
+        {"path":"styles/pages/עמוד-639.css","gitBlobSha":"a198c766e59051a37a998706b4d3b502a1b1532a"}
       ],
       "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
-        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
-        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
-        {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
-        {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
-        {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
-        {"path": "styles/topics/pythagoras-power-practice.css", "gitBlobSha": "c1cc76b4721747486438ac6c4ecf1acb7c0c4d3d"},
-        {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "38bc22c9c24531da25058961b0f178083863da32"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
+        {"path":"styles/topics/pythagoras-power-practice.css","gitBlobSha":"c1cc76b4721747486438ac6c4ecf1acb7c0c4d3d"}
       ]
     },
     {
       "workbookPage": 7,
       "status": "locked",
-      "reason": "עמוד 7 מאושר לפי SOURCE_OF_TRUTH.md: גשר בין ריבוע לשורש עם התאמה, תרגול מעורב, תיקון מסקנות ושרשרת/יצירה; הפריסה מבודדת מ-pythagoras-power-practice.css כדי למנוע שבירה חוזרת של התחתית, ללא overflow מוסתר וללא reflow.",
+      "reason": "עמוד 7: CSS מקומי; חישובי קדימה עם תוצאה מתחת; השלמות בתוך ביטוי נשארות inline.",
       "files": [
-        {"path": "עמוד-640.html", "gitBlobSha": "2bfe34ce743136fea087a9ebbea2487a47f11eaa"},
-        {"path": "styles/pages/עמוד-640.css", "gitBlobSha": "fb79537cc2f862cac5856cd075d7fb4f2822b6b7"}
-      ],
-      "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
-        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
-        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
-        {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
-        {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
-        {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
-        {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "38bc22c9c24531da25058961b0f178083863da32"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
+        {"path":"עמוד-640.html","gitBlobSha":"2bfe34ce743136fea087a9ebbea2487a47f11eaa"},
+        {"path":"styles/pages/עמוד-640.css","gitBlobSha":"3bdbfcb829752383fe472b1c3d7df52da5260086"}
       ]
     },
     {
       "workbookPage": 8,
       "status": "locked",
-      "reason": "עמוד 8 מאושר לפי SOURCE_OF_TRUTH.md: A4 מנוצל בתרגול שורש מגוון — חישוב ישיר, הסקה הפוכה, הבחנה בריבועים מושלמים וגשר מדויק להבדל בין √81 לבין x²=81; הפריסה מקומית ואינה תלויה ב-pythagoras-power-practice.css, ללא overflow מוסתר וללא reflow.",
+      "reason": "עמוד 8: שורשים ישירים עם תוצאה מתחת ורוחבים מותאמים; אין reflow.",
       "files": [
-        {"path": "עמוד-641.html", "gitBlobSha": "d8084dcc4893339363d8ba105c647c695c640d66"},
-        {"path": "styles/pages/עמוד-641.css", "gitBlobSha": "9952451e7e3b6961e2aa69b38f8255451f5cc73b"}
-      ],
-      "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
-        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
-        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
-        {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
-        {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
-        {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
-        {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "38bc22c9c24531da25058961b0f178083863da32"},
-        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
-        {"path": "pythagoras-workbook.js", "gitBlobSha": "9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
+        {"path":"עמוד-641.html","gitBlobSha":"d8084dcc4893339363d8ba105c647c695c640d66"},
+        {"path":"styles/pages/עמוד-641.css","gitBlobSha":"ce84f82ccd74be9ce45797ed306e4599bc15606f"}
+      ]
+    },
+    {
+      "workbookPage": 9,
+      "status": "locked",
+      "reason": "עמוד 9: הבחנה בין שורש למשוואה ריבועית x²=a, הצבה, שלושת המצבים ושורש שלילי.",
+      "files": [
+        {"path":"עמוד-651.html","gitBlobSha":"eed15d35436f457b97a89e31d13887f6359f77a1"},
+        {"path":"styles/pages/עמוד-651.css","gitBlobSha":"f212e03f507dc318f4ef21fec85e56a178bed685"}
+      ]
+    },
+    {
+      "workbookPage": 10,
+      "status": "locked",
+      "reason": "עמוד 10: תחימה, קירוב, סבירות, תיקון ובנייה; תוצאות הקירוב מתחת לתרגיל.",
+      "files": [
+        {"path":"עמוד-642.html","gitBlobSha":"438a445c56d9545a4cc3af5f5cda7032742c3b1c"},
+        {"path":"styles/pages/עמוד-642.css","gitBlobSha":"05c56af4a4844eee7f637a370befe02f4b280a22"}
+      ]
+    },
+    {
+      "workbookPage": 11,
+      "status": "locked",
+      "reason": "עמוד 11: דוגמה צמודה לימין, תרגול לצדה, פתרון אנכי מלא וללא שטח עליון מבוזבז.",
+      "files": [
+        {"path":"עמוד-652.html","gitBlobSha":"6e46fecd52d7e7f7531e912686024beee58d86bc"},
+        {"path":"styles/pages/עמוד-652.css","gitBlobSha":"79ec30538ffe49d1679ace8679acdeba9830e593"}
+      ]
+    },
+    {
+      "workbookPage": 12,
+      "status": "locked",
+      "reason": "עמוד 12: 2×2 קנוני, תוצאות חישוב מתחת ומשבצות לפי התשובה הצפויה.",
+      "files": [
+        {"path":"עמוד-643.html","gitBlobSha":"766f13b3631c6b9ed90da7523ee557f90a4878fa"},
+        {"path":"styles/pages/עמוד-643.css","gitBlobSha":"91276007dafcf22707aa86128a43ffac489f9887"}
+      ]
+    },
+    {
+      "workbookPage": 13,
+      "status": "locked",
+      "reason": "עמוד 13: גילוי מלא, תוצאות מתחת לתרגילים וניצול כמעט מלא של ה-A4.",
+      "files": [
+        {"path":"עמוד-644.html","gitBlobSha":"eec4aa4209310a414474b09ecb8c428ef55886a6"},
+        {"path":"styles/pages/עמוד-644.css","gitBlobSha":"8a22828a4e7d28aa5a4bc1b1e28e68cd0bc2a40b"}
       ]
     }
   ]
