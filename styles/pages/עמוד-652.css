@@ -1,23 +1,116 @@
 @import url("../topics/pythagoras-foundations.css");
 
-.page-652 .question-block {
-  justify-content: flex-start;
-  gap: 14px;
+.page-652 .long-page-title {
+  font-size: 23px;
+  line-height: 1.2;
 }
 
-/* רשת התרגול ממלאת את הגובה הפנוי; כל כרטיס נותן יותר מקום לדרך. */
-.page-652 .equation-practice-grid {
+.page-652 .question-block {
+  justify-content: flex-start;
+  gap: 7px;
+}
+
+.page-652 .compact-worked-example {
+  padding: 6px 10px;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+}
+
+.page-652 .compact-worked-example .example-label {
+  padding: 0;
+  font-size: 14.5px;
+  line-height: 1.15;
+  text-align: right;
+}
+
+.page-652 .compact-worked-example .solution-stack {
+  gap: 1px;
+}
+
+.page-652 .compact-worked-example .solution-step {
+  min-height: 18px;
+  font-size: 15.5px;
+  line-height: 1.15;
+}
+
+.page-652 .compact-worked-example .final-answer {
+  margin-top: 1px;
+  padding: 2px 12px;
+  border-width: 1.5px;
+  font-size: 15.5px;
+  line-height: 1.15;
+}
+
+.page-652 .q-text {
+  font-size: 14.5px;
+  line-height: 1.25;
+}
+
+/* 10 תרגילים: שתי עמודות וחמש שורות — יותר תרגול בלי למחוק מקום סביר לדרך. */
+.page-652 .page-11-practice-grid {
   flex: 1 1 auto;
   min-height: 0;
-  grid-auto-rows: minmax(0, 1fr);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  gap: 6px 8px;
 }
 
 .page-652 .equation-practice-card {
+  min-height: 0;
+  padding: 5px 7px;
   display: flex;
   flex-direction: column;
 }
 
-.page-652 .equation-practice-card .work-lines {
+.page-652 .practice-equation {
+  margin-bottom: 2px;
+  font-size: 17px;
+  line-height: 1.15;
+}
+
+.page-652 .equation-practice-card .work-lines.short {
   flex: 1 1 auto;
-  min-height: 150px;
+  min-height: 38px;
+  margin-top: 1px;
+}
+
+.page-652 .solution-pair-answer {
+  margin-top: 3px;
+  padding: 3px 6px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  direction: ltr;
+  unicode-bidi: isolate;
+  border: 1.25px solid #1f2a44;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 13.5px;
+  line-height: 1.1;
+}
+
+.page-652 .solution-pair-answer > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  white-space: nowrap;
+}
+
+.page-652 .answer-line {
+  display: inline-block;
+  width: 37px;
+  height: 14px;
+  border-bottom: 1.15px solid #1f2a44;
+}
+
+@media print {
+  .page-652 .compact-worked-example,
+  .page-652 .equation-practice-card,
+  .page-652 .solution-pair-answer {
+    break-inside: avoid;
+  }
 }
