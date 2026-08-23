@@ -8,110 +8,27 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>משפט פיתגורס — החוברת המלאה</title>
-  <link rel="stylesheet" href="vendor/fonts/rubik.css?v=20260823-print-preview-2" />
-  <link rel="stylesheet" href="styles/a4-base.css?v=20260823-print-preview-2" />
-  <link rel="stylesheet" href="styles/topics/pythagoras.css?v=20260823-print-preview-2" />
-  <link rel="stylesheet" href="styles/pythagoras-workbook.css?v=20260823-print-preview-2" />
-  <link rel="stylesheet" href="styles/workbook-canonical-locks.css?v=20260823-print-preview-2" />
+  <link rel="stylesheet" href="vendor/fonts/rubik.css?v=20260823-print-preview-3" />
+  <link rel="stylesheet" href="styles/a4-base.css?v=20260823-print-preview-3" />
+  <link rel="stylesheet" href="styles/topics/pythagoras.css?v=20260823-print-preview-3" />
+  <link rel="stylesheet" href="styles/pythagoras-workbook.css?v=20260823-print-preview-3" />
+  <link rel="stylesheet" href="styles/workbook-canonical-locks.css?v=20260823-print-preview-3" />
   <script>MathJax={tex:{inlineMath:[["\\(","\\)"]]},chtml:{fontURL:'vendor/mathjax/tex-font/chtml/woff2'}};</script>
-  <script id="MathJax-script" src="vendor/mathjax/tex-mml-chtml.js?v=20260823-print-preview-2"></script>
-  <script type="module" src="pythagoras-workbook.js?v=20260823-print-preview-2"></script>
+  <script id="MathJax-script" src="vendor/mathjax/tex-mml-chtml.js?v=20260823-print-preview-3"></script>
+  <script type="module" src="pythagoras-workbook.js?v=20260823-print-preview-3"></script>
 </head>
 <body class="pythagoras-workbook-shell">
   <script>
     (() => {
-      const MOBILE_MAX = 720;
-      let frame = 0;
-      let suppressClassObserver = false;
-
-      const viewportWidth = () => Math.max(1, Math.floor(
-        window.visualViewport?.width || document.documentElement.clientWidth || window.innerWidth || 1
-      ));
-
-      const isMobile = () => viewportWidth() <= MOBILE_MAX;
-
-      const setMode = () => {
-        const mobile = isMobile();
-        document.body.classList.toggle('mobile-print-preview', mobile);
-        if (mobile && document.body.classList.contains('mobile-reader')) {
-          suppressClassObserver = true;
-          document.body.classList.remove('mobile-reader');
-          suppressClassObserver = false;
-        }
-        return mobile;
+      const syncPreviewMode = () => {
+        const width = Math.max(1, Math.floor(window.visualViewport?.width || document.documentElement.clientWidth || window.innerWidth || 1));
+        document.body.classList.toggle('mobile-print-preview', width <= 720);
+        document.body.classList.remove('mobile-reader');
       };
-
-      const fitPrintedPages = () => {
-        frame = 0;
-        if (!setMode()) return;
-        const wrappers = document.querySelectorAll('.workbook-page-wrap');
-        for (const wrapper of wrappers) {
-          const page = wrapper.querySelector('.a4-page');
-          if (!page) continue;
-
-          wrapper.style.width = '';
-          wrapper.style.height = '';
-          page.style.position = '';
-          page.style.left = '';
-          page.style.right = '';
-          page.style.top = '';
-          page.style.marginLeft = '';
-          page.style.transform = '';
-          page.style.transformOrigin = '';
-
-          const available = Math.max(1, wrapper.getBoundingClientRect().width);
-          const canonicalWidth = page.offsetWidth;
-          const canonicalHeight = page.offsetHeight;
-          if (!canonicalWidth || !canonicalHeight) continue;
-
-          const scale = Math.min(1, available / canonicalWidth);
-          const scaledWidth = canonicalWidth * scale;
-          const scaledHeight = canonicalHeight * scale;
-          const left = Math.max(0, (available - scaledWidth) / 2);
-
-          wrapper.style.width = `${available}px`;
-          wrapper.style.height = `${scaledHeight}px`;
-          wrapper.style.overflow = 'hidden';
-          page.style.position = 'absolute';
-          page.style.left = `${left}px`;
-          page.style.right = 'auto';
-          page.style.top = '0';
-          page.style.marginLeft = '0';
-          page.style.transformOrigin = 'top left';
-          page.style.transform = `scale(${scale})`;
-        }
-      };
-
-      const scheduleFit = () => {
-        if (frame) cancelAnimationFrame(frame);
-        frame = requestAnimationFrame(() => requestAnimationFrame(fitPrintedPages));
-      };
-
-      setMode();
-
-      const classObserver = new MutationObserver(() => {
-        if (suppressClassObserver || !isMobile()) return;
-        if (document.body.classList.contains('mobile-reader')) {
-          suppressClassObserver = true;
-          document.body.classList.remove('mobile-reader');
-          suppressClassObserver = false;
-          scheduleFit();
-        }
-      });
-      classObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
-      window.addEventListener('resize', scheduleFit, { passive: true });
-      window.addEventListener('orientationchange', scheduleFit, { passive: true });
-      window.visualViewport?.addEventListener('resize', scheduleFit, { passive: true });
-      window.addEventListener('load', scheduleFit, { once: true });
-
-      document.addEventListener('DOMContentLoaded', () => {
-        const workbook = document.querySelector('#workbook');
-        if (!workbook) return;
-        const contentObserver = new MutationObserver(scheduleFit);
-        contentObserver.observe(workbook, { childList: true, subtree: true });
-        scheduleFit();
-      }, { once: true });
+      syncPreviewMode();
+      window.addEventListener('resize', syncPreviewMode, { passive: true });
+      window.addEventListener('orientationchange', syncPreviewMode, { passive: true });
+      window.visualViewport?.addEventListener('resize', syncPreviewMode, { passive: true });
     })();
   </script>
   <header class="workbook-toolbar" aria-label="כלי החוברת">
