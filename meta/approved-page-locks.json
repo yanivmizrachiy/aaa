@@ -112,10 +112,10 @@
     {
       "workbookPage": 6,
       "status": "locked",
-      "reason": "עמוד 6 מאושר לפי SOURCE_OF_TRUTH.md: התחתית מחולקת להמרת חזקה/מכפלה ולבדיקת טענות, ללא רשת חוזרת וללא שטח משבצות ריק; Exact A4 Preview נשמר ללא reflow.",
+      "reason": "עמוד 6 מאושר לפי SOURCE_OF_TRUTH.md: חישוב ריבוע של מספר בלבד; המכפלה מופיעה רק בסוגריים כהמחשה בהסבר, יש תרגילים מאתגרים עם אפשרות להיעזר במחשבון, ואין תרגילי המרה בין חזקה למכפלה; Exact A4 Preview נשמר ללא reflow.",
       "files": [
-        {"path": "עמוד-639.html", "gitBlobSha": "3f84416ee1f051348155b48ec8e643352a878052"},
-        {"path": "styles/pages/עמוד-639.css", "gitBlobSha": "8b5bb401e36265ebb1be321d348fedd80b6dde65"}
+        {"path": "עמוד-639.html", "gitBlobSha": "94f5b0fe0608c33a7c11e3994569592680e5eede"},
+        {"path": "styles/pages/עמוד-639.css", "gitBlobSha": "799b1a95087ab52dc500a35d09792cc88a1cc40a"}
       ],
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "7c18caac2ad51d45446384e83dc8748bc5443a6c"},
