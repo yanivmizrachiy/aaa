@@ -193,28 +193,6 @@
   box-shadow: none;
 }
 
-/* Tablet / narrow desktop: standalone page may tighten, not collapse. */
-@media (max-width: 760px) {
-  .page-634 .foundation-note-one-line {
-    flex-wrap: nowrap;
-    white-space: nowrap;
-    font-size: 14.4px;
-    gap: 4px;
-    padding-inline: 8px;
-  }
-  .page-634 .angle-name-fill { width: 68px; }
-  .page-634 .degrees-fill { width: 46px; }
-}
-
-/* Only a genuinely small phone may wrap the concept row. */
-@media (max-width: 520px) {
-  .page-634 .foundation-note-one-line {
-    flex-wrap: wrap;
-    white-space: normal;
-    row-gap: 6px;
-  }
-}
-
 @media print {
   .page-634 .foundation-note-one-line,
   .page-634 .final-build-task,
