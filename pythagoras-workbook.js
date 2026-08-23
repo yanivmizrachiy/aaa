@@ -1,4 +1,5 @@
-const BUILD_VERSION = String(Date.now());
+const scriptUrl = new URL(import.meta.url);
+const BUILD_VERSION = scriptUrl.searchParams.get('v') || '20260823-universal-device-1';
 const MANIFEST_URL = 'WORKBOOK_MANIFEST.json';
 const workbookRoot = document.querySelector('#workbook');
 const toolbar = document.querySelector('.workbook-toolbar');
@@ -13,42 +14,89 @@ const workbookCss = [...document.querySelectorAll('link[rel="stylesheet"]')]
   .find((link) => new URL(link.href, document.baseURI).pathname.endsWith('/styles/pythagoras-workbook.css'));
 const stylesheetPromises = new Map();
 
+const isAppleMobile = /iPhone|iPad|iPod/u.test(navigator.userAgent)
+  || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const lowPowerDevice = Number(navigator.deviceMemory || 8) <= 4
+  || Number(navigator.hardwareConcurrency || 8) <= 4;
+
 let totalPages = 0;
 let activePage = 1;
 let loadedPages = 0;
 let failedPages = 0;
+let refitPages = () => {};
 
 const pageId = (local) => `workbook-page-${local}`;
 const sourceFile = (pageMeta) => pageMeta.file;
 const cssFile = (pageMeta) => `styles/pages/${pageMeta.file.replace(/\.html$/u, '.css')}`;
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const versioned = (href) => {
   const url = new URL(href, document.baseURI);
   url.searchParams.set('v', BUILD_VERSION);
   return url.href;
 };
 
+async function fetchWithRetry(href, options = {}, attempts = 3) {
+  const url = versioned(href);
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, { cache: 'no-store', ...options });
+      if (response.ok) return response;
+      const retryable = response.status === 408 || response.status === 425 || response.status === 429 || response.status >= 500;
+      const error = new Error(`${response.status} ${response.statusText}`);
+      if (!retryable || attempt === attempts) throw error;
+      lastError = error;
+    } catch (error) {
+      lastError = error;
+      if (attempt === attempts) break;
+    }
+    await delay(220 * attempt);
+  }
+  throw lastError || new Error(`טעינת ${href} נכשלה`);
+}
+
+function loadStylesheetOnce(href, absolute) {
+  return new Promise((resolve, reject) => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = absolute;
+    link.dataset.workbookCss = href;
+    link.addEventListener('load', () => {
+      link.dataset.loaded = 'true';
+      resolve(link);
+    }, { once: true });
+    link.addEventListener('error', () => {
+      link.remove();
+      reject(new Error(`טעינת CSS נכשלה: ${href}`));
+    }, { once: true });
+    if (workbookCss) workbookCss.before(link);
+    else document.head.append(link);
+  });
+}
+
 function addStylesheet(href) {
   const absolute = versioned(href);
   if (stylesheetPromises.has(absolute)) return stylesheetPromises.get(absolute);
   const existing = [...document.querySelectorAll('link[rel="stylesheet"]')]
-    .find((link) => link.href === absolute);
-  if (existing) {
-    const ready = Promise.resolve(existing);
-    stylesheetPromises.set(absolute, ready);
-    return ready;
-  }
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = absolute;
-  link.dataset.workbookCss = href;
-  const ready = new Promise((resolve, reject) => {
-    link.addEventListener('load', () => resolve(link), { once: true });
-    link.addEventListener('error', () => reject(new Error(`טעינת CSS נכשלה: ${href}`)), { once: true });
-  });
-  stylesheetPromises.set(absolute, ready);
-  if (workbookCss) workbookCss.before(link);
-  else document.head.append(link);
-  return ready;
+    .find((link) => link.href === absolute && link.dataset.loaded === 'true');
+  if (existing) return Promise.resolve(existing);
+
+  const promise = (async () => {
+    let lastError;
+    for (let attempt = 1; attempt <= 3; attempt += 1) {
+      try {
+        return await loadStylesheetOnce(href, absolute);
+      } catch (error) {
+        lastError = error;
+        if (attempt < 3) await delay(180 * attempt);
+      }
+    }
+    throw lastError;
+  })();
+
+  stylesheetPromises.set(absolute, promise);
+  promise.catch(() => stylesheetPromises.delete(absolute));
+  return promise;
 }
 
 function namespaceSvgIds(root, prefix) {
@@ -120,7 +168,7 @@ function installToolbarOffset() {
   if (typeof ResizeObserver === 'function') {
     const observer = new ResizeObserver(sync);
     observer.observe(toolbar);
-  } else window.addEventListener('resize', sync);
+  } else window.addEventListener('resize', sync, { passive: true });
 }
 
 function unlockWorkbookActions() {
@@ -133,8 +181,7 @@ async function loadSourcePage(pageMeta, total, wrapper) {
   const htmlFile = sourceFile(pageMeta);
   try {
     await addStylesheet(cssFile(pageMeta));
-    const response = await fetch(versioned(htmlFile), { cache: 'no-store' });
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+    const response = await fetchWithRetry(htmlFile);
     const html = await response.text();
     const parsed = new DOMParser().parseFromString(html, 'text/html');
     const sourceMain = parsed.querySelector('main.a4-page');
@@ -142,15 +189,17 @@ async function loadSourcePage(pageMeta, total, wrapper) {
     const main = document.importNode(sourceMain, true);
     normalizePage(main, pageMeta, total);
     wrapper.replaceChildren(main);
+    wrapper.dataset.loadState = 'loaded';
     loadedPages += 1;
     updateLoadStatus(total);
     return true;
   } catch (error) {
     failedPages += 1;
+    wrapper.dataset.loadState = 'failed';
     const message = document.createElement('div');
     message.className = 'workbook-error';
     message.setAttribute('role', 'alert');
-    message.textContent = `שגיאה בטעינת עמוד ${localNumber} (${htmlFile}): ${error.message}`;
+    message.textContent = `שגיאה בטעינת עמוד ${localNumber}. רעננו את הדף; המערכת כבר ניסתה לטעון אותו מחדש אוטומטית.`;
     wrapper.replaceChildren(message);
     updateLoadStatus(total);
     console.error(`Pythagoras workbook page ${localNumber} failed`, error);
@@ -158,10 +207,14 @@ async function loadSourcePage(pageMeta, total, wrapper) {
   }
 }
 
-async function runPool(tasks, concurrency = 6) {
+async function runPool(tasks, concurrency = 4) {
   let next = 0;
   const workers = Array.from({ length: Math.min(concurrency, tasks.length) }, async () => {
-    while (next < tasks.length) await tasks[next++]();
+    while (next < tasks.length) {
+      const taskIndex = next;
+      next += 1;
+      await tasks[taskIndex]();
+    }
   });
   await Promise.all(workers);
 }
@@ -217,11 +270,11 @@ function installNavigation() {
 
 function installResponsiveScaling() {
   let frame = 0;
-  const canZoom = typeof CSS !== 'undefined' && CSS.supports?.('zoom', '0.5');
+  const canZoom = !isAppleMobile && typeof CSS !== 'undefined' && CSS.supports?.('zoom', '0.5');
 
-  const viewportWidth = () => Math.max(
+  const layoutViewportWidth = () => Math.max(
     1,
-    Math.floor(window.visualViewport?.width || document.documentElement.clientWidth || window.innerWidth || 1),
+    Math.floor(document.documentElement.clientWidth || window.innerWidth || 1),
   );
 
   const resetPage = (wrapper, page) => {
@@ -242,7 +295,7 @@ function installResponsiveScaling() {
 
   const fitPages = () => {
     frame = 0;
-    const viewWidth = viewportWidth();
+    const viewWidth = layoutViewportWidth();
     const mobile = viewWidth <= 720;
     document.body.classList.toggle('mobile-print-preview', mobile);
     document.body.classList.remove('mobile-reader');
@@ -271,6 +324,12 @@ function installResponsiveScaling() {
       page.style.left = '0';
       page.style.right = 'auto';
       page.style.top = '0';
+
+      if (scale >= 0.999) {
+        wrapper.style.height = 'auto';
+        page.style.position = 'relative';
+        continue;
+      }
 
       if (canZoom) {
         wrapper.style.height = 'auto';
@@ -303,15 +362,22 @@ function installResponsiveScaling() {
 
   window.addEventListener('resize', scheduleFit, { passive: true });
   window.addEventListener('orientationchange', scheduleFit, { passive: true });
-  window.visualViewport?.addEventListener('resize', scheduleFit, { passive: true });
   window.addEventListener('beforeprint', resetForPrint);
   window.addEventListener('afterprint', scheduleFit);
+  refitPages = scheduleFit;
   fitPages();
 }
 
-async function typesetMath() {
+async function typesetMathInBatches() {
   if (window.MathJax?.startup?.promise) await window.MathJax.startup.promise;
-  if (window.MathJax?.typesetPromise) await window.MathJax.typesetPromise([workbookRoot]);
+  if (!window.MathJax?.typesetPromise) return;
+  const wrappers = [...document.querySelectorAll('.workbook-page-wrap[data-load-state="loaded"]')];
+  const batchSize = isAppleMobile || lowPowerDevice ? 3 : 6;
+  for (let index = 0; index < wrappers.length; index += batchSize) {
+    const batch = wrappers.slice(index, index + batchSize);
+    await window.MathJax.typesetPromise(batch);
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+  }
 }
 
 function validateManifest(manifest) {
@@ -332,8 +398,7 @@ function validateManifest(manifest) {
 }
 
 async function boot() {
-  const manifestResponse = await fetch(versioned(MANIFEST_URL), { cache: 'no-store' });
-  if (!manifestResponse.ok) throw new Error(`לא ניתן לקרוא ${MANIFEST_URL}`);
+  const manifestResponse = await fetchWithRetry(MANIFEST_URL);
   const manifest = await manifestResponse.json();
   const pages = validateManifest(manifest);
   totalPages = pages.length;
@@ -341,7 +406,12 @@ async function boot() {
   failedPages = 0;
   updateNavigationDisplay(1);
   statusEl.textContent = `0 / ${totalPages} דפים נטענו`;
-  const tasks = pages.map((pageMeta) => {
+
+  const requestedRaw = Number(new URL(location.href).searchParams.get('page')) || 1;
+  const requested = Math.max(1, Math.min(totalPages, Math.trunc(requestedRaw)));
+  const jobs = [];
+
+  for (const pageMeta of pages) {
     const localNumber = pageMeta.workbookNumber;
     const wrapper = document.createElement('section');
     wrapper.className = 'workbook-page-wrap';
@@ -349,18 +419,25 @@ async function boot() {
     wrapper.dataset.localPage = String(localNumber);
     wrapper.dataset.sourcePage = String(pageMeta.sourceNumber);
     workbookRoot.append(wrapper);
-    return () => loadSourcePage(pageMeta, totalPages, wrapper);
-  });
-  await runPool(tasks, 6);
-  await typesetMath();
+    jobs.push({
+      priority: Math.abs(localNumber - requested),
+      task: () => loadSourcePage(pageMeta, totalPages, wrapper),
+    });
+  }
+
+  jobs.sort((a, b) => a.priority - b.priority);
+  const concurrency = isAppleMobile ? 2 : (lowPowerDevice ? 3 : 5);
+  await runPool(jobs.map((job) => job.task), concurrency);
+  await typesetMathInBatches();
   unlockWorkbookActions();
   installToolbarOffset();
   installNavigation();
   installResponsiveScaling();
+  refitPages();
+
   statusEl.textContent = failedPages > 0
     ? `${loadedPages} / ${totalPages} דפים נטענו · ${failedPages} נכשלו`
     : `${totalPages} דפים · חוברת מלאה`;
-  const requested = Number(new URL(location.href).searchParams.get('page')) || 1;
   requestAnimationFrame(() => goToPage(requested, 'auto'));
 }
 
@@ -369,7 +446,7 @@ boot().catch((error) => {
   const message = document.createElement('div');
   message.className = 'workbook-error';
   message.setAttribute('role', 'alert');
-  message.textContent = error.message;
+  message.textContent = 'החוברת לא נטענה במלואה. רעננו את הדף ונסו שוב.';
   workbookRoot.prepend(message);
   console.error(error);
 });
