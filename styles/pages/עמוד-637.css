@@ -72,6 +72,7 @@
   height: 100%;
   min-height: 0;
   display: block;
+  shape-rendering: geometricPrecision;
 }
 
 .page-637 .hyp-svg .edge,
