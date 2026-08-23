@@ -63,8 +63,8 @@ for (let n = start; n <= end; n += 1) {
   else fail(`עמוד ${n}: נמצא breakpoint מקומי שסותר AAA Exact A4 Preview.`);
 }
 
-/* תלות power-practice מותרת בחלון 1–13 רק בעמודים שבהם היא באמת חלק מהתרגול הקנוני. */
-const allowedPowerPractice = new Set([6, 10]);
+/* תלות power-practice נשארת בחלון 1–13 רק בעמוד 6 שבו היא חלק מהתרגול הקנוני. */
+const allowedPowerPractice = new Set([6]);
 for (let n = start; n <= end; n += 1) {
   const meta = pages[n - 1];
   if (!meta?.file) continue;
@@ -80,6 +80,7 @@ const p7 = read(pages[6].file);
 const p8 = read(pages[7].file);
 const p9 = read(pages[8].file);
 const p10 = read(pages[9].file);
+const p10css = read(`styles/pages/${pages[9].file.replace(/\.html$/u, '.css')}`);
 const p11 = read(pages[10].file);
 const p12css = read(`styles/pages/${pages[11].file.replace(/\.html$/u, '.css')}`);
 const p13 = read(pages[12].file);
@@ -93,8 +94,10 @@ else fail('עמוד 8: חסר מגוון פדגוגי קנוני.');
 if (!p9.includes('equation-practice-grid') && p9.includes('direct-solution-grid') && p9.includes('reverse-solution-grid') && p9.includes('error-solution-grid')) pass('עמוד 9: אין חזרה ל-12 כרטיסים זהים.');
 else fail('עמוד 9: חזרה לתרגול אחיד מדי.');
 
-if (p10.includes('side-table') && p10.includes('approximation-grid') && p10.includes('reasonableness-grid')) pass('עמוד 10: תחימה, קירוב ובדיקת סבירות נשמרים כשלוש פעולות שונות.');
-else fail('עמוד 10: מגוון הקירוב נפגע.');
+if (!p10.includes('approximation-grid') && p10.includes('bounds-grid') && p10.includes('calculator-grid') && p10.includes('reasonableness-grid') && p10.includes('error-grid') && p10.includes('build-root-card')) pass('עמוד 10: תחימה, קירוב, סבירות, תיקון ובנייה נשמרים במקום רצף חזרתי.');
+else fail('עמוד 10: מגוון הקירוב נפגע או חזרה רשת החישובים הישנה.');
+if (!p10css.includes('pythagoras-power-practice.css')) pass('עמוד 10: CSS מקומי ואינו תלוי בשכבת power-practice.');
+else fail('עמוד 10: חזרה תלות power-practice שעלולה ליצור זליגת סגנון.');
 
 if (!p11.includes('page-11-practice-grid') && p11.includes('direct-approx-grid') && p11.includes('bounds-grid') && p11.includes('approx-error-grid') && p11.includes('build-approx-card')) pass('עמוד 11: חישוב, תחימה, תיקון ובנייה נשמרים במקום 10 סעיפים זהים.');
 else fail('עמוד 11: חזרה לגרסת 10 הכרטיסים הזהים או אובדן מגוון.');
