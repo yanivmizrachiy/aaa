@@ -1,15 +1,13 @@
 @import url("../topics/pythagoras-foundations.css");
-@import url("../topics/pythagoras-power-practice.css");
 
-.page-642 {
-  --power-question-gap: 6px;
-  --power-instruction-font-size: 14.8px;
-  --power-instruction-line-height: 1.25;
-}
-
+/* עמוד 10 — תחימה, קירוב, בדיקת סבירות, תיקון טעות ובנייה. */
 .page-642 .question-block {
-  justify-content: flex-start;
-  gap: 6px;
+  display: grid;
+  grid-template-rows: 40px 205px 165px 160px 180px minmax(145px, 1fr);
+  gap: 8px;
+  align-content: stretch;
+  width: 100%;
+  min-width: 0;
   min-height: 0;
 }
 
@@ -17,11 +15,9 @@
   width: 100%;
   min-width: 0;
   max-width: 100%;
+  min-height: 0;
+  margin: 0;
   box-sizing: border-box;
-}
-
-.page-642 .q-main {
-  margin-bottom: 1px;
 }
 
 .page-642 .approx-summary {
@@ -29,14 +25,13 @@
   align-items: center;
   justify-content: center;
   gap: 9px;
-  min-height: 34px;
+  min-height: 40px;
   padding: 4px 10px;
   border-block: 1px solid var(--border-light);
-  background: #fff;
-  font-size: 15px;
+  background: var(--bg-subtle);
+  font-size: 14.8px;
   line-height: 1.15;
   white-space: nowrap;
-  direction: rtl;
 }
 
 .page-642 .approx-summary-label {
@@ -55,83 +50,218 @@
   line-height: 1;
 }
 
-.page-642 .side-table {
-  flex: 0 0 auto;
-  width: 100%;
-  table-layout: fixed;
+.page-642 .page10-section,
+.page-642 .page10-final-task {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 5px;
+  min-width: 0;
+  min-height: 0;
 }
 
-.page-642 .side-table th,
-.page-642 .side-table td {
-  height: 40px;
-  padding: 4px 6px;
-  font-size: 15px;
+.page-642 .q-main {
+  margin: 0;
+  min-height: 22px;
 }
 
-.page-642 .side-table .foundation-fill {
-  height: 26px;
+.page-642 .q-text {
+  font-size: 14.5px;
+  line-height: 1.24;
 }
 
-.page-642 .approximation-grid {
+.page-642 .bounds-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(4, 76px);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: 7px;
+  min-width: 0;
+  min-height: 0;
 }
 
-.page-642 .approximation-grid .stacked-answer-card {
+.page-642 .bounds-card,
+.page-642 .calculator-card,
+.page-642 .reason-card,
+.page-642 .error-card,
+.page-642 .build-root-card {
+  min-width: 0;
   min-height: 0;
-  height: 76px;
-  padding: 7px 8px;
-  gap: 5px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+  box-sizing: border-box;
+}
+
+.page-642 .bounds-card {
+  display: grid;
+  grid-template-columns: auto 42px auto auto auto 42px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 7px 6px;
+  font-size: 14.3px;
+}
+
+.page-642 .bounds-card > span:first-child {
+  display: none;
+}
+
+.page-642 .bound-slot {
+  width: 42px;
+  min-width: 42px;
+  height: 24px;
+  border-radius: 5px;
+}
+
+.page-642 .calculator-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-642 .calculator-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 8px;
+  background: var(--bg-subtle);
+  font-size: 17px;
+}
+
+.page-642 .calc-slot {
+  width: 68px;
+  min-width: 68px;
+  height: 26px;
+  border-radius: 5px;
 }
 
 .page-642 .reasonableness-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(2, 58px);
-  gap: 7px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
 }
 
 .page-642 .reason-card {
   direction: ltr;
   unicode-bidi: isolate;
   display: grid;
-  grid-template-columns: 1.15fr repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: center;
   justify-items: center;
-  min-width: 0;
-  min-height: 58px;
-  padding: 6px 7px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  background: var(--bg-subtle);
-  font-size: 14.2px;
-  line-height: 1.1;
+  gap: 5px;
+  padding: 8px;
+  background: var(--bg-paper);
+  font-size: 13.8px;
 }
 
 .page-642 .reason-card strong {
-  font-size: 16px;
-  font-weight: 500;
+  grid-column: 1 / -1;
+  font-size: 17px;
+  font-weight: 600;
 }
 
 .page-642 .reason-card span {
+  width: 100%;
+  min-height: 28px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 38px;
-  min-height: 24px;
-  padding: 2px 5px;
   border: 1px solid #cbd5e1;
   border-radius: 6px;
   background: #fff;
 }
 
+.page-642 .error-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-642 .error-card {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-items: center;
+  justify-items: center;
+  gap: 7px;
+  padding: 8px 9px;
+  font-size: 13.5px;
+  line-height: 1.28;
+  text-align: center;
+}
+
+.page-642 .error-card > div:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.page-642 .error-card .check,
+.page-642 .build-check .check {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+
+.page-642 .reason-slot {
+  width: 82px;
+  min-width: 82px;
+  height: 23px;
+  border-radius: 5px;
+}
+
+.page-642 .page10-final-task {
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.page-642 .build-root-card {
+  display: grid;
+  grid-template-columns: .75fr 1fr 1.55fr;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-subtle);
+}
+
+.page-642 .build-step,
+.page-642 .build-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.page-642 .build-slot {
+  width: 58px;
+  min-width: 58px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.page-642 .build-slot.wide {
+  width: 78px;
+  min-width: 78px;
+}
+
 @media print {
   .page-642 .approx-summary,
-  .page-642 .approximation-grid,
-  .page-642 .reasonableness-grid,
-  .page-642 .side-table {
+  .page-642 .bounds-card,
+  .page-642 .calculator-card,
+  .page-642 .reason-card,
+  .page-642 .error-card,
+  .page-642 .build-root-card {
     break-inside: avoid;
   }
 }
