@@ -7,9 +7,11 @@
   --wb-blue-soft: #eff6ff;
   margin: 0;
   width: 100%;
+  max-width: 100vw;
   min-width: 0;
   min-height: 100vh;
   display: block;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 50% 0, rgba(59, 130, 246, 0.08), transparent 34rem),
     #eef2f7;
@@ -23,6 +25,8 @@
   top: 0;
   z-index: 1000;
   width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
   padding-top: env(safe-area-inset-top, 0px);
   background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid rgba(203, 213, 225, 0.86);
@@ -192,6 +196,8 @@
 
 .workbook-pages {
   width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
   display: grid;
   justify-items: center;
   gap: 26px;
@@ -340,6 +346,7 @@
   }
 
   .workbook-page-wrap {
+    max-width: calc(100vw - 8px);
     transform-origin: top center;
   }
 
@@ -362,9 +369,9 @@
 
 @media print {
   @page { size: A4; margin: 0; }
-  .pythagoras-workbook-shell { width: auto; background: #fff; }
+  .pythagoras-workbook-shell { width: auto; max-width: none; overflow-x: visible; background: #fff; }
   .workbook-toolbar { display: none !important; }
-  .workbook-pages { display: block; width: auto; padding: 0; }
+  .workbook-pages { display: block; width: auto; max-width: none; overflow: visible; padding: 0; }
   .workbook-page-wrap {
     width: 210mm;
     max-width: none;
