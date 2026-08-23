@@ -1,114 +1,132 @@
 @import url("../topics/pythagoras-foundations.css");
 
+/* עמוד 9 — שני פתרונות לכל משוואה, בלי גלישה לתחתית ה-A4. */
 .page-651 .question-block {
-  gap: 7px;
+  gap: 5px;
+  min-height: 0;
+}
+
+.page-651 .question-block > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* דוגמה אנכית: שלבי פתרון שורה-שורה ושני פתרונות, ללא שרשרת אופקית. */
 .page-651 .compact-worked-example {
-  padding: 6px 10px;
+  padding: 5px 9px;
   min-height: 0;
   display: grid;
   grid-template-columns: 1fr;
   align-items: start;
-  gap: 3px;
+  gap: 2px;
 }
 
 .page-651 .compact-worked-example .example-label {
   margin: 0;
   padding: 0;
-  font-size: 15px;
-  line-height: 1.2;
+  font-size: 14.5px;
+  line-height: 1.15;
   text-align: right;
 }
 
 .page-651 .compact-worked-example .solution-stack {
-  gap: 2px;
+  gap: 1px;
 }
 
 .page-651 .compact-worked-example .solution-step {
-  font-size: 16.5px;
-  line-height: 1.18;
-  min-height: 20px;
+  font-size: 16px;
+  line-height: 1.14;
+  min-height: 18px;
 }
 
 .page-651 .compact-worked-example .final-answer {
-  margin-top: 2px;
-  padding: 3px 14px;
-  font-size: 16.5px;
-  line-height: 1.2;
-  border-width: 1.6px;
+  margin-top: 1px;
+  padding: 2px 12px;
+  font-size: 16px;
+  line-height: 1.15;
+  border-width: 1.5px;
+}
+
+.page-651 .q-main {
+  margin-bottom: 2px;
 }
 
 .page-651 .q-text {
-  font-size: 15px;
-  line-height: 1.3;
+  font-size: 14.6px;
+  line-height: 1.22;
 }
 
+/* 12 תרגילים ב-4 עמודות × 3 שורות: כל התרגול נשאר בתוך ה-A4. */
 .page-651 .equation-practice-grid {
   flex: 1 1 auto;
+  min-height: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-template-rows: repeat(4, minmax(0, 1fr));
-  gap: 7px 9px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 6px 7px;
 }
 
 .page-651 .equation-practice-card {
+  min-width: 0;
   min-height: 0;
-  padding: 6px 7px;
+  padding: 5px 6px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .page-651 .practice-equation {
-  font-size: 18px;
-  line-height: 1.2;
-  margin-bottom: 3px;
+  font-size: 17px;
+  line-height: 1.15;
+  margin-bottom: 2px;
 }
 
 .page-651 .work-lines.short {
-  min-height: 34px;
+  min-height: 24px;
   flex: 1 1 auto;
-  margin-top: 1px;
+  margin-top: 0;
 }
 
 /* התשובה הסופית היא מלבן אחד ובתוכו x1 ו-x2 בשתי שורות. */
 .page-651 .student-final-answer.solution-pair-answer {
-  min-height: 48px;
-  margin-top: 4px;
-  padding: 4px 7px;
+  min-height: 42px;
+  margin-top: 2px;
+  padding: 3px 5px;
   display: grid;
   grid-template-columns: 1fr;
   align-content: center;
   justify-items: center;
-  gap: 2px;
+  gap: 1px;
   direction: ltr;
   unicode-bidi: isolate;
-  font-size: 14.5px;
-  line-height: 1.15;
-  border: 1.35px solid #1f2a44;
-  border-radius: 7px;
+  font-size: 13.8px;
+  line-height: 1.1;
+  border: 1.25px solid #1f2a44;
+  border-radius: 6px;
   background: #fff;
 }
 
 .page-651 .solution-answer-row {
-  min-height: 18px;
+  min-height: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 4px;
   white-space: nowrap;
 }
 
 .page-651 .answer-line {
   display: inline-block;
-  width: 42px;
-  height: 17px;
-  border-bottom: 1.25px solid #1f2a44;
+  width: 34px;
+  height: 15px;
+  border-bottom: 1.2px solid #1f2a44;
 }
 
 @media print {
   .page-651 .compact-worked-example,
+  .page-651 .equation-practice-grid,
   .page-651 .equation-practice-card,
   .page-651 .student-final-answer.solution-pair-answer {
     break-inside: avoid;
