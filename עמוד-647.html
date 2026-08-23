@@ -27,127 +27,114 @@
   </header>
 
   <div class="question-block">
-    <div class="page16-roadmap" aria-label="ארבעה שלבים לפתרון">
-      <span><strong>1</strong> מוצאים זווית ישרה</span>
-      <span class="road-arrow">←</span>
-      <span><strong>2</strong> מזהים את היתר</span>
-      <span class="road-arrow">←</span>
-      <span><strong>3</strong> כותבים משוואה</span>
-      <span class="road-arrow">←</span>
-      <span><strong>4</strong> פותרים</span>
-    </div>
+    <section class="page16-example" aria-label="דוגמה לפתרון אנכי">
+      <div class="example-label">דוגמה</div>
+      <div class="example-triangle">
+        <svg viewBox="0 0 150 82" aria-label="משולש ישר זווית עם ניצבים 6 ו-8 ויתר x">
+          <path class="edge" d="M27 14 L27 68 L124 68 Z"/>
+          <path class="mark" d="M27 56 L39 56 L39 68"/>
+          <text class="lbl" x="14" y="44">6</text><text class="lbl" x="72" y="80">8</text><text class="lbl var" x="82" y="39">x</text>
+        </svg>
+      </div>
+      <div class="aligned-solution example-solution" dir="ltr">
+        <div class="solution-row"><span class="lhs">x²</span><span class="eq">=</span><span>6²+8²</span></div>
+        <div class="solution-row"><span class="lhs"></span><span class="eq">=</span><span>36+64</span></div>
+        <div class="solution-row"><span class="lhs"></span><span class="eq">=</span><span>100</span></div>
+        <div class="solution-row"><span class="lhs">x</span><span class="eq">=</span><span>√100</span></div>
+        <div class="solution-row final-solution-row"><span class="lhs">x</span><span class="eq">=</span><span>10</span></div>
+      </div>
+    </section>
 
     <section class="page16-section equation-from-diagram">
-      <div class="q-main"><div class="bullet-container"><div class="bullet-large"></div></div><div class="q-text">בכל שרטוט סמנו את היתר, ואז כתבו <strong>רק</strong> את משוואת פיתגורס המתאימה.</div></div>
+      <div class="q-main"><div class="bullet-container"><div class="bullet-large"></div></div><div class="q-text">כתבו לכל שרטוט את משוואת פיתגורס המתאימה. אין צורך לפתור.</div></div>
       <div class="page16-visual-grid">
         <div class="page16-mini-card">
-          <svg class="page16-svg" viewBox="0 0 170 105" aria-label="משולש ישר זווית עם ניצבים 6 ו-8 ויתר x">
-            <path class="edge" d="M36 20 L36 86 L132 86 Z"/>
-            <path class="mark" d="M36 73 L49 73 L49 86"/>
-            <text class="lbl" x="22" y="57">6</text><text class="lbl" x="84" y="101">8</text><text class="lbl var" x="91" y="48">x</text>
-          </svg>
-          <div class="equation-write"><span class="foundation-fill page16-equation-fill" aria-label="כתבו משוואת פיתגורס"></span></div>
+          <svg class="page16-svg" viewBox="0 0 170 100" aria-label="ניצבים 5 ו-12 ויתר x"><path class="edge" d="M32 18 L32 82 L136 82 Z"/><path class="mark" d="M32 69 L45 69 L45 82"/><text class="lbl" x="18" y="54">5</text><text class="lbl" x="82" y="97">12</text><text class="lbl var" x="89" y="46">x</text></svg>
+          <div class="equation-write"><span class="foundation-fill page16-equation-fill"></span></div>
         </div>
-
         <div class="page16-mini-card">
-          <svg class="page16-svg" viewBox="0 0 170 105" aria-label="משולש ישר זווית עם ניצב 5, ניצב x ויתר 13">
-            <path class="edge" d="M32 82 L136 82 L136 39 Z"/>
-            <path class="mark" d="M123 82 L123 69 L136 69"/>
-            <text class="lbl var" x="84" y="99">x</text><text class="lbl" x="150" y="63">5</text><text class="lbl" x="82" y="53">13</text>
-          </svg>
-          <div class="equation-write"><span class="foundation-fill page16-equation-fill" aria-label="כתבו משוואת פיתגורס"></span></div>
+          <svg class="page16-svg" viewBox="0 0 170 100" aria-label="ניצב 5, ניצב x ויתר 13"><path class="edge" d="M30 80 L137 80 L137 38 Z"/><path class="mark" d="M124 80 L124 67 L137 67"/><text class="lbl var" x="83" y="96">x</text><text class="lbl" x="150" y="62">5</text><text class="lbl" x="83" y="51">13</text></svg>
+          <div class="equation-write"><span class="foundation-fill page16-equation-fill"></span></div>
         </div>
-
         <div class="page16-mini-card">
-          <svg class="page16-svg" viewBox="0 0 170 105" aria-label="משולש ישר זווית מסובב עם ניצב 7, ניצב y ויתר 25">
-            <path class="edge" d="M38.2 47.4 L55 25 L131.8 82.6 Z"/>
-            <path class="mark" d="M49 33 L57 39 L63 31"/>
-            <text class="lbl" x="37" y="35">7</text><text class="lbl var" x="99" y="48">y</text><text class="lbl" x="86" y="76">25</text>
-          </svg>
-          <div class="equation-write"><span class="foundation-fill page16-equation-fill" aria-label="כתבו משוואת פיתגורס"></span></div>
+          <svg class="page16-svg" viewBox="0 0 170 100" aria-label="ניצבים 7 ו-24 ויתר y"><path class="edge" d="M39 43 L57 20 L134 79 Z"/><path class="mark" d="M50 28 L58 34 L64 26"/><text class="lbl" x="37" y="29">7</text><text class="lbl" x="103" y="44">24</text><text class="lbl var" x="88" y="78">y</text></svg>
+          <div class="equation-write"><span class="foundation-fill page16-equation-fill"></span></div>
         </div>
-
         <div class="page16-mini-card">
-          <svg class="page16-svg" viewBox="0 0 170 105" aria-label="משולש ישר זווית עם ניצבים 9 ו-12 ויתר z">
-            <path class="edge" d="M45 24 L133 24 L133 90 Z"/>
-            <path class="mark" d="M120 24 L120 37 L133 37"/>
-            <text class="lbl" x="87" y="17">12</text><text class="lbl" x="147" y="60">9</text><text class="lbl var" x="83" y="62">z</text>
-          </svg>
-          <div class="equation-write"><span class="foundation-fill page16-equation-fill" aria-label="כתבו משוואת פיתגורס"></span></div>
+          <svg class="page16-svg" viewBox="0 0 170 100" aria-label="ניצב 9, ניצב z ויתר 15"><path class="edge" d="M43 20 L136 20 L136 84 Z"/><path class="mark" d="M123 20 L123 33 L136 33"/><text class="lbl var" x="88" y="14">z</text><text class="lbl" x="149" y="57">9</text><text class="lbl" x="88" y="57">15</text></svg>
+          <div class="equation-write"><span class="foundation-fill page16-equation-fill"></span></div>
         </div>
       </div>
     </section>
 
-    <section class="page16-section role-switch-task">
-      <div class="q-main"><div class="bullet-container"><div class="bullet-large"></div></div><div class="q-text">אותם רעיונות, תפקיד שונה ל־<span dir="ltr">x</span>: השלימו את הפעולה המתאימה <strong>בלי לפתור</strong>.</div></div>
-      <div class="role-switch-grid">
-        <div class="role-card">
-          <svg class="role-svg" viewBox="0 0 180 100" aria-label="משולש עם ניצבים 6 ו-8 ויתר x">
-            <path class="edge" d="M32 20 L32 82 L124 82 Z"/><path class="mark" d="M32 69 L45 69 L45 82"/>
-            <text class="lbl" x="19" y="54">6</text><text class="lbl" x="76" y="97">8</text><text class="lbl var" x="82" y="45">x</text>
-          </svg>
-          <div class="role-equation">\(x^2=6^2\) <span class="operation-fill" aria-label="כתבו סימן פעולה"></span> \(8^2\)</div>
-        </div>
-        <div class="role-card">
-          <svg class="role-svg" viewBox="0 0 180 100" aria-label="משולש עם ניצב 6, ניצב x ויתר 10">
-            <path class="edge" d="M35 82 L131 82 L131 28 Z"/><path class="mark" d="M118 82 L118 69 L131 69"/>
-            <text class="lbl var" x="82" y="97">x</text><text class="lbl" x="146" y="57">6</text><text class="lbl" x="80" y="48">10</text>
-          </svg>
-          <div class="role-equation">\(x^2=10^2\) <span class="operation-fill" aria-label="כתבו סימן פעולה"></span> \(6^2\)</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="page16-section error-detective-task">
-      <div class="q-main"><div class="bullet-container"><div class="bullet-large"></div></div><div class="q-text">נועה כתבה משוואה שגויה. מצאו את הטעות וכתבו את המשוואה הנכונה.</div></div>
-      <div class="error-detective-row">
-        <svg class="error-svg" viewBox="0 0 180 100" aria-label="משולש עם ניצב 5, ניצב x ויתר 13">
-          <path class="edge" d="M34 82 L138 82 L138 39 Z"/><path class="mark" d="M125 82 L125 69 L138 69"/>
-          <text class="lbl var" x="84" y="98">x</text><text class="lbl" x="151" y="63">5</text><text class="lbl" x="82" y="53">13</text>
-        </svg>
-        <div class="wrong-equation" aria-label="המשוואה השגויה של נועה">נועה: \(13^2+5^2=x^2\)</div>
-        <div class="correct-equation">המשוואה הנכונה: <span class="foundation-fill page16-correction-fill" aria-label="כתבו את המשוואה הנכונה"></span></div>
+    <section class="page16-section operation-task">
+      <div class="q-main"><div class="bullet-container"><div class="bullet-large"></div></div><div class="q-text">השלימו רק את הסימן <strong>+</strong> או <strong>−</strong>.</div></div>
+      <div class="operation-grid" dir="ltr">
+        <div class="operation-card">x² = 9² <span class="operation-fill"></span> 12²</div>
+        <div class="operation-card">x² = 13² <span class="operation-fill"></span> 5²</div>
+        <div class="operation-card">x² = 20² <span class="operation-fill"></span> 21²</div>
+        <div class="operation-card">x² = 25² <span class="operation-fill"></span> 7²</div>
       </div>
     </section>
 
     <section class="page16-section full-solve-task">
-      <div class="q-main"><div class="bullet-container"><div class="bullet-large"></div></div><div class="q-text">עכשיו פתרו שני תרגילים מלאים. כתבו משוואה, חישוב ושורש — כל שלב בשורה חדשה.</div></div>
+      <div class="q-main"><div class="bullet-container"><div class="bullet-large"></div></div><div class="q-text">פתרו. כל מעבר בשורה חדשה; סימני השוויון נשארים אחד מתחת לשני.</div></div>
       <div class="page16-solve-grid">
         <div class="page16-solve-card">
-          <div class="solve-top">
-            <svg class="solve-svg" viewBox="0 0 190 110" aria-label="משולש ישר זווית עם ניצבים 12 ו-16 ויתר x">
-              <path class="edge" d="M36 22 L36 92 L146 92 Z"/><path class="mark" d="M36 79 L49 79 L49 92"/>
-              <text class="lbl" x="21" y="60">12</text><text class="lbl" x="91" y="107">16</text><text class="lbl var" x="99" y="50">x</text>
-            </svg>
-            <div class="solve-kind">מצאו את היתר</div>
+          <div class="solve-head"><span>א.</span><span>ניצבים 12, 16</span><strong>מצאו יתר</strong></div>
+          <div class="aligned-solution student-solution" dir="ltr">
+            <div class="solution-row"><span class="lhs">x²</span><span class="eq">=</span><span>12²+16²</span></div>
+            <div class="solution-row"><span class="lhs"></span><span class="eq">=</span><span class="work-fill"></span></div>
+            <div class="solution-row"><span class="lhs"></span><span class="eq">=</span><span class="work-fill"></span></div>
+            <div class="solution-row"><span class="lhs">x</span><span class="eq">=</span><span>√</span><span class="root-work-fill"></span></div>
+            <div class="solution-row final-solution-row"><span class="lhs">x</span><span class="eq">=</span><span class="final-work-fill"></span></div>
           </div>
-          <div class="full-solution-space page16-work-space" data-required-lines="4" aria-label="מקום להצגת דרך מלאה"></div>
-          <div class="student-final-answer">\(x=\)<span class="foundation-fill foundation-fill-number" aria-label="תשובה סופית"></span></div>
         </div>
         <div class="page16-solve-card">
-          <div class="solve-top">
-            <svg class="solve-svg" viewBox="0 0 190 110" aria-label="משולש ישר זווית עם ניצב 15, ניצב x ויתר 17">
-              <path class="edge" d="M38 88 L142 88 L142 36 Z"/><path class="mark" d="M129 88 L129 75 L142 75"/>
-              <text class="lbl var" x="89" y="104">x</text><text class="lbl" x="156" y="62">15</text><text class="lbl" x="86" y="58">17</text>
-            </svg>
-            <div class="solve-kind">מצאו ניצב</div>
+          <div class="solve-head"><span>ב.</span><span>יתר 17, ניצב 15</span><strong>מצאו ניצב</strong></div>
+          <div class="aligned-solution student-solution" dir="ltr">
+            <div class="solution-row"><span class="lhs">x²</span><span class="eq">=</span><span>17²−15²</span></div>
+            <div class="solution-row"><span class="lhs"></span><span class="eq">=</span><span class="work-fill"></span></div>
+            <div class="solution-row"><span class="lhs"></span><span class="eq">=</span><span class="work-fill"></span></div>
+            <div class="solution-row"><span class="lhs">x</span><span class="eq">=</span><span>√</span><span class="root-work-fill"></span></div>
+            <div class="solution-row final-solution-row"><span class="lhs">x</span><span class="eq">=</span><span class="final-work-fill"></span></div>
           </div>
-          <div class="full-solution-space page16-work-space" data-required-lines="4" aria-label="מקום להצגת דרך מלאה"></div>
-          <div class="student-final-answer">\(x=\)<span class="foundation-fill foundation-fill-number" aria-label="תשובה סופית"></span></div>
+        </div>
+        <div class="page16-solve-card">
+          <div class="solve-head"><span>ג.</span><span>ניצבים 7, 24</span><strong>מצאו יתר</strong></div>
+          <div class="aligned-solution student-solution" dir="ltr">
+            <div class="solution-row"><span class="lhs">x²</span><span class="eq">=</span><span>7²+24²</span></div>
+            <div class="solution-row"><span class="lhs"></span><span class="eq">=</span><span class="work-fill"></span></div>
+            <div class="solution-row"><span class="lhs"></span><span class="eq">=</span><span class="work-fill"></span></div>
+            <div class="solution-row"><span class="lhs">x</span><span class="eq">=</span><span>√</span><span class="root-work-fill"></span></div>
+            <div class="solution-row final-solution-row"><span class="lhs">x</span><span class="eq">=</span><span class="final-work-fill"></span></div>
+          </div>
+        </div>
+        <div class="page16-solve-card">
+          <div class="solve-head"><span>ד.</span><span>יתר 29, ניצב 20</span><strong>מצאו ניצב</strong></div>
+          <div class="aligned-solution student-solution" dir="ltr">
+            <div class="solution-row"><span class="lhs">x²</span><span class="eq">=</span><span>29²−20²</span></div>
+            <div class="solution-row"><span class="lhs"></span><span class="eq">=</span><span class="work-fill"></span></div>
+            <div class="solution-row"><span class="lhs"></span><span class="eq">=</span><span class="work-fill"></span></div>
+            <div class="solution-row"><span class="lhs">x</span><span class="eq">=</span><span>√</span><span class="root-work-fill"></span></div>
+            <div class="solution-row final-solution-row"><span class="lhs">x</span><span class="eq">=</span><span class="final-work-fill"></span></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="page16-challenge">
-      <div class="challenge-text"><strong>אתגר:</strong> בלי לצייר, קבעו אם שני הערכים של <span dir="ltr">x</span> שווים:</div>
-      <div class="challenge-equations">א. \(x^2=9^2+12^2\) &nbsp;&nbsp; ב. \(x^2=17^2-8^2\)</div>
-      <div class="challenge-choices"><span class="check"></span> שווים <span class="check"></span> אינם שווים</div>
+    <section class="page16-final-task">
+      <div class="q-main"><div class="bullet-container"><div class="bullet-large"></div></div><div class="q-text">בדקו שתי טעויות נפוצות.</div></div>
+      <div class="final-error-grid">
+        <div class="final-error-card"><span dir="ltr">x²=10²+6²</span><span>כאשר 10 הוא היתר.</span><strong>תקנו:</strong><span class="response-line"></span></div>
+        <div class="final-error-card"><span dir="ltr">x²=9²+12²=225</span><span>ולכן x²=15.</span><strong>תקנו:</strong><span class="response-line"></span></div>
+      </div>
     </section>
   </div>
 
   <footer class="gz-footer">
-    <div class="f1">יניב רז - מדריך מחוזי חט"ב בעיר ירושלים</div>
-    <div class="f2">הדרכה במחוז ירושלים והעיר ירושלים - מנח"י, בהובלת איילת קריספין</div>
+    <div class="f1">יניב רז - מדריך מחוזי חט״ב בעיר ירושלים</div>
+    <div class="f2">הדרכה במחוז ירושלים והעיר ירושלים - מנח״י, בהובלת איילת קריספין</div>
   </footer>
 </main>
 </body>
