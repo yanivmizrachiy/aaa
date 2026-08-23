@@ -91,10 +91,10 @@
     {
       "workbookPage": 5,
       "status": "locked",
-      "reason": "עמוד 5 מאושר לפי SOURCE_OF_TRUTH.md: אין גלישה אופקית, שורת המושג מחולקת לשני חצאים שווים, כל הגרידים ברוחב מלא והסיום ממורכז; בנייד נשמרת בדיוק פריסת ה-A4 ללא reflow.",
+      "reason": "עמוד 5 מאושר לפי SOURCE_OF_TRUTH.md: אין כפל של זיהוי ניצבים/יתר; יש הסקה הפוכה מן היתר לזווית הישרה, תיקון טעות יחיד, שלוש משימות לוגיקה ושתי משימות בנייה; Exact A4 Preview נשמר ללא reflow.",
       "files": [
-        {"path": "עמוד-638.html", "gitBlobSha": "69d4d9f213935a8a383e086e01087cd8b86f221f"},
-        {"path": "styles/pages/עמוד-638.css", "gitBlobSha": "8fb6e3abf10a0d5dca963421744a16f6bbdd9c81"}
+        {"path": "עמוד-638.html", "gitBlobSha": "a80fbbea37b0d455e2792b06a2021948aac298bb"},
+        {"path": "styles/pages/עמוד-638.css", "gitBlobSha": "f81583a2a6deb94dbd6ccf5978910380f70fc0d5"}
       ],
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
