@@ -152,19 +152,29 @@ requireTokens('CSS עמוד 2', p2css, [
 requireTokens('עמוד 3', p3, [
   '<h1 class="page-title">משפט פיתגורס – הניצבים</h1>',
   'שתי הצלעות היוצרות את הזווית הישרה נקראות',
-  'הניצב הארוך יותר:',
-  'הניצב הקצר יותר:',
-  'הניצבים שווים באורכם:',
+  'הניצב הארוך הוא',
+  'הניצב הקצר הוא',
+  'שני הניצבים השווים הם',
   'סמנו על השרטוט את שני הניצבים.',
+  'ציירו בכל מסגרת משולש ישר־זווית לפי הנתון.',
+  'הניצב הארוך יהיה <strong dir="ltr">AB</strong> והניצב הקצר יהיה <strong dir="ltr">BC</strong>.',
+  'הניצב הארוך יהיה <strong dir="ltr">LM</strong> והניצב הקצר יהיה <strong dir="ltr">KL</strong>.',
   'קודקוד הזווית הישרה:',
   'בכל משולש מודגש ניצב אחד. הדגישו גם את הניצב השני.',
   'איזה זוג צלעות הוא זוג הניצבים?',
   'א. <span dir="ltr">AB</span> ו־<span dir="ltr">BC</span>',
 ]);
-forbidTokens('עמוד 3', p3, ['היתר', 'class="quick-fill-item"']);
+forbidTokens('עמוד 3', p3, [
+  'היתר',
+  'class="quick-fill-item"',
+  'class="vertex-task"',
+  'הניצב הארוך יותר:',
+  'הניצב הקצר יותר:',
+]);
 const page3Counts = [
   ['leg-card', 4],
-  ['vertex-task', 2],
+  ['construction-task', 2],
+  ['build-canvas', 2],
   ['partner-leg-task', 3],
   ['mcq-choice', 4],
 ];
@@ -173,7 +183,7 @@ for (const [className, expected] of page3Counts) {
   if (actual === expected) pass(`עמוד 3: ${className} = ${expected}.`);
   else fail(`עמוד 3: ${className} צריך להיות ${expected}, נמצא ${actual}.`);
 }
-if (count(p3, 'class="given-leg"') === 3) pass('עמוד 3: בכל אחת משלוש משימות השרטוט מודגש בדיוק ניצב נתון אחד.');
+if (count(p3, 'class="given-leg"') === 3) pass('עמוד 3: בכל אחת משלוש משימות הניצב השני מודגש בדיוק ניצב נתון אחד.');
 else fail('עמוד 3: משימת הניצב השני חייבת לכלול בדיוק שלושה ניצבים מודגשים — אחד בכל שרטוט.');
 
 const page3Legs = edgePathDsBetween(p3, 'legs-grid', 'vertex-section').map(parseTrianglePath).filter(Boolean);
@@ -192,9 +202,11 @@ if (page3LegSquares[0] && page3LegSquares[1] && Math.abs(page3LegSquares[0][0] -
   fail('עמוד 3: מקרי הארוך/הקצר חייבים להשתמש בניצבים באורכים שונים.');
 }
 
-const page3VertexTasks = edgePathDsBetween(p3, 'vertex-grid', 'quick-fill-section').map(parseTrianglePath).filter(Boolean);
-if (page3VertexTasks.length === 2 && page3VertexTasks.every(isRightTriangle)) pass('עמוד 3: שתי משימות הקודקודים משתמשות במשולשים ישרי־זווית מדויקים.');
-else fail(`עמוד 3: משימות הקודקודים אינן מדויקות מתמטית (${page3VertexTasks.filter(isRightTriangle).length}/${page3VertexTasks.length}).`);
+if (count(p3, 'הניצב הארוך יהיה') === 2 && count(p3, 'הניצב הקצר יהיה') === 2) {
+  pass('עמוד 3: שתי משימות הבנייה מגדירות במפורש ניצב ארוך וניצב קצר.');
+} else {
+  fail('עמוד 3: שתי משימות הבנייה חייבות להגדיר ניצב ארוך וניצב קצר.');
+}
 
 const page3PartnerLegs = edgePathDsBetween(p3, 'quick-fill-grid', 'legs-mcq').map(parseTrianglePath).filter(Boolean);
 if (page3PartnerLegs.length === 3 && page3PartnerLegs.every(isRightTriangle)) pass('עמוד 3: שלוש משימות הניצב השני משתמשות במשולשים ישרי־זווית מדויקים.');
@@ -208,6 +220,8 @@ requireTokens('CSS עמוד 3', p3css, [
   'grid-template-columns: repeat(4, minmax(0, 1fr));',
   'grid-template-columns: repeat(2, minmax(0, 1fr));',
   'grid-template-columns: repeat(3, minmax(0, 1fr));',
+  '.page-636 .construction-task',
+  '.page-636 .build-canvas',
   '.page-636 .partner-leg-task',
   '.page-636 .quick-leg-svg .given-leg',
   'shape-rendering: geometricPrecision;',
