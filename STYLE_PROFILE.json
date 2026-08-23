@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "project": "yanivmizrachiy/aaa",
   "authority": "SOURCE_OF_TRUTH.md",
   "scope": {
@@ -17,7 +17,8 @@
       "WORKBOOK_MANIFEST.json",
       "קובץ ה-HTML של הדף הרלוונטי",
       "קובץ ה-CSS הייעודי של הדף",
-      "התלויות המשותפות שמשפיעות על הדף"
+      "התלויות המשותפות שמשפיעות על הדף",
+      "מפת הדפים הקשורים שמחזיר tools/smart-edit.js"
     ],
     "defaultChangeScope": "page",
     "newPreference": "כאשר המשתמש נותן תיקון עיצובי או פדגוגי שניתן להכללה, קודם קובעים את טווח ההשפעה. שינוי מקומי נשאר מקומי; כלל משותף נכנס רק לאחר הוכחה שהוא באמת משותף ואימות מחדש של דפים נעולים שנמצאים בטווח ההשפעה.",
@@ -28,10 +29,13 @@
     },
     "conflictPolicy": "אין להשאיר שתי דרישות סותרות. דרישה מפורשת חדשה מעדכנת או מחליפה את הכלל הישן באותו נושא לפני שינוי הקוד.",
     "propagationPolicy": "אין להפיץ שינוי תוכן מתמטי אוטומטית. גם שינוי סגנוני אינו מופץ רק כדי לחסוך קוד; הוא מופץ רק כשהכלל באמת משותף, תחום ב-root class נכון, ונבדק מול הדפים הנעולים.",
+    "crossPageReviewPolicy": "כל תיקון בעמוד מסוים מפעיל בדיקת התאמה מהירה של דפים קשורים לפי imports, root classes ותלויות משותפות. דפים קשורים נבדקים תמיד אך נערכים רק אם אותה דרישה חלה עליהם באמת.",
+    "truthSyncPolicy": "כל שינוי ב-HTML או ב-CSS ייעודי של דף חייב להתלוות באותו change-set לעדכון SOURCE_OF_TRUTH.md כך שהגרסה האחרונה בלבד נשארת הקובעת.",
     "targetedEditPolicy": "כאשר הבקשה מכוונת לחלק מסוים בדף, כל שאר חלקי הדף וכל שאר הדפים נחשבים נעולים. משנים רק את היעד המבוקש אלא אם המשתמש ביקש במפורש שינוי רחב יותר.",
     "sharedChangePolicy": "שינוי ב-styles/a4-base.css, styles/topics/*, styles/pythagoras-workbook.css או pythagoras-workbook.js נחשב שינוי רחב. כל עמוד נעול שתלוי בשכבה חייב לעבור אימות מחדש ועדכון חתימות לפני פרסום.",
     "cssIsolationPolicy": "CSS ייעודי לעמוד חייב להיות תחום ל-root class של העמוד. CSS משפחתי חייב להיות תחום ל-root class משפחתי. אין selector מבני גלובלי בקובץ עמוד.",
-    "verification": "לאחר כל שינוי מריצים tools/style-audit.js ו-tools/repo-guard.js. ב-CI מריצים גם tools/change-scope-audit.js מול commit הבסיס. שינוי משותף מחייב אימות מחדש של כל עמוד נעול שנפגע."
+    "fastEditCommand": "node tools/smart-edit.js <מספר-עמוד> --check",
+    "verification": "לפני כתיבה מריצים tools/smart-edit.js על עמוד היעד כדי לקבל מפת השפעה. אחרי שינוי מריצים אותו עם --check. ב-CI הוא מריץ style-audit, repo-guard, content-contracts, workbook-visual-guard ו-change-scope-audit מול commit הבסיס."
   },
   "styleRules": [
     {
@@ -39,6 +43,18 @@
       "scope": "global",
       "status": "locked",
       "rule": "כל שינוי חייב להיות חכם, מהיר, מועיל ונקי; מהירות אינה מצדיקה טווח שינוי רחב מהנדרש."
+    },
+    {
+      "id": "cross-page-consistency-review",
+      "scope": "global",
+      "status": "locked",
+      "rule": "תיקון בעמוד אחד מחייב בדיקת התאמה מהירה בדפים קשורים. בודקים רוחבית, אך לא משנים רוחבית בלי שהכלל באמת משותף."
+    },
+    {
+      "id": "truth-is-live",
+      "scope": "global",
+      "status": "locked",
+      "rule": "SOURCE_OF_TRUTH.md מתעדכן יחד עם כל תיקון עמוד; דרישה חדשה מחליפה ניסוח ישן סותר ולא מצטברת לידו כגרסה נוספת."
     },
     {
       "id": "surgical-edit-scope",
