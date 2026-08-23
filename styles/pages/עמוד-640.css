@@ -17,6 +17,19 @@
   grid-auto-rows: 1fr;
 }
 
+.page-640 .sentence-open-card {
+  grid-column: 1 / -1;
+  justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 5px;
+  padding-inline: 14px;
+}
+
+.page-640 .sentence-open-card .sentence-fill-short {
+  width: 48px;
+  min-width: 48px;
+}
+
 @media print {
   .page-640 .power-grid,
   .page-640 .power-sentence-grid {
