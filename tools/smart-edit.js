@@ -45,6 +45,7 @@ const locks = json('meta/approved-page-locks.json');
 const pages = Array.isArray(manifest.pages) ? manifest.pages : [];
 if (pages.length !== 53) fail(`נמצאו ${pages.length} דפים במקום 53.`);
 if (profile.authority !== 'SOURCE_OF_TRUTH.md') fail('STYLE_PROFILE.json אינו כפוף למקור האמת היחיד.');
+if (profile.productionGate?.productionBranch !== 'release') fail('STYLE_PROFILE.json אינו מגדיר release כענף Production היחיד.');
 
 if (pageArg) {
   const requested = Number(pageArg);
@@ -76,7 +77,7 @@ if (pageArg) {
   const title = targetHtml.match(/<h1[^>]*class=["'][^"']*page-title[^"']*["'][^>]*>([\s\S]*?)<\/h1>/iu)?.[1]
     ?.replace(/<[^>]+>/gu, '').trim() || null;
 
-  const activeWindow = profile.learningProtocol?.activeAuditWindow || { startPage: 1, endPage: 13 };
+  const activeWindow = profile.learningProtocol?.activeAuditWindow || { startPage: 1, endPage: 20 };
   const lockedPages = (locks.pages || []).filter((p) => p.status === 'locked').map((p) => p.workbookPage).sort((a, b) => a - b);
   const output = {
     authority: 'SOURCE_OF_TRUTH.md',
@@ -84,17 +85,18 @@ if (pageArg) {
     safeWriteSet: [htmlPath, cssPath, 'SOURCE_OF_TRUTH.md'],
     activeStyleAuditWindow: activeWindow,
     regressionWall: lockedPages.length ? { startPage: lockedPages[0], endPage: lockedPages[lockedPages.length - 1], lockedPages } : null,
+    productionGate: profile.productionGate,
     reviewBeforeWrite: related,
     propagationRule: 'דפים קשורים נבדקים להתאמה, אך אינם נערכים אוטומטית. עורכים אותם רק כאשר הדרישה עצמה משותפת ולאחר בדיקת השפעה.',
-    learningRule: 'כל תיקון חוזר או דרישה שניתנת להכללה הופכים לכלל סגנון מפורש במקור האמת. חלון הלמידה נבדק רוחבית, ובנוסף כל עמוד שכבר ננעל מוגן מחזרה לגרסה ישנה.',
-    lockRule: 'אסור לרענן חתימת lock של עמוד שלא השתנה. שינוי בעמוד נעול מחייב יעד מפורש, עדכון מקור אמת, עדכון lock והרצת חומת הרגרסיה.',
+    learningRule: 'כל תיקון חוזר או דרישה שניתנת להכללה הופכים לכלל סגנון מפורש במקור האמת. חלון הלמידה הפעיל נבדק רוחבית, וכל עמוד שכבר ננעל מוגן מחזרה לגרסה ישנה.',
+    lockRule: 'אסור לרענן חתימת lock של עמוד שלא השתנה. שינוי בעמוד נעול מחייב יעד אמיתי, עדכון מקור אמת, עדכון lock והרצת חומת הרגרסיה לפני קידום ל-release.',
     speedRule: 'ממפים יעד וקשרים תחילה, מבצעים שינוי מינימלי, ואז מריצים בדיקות מרוכזות.',
   };
   console.log(JSON.stringify(output, null, 2));
 }
 
 if (!pageArg && !ciMode) {
-  fail('שימוש: node tools/smart-edit.js <מספר עמוד> [--check] או node tools/smart-edit.js --ci');
+  fail('שימוש: node tools/smart-edit.js <מספר-עמוד> [--check] או node tools/smart-edit.js --ci');
 }
 
 if (checkMode) {
@@ -104,7 +106,7 @@ if (checkMode) {
   run('tools/repo-guard.js');
   run('tools/content-contracts.js');
   run('tools/workbook-visual-guard.js');
-  run('tools/first-13-style-audit.js');
+  run('tools/active-window-style-audit.js');
   run('tools/vertical-solution-audit.js');
   if (process.env.BASE_SHA && !/^0+$/u.test(process.env.BASE_SHA)) run('tools/change-scope-audit.js', process.env);
   else console.log('\nℹ BASE_SHA לא זמין — בדיקת diff תתבצע ב-CI.');
