@@ -7,13 +7,13 @@
     {
       "workbookPage": 1,
       "status": "locked",
-      "reason": "עמוד 1 מאושר לפי SOURCE_OF_TRUTH.md; במובייל הוא עובר מיד למצב קריא ורספונסיבי ללא גלילה אופקית, ובמסך רחב/הדפסה נשמרת פריסת A4.",
+      "reason": "עמוד 1 מאושר לפי SOURCE_OF_TRUTH.md; בנייד נשמרת בדיוק פריסת ה-A4 והעמוד כולו מוקטן וממורכז ללא reflow וללא גלילה אופקית.",
       "files": [
         {"path": "עמוד-634.html", "gitBlobSha": "cc3deb28f58a425677d886dc8d9a1a9ceca20642"},
         {"path": "styles/pages/עמוד-634.css", "gitBlobSha": "c0981c6454921cf11968c3c210b62271b5975535"}
       ],
       "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "48c414a886bea3dabb758ba85a73f60d99c81678"},
+        {"path": "index.html", "gitBlobSha": "53b8484dc1438b62a846e5178ae0f6f31e78d563"},
         {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
         {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
         {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
@@ -28,13 +28,13 @@
     {
       "workbookPage": 2,
       "status": "locked",
-      "reason": "עמוד 2 מאושר לפי SOURCE_OF_TRUTH.md; במובייל הוא עובר מיד למצב קריא ורספונסיבי ללא גלילה אופקית, ובמסך רחב/הדפסה נשמרת פריסת A4.",
+      "reason": "עמוד 2 מאושר לפי SOURCE_OF_TRUTH.md; בנייד נשמרת בדיוק פריסת ה-A4 והעמוד כולו מוקטן וממורכז ללא reflow וללא גלילה אופקית.",
       "files": [
         {"path": "עמוד-635.html", "gitBlobSha": "34947a4fad428b1d46464c50548bc7eb7a11e6d6"},
         {"path": "styles/pages/עמוד-635.css", "gitBlobSha": "6132e7788f41b479207c6da0640937e991b93985"}
       ],
       "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "48c414a886bea3dabb758ba85a73f60d99c81678"},
+        {"path": "index.html", "gitBlobSha": "53b8484dc1438b62a846e5178ae0f6f31e78d563"},
         {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
         {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
         {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
@@ -49,13 +49,13 @@
     {
       "workbookPage": 3,
       "status": "locked",
-      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md: ניצבים בלבד, 4 משימות פתיחה שונות, 2 משימות בנייה, 3 משימות למציאת הניצב השני ושאלה אמריקאית; במובייל הפריסה משתחררת מיד למסמך אנכי קריא.",
+      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md; בנייד נשמרת בדיוק פריסת ה-A4 והעמוד כולו מוקטן וממורכז ללא reflow וללא גלילה אופקית.",
       "files": [
         {"path": "עמוד-636.html", "gitBlobSha": "58a4ecf5663740e792445763c68f12f886274151"},
         {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "2c39e5bee1c553eb5415ebbfbeefaa0bd981cd1b"}
       ],
       "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "48c414a886bea3dabb758ba85a73f60d99c81678"},
+        {"path": "index.html", "gitBlobSha": "53b8484dc1438b62a846e5178ae0f6f31e78d563"},
         {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
         {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
         {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
@@ -70,13 +70,13 @@
     {
       "workbookPage": 5,
       "status": "locked",
-      "reason": "עמוד 5 מאושר לפי SOURCE_OF_TRUTH.md; במובייל הוא עובר מיד למצב קריא ורספונסיבי ללא גלילה אופקית, ובמסך רחב/הדפסה נשמרת פריסת A4.",
+      "reason": "עמוד 5 מאושר לפי SOURCE_OF_TRUTH.md; בנייד נשמרת בדיוק פריסת ה-A4 והעמוד כולו מוקטן וממורכז ללא reflow וללא גלילה אופקית.",
       "files": [
         {"path": "עמוד-638.html", "gitBlobSha": "586ef9cdd6c3ef27fa3a8114dbaddad0fdc0c142"},
         {"path": "styles/pages/עמוד-638.css", "gitBlobSha": "0d96f181e7c9a0f389f6c8fd65478182bdb1d129"}
       ],
       "sharedDependencies": [
-        {"path": "index.html", "gitBlobSha": "48c414a886bea3dabb758ba85a73f60d99c81678"},
+        {"path": "index.html", "gitBlobSha": "53b8484dc1438b62a846e5178ae0f6f31e78d563"},
         {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
         {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
         {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
