@@ -1,5 +1,62 @@
 @import url("../topics/pythagoras-foundations.css");
 
+/* עמוד 5: הכותרת חייבת להיות שורה דקה בדיוק ברוח עמוד 1 — גם בדף עצמאי וגם בחוברת המאוחדת. */
+.page-638 > .header-container,
+.pythagoras-workbook-shell .workbook-page-wrap > .page-638 > .header-container {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-end !important;
+  gap: 12px !important;
+  width: 100% !important;
+  min-height: 40px !important;
+  height: 40px !important;
+  flex: 0 0 40px !important;
+  margin: 0 0 8px !important;
+  padding: 0 0 6px !important;
+  border: 0 !important;
+  border-bottom: 4px double var(--title-blue) !important;
+  overflow: hidden !important;
+}
+
+.page-638 > .header-container > .page-title,
+.pythagoras-workbook-shell .workbook-page-wrap > .page-638 > .header-container > .page-title {
+  display: block !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--title-blue) !important;
+  font-family: 'Rubik', Arial, sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 400 !important;
+  line-height: 1.15 !important;
+  letter-spacing: normal !important;
+  white-space: nowrap !important;
+  text-align: right !important;
+}
+
+.page-638 > .header-container > .page-number,
+.pythagoras-workbook-shell .workbook-page-wrap > .page-638 > .header-container > .page-number {
+  display: flex !important;
+  flex: 0 0 32px !important;
+  width: 32px !important;
+  height: 32px !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 2px solid var(--title-blue) !important;
+  border-radius: 50% !important;
+  color: var(--title-blue) !important;
+  background: transparent !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+}
+
 /* עמוד 5: חזרה מסכמת על ניצבים ויתר — היררכיה שטוחה, קומפקטית ומדויקת. */
 .page-638 .question-block {
   display: grid;
@@ -11,16 +68,18 @@
 
 /* שורת המושג העליונה תואמת לעמודים הקודמים: שורה דקה ולא תיבת הסבר גבוהה. */
 .page-638 .foundation-note-one-line {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 5px;
-  flex-wrap: nowrap;
-  min-height: 34px;
-  padding: 5px 11px;
-  font-size: 15.2px;
-  line-height: 1.2;
-  white-space: nowrap;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 5px !important;
+  flex-wrap: nowrap !important;
+  min-height: 34px !important;
+  height: 34px !important;
+  padding: 5px 11px !important;
+  font-size: 15.2px !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
 }
 
 .page-638 .foundation-fill-inline {
@@ -192,21 +251,13 @@
 
 @media (max-width: 760px) {
   .page-638 .foundation-note-one-line {
-    font-size: 14.2px;
-    gap: 4px;
-    padding-inline: 8px;
+    font-size: 14.2px !important;
+    gap: 4px !important;
+    padding-inline: 8px !important;
   }
 
   .page-638 .concept-legs-fill { width: 76px; }
   .page-638 .concept-hyp-fill { width: 62px; }
-}
-
-@media (max-width: 520px) {
-  .page-638 .foundation-note-one-line {
-    flex-wrap: wrap;
-    white-space: normal;
-    row-gap: 6px;
-  }
 }
 
 @media print {
