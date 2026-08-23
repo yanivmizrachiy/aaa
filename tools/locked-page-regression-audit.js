@@ -66,6 +66,11 @@ const requiredPageContracts = {
   13: ['page13-figure-task', 'page13-relation-task', 'page13-reverse-task', 'page13-generalize-task'],
   14: ['page14-definition-band', 'applicability-grid', 'structure-grid', 'final-check-grid'],
   15: ['page15-rule-band', 'equation-diagram-grid', 'identify-grid', 'mistake-grid'],
+  16: ['page16-example', 'equation-from-diagram', 'operation-task', 'full-solve-task', 'page16-final-task'],
+  17: ['page17-example', 'page17-practice-grid', 'page17-final-check', 'final-check-stack'],
+  18: ['page18-reminder', 'page18-grid', 'page18-compare'],
+  19: ['page19-reminder', 'page19-grid', 'page19-error'],
+  20: ['page20-rule', 'page20-choice-grid', 'page20-grid', 'page20-final-grid'],
 };
 for (const [nRaw, tokens] of Object.entries(requiredPageContracts)) {
   const n = Number(nRaw);
@@ -75,6 +80,9 @@ for (const [nRaw, tokens] of Object.entries(requiredPageContracts)) {
   const missing = tokens.filter((t) => !html.includes(t));
   if (!missing.length) pass(`עמוד ${n}: החוזה הפדגוגי המוגן נשמר.`);
   else fail(`עמוד ${n}: חסרו רכיבים שכבר אושרו: ${missing.join(', ')}`);
+
+  if (n === 16 && html.includes('<span class="lhs"></span>')) fail('עמוד 16: חזר צד שמאל ריק באמצע פתרון.');
+  if (n >= 17 && n <= 20 && /<div class="work-row"><span><\/span><b>=<\/b>/u.test(html)) fail(`עמוד ${n}: חזר צד שמאל ריק באמצע פתרון.`);
 }
 
 for (const item of locks.sharedDependencies || []) {
