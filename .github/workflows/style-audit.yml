@@ -21,11 +21,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Resolve validation base
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "BASE_SHA=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_ENV"
+          else
+            git fetch origin release
+            echo "BASE_SHA=$(git rev-parse origin/release)" >> "$GITHUB_ENV"
+          fi
       - name: Smart full validation
         id: guard
         continue-on-error: true
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
         run: node tools/smart-edit.js --ci 2>&1 | tee /tmp/guard-report.txt
       - name: Publish guard diagnostics
         if: github.event_name == 'push' && github.ref == 'refs/heads/main' && steps.guard.outcome == 'failure'
