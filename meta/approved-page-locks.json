@@ -20,7 +20,7 @@
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"},
+        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "6e030e5cacc14063e7e6bb13def063d635390b18"},
         {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
         {"path": "pythagoras-workbook.js", "gitBlobSha": "5a4c2059a3da69467145d3489a41f9efb316de71"}
       ]
@@ -41,7 +41,7 @@
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"},
+        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "6e030e5cacc14063e7e6bb13def063d635390b18"},
         {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
         {"path": "pythagoras-workbook.js", "gitBlobSha": "5a4c2059a3da69467145d3489a41f9efb316de71"}
       ]
@@ -62,7 +62,7 @@
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"},
+        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "6e030e5cacc14063e7e6bb13def063d635390b18"},
         {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
         {"path": "pythagoras-workbook.js", "gitBlobSha": "5a4c2059a3da69467145d3489a41f9efb316de71"}
       ]
@@ -83,7 +83,7 @@
         {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
         {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
         {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
-        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"},
+        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "6e030e5cacc14063e7e6bb13def063d635390b18"},
         {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
         {"path": "pythagoras-workbook.js", "gitBlobSha": "5a4c2059a3da69467145d3489a41f9efb316de71"}
       ]
