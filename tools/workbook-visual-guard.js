@@ -81,6 +81,33 @@ if (!exists(page7CssPath)) {
   else pass('עמוד 7: אין שכבת power-practice מתחרה, overflow מוסתר או reflow מקומי.');
 }
 
+/* עמוד 8 מנצל את כל ה-A4 בפריסה מקומית, כדי שלא יחזור לחצי דף לבן
+   וכדי ששכבת power-practice לא תשנה שוב את הגבהים. */
+const page8CssPath = 'styles/pages/עמוד-641.css';
+if (!exists(page8CssPath)) {
+  fail('חסר CSS ייעודי לעמוד 8.');
+} else {
+  const page8css = read(page8CssPath);
+  const requiredPage8 = [
+    '@import url("../topics/pythagoras-foundations.css");',
+    '.page-641 .question-block',
+    'grid-template-rows: 42px 190px 178px 176px minmax(238px, 1fr);',
+    '.page-641 .direct-root-grid',
+    '.page-641 .reverse-root-grid',
+    '.page-641 .perfect-square-grid',
+    '.page-641 .bridge-grid',
+    '.page-641 .error-strip',
+  ];
+  const missing = requiredPage8.filter((token) => !page8css.includes(token));
+  if (missing.length) fail(`עמוד 8: פריסת ההגנה חסרה רכיבים: ${missing.join(', ')}`);
+  else pass('עמוד 8: פריסת A4 מלאה ומקומית קיימת.');
+
+  const forbiddenPage8 = ['pythagoras-power-practice.css', 'overflow: hidden', '@media (max-width:', '.root-results-grid', '.missing-root-grid'];
+  const found = forbiddenPage8.filter((token) => page8css.includes(token));
+  if (found.length) fail(`עמוד 8: חזרה תלות/מבנה ישן: ${found.join(', ')}`);
+  else pass('עמוד 8: אין power-practice, overflow מוסתר, reflow מקומי או רשתות התרגול הישנות.');
+}
+
 if (!exists('index.html')) {
   fail('חסר index.html.');
 } else {
