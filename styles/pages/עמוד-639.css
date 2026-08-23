@@ -1,36 +1,182 @@
 @import url("../topics/pythagoras-foundations.css");
 @import url("../topics/pythagoras-power-practice.css");
 
-/* עמוד 639 משנה רק משתנים; המבנה והטיפוגרפיה נשארים בשכבה המשותפת. */
+/* עמוד 6 — ריבוע של מספר. הדף נשאר צפוף, סימטרי וקל לעריכה. */
 .page-639 {
   --power-question-gap: 8px;
   --power-note-gap: 5px;
   --power-grid-columns: 4;
   --power-grid-gap: 8px;
-  --power-card-min-height: 82px;
-  --power-card-padding: 8px 7px;
-  --power-scratch-flex: 1 1 110px;
-  --power-scratch-min-height: 110px;
+  --power-card-min-height: 74px;
+  --power-card-padding: 7px 6px;
 }
 
-.page-639 .product-instruction {
-  margin-top: 0;
+.page-639 .question-block {
+  gap: 8px;
+  min-height: 0;
 }
 
-.page-639 .product-practice-grid {
-  display: grid;
+.page-639 .question-block > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.page-639 .foundation-note {
+  padding: 7px 11px;
+}
+
+.page-639 .power-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 8px;
 }
 
-.page-639 .product-practice-grid .stacked-answer-card {
-  min-height: 70px;
-  padding: 7px 8px;
+.page-639 .power-grid .stacked-answer-card {
+  min-height: 74px;
+  padding: 7px 6px;
+}
+
+/* החלק התחתון מחולק לשתי פעולות שונות במקום רשת חוזרת + שטח ריק לחישובים. */
+.page-639 .page6-bottom-zone {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+  gap: 10px;
+  min-height: 0;
+}
+
+.page-639 .page6-bottom-task {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 5px;
+  min-width: 0;
+  padding-top: 5px;
+  border-top: 1px solid var(--border-light);
+}
+
+.page-639 .page6-bottom-task .q-main {
+  margin: 0;
+  min-height: 22px;
+}
+
+.page-639 .page6-bottom-task .q-text {
+  font-size: 14.6px;
+  line-height: 1.24;
+}
+
+.page-639 .power-conversion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-639 .conversion-card {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  min-height: 54px;
+  padding: 6px 7px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+  box-sizing: border-box;
+}
+
+.page-639 .conversion-expression {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  font-size: 17px;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.page-639 .conversion-fill,
+.page-639 .conversion-fill-wide {
+  height: 26px;
+  border-radius: 5px;
+  flex: 0 0 auto;
+}
+
+.page-639 .conversion-fill { width: 40px; }
+.page-639 .conversion-fill-wide { width: 82px; }
+
+.page-639 .conversion-power {
+  font-family: 'PytTeX', Georgia, serif;
+  font-size: 14px;
+  align-self: flex-start;
+  margin-inline-start: -4px;
+  margin-top: 8px;
+}
+
+.page-639 .power-error-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-639 .power-error-card {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  align-content: center;
+  justify-items: center;
+  gap: 4px;
+  min-width: 0;
+  min-height: 86px;
+  padding: 6px 7px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  box-sizing: border-box;
+}
+
+.page-639 .error-expression {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-size: 17px;
+  line-height: 1.15;
+  font-weight: 500;
+}
+
+.page-639 .error-choice,
+.page-639 .error-correction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 0;
+  font-size: 12.9px;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.page-639 .error-choice .check {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+}
+
+.page-639 .error-correction .response-line {
+  min-width: 58px;
+  height: 18px;
 }
 
 @media print {
   .page-639 .power-grid,
-  .page-639 .product-practice-grid {
+  .page-639 .page6-bottom-zone,
+  .page-639 .conversion-card,
+  .page-639 .power-error-card {
     break-inside: avoid;
   }
 }
