@@ -13,8 +13,8 @@
 .page-635 .foundation-fill-inline { display:inline-block; height:21px; border-radius:5px; flex:0 0 auto; }
 .page-635 .angle-type-fill { width:74px; }
 .page-635 .degrees-fill { width:50px; }
-.page-635 .compact-instruction,.page-635 .construction-instruction,.page-635 .mc-triangle-heading { margin:0; min-height:0; }
-.page-635 .compact-instruction .q-text,.page-635 .construction-instruction .q-text,.page-635 .mc-triangle-heading .q-text { font-size:14.4px; line-height:1.25; }
+.page-635 .compact-instruction,.page-635 .construction-instruction,.page-635 .mc-triangle-heading,.page-635 .hunt-instruction { margin:0; min-height:0; }
+.page-635 .compact-instruction .q-text,.page-635 .construction-instruction .q-text,.page-635 .mc-triangle-heading .q-text,.page-635 .hunt-instruction .q-text { font-size:14.4px; line-height:1.25; }
 .page-635 .triangle-choice-grid { grid-template-columns:repeat(6,minmax(0,1fr)); gap:7px; height:100%; min-height:0; }
 .page-635 .triangle-choice-grid .foundation-card { min-height:0; height:100%; padding:4px 5px; gap:2px; }
 .page-635 .triangle-choice-grid .foundation-svg { width:100%; max-width:108px; height:58px; }
@@ -37,8 +37,8 @@
 .page-635 .construction-reflection { display:flex; align-items:baseline; gap:6px; min-height:20px; padding-inline:2px; font-size:13.8px; line-height:1.25; white-space:nowrap; }
 .page-635 .construction-answer-line { display:inline-block; flex:0 0 118px; height:16px; border-bottom:1px solid var(--accent-dark); }
 
-/* בתחתית נשארו שני רכיבים בלבד: השרטוט ושאלת הספירה היחידה. */
-.page-635 .hunt-section { margin:0; height:100%; min-height:0; display:grid; grid-template-rows:minmax(0,1fr) 34px; gap:7px; overflow:hidden; }
+/* בתחתית: הוראת החיפוש, השרטוט, ושאלת הספירה. */
+.page-635 .hunt-section { margin:0; height:100%; min-height:0; display:grid; grid-template-rows:auto minmax(0,1fr) 34px; gap:7px; overflow:hidden; }
 .page-635 .geometry-hunt-card { width:100%; height:100%; min-height:0; padding:2px 8px; border:1px solid var(--border-light); border-radius:10px; background:var(--bg-paper); break-inside:avoid; overflow:hidden; }
 .page-635 .triangle-hunt-svg { width:100%; height:100%; min-height:0; display:block; shape-rendering:geometricPrecision; }
 .page-635 .triangle-hunt-svg .mosaic-lines { fill:none; stroke:var(--accent-dark); stroke-width:1.55; stroke-linecap:round; stroke-linejoin:round; vector-effect:non-scaling-stroke; }
