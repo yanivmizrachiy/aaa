@@ -83,6 +83,10 @@ const p4 = read('עמוד-637.html');
 const p4css = read('styles/pages/עמוד-637.css');
 const p5 = read('עמוד-638.html');
 const p5css = read('styles/pages/עמוד-638.css');
+const p6 = read('עמוד-639.html');
+const p6css = read('styles/pages/עמוד-639.css');
+const p7 = read('עמוד-640.html');
+const p7css = read('styles/pages/עמוד-640.css');
 
 requireTokens('SOURCE_OF_TRUTH', truth, [
   '## עמוד 1 — מושגים בסיסיים',
@@ -90,6 +94,8 @@ requireTokens('SOURCE_OF_TRUTH', truth, [
   '## עמוד 3 — הניצבים',
   '## עמוד 4 — היתר',
   '## עמוד 5 — ניצבים ויתר: מיישמים',
+  '## עמוד 6 — ריבוע של מספר',
+  '## עמוד 7 — ריבועים ושורשים',
   'AAA Exact A4 Preview',
   'index.html` הוא **נקודת הכניסה היחידה**',
 ]);
@@ -194,6 +200,52 @@ const page5InverseTriangles = edgePathDsBetween(p5, 'inverse-hyp-grid', 'page5-e
 if (page5InverseTriangles.length === 4 && page5InverseTriangles.every(isRightTriangle)) pass('עמוד 5: ארבעת משולשי ההסקה ההפוכה ישרי־זווית מדויקים.'); else fail('עמוד 5: משולשי ההסקה ההפוכה אינם מדויקים.');
 requireTokens('CSS עמוד 5', p5css, ['.page-638 .inverse-hyp-grid', '.page-638 .page5-error-task', '.page-638 .logic-grid', '.page-638 .construction-grid', 'shape-rendering: geometricPrecision;']);
 forbidTokens('CSS עמוד 5', p5css, ['.page-638 .page5-concept-line', '.page-638 .length-cards', '.page-638 .claim-check', '@media (max-width: 760px)']);
+
+/* עמוד 6 — A4 מלא ומגוון, בלי המרה למכפלה */
+requireTokens('עמוד 6', p6, [
+  '<h1 class="page-title">משפט פיתגורס – ריבוע של מספר</h1>',
+  '(כי 6 × 6 = 36)',
+  'class="page6-thinking-zone"',
+  'class="compare-grid"',
+  'חשבו חכם — לא בכל סעיף צריך לחשב הכול.',
+  'כאן אפשר להיעזר במחשבון.',
+  'חקרו בעזרת מחשבון את הריבועים שמסתיימים ב־5.',
+  'class="pattern-row"',
+]);
+forbidTokens('עמוד 6', p6, ['class="product-practice-grid"', 'class="power-conversion-grid"', 'class="conversion-card"', 'class="power-scratch-space"']);
+if (count(p6, 'class="square-card"') === 12) pass('עמוד 6: 12 חישובי יסוד.'); else fail('עמוד 6: צריכים להיות 12 חישובי יסוד.');
+if (count(p6, 'class="compare-card"') === 6) pass('עמוד 6: 6 השוואות.'); else fail('עמוד 6: צריכים להיות 6 תרגילי השוואה.');
+if (count(p6, 'class="hard-square-card"') === 8) pass('עמוד 6: 8 חישובים מאתגרים.'); else fail('עמוד 6: צריכים להיות 8 חישובים מאתגרים.');
+requireTokens('CSS עמוד 6', p6css, ['.page-639 .question-block', '.page-639 .page6-thinking-zone', '.page-639 .pattern-row']);
+forbidTokens('CSS עמוד 6', p6css, ['@media (max-width:']);
+
+/* עמוד 7 — מבודד משכבת power-practice כדי למנוע שבירה חוזרת */
+requireTokens('עמוד 7', p7, [
+  '<h1 class="page-title">משפט פיתגורס – ריבועים ושורשים</h1>',
+  'class="page7-summary"',
+  'חברו בקו כל תרגיל לתרגיל ההפוך',
+  'class="match-board"',
+  'class="mixed-grid"',
+  'בדקו את המסקנה.',
+  'class="error-grid"',
+  'התחילו ב־13',
+  'בחרו מספר חיובי משלכם',
+  'class="final-observation"',
+]);
+forbidTokens('עמוד 7', p7, ['class="power-sentence-grid"', 'class="sentence-open-card"', 'class="power-results-grid"', 'class="missing-base-grid"']);
+if (count(p7, 'class="match-item"') === 6) pass('עמוד 7: 3 זוגות התאמה.'); else fail('עמוד 7: צריכים להיות 6 פריטי התאמה.');
+if (count(p7, 'class="mixed-card"') === 8) pass('עמוד 7: 8 השלמות מעורבות.'); else fail('עמוד 7: צריכים להיות 8 תרגילים מעורבים.');
+if (count(p7, 'class="error-card"') === 3) pass('עמוד 7: 3 בדיקות מסקנה.'); else fail('עמוד 7: צריכים להיות 3 כרטיסי בדיקת מסקנה.');
+requireTokens('CSS עמוד 7', p7css, [
+  '@import url("../topics/pythagoras-foundations.css");',
+  '.page-640 .question-block',
+  'grid-template-rows: 40px 174px 242px 166px minmax(184px, 1fr);',
+  '.page-640 .match-board',
+  '.page-640 .mixed-grid',
+  '.page-640 .error-grid',
+  '.page-640 .final-grid',
+]);
+forbidTokens('CSS עמוד 7', p7css, ['pythagoras-power-practice.css', '.power-sentence-grid', '.sentence-open-card', 'overflow: hidden', '@media (max-width:']);
 
 console.log('\n=== Approved Content Contracts ===');
 ok.forEach((m) => console.log(`✓ ${m}`));
