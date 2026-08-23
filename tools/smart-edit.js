@@ -75,13 +75,15 @@ if (pageArg) {
   const title = targetHtml.match(/<h1[^>]*class=["'][^"']*page-title[^"']*["'][^>]*>([\s\S]*?)<\/h1>/iu)?.[1]
     ?.replace(/<[^>]+>/gu, '').trim() || null;
 
+  const activeWindow = profile.learningProtocol?.activeAuditWindow || { startPage: 1, endPage: 13 };
   const output = {
     authority: 'SOURCE_OF_TRUTH.md',
     target: { workbookPage: requested, file: htmlPath, css: cssPath, title },
     safeWriteSet: [htmlPath, cssPath, 'SOURCE_OF_TRUTH.md'],
+    activeStyleAuditWindow: activeWindow,
     reviewBeforeWrite: related,
     propagationRule: 'דפים קשורים נבדקים להתאמה, אך אינם נערכים אוטומטית. עורכים אותם רק כאשר הדרישה עצמה משותפת ולאחר בדיקת השפעה.',
-    learningRule: 'דרישה חוזרת או כלל שניתן להכללה נרשמים פעם אחת במקור האמת ומקבלים כלל נגזר ב-STYLE_PROFILE.json במקום ליצור תיקונים סותרים.',
+    learningRule: 'כל תיקון חוזר או דרישה שניתנת להכללה הופכים לכלל סגנון מפורש במקור האמת. כל עוד חלון 1–13 פעיל, כל בדיקה של עמוד כלשהו מריצה גם ביקורת רוחבית על כל 13 העמודים כדי לאתר את אותה בעיה במקום לחכות שהמשתמש ידווח עליה שוב.',
     speedRule: 'ממפים יעד וקשרים תחילה, מבצעים שינוי מינימלי, ואז מריצים בדיקות מרוכזות.',
   };
   console.log(JSON.stringify(output, null, 2));
@@ -96,6 +98,7 @@ if (checkMode) {
   run('tools/repo-guard.js');
   run('tools/content-contracts.js');
   run('tools/workbook-visual-guard.js');
+  run('tools/first-13-style-audit.js');
   if (process.env.BASE_SHA && !/^0+$/u.test(process.env.BASE_SHA)) run('tools/change-scope-audit.js', process.env);
   else console.log('\nℹ BASE_SHA לא זמין — בדיקת diff תתבצע ב-CI.');
 }
