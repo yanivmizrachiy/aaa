@@ -42,6 +42,23 @@ function isRightTriangle(points) {
   return false;
 }
 
+function rightLegSquares(points) {
+  if (!points) return null;
+  for (let i = 0; i < 3; i += 1) {
+    const a = points[i];
+    const b = points[(i + 1) % 3];
+    const c = points[(i + 2) % 3];
+    const ux = b[0] - a[0];
+    const uy = b[1] - a[1];
+    const vx = c[0] - a[0];
+    const vy = c[1] - a[1];
+    if (Math.abs((ux * vx) + (uy * vy)) < 1e-9) {
+      return [(ux * ux) + (uy * uy), (vx * vx) + (vy * vy)];
+    }
+  }
+  return null;
+}
+
 function segment(html, startToken, endToken) {
   const start = html.indexOf(startToken);
   const end = html.indexOf(endToken, start + startToken.length);
@@ -132,16 +149,20 @@ requireTokens('CSS עמוד 2', p2css, [
 requireTokens('עמוד 3', p3, [
   '<h1 class="page-title">משפט פיתגורס – הניצבים</h1>',
   'שתי הצלעות היוצרות את הזווית הישרה נקראות',
-  'הן הניצבים.',
+  'הניצב הארוך יותר:',
+  'הניצב הקצר יותר:',
+  'הניצבים שווים באורכם:',
+  'סמנו על השרטוט את שני הניצבים.',
   'קודקוד הזווית הישרה:',
+  'בכל משולש מודגש ניצב אחד. הדגישו גם את הניצב השני.',
   'איזה זוג צלעות הוא זוג הניצבים?',
   'א. <span dir="ltr">AB</span> ו־<span dir="ltr">BC</span>',
 ]);
-forbidTokens('עמוד 3', p3, ['היתר']);
+forbidTokens('עמוד 3', p3, ['היתר', 'class="quick-fill-item"']);
 const page3Counts = [
   ['leg-card', 4],
   ['vertex-task', 2],
-  ['quick-fill-item', 3],
+  ['partner-leg-task', 3],
   ['mcq-choice', 4],
 ];
 for (const [className, expected] of page3Counts) {
@@ -149,14 +170,32 @@ for (const [className, expected] of page3Counts) {
   if (actual === expected) pass(`עמוד 3: ${className} = ${expected}.`);
   else fail(`עמוד 3: ${className} צריך להיות ${expected}, נמצא ${actual}.`);
 }
+if (count(p3, 'class="given-leg"') === 3) pass('עמוד 3: בכל אחת משלוש משימות השרטוט מודגש בדיוק ניצב נתון אחד.');
+else fail('עמוד 3: משימת הניצב השני חייבת לכלול בדיוק שלושה ניצבים מודגשים — אחד בכל שרטוט.');
 
 const page3Legs = edgePathDsBetween(p3, 'legs-grid', 'vertex-section').map(parseTrianglePath).filter(Boolean);
-if (page3Legs.length === 4 && page3Legs.every(isRightTriangle)) pass('עמוד 3: כל ארבעת משולשי הזיהוי ישרי־זווית מתמטית.');
-else fail(`עמוד 3: משולשי הזיהוי אינם כולם ישרי־זווית מדויקים (${page3Legs.filter(isRightTriangle).length}/${page3Legs.length}).`);
+if (page3Legs.length === 4 && page3Legs.every(isRightTriangle)) pass('עמוד 3: כל ארבעת משולשי הפתיחה ישרי־זווית מתמטית.');
+else fail(`עמוד 3: משולשי הפתיחה אינם כולם ישרי־זווית מדויקים (${page3Legs.filter(isRightTriangle).length}/${page3Legs.length}).`);
+
+const page3LegSquares = page3Legs.map(rightLegSquares);
+if (page3LegSquares.length === 4 && page3LegSquares[2] && Math.abs(page3LegSquares[2][0] - page3LegSquares[2][1]) < 1e-9) {
+  pass('עמוד 3: משולש הפתיחה השלישי כולל שני ניצבים שווים באורכם בדיוק.');
+} else {
+  fail('עמוד 3: המקרה של שני ניצבים שווים באורכם אינו מדויק גאומטרית.');
+}
+if (page3LegSquares[0] && page3LegSquares[1] && Math.abs(page3LegSquares[0][0] - page3LegSquares[0][1]) > 1e-9 && Math.abs(page3LegSquares[1][0] - page3LegSquares[1][1]) > 1e-9) {
+  pass('עמוד 3: שני מקרי הארוך/הקצר אכן משתמשים בניצבים באורכים שונים.');
+} else {
+  fail('עמוד 3: מקרי הארוך/הקצר חייבים להשתמש בניצבים באורכים שונים.');
+}
 
 const page3VertexTasks = edgePathDsBetween(p3, 'vertex-grid', 'quick-fill-section').map(parseTrianglePath).filter(Boolean);
 if (page3VertexTasks.length === 2 && page3VertexTasks.every(isRightTriangle)) pass('עמוד 3: שתי משימות הקודקודים משתמשות במשולשים ישרי־זווית מדויקים.');
 else fail(`עמוד 3: משימות הקודקודים אינן מדויקות מתמטית (${page3VertexTasks.filter(isRightTriangle).length}/${page3VertexTasks.length}).`);
+
+const page3PartnerLegs = edgePathDsBetween(p3, 'quick-fill-grid', 'legs-mcq').map(parseTrianglePath).filter(Boolean);
+if (page3PartnerLegs.length === 3 && page3PartnerLegs.every(isRightTriangle)) pass('עמוד 3: שלוש משימות הניצב השני משתמשות במשולשים ישרי־זווית מדויקים.');
+else fail(`עמוד 3: משימות הניצב השני אינן מדויקות מתמטית (${page3PartnerLegs.filter(isRightTriangle).length}/${page3PartnerLegs.length}).`);
 
 const page3Mcq = edgePathDsBetween(p3, 'mcq-triangle', '</svg>').map(parseTrianglePath).filter(Boolean);
 if (page3Mcq.length === 1 && isRightTriangle(page3Mcq[0])) pass('עמוד 3: משולש השאלה האמריקאית ישר־זווית מדויק.');
@@ -166,6 +205,8 @@ requireTokens('CSS עמוד 3', p3css, [
   'grid-template-columns: repeat(4, minmax(0, 1fr));',
   'grid-template-columns: repeat(2, minmax(0, 1fr));',
   'grid-template-columns: repeat(3, minmax(0, 1fr));',
+  '.page-636 .partner-leg-task',
+  '.page-636 .quick-leg-svg .given-leg',
   'shape-rendering: geometricPrecision;',
 ]);
 
