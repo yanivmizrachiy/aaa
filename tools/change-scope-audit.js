@@ -42,6 +42,16 @@ function selectorHeaders(css) {
 const changed = changedFiles();
 if (!changed.length && !errors.length) pass('אין שינויי diff לבדיקה או שהבדיקה המקומית רצה ללא BASE_SHA.');
 
+const truthChanged = changed.includes('SOURCE_OF_TRUTH.md');
+const pageImplementationChanged = changed.some((file) =>
+  /^עמוד-\d+\.html$/u.test(file) || /^styles\/pages\/עמוד-\d+\.css$/u.test(file)
+);
+if (pageImplementationChanged && !truthChanged) {
+  fail('שונה דף פעיל או CSS ייעודי בלי לעדכן את SOURCE_OF_TRUTH.md באותו change-set. מקור האמת חייב לשקף כל תיקון עמוד.');
+} else if (pageImplementationChanged) {
+  pass('שינויי העמוד מלווים בעדכון SOURCE_OF_TRUTH.md.');
+}
+
 let locks = null;
 if (exists('meta/approved-page-locks.json')) {
   try { locks = JSON.parse(read('meta/approved-page-locks.json')); }
@@ -95,7 +105,7 @@ for (const file of changed.filter((name) => /^styles\/pages\/עמוד-\d+\.css$/
 /* תיקון עמוד אחד אינו רשאי לגרור שינוי לעמוד HTML אחר בלי הצדקה מפורשת. */
 const changedPageHtml = changed.filter((name) => /^עמוד-\d+\.html$/u.test(name));
 if (changedPageHtml.length > 1) {
-  console.warn(`⚠ השתנו ${changedPageHtml.length} דפי HTML באותו change-set: ${changedPageHtml.join(', ')}. שינוי רוחבי כזה דורש הצדקה מפורשת.`);
+  console.warn(`⚠ השתנו ${changedPageHtml.length} דפי HTML באותו change-set: ${changedPageHtml.join(', ')}. שינוי רוחבי כזה דורש כלל משותף מפורש במקור האמת ובדיקת smart-edit.`);
 }
 
 console.log('\n=== Pythagoras Change Scope Audit ===');
