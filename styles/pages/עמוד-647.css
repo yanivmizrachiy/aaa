@@ -1,6 +1,29 @@
 @import url("../topics/pythagoras-foundations.css");
 
 /* עמוד 16 — גשר מהשרטוט למשוואה: מגוון פעולות, ניצול מלא של A4 וללא חזרתיות. */
+.page-647 > .header-container {
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-647 > .header-container > .page-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: calc(100% - 44px);
+  margin: 0;
+  font-size: 22.5px;
+  line-height: 1.12;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.page-647 > .header-container > .page-number {
+  flex: 0 0 32px;
+  width: 32px;
+  min-width: 32px;
+}
+
 .page-647 .question-block {
   display: grid;
   grid-template-rows: 42px 176px 128px 112px minmax(252px, 1fr) 72px;
