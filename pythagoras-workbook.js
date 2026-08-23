@@ -30,7 +30,6 @@ const versioned = (href) => {
 function addStylesheet(href) {
   const absolute = versioned(href);
   if (stylesheetPromises.has(absolute)) return stylesheetPromises.get(absolute);
-
   const existing = [...document.querySelectorAll('link[rel="stylesheet"]')]
     .find((link) => link.href === absolute);
   if (existing) {
@@ -38,7 +37,6 @@ function addStylesheet(href) {
     stylesheetPromises.set(absolute, ready);
     return ready;
   }
-
   const link = document.createElement('link');
   link.rel = 'stylesheet';
   link.href = absolute;
@@ -62,18 +60,9 @@ function namespaceSvgIds(root, prefix) {
     el.id = newId;
   }
   if (!idMap.size) return;
-
-  const urlRefAttrs = [
-    'href', 'xlink:href', 'fill', 'stroke', 'filter', 'clip-path', 'mask',
-    'marker-start', 'marker-mid', 'marker-end',
-  ];
-  const tokenRefAttrs = [
-    'aria-labelledby', 'aria-describedby', 'aria-controls', 'aria-owns', 'headers',
-  ];
-  const singleRefAttrs = [
-    'for', 'form', 'list', 'aria-activedescendant', 'aria-details', 'aria-errormessage',
-  ];
-
+  const urlRefAttrs = ['href', 'xlink:href', 'fill', 'stroke', 'filter', 'clip-path', 'mask', 'marker-start', 'marker-mid', 'marker-end'];
+  const tokenRefAttrs = ['aria-labelledby', 'aria-describedby', 'aria-controls', 'aria-owns', 'headers'];
+  const singleRefAttrs = ['for', 'form', 'list', 'aria-activedescendant', 'aria-details', 'aria-errormessage'];
   for (const el of root.querySelectorAll('*')) {
     for (const attr of urlRefAttrs) {
       if (!el.hasAttribute(attr)) continue;
@@ -83,10 +72,7 @@ function namespaceSvgIds(root, prefix) {
     }
     for (const attr of tokenRefAttrs) {
       if (!el.hasAttribute(attr)) continue;
-      const value = el.getAttribute(attr)
-        .split(/\s+/u)
-        .map((id) => idMap.get(id) ?? id)
-        .join(' ');
+      const value = el.getAttribute(attr).split(/\s+/u).map((id) => idMap.get(id) ?? id).join(' ');
       el.setAttribute(attr, value);
     }
     for (const attr of singleRefAttrs) {
@@ -105,10 +91,8 @@ function normalizePage(main, pageMeta, total) {
   main.dataset.workbookPage = String(localNumber);
   main.dataset.primaryTopic = pageMeta.primaryTopic || 'משפט פיתגורס';
   main.setAttribute('aria-label', `משפט פיתגורס — עמוד ${localNumber} מתוך ${total}`);
-
   const visibleNumber = main.querySelector('.page-number');
   if (visibleNumber) visibleNumber.textContent = String(localNumber);
-
   namespaceSvgIds(main, `pyt-${localNumber}`);
   return main;
 }
@@ -136,9 +120,7 @@ function installToolbarOffset() {
   if (typeof ResizeObserver === 'function') {
     const observer = new ResizeObserver(sync);
     observer.observe(toolbar);
-  } else {
-    window.addEventListener('resize', sync);
-  }
+  } else window.addEventListener('resize', sync);
 }
 
 function unlockWorkbookActions() {
@@ -157,7 +139,6 @@ async function loadSourcePage(pageMeta, total, wrapper) {
     const parsed = new DOMParser().parseFromString(html, 'text/html');
     const sourceMain = parsed.querySelector('main.a4-page');
     if (!sourceMain) throw new Error('לא נמצא main.a4-page');
-
     const main = document.importNode(sourceMain, true);
     normalizePage(main, pageMeta, total);
     wrapper.replaceChildren(main);
@@ -180,10 +161,7 @@ async function loadSourcePage(pageMeta, total, wrapper) {
 async function runPool(tasks, concurrency = 6) {
   let next = 0;
   const workers = Array.from({ length: Math.min(concurrency, tasks.length) }, async () => {
-    while (next < tasks.length) {
-      const index = next++;
-      await tasks[index]();
-    }
+    while (next < tasks.length) await tasks[next++]();
   });
   await Promise.all(workers);
 }
@@ -228,21 +206,18 @@ function installNavigation() {
     }
   });
   printButton.addEventListener('click', () => window.print());
-
   const observer = new IntersectionObserver((entries) => {
-    const visible = entries
-      .filter((entry) => entry.isIntersecting)
-      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
     if (!visible) return;
     const local = Number(visible.target.dataset.localPage);
     if (Number.isFinite(local) && local !== activePage) setActivePage(local, { syncUrl: true });
   }, { threshold: [0.25, 0.5, 0.75] });
-
   for (const wrapper of document.querySelectorAll('.workbook-page-wrap')) observer.observe(wrapper);
 }
 
 function installResponsiveScaling() {
   let frame = 0;
+  const canZoom = typeof CSS !== 'undefined' && CSS.supports?.('zoom', '0.5');
 
   const viewportWidth = () => Math.max(
     1,
@@ -250,8 +225,12 @@ function installResponsiveScaling() {
   );
 
   const resetPage = (wrapper, page) => {
+    wrapper.style.width = '';
+    wrapper.style.maxWidth = '';
     wrapper.style.height = '';
+    wrapper.style.marginInline = '';
     wrapper.style.overflow = '';
+    page.style.zoom = '';
     page.style.position = '';
     page.style.left = '';
     page.style.right = '';
@@ -263,7 +242,8 @@ function installResponsiveScaling() {
 
   const fitPages = () => {
     frame = 0;
-    const mobile = viewportWidth() <= 720;
+    const viewWidth = viewportWidth();
+    const mobile = viewWidth <= 720;
     document.body.classList.toggle('mobile-print-preview', mobile);
     document.body.classList.remove('mobile-reader');
 
@@ -272,25 +252,39 @@ function installResponsiveScaling() {
       if (!page) continue;
       resetPage(wrapper, page);
 
-      const available = Math.max(1, wrapper.getBoundingClientRect().width);
+      const parentWidth = Math.max(1, wrapper.parentElement?.getBoundingClientRect().width || viewWidth);
+      const available = Math.max(1, Math.min(parentWidth - 12, viewWidth - 12));
       const canonicalWidth = page.offsetWidth;
       const canonicalHeight = page.offsetHeight;
       if (!canonicalWidth || !canonicalHeight) continue;
 
       const scale = Math.min(1, available / canonicalWidth);
-      const scaledWidth = canonicalWidth * scale;
-      const scaledHeight = canonicalHeight * scale;
-      const left = Math.max(0, (available - scaledWidth) / 2);
+      const scaledWidth = Math.floor(canonicalWidth * scale * 1000) / 1000;
+      const scaledHeight = Math.floor(canonicalHeight * scale * 1000) / 1000;
 
-      wrapper.style.height = `${scaledHeight}px`;
-      wrapper.style.overflow = 'hidden';
-      page.style.position = 'absolute';
-      page.style.left = `${left}px`;
+      wrapper.style.width = `${scaledWidth}px`;
+      wrapper.style.maxWidth = 'calc(100vw - 12px)';
+      wrapper.style.marginInline = 'auto';
+      wrapper.style.overflow = 'visible';
+
+      page.style.marginLeft = '0';
+      page.style.left = '0';
       page.style.right = 'auto';
       page.style.top = '0';
-      page.style.marginLeft = '0';
-      page.style.setProperty('transform-origin', 'top left', 'important');
-      page.style.transform = `scale(${scale})`;
+
+      if (canZoom) {
+        wrapper.style.height = 'auto';
+        page.style.position = 'relative';
+        page.style.transform = 'none';
+        page.style.setProperty('transform-origin', 'top left', 'important');
+        page.style.zoom = String(scale);
+      } else {
+        wrapper.style.height = `${scaledHeight}px`;
+        page.style.position = 'absolute';
+        page.style.zoom = '';
+        page.style.setProperty('transform-origin', 'top left', 'important');
+        page.style.transform = `scale(${scale})`;
+      }
     }
   };
 
@@ -342,13 +336,11 @@ async function boot() {
   if (!manifestResponse.ok) throw new Error(`לא ניתן לקרוא ${MANIFEST_URL}`);
   const manifest = await manifestResponse.json();
   const pages = validateManifest(manifest);
-
   totalPages = pages.length;
   loadedPages = 0;
   failedPages = 0;
   updateNavigationDisplay(1);
   statusEl.textContent = `0 / ${totalPages} דפים נטענו`;
-
   const tasks = pages.map((pageMeta) => {
     const localNumber = pageMeta.workbookNumber;
     const wrapper = document.createElement('section');
@@ -359,7 +351,6 @@ async function boot() {
     workbookRoot.append(wrapper);
     return () => loadSourcePage(pageMeta, totalPages, wrapper);
   });
-
   await runPool(tasks, 6);
   await typesetMath();
   unlockWorkbookActions();
@@ -369,7 +360,6 @@ async function boot() {
   statusEl.textContent = failedPages > 0
     ? `${loadedPages} / ${totalPages} דפים נטענו · ${failedPages} נכשלו`
     : `${totalPages} דפים · חוברת מלאה`;
-
   const requested = Number(new URL(location.href).searchParams.get('page')) || 1;
   requestAnimationFrame(() => goToPage(requested, 'auto'));
 }
