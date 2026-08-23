@@ -84,9 +84,11 @@ else fail('עמוד 7: מבנה הגשר נפגע.');
 if (['direct-root-grid','reverse-root-grid','perfect-square-grid','bridge-grid'].every((t) => p(8).includes(t)) && c(8).includes('flex-direction:column')) pass('עמוד 8: ארבע פעולות השורש נשמרות.');
 else fail('עמוד 8: חוזה השורש נפגע.');
 
-const page9Required = ['משוואה ריבועית מהצורה x²=a','solution-meaning-strip','case-grid','equation-case-grid','negative-root-rule','root-practice-grid','error-grid','\\(x^2=-5\\)','\\((-3)^2=\\)','\\(x^2=-7\\)','אין פתרון'];
-if (page9Required.every((t) => p(9).includes(t))) pass('עמוד 9: שורש מול משוואה ושלושת המצבים נשמרים.');
-else fail('עמוד 9: חוזה שורש/משוואה נפגע.');
+const page9Required = ['משוואה ריבועית מהצורה x²=a','solution-meaning-strip','case-grid','equation-case-grid','negative-root-rule','root-practice-grid','error-grid','correction-line','בכל שורה מצאו את הטעות וכתבו את התיקון.','השלימו את הפתרון החסר:','כתבו את המסקנה הנכונה:','\\(x^2=-5\\)','\\((-3)^2=\\)','\\(x^2=-7\\)','אין פתרון'];
+const page9CleanBoxes = c(9).includes('.page-651 .foundation-fill') && c(9).includes('box-shadow: none;') && c(9).includes('background: #fff;') && c(9).includes('border-radius: 4px;');
+const page9NoBrokenChecks = !p(9).includes('correction-slot') && !c(9).includes('.correction-slot') && !p(9).includes('class="check"') && c(9).includes('.page-651 .correction-line') && c(9).includes('border-bottom: 1.4px solid #334155;');
+if (page9Required.every((t) => p(9).includes(t)) && page9CleanBoxes && page9NoBrokenChecks) pass('עמוד 9: שורש מול משוואה נשמרים, התיבות נקיות ותיקון הטעויות משתמש בשורות כתיבה ללא תיבות סימון שבורות.');
+else fail('עמוד 9: נפגע חוזה שורש/משוואה או שחזרו תיבות סימון/תיבות תיקון שבורות.');
 
 if (['bounds-grid','calculator-grid','reasonableness-grid','error-grid','build-root-card'].every((t) => p(10).includes(t)) && !c(10).includes('pythagoras-power-practice.css')) pass('עמוד 10: תחימה, קירוב, סבירות, תיקון ובנייה נשמרים.');
 else fail('עמוד 10: מגוון הקירוב נפגע.');
