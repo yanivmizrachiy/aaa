@@ -7,10 +7,10 @@
     {
       "workbookPage": 1,
       "status": "locked",
-      "reason": "עמוד 1 מאושר לפי SOURCE_OF_TRUTH.md; בנייד נשמרת בדיוק פריסת ה-A4 עם viewport קנוני 821, ללא reflow וללא גלילה אופקית.",
+      "reason": "עמוד 1 מאושר לפי SOURCE_OF_TRUTH.md; אין breakpoint מקומי, ובנייד נשמרת בדיוק פריסת ה-A4 עם viewport קנוני 821, ללא reflow וללא גלילה אופקית.",
       "files": [
         {"path": "עמוד-634.html", "gitBlobSha": "cc3deb28f58a425677d886dc8d9a1a9ceca20642"},
-        {"path": "styles/pages/עמוד-634.css", "gitBlobSha": "c0981c6454921cf11968c3c210b62271b5975535"}
+        {"path": "styles/pages/עמוד-634.css", "gitBlobSha": "aa6b42e7721edb08948c6b0c8aaebf13a0146ad3"}
       ],
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
@@ -28,10 +28,10 @@
     {
       "workbookPage": 2,
       "status": "locked",
-      "reason": "עמוד 2 מאושר לפי SOURCE_OF_TRUTH.md; בנייד נשמרת בדיוק פריסת ה-A4 עם viewport קנוני 821, ללא reflow וללא גלילה אופקית.",
+      "reason": "עמוד 2 מאושר לפי SOURCE_OF_TRUTH.md; אין override טיפוגרפי לנייד ובנייד נשמרת בדיוק פריסת ה-A4 ללא reflow.",
       "files": [
         {"path": "עמוד-635.html", "gitBlobSha": "34947a4fad428b1d46464c50548bc7eb7a11e6d6"},
-        {"path": "styles/pages/עמוד-635.css", "gitBlobSha": "6132e7788f41b479207c6da0640937e991b93985"}
+        {"path": "styles/pages/עמוד-635.css", "gitBlobSha": "292be46fba2cd16cc9ab97743649ccffb4d5a318"}
       ],
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
@@ -49,10 +49,10 @@
     {
       "workbookPage": 3,
       "status": "locked",
-      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md; בנייד נשמרת בדיוק פריסת ה-A4 עם viewport קנוני 821, ללא reflow וללא גלילה אופקית.",
+      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md; אין override טיפוגרפי לנייד ובנייד נשמרת בדיוק פריסת ה-A4 ללא reflow.",
       "files": [
         {"path": "עמוד-636.html", "gitBlobSha": "58a4ecf5663740e792445763c68f12f886274151"},
-        {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "2c39e5bee1c553eb5415ebbfbeefaa0bd981cd1b"}
+        {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "b4adc8ee62ac27c914c883e6f14c4869415084b1"}
       ],
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
