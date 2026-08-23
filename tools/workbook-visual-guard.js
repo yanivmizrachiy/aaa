@@ -14,13 +14,16 @@ if (!exists(lockPath)) fail('חסר styles/workbook-canonical-locks.css.');
 else {
   const css = read(lockPath);
   const required = {
-    1: ['.page-634 > .header-container','.header-container > .page-title','.header-container > .page-number','.page-634 .foundation-note-one-line','.page-634 .final-build-task','.page-634 .final-build-area','border: 0 !important','!important'],
-    2: ['.page-635 .question-block','.page-635 .triangle-choice-grid','repeat(6, minmax(0, 1fr))','.page-635 .mc-triangle-grid','repeat(5, minmax(0, 1fr))','.page-635 .construction-task','.page-635 .construction-grid','.page-635 .hunt-section'],
-    3: ['.page-636 .question-block','.page-636 .legs-grid','repeat(4, minmax(0, 1fr))','.page-636 .vertex-grid','repeat(2, minmax(0, 1fr))','.page-636 .quick-fill-grid','repeat(3, minmax(0, 1fr))','.page-636 .legs-mcq'],
+    1: ['.page-634 > .header-container','.page-634 .final-build-task','.page-634 .final-build-area','min-height:94px !important','border:1.5px dashed #64748b !important'],
+    2: ['.page-635 .question-block','.page-635 .triangle-choice-grid','repeat(6,minmax(0,1fr))','.page-635 .construction-grid','.page-635 .hunt-section','grid-template-rows:minmax(0,1fr) 34px !important'],
+    3: ['.page-636 .question-block','.page-636 .legs-grid','repeat(3,minmax(0,1fr))','.page-636 .single-partner-section','.page-636 .vertex-section','.page-636 .legs-mcq'],
   };
   for (const [page, tokens] of Object.entries(required)) {
     const missing = tokens.filter((t) => !css.includes(t));
     missing.length ? fail(`נעילת עמוד ${page} חסרה: ${missing.join(', ')}`) : pass(`נעילת עמוד ${page} מלאה.`);
+  }
+  for (const forbidden of ['.page-636 .vertex-grid','.page-636 .quick-fill-grid','repeat(4, minmax(0, 1fr))']) {
+    css.includes(forbidden) ? fail(`חזר חוזה קנוני ישן: ${forbidden}`) : pass(`לא חזר חוזה קנוני ישן: ${forbidden}`);
   }
 }
 
@@ -29,55 +32,17 @@ function guardPage(page, cssPath, required, forbidden = []) {
   const css = read(cssPath);
   const missing = required.filter((t) => !css.includes(t));
   const found = forbidden.filter((t) => css.includes(t));
-  if (missing.length) fail(`עמוד ${page}: חסרים רכיבי פריסה: ${missing.join(', ')}`);
-  else pass(`עמוד ${page}: רכיבי הפריסה הקנוניים קיימים.`);
-  if (found.length) fail(`עמוד ${page}: חזרו רכיבים אסורים: ${found.join(', ')}`);
-  else pass(`עמוד ${page}: אין רכיבי רגרסיה ידועים.`);
+  missing.length ? fail(`עמוד ${page}: חסרים רכיבי פריסה: ${missing.join(', ')}`) : pass(`עמוד ${page}: רכיבי הפריסה הקנוניים קיימים.`);
+  found.length ? fail(`עמוד ${page}: חזרו רכיבים אסורים: ${found.join(', ')}`) : pass(`עמוד ${page}: אין רכיבי רגרסיה ידועים.`);
 }
 
-guardPage(7, 'styles/pages/עמוד-640.css', [
-  '@import url("../topics/pythagoras-foundations.css");',
-  '.page-640 .question-block',
-  'grid-template-rows: 40px 174px 242px 166px minmax(184px, 1fr)',
-  '.page-640 .match-board', '.page-640 .mixed-grid', '.page-640 .error-grid', '.page-640 .final-grid',
-  '.page-640 .mixed-card:nth-child(1)', 'flex-direction: column;'
-], ['pythagoras-power-practice.css','overflow: hidden','@media (max-width:','.power-sentence-grid','.sentence-open-card']);
-
-guardPage(8, 'styles/pages/עמוד-641.css', [
-  '@import url("../topics/pythagoras-foundations.css");',
-  '.page-641 .question-block',
-  'grid-template-rows: 42px 190px 178px 176px minmax(238px, 1fr)',
-  '.page-641 .direct-root-grid', '.page-641 .reverse-root-grid', '.page-641 .perfect-square-grid', '.page-641 .bridge-grid',
-  '.page-641 .root-card { flex-direction:column;', '.root-card:nth-child(-n+4) .root-fill'
-], ['pythagoras-power-practice.css','overflow: hidden','@media (max-width:','.root-results-grid','.missing-root-grid']);
-
-guardPage(9, 'styles/pages/עמוד-651.css', [
-  '.page-651 .question-block', '.page-651 .solution-meaning-strip', '.page-651 .negative-root-rule',
-  '.page-651 .case-grid', '.page-651 .equation-case-grid', '.page-651 .root-practice-grid',
-  '.page-651 .root-practice-card { display:flex; flex-direction:column;'
-], ['pythagoras-power-practice.css','@media (max-width:','.reverse-solution-grid','.build-equation-card']);
-
-guardPage(10, 'styles/pages/עמוד-642.css', [
-  '.page-642 .question-block', '.page-642 .bounds-grid', '.page-642 .calculator-grid', '.page-642 .reasonableness-grid', '.page-642 .error-grid', '.page-642 .build-root-card',
-  '.page-642 .calculator-card { display:flex; flex-direction:column;'
-], ['pythagoras-power-practice.css','@media (max-width:','.approximation-grid']);
-
-guardPage(11, 'styles/pages/עמוד-652.css', [
-  '.page-652 .page11-top-band',
-  'grid-template-columns: minmax(210px, .9fr) minmax(0, 2.1fr)',
-  '.page-652 .top-guided-practice', '.page-652 .direct-solution-scaffold', '.page-652 .build-solution-scaffold'
-], ['@media (max-width:','.approx-pair']);
-
-guardPage(12, 'styles/pages/עמוד-643.css', [
-  '.page-643 .square-task-grid', 'grid-template-columns:repeat(2,minmax(0,1fr))',
-  '.page-643 .math-work { min-height:64px; display:grid;',
-  '.page-643 .answer-fit-one-digit { width:34px; }', '.page-643 .answer-fit-two-digit { width:46px; }', '.page-643 .answer-fit-symbol-square { width:50px; }'
-], ['pythagoras-power-practice.css','@media (max-width:']);
-
-guardPage(13, 'styles/pages/עמוד-644.css', [
-  '.page-644 .question-block', 'grid-template-rows: 285px 225px 245px minmax(230px, 1fr)',
-  '.page-644 .result-below-card', '.page-644 .relation-workbench', '.page-644 .reverse-workbench', '.page-644 .generalize-workbench'
-], ['@media (max-width:']);
+guardPage(7, 'styles/pages/עמוד-640.css', ['@import url("../topics/pythagoras-foundations.css");','.page-640 .question-block','.page-640 .inverse-pair-grid','.page-640 .mixed-grid','.page-640 .error-grid','.page-640 .final-pair-grid'], ['pythagoras-power-practice.css','@media (max-width:','.match-board','.final-grid']);
+guardPage(8, 'styles/pages/עמוד-641.css', ['@import url("../topics/pythagoras-foundations.css");','.page-641 .question-block','.page-641 .nonnegative-definition','.page-641 .direct-root-grid','.page-641 .inference-grid','.page-641 .result-check-grid','.page-641 .bridge-grid'], ['pythagoras-power-practice.css','@media (max-width:','.reverse-root-grid','.perfect-square-grid']);
+guardPage(9, 'styles/pages/עמוד-651.css', ['.page-651 .question-block','.page-651 .page9-distinction','.page-651 .case-grid','.page-651 .equation-practice-grid','.page-651 .tf-grid','.page-651 .page9-final-rule'], ['pythagoras-power-practice.css','@media (max-width:','.solution-meaning-strip','.root-practice-grid']);
+guardPage(10, 'styles/pages/עמוד-642.css', ['.page-642 .question-block','.page-642 .page10-worked-example','.page-642 .guided-grid','.page-642 .independent-grid','.page-642 .calculator-grid','.page-642 .final-work'], ['pythagoras-power-practice.css','@media (max-width:','.reasonableness-grid','.build-root-card']);
+guardPage(11, 'styles/pages/עמוד-652.css', ['.page-652 .page11-top-band','grid-template-columns: minmax(210px, .9fr) minmax(0, 2.1fr)','.page-652 .top-guided-practice','.page-652 .direct-solution-scaffold','.page-652 .build-solution-scaffold','border-radius: 0;'], ['@media (max-width:','.approx-pair']);
+guardPage(12, 'styles/pages/עמוד-643.css', ['.page-643 .square-task-grid','grid-template-columns:repeat(2,minmax(0,1fr))','.page-643 .answer-fit-one-digit { width:34px; }','.page-643 .answer-fit-two-digit { width:46px; }','.page-643 .answer-fit-symbol-square { width:50px; }'], ['pythagoras-power-practice.css','@media (max-width:']);
+guardPage(13, 'styles/pages/עמוד-644.css', ['.page-644 .question-block','.page-644 .result-below-card','.page-644 .relation-workbench','.page-644 .reverse-workbench','.page-644 .generalize-workbench'], ['@media (max-width:']);
 
 if (!exists('index.html')) fail('חסר index.html.');
 else {
