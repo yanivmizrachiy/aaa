@@ -296,8 +296,10 @@ else fail('עמוד 4: assets/pythagoras/vector/page-04.svg הישן חזר וע
 /* עמוד 5 */
 requireTokens('עמוד 5', p5, [
   '<h1 class="page-title">משפט פיתגורס – מושגים בסיסיים</h1>',
-  'page5-concept-line',
-  'השלימו: במשולש ישר־זווית שתי הצלעות היוצרות את הזווית הישרה נקראות',
+  'class="page5-concept-line"',
+  'class="concept-half"',
+  'הצלעות שיוצרות את הזווית הישרה:',
+  'הצלע שמול הזווית הישרה:',
   'בכל משולש כתבו את שמות שני הניצבים ואת שם היתר.',
   'היעזרו בכלל: במשולש ישר־זווית היתר הוא הצלע הארוכה ביותר.',
   'דנה טוענת: „היתר יכול להיות שווה באורכו לאחד הניצבים.”',
@@ -307,8 +309,11 @@ forbidTokens('עמוד 5', p5, [
   'התחילו תמיד מאיתור הזווית הישרה.',
   'האם היא צודקת? נמקו.',
   'reason-space',
+  'foundation-note foundation-note-one-line page5-concept-line',
 ]);
 
+if (count(p5, 'class="concept-half"') === 2) pass('עמוד 5: שורת המושג מחולקת בדיוק לשני חצאים מאוזנים.');
+else fail('עמוד 5: שורת המושג חייבת לכלול בדיוק שני חצאים שווים.');
 if (count(p5, 'triangle-card"') === 4) pass('עמוד 5: ארבעה כרטיסי משולשים בשורה הראשונה.');
 else fail(`עמוד 5: נדרשים 4 כרטיסי משולשים, נמצאו ${count(p5, 'triangle-card"')}.`);
 if (count(p5, 'class="length-card"') === 3) pass('עמוד 5: שלושה כרטיסי אורכים מגוונים.');
@@ -321,11 +326,19 @@ if (page5Triangles.length === 4 && page5Triangles.every(isRightTriangle)) pass('
 else fail(`עמוד 5: משולשי הזיהוי אינם כולם ישרי־זווית מדויקים (${page5Triangles.filter(isRightTriangle).length}/${page5Triangles.length}).`);
 
 requireTokens('CSS עמוד 5', p5css, [
-  '.page-638 .foundation-note-one-line',
+  '.page-638 .question-block > *',
+  '.page-638 .page5-concept-line',
+  'grid-template-columns: repeat(2, minmax(0, 1fr));',
   'grid-template-columns: repeat(4, minmax(0, 1fr));',
-  '.page-638 .length-cards',
-  '.page-638 .claim-check',
+  'grid-template-columns: repeat(3, minmax(0, 1fr));',
+  'justify-content: center;',
+  'margin-inline-start: 0;',
   'shape-rendering: geometricPrecision;',
+]);
+forbidTokens('CSS עמוד 5', p5css, [
+  '.page-638 .foundation-note-one-line',
+  'margin-inline-start: auto;',
+  '@media (max-width: 760px)',
 ]);
 
 console.log('\n=== Approved Content Contracts ===');
