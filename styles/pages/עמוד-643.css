@@ -1,13 +1,12 @@
 @import url("../topics/pythagoras-foundations.css");
 
-/* עמוד 12 — ארבע השלמות שונות, פריסה מלאה של 2×2 ללא חזרתיות מיותרת. */
+/* עמוד 12 — ארבע השלמות שונות, פריסה מלאה של 2×2 ללא חזרתיות מיותרת וללא מספור סעיפים. */
 .page-643 .question-block.square-area-practice { justify-content:flex-start; gap:12px; min-height:0; }
 .page-643 .page12-intro { margin-bottom:0; flex:0 0 auto; }
 .page-643 .square-task-grid { flex:1 1 auto; min-height:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); gap:12px; }
 .page-643 .square-task-card { position:relative; min-height:0; border:1px solid var(--border-light); border-radius:11px; background:var(--bg-paper); padding:19px 20px 16px; display:flex; flex-direction:column; align-items:stretch; justify-content:space-between; gap:10px; overflow:hidden; }
 .page-643 .square-task-card::after { content:""; position:absolute; inset-inline-end:0; top:0; bottom:0; width:4px; background:var(--title-blue); opacity:.7; }
-.page-643 .task-number { position:absolute; top:12px; inset-inline-end:13px; width:28px; height:28px; display:flex; align-items:center; justify-content:center; border:1.4px solid var(--title-blue); border-radius:50%; color:var(--title-blue); background:var(--bg-paper); font-size:14px; font-weight:700; z-index:1; }
-.page-643 .task-prompt { padding-inline-end:38px; font-size:18px; line-height:1.5; text-align:right; }
+.page-643 .task-prompt { font-size:18px; line-height:1.5; text-align:right; }
 .page-643 .task-prompt strong { font-weight:700; }
 .page-643 .numeric-square,.page-643 .symbol-square,.page-643 .area-square,.page-643 .reverse-square { width:116px; height:116px; margin:0 auto; border:1.6px solid var(--accent-dark); background:var(--bg-subtle); position:relative; display:flex; align-items:center; justify-content:center; }
 .page-643 .numeric-square .side-label,.page-643 .symbol-side,.page-643 .reverse-side { position:absolute; bottom:-24px; left:50%; transform:translateX(-50%); white-space:nowrap; font-size:17px; }
