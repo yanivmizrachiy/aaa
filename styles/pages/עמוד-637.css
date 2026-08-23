@@ -1,11 +1,22 @@
 @import url("../topics/pythagoras-foundations.css");
 
+/* עמוד 4 — היתר: זיהוי קצר, הבחנה ברמזים, יישום במלבן, הסקה מספרית וסימבולית. */
 .page-637 .question-block {
   display: grid;
-  grid-template-rows: 34px 258px 116px 176px 96px minmax(104px, 1fr);
-  gap: 9px;
-  min-height: 0;
+  grid-template-rows: 34px 210px 132px 188px 112px minmax(122px, 1fr);
+  gap: 8px;
   align-content: stretch;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.page-637 .question-block > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .page-637 .hyp-summary {
@@ -13,6 +24,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  min-width: 0;
   min-height: 34px;
   padding: 3px 8px;
   border-block: 1px solid var(--border-light);
@@ -20,7 +32,6 @@
   font-size: 14.5px;
   line-height: 1.2;
   white-space: nowrap;
-  overflow: hidden;
 }
 
 .page-637 .hyp-summary-label {
@@ -34,55 +45,57 @@
 }
 
 .page-637 .hyp-section {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 5px;
+  min-width: 0;
   min-height: 0;
-  overflow: hidden;
 }
 
 .page-637 .hyp-section .q-main {
-  margin: 0 0 5px;
-  min-height: 22px;
+  margin: 0;
+  min-width: 0;
+  min-height: 0;
 }
 
 .page-637 .hyp-section .q-text {
-  font-size: 15px;
-  line-height: 1.28;
+  font-size: 14.8px;
+  line-height: 1.25;
 }
 
-.page-637 .hyp-visual-task {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-}
-
+/* 1. זיהוי ישיר — רק שלושה מקרים, כדי לא להפוך את כל העמוד לאותה פעולה. */
 .page-637 .hyp-visual-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
   min-height: 0;
 }
 
 .page-637 .hyp-card {
+  min-width: 0;
   min-height: 0;
   display: grid;
   grid-template-rows: minmax(0, 1fr) 28px;
   align-items: center;
   justify-items: stretch;
-  padding: 5px 7px 4px;
+  padding: 5px 8px;
   border: 1px solid var(--border-light);
   border-radius: 9px;
   background: var(--bg-paper);
 }
 
 .page-637 .hyp-svg,
-.page-637 .error-svg {
+.page-637 .rectangle-svg {
+  display: block;
   width: 100%;
   height: 100%;
+  min-width: 0;
   min-height: 0;
-  display: block;
   shape-rendering: geometricPrecision;
 }
 
-.page-637 .hyp-svg .edge,
-.page-637 .error-svg .edge {
+.page-637 .hyp-svg .edge {
   fill: none;
   stroke: var(--accent-dark);
   stroke-width: 1.65;
@@ -91,8 +104,7 @@
   vector-effect: non-scaling-stroke;
 }
 
-.page-637 .hyp-svg .mark,
-.page-637 .error-svg .mark {
+.page-637 .hyp-svg .mark {
   fill: none;
   stroke: var(--accent-dark);
   stroke-width: 1.15;
@@ -100,7 +112,7 @@
 }
 
 .page-637 .hyp-svg .lbl,
-.page-637 .error-svg .lbl {
+.page-637 .rectangle-svg .lbl {
   fill: var(--text-main);
   font-family: 'PytTeXMathItalic', Georgia, serif;
   font-style: italic;
@@ -115,175 +127,156 @@
   font-size: 14.5px;
 }
 
-.page-637 .hyp-answer .response-line {
-  min-width: 56px;
-  height: 20px;
-}
-
-.page-637 .hyp-switch-task {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-}
-
-.page-637 .hyp-switch-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 9px;
-  min-height: 0;
-}
-
-.page-637 .switch-card {
-  display: grid;
-  grid-template-columns: auto auto 1fr;
-  align-items: center;
-  gap: 7px;
-  min-width: 0;
-  padding: 8px 10px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  background: var(--bg-subtle);
-  font-size: 14.5px;
-}
-
-.page-637 .angle-given {
-  direction: ltr;
-  unicode-bidi: isolate;
-  font-family: 'PytTeX', Georgia, serif;
-  font-size: 16px;
-}
-
-.page-637 .switch-card .response-line {
+.page-637 .hyp-answer .response-line,
+.page-637 .rectangle-answer .response-line {
   min-width: 58px;
   height: 20px;
 }
 
-.page-637 .hyp-error-task {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-}
-
-.page-637 .hyp-error-grid {
+/* 2. רמזים אמינים לעומת מראה מקרי של השרטוט. */
+.page-637 .hyp-clue-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 9px;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 7px 9px;
+  min-width: 0;
   min-height: 0;
 }
 
-.page-637 .error-card {
-  min-height: 0;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) 24px 23px;
-  gap: 2px;
-  padding: 5px 8px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  background: var(--bg-paper);
-}
-
-.page-637 .error-svg .candidate {
-  fill: none;
-  stroke: var(--title-blue);
-  stroke-width: 4.1;
-  stroke-linecap: round;
-  vector-effect: non-scaling-stroke;
-}
-
-.page-637 .decision-row,
-.page-637 .correction {
+.page-637 .clue-card,
+.page-637 .reasoning-card {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-size: 13.8px;
-  white-space: nowrap;
-}
-
-.page-637 .decision-row .check {
-  width: 15px;
-  height: 15px;
-  margin: 0;
-}
-
-.page-637 .correction .response-line {
-  min-width: 62px;
-  height: 19px;
-}
-
-.page-637 .hyp-number-task {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-}
-
-.page-637 .hyp-number-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-  min-height: 0;
-}
-
-.page-637 .number-card {
-  direction: ltr;
-  unicode-bidi: isolate;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  gap: 8px;
-  min-height: 0;
-  padding: 7px 8px;
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  background: var(--bg-subtle);
-  font-family: 'PytTeX', Georgia, serif;
-  font-size: 20px;
-}
-
-.page-637 .number-card span {
-  min-width: 27px;
-  height: 27px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-
-.page-637 .hyp-final-task {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-}
-
-.page-637 .hyp-statements {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px 12px;
-  min-height: 0;
-}
-
-.page-637 .hyp-statement {
-  display: flex;
-  align-items: center;
+  justify-content: flex-start;
   gap: 7px;
   min-width: 0;
   padding: 7px 9px;
   border: 1px solid var(--border-light);
-  border-radius: 7px;
+  border-radius: 8px;
   background: var(--bg-paper);
-  font-size: 14.2px;
+  font-size: 13.9px;
   line-height: 1.25;
 }
 
-.page-637 .hyp-statement .check {
-  width: 16px;
-  height: 16px;
+.page-637 .clue-card .check,
+.page-637 .reasoning-card .check,
+.page-637 .rectangle-notice .check {
+  width: 15px;
+  height: 15px;
   margin: 0;
   flex: 0 0 auto;
 }
 
+/* 3. העברה למרובע: אותו אלכסון הוא היתר בשני משולשים שונים. */
+.page-637 .rectangle-work {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  align-items: stretch;
+  gap: 14px;
+  min-width: 0;
+  min-height: 0;
+  padding: 6px 10px;
+  border-block: 1px solid var(--border-light);
+  background: linear-gradient(90deg, transparent, var(--bg-subtle) 20%, var(--bg-subtle) 80%, transparent);
+}
+
+.page-637 .rectangle-svg .rect-edge,
+.page-637 .rectangle-svg .rect-diagonal,
+.page-637 .rectangle-svg .rect-mark {
+  fill: none;
+  stroke: var(--accent-dark);
+  vector-effect: non-scaling-stroke;
+}
+
+.page-637 .rectangle-svg .rect-edge { stroke-width: 1.6; }
+.page-637 .rectangle-svg .rect-diagonal { stroke-width: 2.7; stroke: var(--title-blue); }
+.page-637 .rectangle-svg .rect-mark { stroke-width: 1.15; }
+
+.page-637 .rectangle-answers {
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  min-width: 0;
+  font-size: 14.2px;
+}
+
+.page-637 .rectangle-answer,
+.page-637 .rectangle-notice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+/* 4. הסקה מאורכים — לא עוד ארבע שלשות זהות. */
+.page-637 .number-reasoning-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 7px 10px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-637 .reasoning-card {
+  justify-content: center;
+  text-align: center;
+}
+
+/* 5. מעבר לשפה סימבולית שמכינה להמשך החוברת. */
+.page-637 .hyp-symbol-task {
+  grid-template-rows: auto auto minmax(0, 1fr);
+}
+
+.page-637 .symbol-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 0;
+  min-height: 46px;
+  font-family: 'PytTeX', Georgia, serif;
+  font-size: 21px;
+}
+
+.page-637 .symbol-fill {
+  width: 42px;
+  height: 28px;
+  border-radius: 5px;
+}
+
+.page-637 .symbol-sep {
+  margin-inline: 13px;
+  color: var(--title-blue);
+}
+
+.page-637 .symbol-sentence {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 7px 10px;
+  border-top: 1px solid var(--border-light);
+  font-size: 14.5px;
+  line-height: 1.25;
+}
+
+.page-637 .symbol-word-fill {
+  width: 92px;
+  height: 25px;
+  border-radius: 5px;
+}
+
 @media print {
   .page-637 .hyp-card,
-  .page-637 .switch-card,
-  .page-637 .error-card,
-  .page-637 .number-card,
-  .page-637 .hyp-statement {
+  .page-637 .clue-card,
+  .page-637 .rectangle-work,
+  .page-637 .reasoning-card,
+  .page-637 .hyp-symbol-task {
     break-inside: avoid;
   }
 }
