@@ -81,6 +81,8 @@ const p2 = read('עמוד-635.html');
 const p2css = read('styles/pages/עמוד-635.css');
 const p3 = read('עמוד-636.html');
 const p3css = read('styles/pages/עמוד-636.css');
+const p4 = read('עמוד-637.html');
+const p4css = read('styles/pages/עמוד-637.css');
 const p5 = read('עמוד-638.html');
 const p5css = read('styles/pages/עמוד-638.css');
 
@@ -88,6 +90,7 @@ requireTokens('SOURCE_OF_TRUTH', truth, [
   '## עמוד 1 — מושגים בסיסיים',
   '## עמוד 2 — משולש ישר־זווית',
   '## עמוד 3 — הניצבים',
+  '## עמוד 4 — היתר',
   '## עמוד 5 — מושגים בסיסיים',
   'index.html` הוא **נקודת הכניסה היחידה**',
   'cache-busting אוטומטי',
@@ -233,6 +236,59 @@ requireTokens('CSS עמוד 3', p3css, [
   '.page-636 .quick-leg-svg .given-leg',
   'shape-rendering: geometricPrecision;',
 ]);
+
+/* עמוד 4 */
+requireTokens('עמוד 4', p4, [
+  '<h1 class="page-title">משפט פיתגורס – היתר</h1>',
+  'class="foundation-note hyp-concept"',
+  'כתבו מתחת לכל משולש את שם היתר.',
+  'באותו משולש ABC הזווית הישרה משנה מקום.',
+  'בכל שרטוט הודגשה צלע. סמנו אם הודגש היתר; אם לא, כתבו את שם היתר הנכון.',
+  'הקיפו את האורך שיכול להיות היתר.',
+  'סמנו בדיוק שני משפטים שתמיד נכונים במשולש ישר־זווית.',
+  'היתר נמצא מול הזווית הישרה.',
+  'היתר הוא הצלע הארוכה ביותר.',
+]);
+forbidTokens('עמוד 4', p4, [
+  '<h1 class="page-title">מושגים בסיסיים</h1>',
+  'hyp-poster',
+  'שמונה משולשים ישרי־זווית',
+]);
+
+const page4Counts = [
+  ['hyp-card', 4],
+  ['switch-card', 3],
+  ['error-card', 3],
+  ['number-card', 4],
+  ['hyp-statement', 4],
+];
+for (const [className, expected] of page4Counts) {
+  const actual = count(p4, `class="${className}"`);
+  if (actual === expected) pass(`עמוד 4: ${className} = ${expected}.`);
+  else fail(`עמוד 4: ${className} צריך להיות ${expected}, נמצא ${actual}.`);
+}
+
+const page4VisualTriangles = edgePathDsBetween(p4, 'hyp-visual-grid', 'hyp-switch-task').map(parseTrianglePath).filter(Boolean);
+if (page4VisualTriangles.length === 4 && page4VisualTriangles.every(isRightTriangle)) pass('עמוד 4: כל ארבעת משולשי הזיהוי ישרי־זווית מדויקים מתמטית.');
+else fail(`עמוד 4: משולשי הזיהוי אינם כולם ישרי־זווית מדויקים (${page4VisualTriangles.filter(isRightTriangle).length}/${page4VisualTriangles.length}).`);
+
+const page4ErrorTriangles = edgePathDsBetween(p4, 'hyp-error-grid', 'hyp-number-task').map(parseTrianglePath).filter(Boolean);
+if (page4ErrorTriangles.length === 3 && page4ErrorTriangles.every(isRightTriangle)) pass('עמוד 4: כל שלושת משולשי בדיקת הטעות ישרי־זווית מדויקים מתמטית.');
+else fail(`עמוד 4: משולשי בדיקת הטעות אינם כולם ישרי־זווית מדויקים (${page4ErrorTriangles.filter(isRightTriangle).length}/${page4ErrorTriangles.length}).`);
+
+requireTokens('CSS עמוד 4', p4css, [
+  '.page-637 .question-block',
+  'grid-template-rows: 42px 250px 116px 176px 96px minmax(104px, 1fr);',
+  '.page-637 .hyp-visual-grid',
+  '.page-637 .hyp-switch-grid',
+  '.page-637 .hyp-error-grid',
+  '.page-637 .hyp-number-grid',
+  '.page-637 .hyp-statements',
+  'shape-rendering: geometricPrecision;',
+]);
+
+if (!fs.existsSync(path.join(root, 'assets/pythagoras/vector/page-04.svg'))) pass('עמוד 4: נכס SVG היסטורי מנותק הוסר מהריפו.');
+else fail('עמוד 4: assets/pythagoras/vector/page-04.svg הישן חזר ועלול להתחרות במימוש הפעיל.');
 
 /* עמוד 5 */
 requireTokens('עמוד 5', p5, [
