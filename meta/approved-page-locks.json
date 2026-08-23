@@ -70,10 +70,10 @@
     {
       "workbookPage": 4,
       "status": "locked",
-      "reason": "עמוד 4 תוכנן מחדש לפי SOURCE_OF_TRUTH.md: יתר בלבד, חמש פעולות שונות, ניצול A4 מלא ללא כפילות; תצוגת המובייל נשארת Exact A4 Preview ללא reflow.",
+      "reason": "עמוד 4 מאושר לפי SOURCE_OF_TRUTH.md: יתר בלבד, סיכום עליון קומפקטי, חמש פעולות שונות, ניצול A4 מלא ותצוגת Exact A4 Preview ללא reflow.",
       "files": [
-        {"path": "עמוד-637.html", "gitBlobSha": "f09a6d335aad8b2dbbe04ef1d37b27deaaf37a5c"},
-        {"path": "styles/pages/עמוד-637.css", "gitBlobSha": "f999a763ee8b1befe44e7c475eeafc7b49c92a73"}
+        {"path": "עמוד-637.html", "gitBlobSha": "7ac8b38f8afedf1f5d8635bf8e86c02b2ed41e42"},
+        {"path": "styles/pages/עמוד-637.css", "gitBlobSha": "e5a71453f7d307d738c3f52ae8b39dd700430ce9"}
       ],
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "7c18caac2ad51d45446384e83dc8748bc5443a6c"},
@@ -91,10 +91,10 @@
     {
       "workbookPage": 5,
       "status": "locked",
-      "reason": "עמוד 5 מאושר לפי SOURCE_OF_TRUTH.md; בנייד נשמרת בדיוק פריסת ה-A4 עם viewport קנוני 821, ללא reflow וללא גלילה אופקית.",
+      "reason": "עמוד 5 מאושר לפי SOURCE_OF_TRUTH.md: אין גלישה אופקית, שורת המושג מחולקת לשני חצאים שווים, כל הגרידים ברוחב מלא והסיום ממורכז; בנייד נשמרת בדיוק פריסת ה-A4 ללא reflow.",
       "files": [
-        {"path": "עמוד-638.html", "gitBlobSha": "586ef9cdd6c3ef27fa3a8114dbaddad0fdc0c142"},
-        {"path": "styles/pages/עמוד-638.css", "gitBlobSha": "0d96f181e7c9a0f389f6c8fd65478182bdb1d129"}
+        {"path": "עמוד-638.html", "gitBlobSha": "69d4d9f213935a8a383e086e01087cd8b86f221f"},
+        {"path": "styles/pages/עמוד-638.css", "gitBlobSha": "8fb6e3abf10a0d5dca963421744a16f6bbdd9c81"}
       ],
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "7c18caac2ad51d45446384e83dc8748bc5443a6c"},
