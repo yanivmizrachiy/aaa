@@ -1,31 +1,330 @@
 @import url("../topics/pythagoras-foundations.css");
 
-/* שש שאלות חישוביות בעמוד: שני טורים, שרטוט ברור ומשטח משבצות מהשכבה המשותפת. */
-.page-647 .full-solution-grid {
+/* עמוד 16 — גשר מהשרטוט למשוואה: מגוון פעולות, ניצול מלא של A4 וללא חזרתיות. */
+.page-647 .question-block {
+  display: grid;
+  grid-template-rows: 42px 176px 128px 112px minmax(252px, 1fr) 72px;
+  gap: 8px;
+  align-content: stretch;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-647 .question-block > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.page-647 .page16-roadmap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 5px 10px;
+  border-block: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+  font-size: 14.5px;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+
+.page-647 .page16-roadmap strong {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 3px;
+  border: 1px solid var(--title-blue);
+  border-radius: 50%;
+  color: var(--title-blue);
+  font-size: 12px;
+}
+
+.page-647 .road-arrow {
+  color: #64748b;
+  font-size: 17px;
+}
+
+.page-647 .page16-section {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 4px;
+  min-height: 0;
+}
+
+.page-647 .q-main {
+  margin: 0;
+  min-height: 0;
+}
+
+.page-647 .q-text {
+  font-size: 14.8px;
+  line-height: 1.25;
+}
+
+.page-647 .page16-visual-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+  min-height: 0;
+}
+
+.page-647 .page16-mini-card {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) 30px;
+  align-items: center;
+  justify-items: center;
+  gap: 2px;
+  padding: 4px 5px 5px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+}
+
+.page-647 .page16-svg,
+.page-647 .role-svg,
+.page-647 .error-svg,
+.page-647 .solve-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+}
+
+.page-647 .page16-svg .edge,
+.page-647 .role-svg .edge,
+.page-647 .error-svg .edge,
+.page-647 .solve-svg .edge {
+  fill: none;
+  stroke: var(--accent-dark);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.page-647 .page16-svg .mark,
+.page-647 .role-svg .mark,
+.page-647 .error-svg .mark,
+.page-647 .solve-svg .mark {
+  fill: none;
+  stroke: var(--accent-dark);
+  stroke-width: 1.15;
+  vector-effect: non-scaling-stroke;
+}
+
+.page-647 .page16-svg .lbl,
+.page-647 .role-svg .lbl,
+.page-647 .error-svg .lbl,
+.page-647 .solve-svg .lbl {
+  fill: var(--text-main);
+  font-family: 'PytTeX', Georgia, 'Times New Roman', serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.page-647 .page16-svg .lbl.var,
+.page-647 .role-svg .lbl.var,
+.page-647 .error-svg .lbl.var,
+.page-647 .solve-svg .lbl.var {
+  font-family: 'PytTeXMathItalic', Georgia, 'Times New Roman', serif;
+  font-style: italic;
+}
+
+.page-647 .equation-write {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.page-647 .page16-equation-fill {
+  width: 118px;
+  height: 26px;
+  border-radius: 6px;
+}
+
+.page-647 .role-switch-grid {
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px 14px;
+  gap: 10px;
+  min-height: 0;
 }
 
-.page-647 .full-solution-card {
-  min-height: 266px;
-  padding: 7px 10px;
+.page-647 .role-card {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 42% minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 5px 9px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+}
+
+.page-647 .role-equation {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+.page-647 .operation-fill {
+  display: inline-flex;
+  width: 28px;
+  height: 27px;
+  border: 1.35px solid #1f2a44;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.page-647 .error-detective-row {
+  display: grid;
+  grid-template-columns: 150px minmax(0, .8fr) minmax(0, 1.25fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 0;
+  padding: 5px 9px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+}
+
+.page-647 .wrong-equation {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: center;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.page-647 .correct-equation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  font-size: 14.5px;
+  white-space: nowrap;
+}
+
+.page-647 .page16-correction-fill {
+  width: 142px;
+  height: 27px;
+  border-radius: 6px;
+}
+
+.page-647 .page16-solve-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  min-height: 0;
+}
+
+.page-647 .page16-solve-card {
+  min-width: 0;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 82px minmax(0, 1fr) 34px;
+  gap: 4px;
+  padding: 6px 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+}
+
+.page-647 .solve-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 84px;
+  align-items: center;
   gap: 5px;
-  justify-content: flex-start;
+  min-width: 0;
+  min-height: 0;
 }
 
-.page-647 .full-solution-card .foundation-svg {
-  height: 116px;
-  max-width: 235px;
-  flex: 0 0 auto;
+.page-647 .solve-kind {
+  align-self: center;
+  padding: 5px 6px;
+  border-block: 1px solid var(--border-light);
+  color: #334155;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.2;
 }
 
-.page-647 .full-solution-space {
-  min-height: 112px;
-  flex: 1 1 auto;
+.page-647 .page16-work-space {
+  width: 100%;
+  min-height: 0;
+  height: 100%;
 }
 
 .page-647 .student-final-answer {
-  flex: 0 0 auto;
+  min-height: 30px;
+  padding-top: 2px;
   border-top: 0;
-  padding-top: 0;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.page-647 .student-final-answer .foundation-fill {
+  height: 26px;
+}
+
+.page-647 .page16-challenge {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 0;
+  padding: 7px 10px;
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+  font-size: 14px;
+}
+
+.page-647 .challenge-text {
+  white-space: nowrap;
+}
+
+.page-647 .challenge-equations {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: center;
+  font-size: 15.5px;
+  white-space: nowrap;
+}
+
+.page-647 .challenge-choices {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.page-647 .challenge-choices .check {
+  width: 15px;
+  height: 15px;
+  margin: 0 3px 0 0;
+}
+
+@media print {
+  .page-647 .page16-roadmap,
+  .page-647 .page16-mini-card,
+  .page-647 .role-card,
+  .page-647 .error-detective-row,
+  .page-647 .page16-solve-card,
+  .page-647 .page16-challenge {
+    break-inside: avoid;
+  }
 }
