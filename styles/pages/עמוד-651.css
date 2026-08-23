@@ -53,6 +53,14 @@
   line-height: 1.18;
 }
 
+/* תיבות השלמה נקיות ויציבות — ללא צל/גרדיאנט שיכולים להיראות כמו תיבת סימון שבורה. */
+.page-651 .foundation-fill {
+  background: #fff;
+  box-shadow: none;
+  border: 1.2px solid #64748b;
+  border-radius: 4px;
+}
+
 .page-651 .page9-cases-task,
 .page-651 .page9-equation-practice,
 .page-651 .page9-error-task {
@@ -163,7 +171,6 @@
 .page-651 .phrase-slot { width: 92px; min-width: 92px; }
 .page-651 .phrase-slot.wide { width: 104px; min-width: 104px; }
 .page-651 .formula-slot { width: 76px; min-width: 76px; }
-.page-651 .correction-slot { width: 118px; min-width: 118px; }
 
 .page-651 .digit-slot,
 .page-651 .two-digit-slot,
@@ -171,10 +178,9 @@
 .page-651 .signed-two-digit-slot,
 .page-651 .word-slot,
 .page-651 .phrase-slot,
-.page-651 .formula-slot,
-.page-651 .correction-slot {
+.page-651 .formula-slot {
   height: 23px;
-  border-radius: 5px;
+  border-radius: 4px;
   flex: 0 0 auto;
 }
 
@@ -289,7 +295,6 @@
   text-align: center;
 }
 
-/* החלק התחתון חייב להיות קריא ושלם בתוך A4 — אין חיתוך של תרגילי השורש או תיקון הטעויות. */
 .page-651 .negative-root-rule {
   display: flex;
   align-items: center;
@@ -338,7 +343,6 @@
 
 .page-651 .page9-error-task {
   min-height: 0;
-  overflow: hidden;
 }
 
 .page-651 .error-grid {
@@ -351,13 +355,13 @@
 
 .page-651 .error-card {
   display: grid;
-  grid-template-rows: 26px 18px minmax(28px, 1fr);
+  grid-template-rows: 27px 17px minmax(26px, 1fr);
   align-items: center;
   justify-items: center;
   gap: 3px;
   min-width: 0;
   min-height: 0;
-  padding: 5px 7px;
+  padding: 5px 8px;
   border: 1px solid var(--border-light);
   border-radius: 7px;
   background: var(--bg-paper);
@@ -366,9 +370,25 @@
   text-align: center;
 }
 
-.page-651 .error-card .correction-slot {
-  align-self: center;
-  height: 24px;
+.page-651 .error-expression {
+  font-size: 14.5px;
+  font-weight: 600;
+}
+
+.page-651 .error-prompt {
+  font-size: 11.5px;
+  color: #475569;
+}
+
+/* בתיקון טעות כותבים על שורה פתוחה — אין תיבת סימון/תיבת מילוי. */
+.page-651 .correction-line {
+  display: block;
+  width: 82%;
+  min-width: 0;
+  height: 25px;
+  border-bottom: 1.4px solid #334155;
+  background: transparent;
+  box-sizing: border-box;
 }
 
 @media print {
