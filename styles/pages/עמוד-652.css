@@ -1,116 +1,290 @@
 @import url("../topics/pythagoras-foundations.css");
 
-.page-652 .long-page-title {
-  font-size: 23px;
-  line-height: 1.2;
+/* עמוד 11 — קירוב פתרונות: חישוב, תחימה, תיקון טעות ובנייה במקום 10 כרטיסים זהים. */
+.page-652 .question-block {
+  display: grid;
+  grid-template-rows: 116px 220px 205px 185px minmax(180px, 1fr);
+  gap: 8px;
+  align-content: stretch;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
 }
 
-.page-652 .question-block {
-  justify-content: flex-start;
-  gap: 7px;
+.page-652 .question-block > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.page-652 > .header-container {
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-652 .long-page-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: calc(100% - 44px);
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.12;
+  white-space: nowrap;
+}
+
+.page-652 > .header-container > .page-number {
+  flex: 0 0 32px;
+  width: 32px;
+  min-width: 32px;
 }
 
 .page-652 .compact-worked-example {
-  padding: 6px 10px;
-  min-height: 0;
+  width: 100%;
+  min-width: 0;
+  min-height: 116px;
+  padding: 8px 12px 9px;
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2px;
+  grid-template-columns: 62px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 10px;
+  box-sizing: border-box;
 }
 
 .page-652 .compact-worked-example .example-label {
-  padding: 0;
+  padding: 2px 0 0;
   font-size: 14.5px;
-  line-height: 1.15;
+  line-height: 1.2;
   text-align: right;
 }
 
 .page-652 .compact-worked-example .solution-stack {
-  gap: 1px;
+  width: 100%;
+  min-width: 0;
+  gap: 2px;
+  justify-items: center;
 }
 
 .page-652 .compact-worked-example .solution-step {
-  min-height: 18px;
-  font-size: 15.5px;
-  line-height: 1.15;
+  width: 100%;
+  min-height: 19px;
+  font-size: 16px;
+  line-height: 1.18;
+  text-align: center;
 }
 
 .page-652 .compact-worked-example .final-answer {
-  margin-top: 1px;
-  padding: 2px 12px;
-  border-width: 1.5px;
-  font-size: 15.5px;
-  line-height: 1.15;
+  margin-top: 2px;
+  padding: 3px 12px;
+  font-size: 16px;
+  line-height: 1.18;
+}
+
+.page-652 .compact-worked-example mjx-container {
+  max-width: 100%;
+  margin-block: 0 !important;
+}
+
+.page-652 .page11-section,
+.page-652 .page11-final-task {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 5px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-652 .page11-bounds-task {
+  grid-template-rows: auto minmax(0, 1fr) 30px;
+}
+
+.page-652 .page11-final-task {
+  grid-template-rows: auto minmax(0, 1fr) 32px;
+}
+
+.page-652 .q-main {
+  margin: 0;
+  min-height: 22px;
 }
 
 .page-652 .q-text {
   font-size: 14.5px;
-  line-height: 1.25;
+  line-height: 1.24;
 }
 
-/* 10 תרגילים: שתי עמודות וחמש שורות — יותר תרגול בלי למחוק מקום סביר לדרך. */
-.page-652 .page-11-practice-grid {
-  flex: 1 1 auto;
-  min-height: 0;
+.page-652 .direct-approx-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(5, minmax(0, 1fr));
-  gap: 6px 8px;
-}
-
-.page-652 .equation-practice-card {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
   min-height: 0;
-  padding: 5px 7px;
-  display: flex;
-  flex-direction: column;
 }
 
-.page-652 .practice-equation {
-  margin-bottom: 2px;
-  font-size: 17px;
-  line-height: 1.15;
+.page-652 .direct-approx-card,
+.page-652 .bounds-card,
+.page-652 .approx-error-card {
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+  box-sizing: border-box;
 }
 
-.page-652 .equation-practice-card .work-lines.short {
-  flex: 1 1 auto;
-  min-height: 38px;
-  margin-top: 1px;
-}
-
-.page-652 .solution-pair-answer {
-  margin-top: 3px;
-  padding: 3px 6px;
+.page-652 .direct-approx-card {
+  padding: 9px 7px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-  direction: ltr;
-  unicode-bidi: isolate;
-  border: 1.25px solid #1f2a44;
-  border-radius: 6px;
-  background: #fff;
-  font-size: 13.5px;
-  line-height: 1.1;
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: center;
+  justify-items: center;
+  gap: 9px;
 }
 
-.page-652 .solution-pair-answer > div {
+.page-652 .equation {
+  font-size: 18px;
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+.page-652 .approx-pair {
+  display: grid;
+  grid-template-columns: auto 56px auto 56px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 0;
+  font-size: 13.6px;
+}
+
+.page-652 .approx-slot,
+.page-652 .build-slot {
+  width: 56px;
+  min-width: 56px;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.page-652 .bounds-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-652 .bounds-card {
+  padding: 8px 7px;
+  display: grid;
+  grid-template-rows: auto 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 4px;
+  background: var(--bg-subtle);
+  font-size: 14.2px;
+  line-height: 1.2;
+}
+
+.page-652 .bounds-card strong {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.page-652 .bounds-check {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3px;
-  white-space: nowrap;
+  min-height: 30px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border-light);
+  font-size: 13.4px;
+  line-height: 1.2;
+  text-align: center;
 }
 
-.page-652 .answer-line {
-  display: inline-block;
-  width: 37px;
-  height: 14px;
-  border-bottom: 1.15px solid #1f2a44;
+.page-652 .approx-error-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-652 .approx-error-card {
+  padding: 8px 9px;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 7px;
+  font-size: 13.5px;
+  line-height: 1.28;
+  text-align: center;
+}
+
+.page-652 .approx-error-card > div:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.page-652 .approx-error-card .response-line {
+  min-width: 82px;
+  height: 19px;
+}
+
+.page-652 .build-approx-card {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 1.15fr;
+  gap: 10px;
+  align-items: stretch;
+  min-width: 0;
+  min-height: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+}
+
+.page-652 .build-part {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  min-width: 0;
+  padding: 5px;
+  font-size: 13.4px;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.page-652 .final-reason {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  min-height: 32px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border-light);
+  font-size: 13.4px;
+  line-height: 1.2;
+}
+
+.page-652 .final-reason .response-line.long {
+  min-width: 230px;
+  height: 20px;
 }
 
 @media print {
   .page-652 .compact-worked-example,
-  .page-652 .equation-practice-card,
-  .page-652 .solution-pair-answer {
+  .page-652 .direct-approx-card,
+  .page-652 .bounds-card,
+  .page-652 .approx-error-card,
+  .page-652 .build-approx-card {
     break-inside: avoid;
   }
 }
