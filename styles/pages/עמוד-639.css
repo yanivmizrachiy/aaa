@@ -1,13 +1,13 @@
 @import url("../topics/pythagoras-foundations.css");
 @import url("../topics/pythagoras-power-practice.css");
 
-/* עמוד 6 — ריבוע של מספר. הדף נשאר צפוף, סימטרי וקל לעריכה. */
+/* עמוד 6 — ריבוע של מספר: חישוב בלבד; אין הוראה לכתוב מכפלה. */
 .page-639 {
   --power-question-gap: 8px;
   --power-note-gap: 5px;
   --power-grid-columns: 4;
   --power-grid-gap: 8px;
-  --power-card-min-height: 74px;
+  --power-card-min-height: 72px;
   --power-card-padding: 7px 6px;
 }
 
@@ -23,8 +23,29 @@
   box-sizing: border-box;
 }
 
-.page-639 .foundation-note {
-  padding: 7px 11px;
+.page-639 .page6-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 38px;
+  padding: 6px 11px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  font-size: 14.7px;
+  line-height: 1.22;
+  white-space: nowrap;
+}
+
+.page-639 .square-parenthetical {
+  unicode-bidi: isolate;
+}
+
+.page-639 .calculator-note {
+  flex: 0 0 auto;
+  font-weight: 600;
+  color: var(--accent-dark);
 }
 
 .page-639 .power-grid {
@@ -33,11 +54,11 @@
 }
 
 .page-639 .power-grid .stacked-answer-card {
-  min-height: 74px;
+  min-height: 72px;
   padding: 7px 6px;
 }
 
-/* החלק התחתון מחולק לשתי פעולות שונות במקום רשת חוזרת + שטח ריק לחישובים. */
+/* התחתית: חישובים מאתגרים + בדיקת הבנה. */
 .page-639 .page6-bottom-zone {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
@@ -64,7 +85,7 @@
   line-height: 1.24;
 }
 
-.page-639 .power-conversion-grid {
+.page-639 .hard-square-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: repeat(3, minmax(0, 1fr));
@@ -73,13 +94,13 @@
   min-height: 0;
 }
 
-.page-639 .conversion-card {
+.page-639 .hard-square-card {
   direction: ltr;
   unicode-bidi: isolate;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 7px;
   min-width: 0;
   min-height: 54px;
   padding: 6px 7px;
@@ -89,7 +110,7 @@
   box-sizing: border-box;
 }
 
-.page-639 .conversion-expression {
+.page-639 .hard-expression {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -99,22 +120,11 @@
   white-space: nowrap;
 }
 
-.page-639 .conversion-fill,
-.page-639 .conversion-fill-wide {
+.page-639 .hard-square-fill {
+  width: 74px;
   height: 26px;
   border-radius: 5px;
-  flex: 0 0 auto;
-}
-
-.page-639 .conversion-fill { width: 40px; }
-.page-639 .conversion-fill-wide { width: 82px; }
-
-.page-639 .conversion-power {
-  font-family: 'PytTeX', Georgia, serif;
-  font-size: 14px;
-  align-self: flex-start;
-  margin-inline-start: -4px;
-  margin-top: 8px;
+  flex: 0 0 74px;
 }
 
 .page-639 .power-error-grid {
@@ -173,9 +183,10 @@
 }
 
 @media print {
+  .page-639 .page6-summary,
   .page-639 .power-grid,
   .page-639 .page6-bottom-zone,
-  .page-639 .conversion-card,
+  .page-639 .hard-square-card,
   .page-639 .power-error-card {
     break-inside: avoid;
   }
