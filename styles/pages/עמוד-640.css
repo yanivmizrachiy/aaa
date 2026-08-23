@@ -1,13 +1,13 @@
 @import url("../topics/pythagoras-foundations.css");
 @import url("../topics/pythagoras-power-practice.css");
 
-/* עמוד 7 — ריבועים ושורשים. כל התוכן נשאר בתוך גבולות ה-A4 ללא חיתוך. */
+/* עמוד 7 — ריבועים ושורשים. פריסה קומפקטית, קריאה וללא גלישה. */
 .page-640 {
   --power-question-gap: 6px;
   --power-grid-columns: 4;
   --power-grid-gap: 6px;
   --power-card-min-height: 66px;
-  --power-card-padding: 6px 6px;
+  --power-card-padding: 6px;
   --power-instruction-font-size: 14.6px;
   --power-instruction-line-height: 1.25;
   --power-sentence-columns: 3;
@@ -15,6 +15,7 @@
 
 .page-640 .question-block {
   gap: 6px;
+  min-width: 0;
   min-height: 0;
 }
 
@@ -46,22 +47,30 @@
   padding: 5px 6px;
 }
 
-/* 12 ההשלמות התחתונות ב-3 עמודות במקום 2: פחות שורות ולכן אין גלישה לתחתית הדף. */
+/* תחתית עמוד 7: 12 משימות קצרות ומאוזנות, 3 עמודות × 4 שורות. */
 .page-640 .power-sentence-grid {
+  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 6px 7px;
+  gap: 6px 8px;
   min-width: 0;
   min-height: 0;
 }
 
 .page-640 .power-sentence-card {
   min-width: 0;
-  min-height: 36px;
-  padding: 4px 7px;
+  min-height: 38px;
+  padding: 5px 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
-  font-size: 13.6px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+  font-size: 13.8px;
   line-height: 1.18;
   box-sizing: border-box;
+  white-space: nowrap;
 }
 
 .page-640 .power-sentence-card > span {
@@ -69,29 +78,49 @@
 }
 
 .page-640 .sentence-fill {
-  width: 54px;
-  min-width: 54px;
+  width: 50px;
+  min-width: 50px;
   height: 24px;
 }
 
 .page-640 .sentence-fill-short {
-  width: 40px;
-  min-width: 40px;
+  width: 38px;
+  min-width: 38px;
 }
 
+/* המשימה הפתוחה אינה שורה ארוכה וצפופה: הוראה קצרה ומעל שני זוגות מאוזנים. */
 .page-640 .sentence-open-card {
   grid-column: 1 / -1;
+  min-height: 58px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto 1fr;
+  column-gap: 18px;
+  row-gap: 4px;
+  padding: 6px 12px;
+  white-space: normal;
+}
+
+.page-640 .sentence-open-card > strong {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 13.6px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.page-640 .open-pair {
+  min-width: 0;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  flex-wrap: nowrap;
-  row-gap: 0;
-  padding: 5px 10px;
-  min-height: 38px;
+  gap: 5px;
   white-space: nowrap;
 }
 
 .page-640 .sentence-open-card .sentence-fill-short {
-  width: 42px;
-  min-width: 42px;
+  width: 40px;
+  min-width: 40px;
 }
 
 @media print {
