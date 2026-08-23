@@ -1,3 +1,10 @@
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+}
+
 .pythagoras-workbook-shell {
   --wb-ink: #0f172a;
   --wb-muted: #64748b;
@@ -7,11 +14,13 @@
   --wb-blue-soft: #eff6ff;
   margin: 0;
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
   min-width: 0;
   min-height: 100vh;
   display: block;
   overflow-x: hidden;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
   background:
     radial-gradient(circle at 50% 0, rgba(59, 130, 246, 0.08), transparent 34rem),
     #eef2f7;
@@ -25,8 +34,8 @@
   top: 0;
   z-index: 1000;
   width: 100%;
-  max-width: 100vw;
-  overflow-x: clip;
+  max-width: 100%;
+  overflow-x: hidden;
   padding-top: env(safe-area-inset-top, 0px);
   background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid rgba(203, 213, 225, 0.86);
@@ -196,8 +205,8 @@
 
 .workbook-pages {
   width: 100%;
-  max-width: 100vw;
-  overflow-x: clip;
+  max-width: 100%;
+  overflow-x: hidden;
   display: grid;
   justify-items: center;
   gap: 26px;
@@ -209,6 +218,7 @@
   position: relative;
   width: fit-content;
   max-width: 100%;
+  min-width: 0;
   direction: ltr;
   scroll-margin-top: var(--pythagoras-toolbar-offset, 82px);
 }
@@ -372,7 +382,8 @@
 
 @media print {
   @page { size: A4; margin: 0; }
-  .pythagoras-workbook-shell { width: auto; max-width: none; overflow-x: visible; background: #fff; }
+  html { width: auto; max-width: none; overflow-x: visible; }
+  .pythagoras-workbook-shell { width: auto; max-width: none; overflow-x: visible; background: #fff; touch-action: auto; }
   .workbook-toolbar { display: none !important; }
   .workbook-pages { display: block; width: auto; max-width: none; overflow: visible; padding: 0; direction: rtl; }
   .workbook-page-wrap {
@@ -386,6 +397,10 @@
   }
   .workbook-page-wrap:last-child { break-after: auto; page-break-after: auto; }
   .workbook-page-wrap > .a4-page {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
     transform-origin: initial !important;
     border: 0 !important;
     box-shadow: none !important;
