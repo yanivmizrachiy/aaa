@@ -202,17 +202,21 @@
   justify-items: center;
   gap: 26px;
   padding: 24px 10px 56px;
+  direction: ltr;
 }
 
 .workbook-page-wrap {
   position: relative;
   width: fit-content;
   max-width: 100%;
+  direction: ltr;
   scroll-margin-top: var(--pythagoras-toolbar-offset, 82px);
 }
 
 .workbook-page-wrap > .a4-page {
   margin: 0 !important;
+  direction: rtl;
+  transform-origin: top left !important;
   border: 1px solid rgba(203, 213, 225, 0.7);
   box-shadow:
     0 18px 44px rgba(15, 23, 42, 0.12),
@@ -347,7 +351,6 @@
 
   .workbook-page-wrap {
     max-width: calc(100vw - 8px);
-    transform-origin: top center;
   }
 
   .workbook-page-wrap > .a4-page {
@@ -371,17 +374,19 @@
   @page { size: A4; margin: 0; }
   .pythagoras-workbook-shell { width: auto; max-width: none; overflow-x: visible; background: #fff; }
   .workbook-toolbar { display: none !important; }
-  .workbook-pages { display: block; width: auto; max-width: none; overflow: visible; padding: 0; }
+  .workbook-pages { display: block; width: auto; max-width: none; overflow: visible; padding: 0; direction: rtl; }
   .workbook-page-wrap {
     width: 210mm;
     max-width: none;
     height: 297mm;
     margin: 0;
+    direction: rtl;
     break-after: page;
     page-break-after: always;
   }
   .workbook-page-wrap:last-child { break-after: auto; page-break-after: auto; }
   .workbook-page-wrap > .a4-page {
+    transform-origin: initial !important;
     border: 0 !important;
     box-shadow: none !important;
   }
