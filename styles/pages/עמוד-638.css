@@ -1,6 +1,6 @@
 @import url("../topics/pythagoras-foundations.css");
 
-/* עמוד 5: הכותרת חייבת להיות שורה דקה בדיוק ברוח עמוד 1 — גם בדף עצמאי וגם בחוברת המאוחדת. */
+/* עמוד 5: כותרת זהה בגובה ובהתנהגות לעמוד 1. אין height קשיח ואין overflow שיכול לחתוך טקסט. */
 .page-638 > .header-container,
 .pythagoras-workbook-shell .workbook-page-wrap > .page-638 > .header-container {
   display: flex !important;
@@ -10,13 +10,10 @@
   gap: 12px !important;
   width: 100% !important;
   min-height: 40px !important;
-  height: 40px !important;
-  flex: 0 0 40px !important;
   margin: 0 0 8px !important;
   padding: 0 0 6px !important;
   border: 0 !important;
   border-bottom: 4px double var(--title-blue) !important;
-  overflow: hidden !important;
 }
 
 .page-638 > .header-container > .page-title,
@@ -42,8 +39,6 @@
   flex: 0 0 32px !important;
   width: 32px !important;
   height: 32px !important;
-  min-width: 32px !important;
-  min-height: 32px !important;
   align-items: center !important;
   justify-content: center !important;
   margin: 0 !important;
@@ -74,12 +69,10 @@
   gap: 5px !important;
   flex-wrap: nowrap !important;
   min-height: 34px !important;
-  height: 34px !important;
   padding: 5px 11px !important;
   font-size: 15.2px !important;
   line-height: 1.2 !important;
   white-space: nowrap !important;
-  overflow: hidden !important;
 }
 
 .page-638 .foundation-fill-inline {
