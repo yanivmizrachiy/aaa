@@ -66,6 +66,27 @@
         {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
         {"path": "pythagoras-workbook.js", "gitBlobSha": "5a4c2059a3da69467145d3489a41f9efb316de71"}
       ]
+    },
+    {
+      "workbookPage": 5,
+      "status": "locked",
+      "reason": "עמוד 5 מאושר לפי SOURCE_OF_TRUTH.md: כותרת 'משפט פיתגורס – מושגים בסיסיים', שורת מושג דקה עם שתי השלמות, 4 משולשים בשורה לזיהוי ניצבים ויתר, 3 תרגילי אורכים מגוונים ומשימת נכון/לא נכון סגורה ללא נימוק פתוח; פריסת A4 נקייה וללא תיבה בתוך תיבה.",
+      "files": [
+        {"path": "עמוד-638.html", "gitBlobSha": "586ef9cdd6c3ef27fa3a8114dbaddad0fdc0c142"},
+        {"path": "styles/pages/עמוד-638.css", "gitBlobSha": "848a8c977dc3a0f634112b4eeb4c52fb140cadfd"}
+      ],
+      "sharedDependencies": [
+        {"path": "index.html", "gitBlobSha": "9d125de52877a7deb24bd796249002adc549a468"},
+        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
+        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
+        {"path": "styles/a4-base.css", "gitBlobSha": "88e6e246dc023b72266e86492f8ab74ea44adcd0"},
+        {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
+        {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
+        {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
+        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "ccfe488aab245c1d704973db3f8614d41c559b33"},
+        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
+        {"path": "pythagoras-workbook.js", "gitBlobSha": "5a4c2059a3da69467145d3489a41f9efb316de71"}
+      ]
     }
   ]
 }
