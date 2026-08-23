@@ -1,7 +1,7 @@
 @import url("../topics/pythagoras-foundations.css");
 @import url("../topics/pythagoras-power-practice.css");
 
-/* עמוד 12 — ארבעה סעיפים רציפים: חזקה, משתנה, שורש, השלמה הפוכה. */
+/* עמוד 12 — ארבע השלמות שונות, פריסה מלאה של 2×2 ללא חזרתיות מיותרת. */
 .page-643 .question-block.square-area-practice {
   justify-content: flex-start;
   gap: 12px;
@@ -9,142 +9,225 @@
 }
 
 .page-643 .page12-intro {
-  margin-bottom: 1px;
+  margin-bottom: 0;
+  flex: 0 0 auto;
 }
 
-.page-643 .square-relation-row {
+.page-643 .square-task-grid {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.page-643 .square-task-card {
   position: relative;
-  flex: 1 1 0;
-  min-height: 126px;
-  border-top: 1px solid var(--border-light);
-  padding: 14px 18px 13px 54px;
-  background: transparent;
+  min-height: 0;
+  border: 1px solid var(--border-light);
+  border-radius: 11px;
+  background: var(--bg-paper);
+  padding: 19px 20px 16px;
   display: flex;
+  flex-direction: column;
   align-items: stretch;
+  justify-content: space-between;
+  gap: 10px;
+  overflow: hidden;
 }
 
-.page-643 .square-relation-row:last-child {
-  border-bottom: 1px solid var(--border-light);
-}
-
-.page-643 .row-number {
+.page-643 .square-task-card::after {
+  content: "";
   position: absolute;
-  top: 15px;
-  left: 14px;
+  inset-inline-end: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--title-blue);
+  opacity: .7;
+}
+
+.page-643 .task-number {
+  position: absolute;
+  top: 12px;
+  inset-inline-end: 13px;
   width: 28px;
   height: 28px;
-  border: 1.4px solid var(--title-blue);
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1.4px solid var(--title-blue);
+  border-radius: 50%;
   color: var(--title-blue);
+  background: var(--bg-paper);
   font-size: 14px;
   font-weight: 700;
-  background: var(--bg-paper);
+  z-index: 1;
 }
 
-.page-643 .row-content {
-  width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 1.5fr) minmax(250px, .8fr);
-  align-items: center;
-  gap: 26px;
-}
-
-.page-643 .square-statement {
-  font-size: 19px;
-  line-height: 1.6;
+.page-643 .task-prompt {
+  padding-inline-end: 38px;
+  font-size: 18px;
+  line-height: 1.5;
   text-align: right;
 }
 
-.page-643 .square-statement strong {
+.page-643 .task-prompt strong {
   font-weight: 700;
 }
 
-.page-643 .square-statement-with-fill {
+.page-643 .numeric-square,
+.page-643 .symbol-square,
+.page-643 .area-square,
+.page-643 .reverse-square {
+  width: 116px;
+  height: 116px;
+  margin: 0 auto;
+  border: 1.6px solid var(--accent-dark);
+  background: var(--bg-subtle);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-643 .numeric-square .side-label,
+.page-643 .symbol-side,
+.page-643 .reverse-side {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 17px;
+}
+
+.page-643 .symbol-area {
+  font-size: 16px;
+  color: #475569;
+}
+
+.page-643 .area-square {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.page-643 .task-work {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.page-643 .work-caption {
+  direction: rtl;
+  font-size: 14px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.page-643 .math-work {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 22px;
+  white-space: nowrap;
+}
+
+.page-643 .final-row,
+.page-643 .single-completion {
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.page-643 .answer-underline {
+  display: inline-block;
+  width: 78px;
+  height: 28px;
+  border-bottom: 1.6px solid var(--text-main);
+}
+
+.page-643 .single-completion {
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.page-643 .compact-expression {
+  width: 135px;
+}
+
+.page-643 .reverse-prompt {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 6px;
 }
 
-.page-643 .square-work-stack {
-  direction: ltr;
-  unicode-bidi: isolate;
+.page-643 .reverse-figure {
   display: grid;
   justify-items: center;
-  gap: 12px;
+  gap: 14px;
+  margin-block: auto 4px;
 }
 
-.page-643 .square-expression {
-  min-height: 38px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  font-size: 23px;
-  line-height: 1.25;
-  white-space: nowrap;
+.page-643 .reverse-question {
+  font-size: 27px;
+  font-weight: 700;
+  color: var(--title-blue);
 }
 
-.page-643 .square-answer-line {
-  min-height: 36px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+.page-643 .reverse-relation {
   direction: rtl;
   unicode-bidi: isolate;
-  font-size: 18px;
-}
-
-.page-643 .answer-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   font-size: 16px;
-  font-weight: 600;
 }
 
-.page-643 .answer-unit {
-  white-space: nowrap;
+.page-643 .relation-arrow {
+  color: var(--title-blue);
+  font-size: 22px;
 }
 
-.page-643 .square-answer-line .foundation-fill {
-  border-radius: 0;
-  border: 0;
-  border-bottom: 1.6px solid var(--text-main);
-  box-shadow: none;
-  background: transparent;
+.page-643 .task-note {
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.35;
+  color: #475569;
 }
 
-.page-643 .square-expression .foundation-fill,
-.page-643 .square-answer-line .foundation-fill,
-.page-643 .square-statement-with-fill .foundation-fill {
-  height: 32px;
-}
-
-.page-643 .symbolic-root-expression mjx-container {
-  min-width: 120px;
+.page-643 .foundation-fill {
+  height: 31px;
 }
 
 @media print {
-  .page-643 .square-relation-row {
+  .page-643 .square-task-card {
     break-inside: avoid;
+  }
+
+  .page-643 .square-task-card::after {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }
 
 @media (max-width: 720px) {
-  body:not(.pythagoras-workbook-shell) .page-643 .square-relation-row {
-    padding-inline: 14px;
-    padding-top: 46px;
-  }
-
-  body:not(.pythagoras-workbook-shell) .page-643 .row-number {
-    top: 11px;
-    left: 14px;
-  }
-
-  body:not(.pythagoras-workbook-shell) .page-643 .row-content {
+  body:not(.pythagoras-workbook-shell) .page-643 .square-task-grid {
     grid-template-columns: 1fr;
-    gap: 9px;
+    grid-template-rows: none;
+  }
+
+  body:not(.pythagoras-workbook-shell) .page-643 .square-task-card {
+    min-height: 300px;
   }
 }
