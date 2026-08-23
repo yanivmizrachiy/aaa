@@ -70,10 +70,10 @@
     {
       "workbookPage": 4,
       "status": "locked",
-      "reason": "עמוד 4 מאושר לפי SOURCE_OF_TRUTH.md: יתר בלבד, סיכום עליון קומפקטי, חמש פעולות שונות, ניצול A4 מלא ותצוגת Exact A4 Preview ללא reflow.",
+      "reason": "עמוד 4 מאושר לפי SOURCE_OF_TRUTH.md: זיהוי היתר מוגבל לשלושה שרטוטים בלבד, ושאר העמוד עובר למיון רמזים, יישום במלבן, הסקה מספרית והכללה סימבולית; Exact A4 Preview נשמר ללא reflow.",
       "files": [
-        {"path": "עמוד-637.html", "gitBlobSha": "7ac8b38f8afedf1f5d8635bf8e86c02b2ed41e42"},
-        {"path": "styles/pages/עמוד-637.css", "gitBlobSha": "e5a71453f7d307d738c3f52ae8b39dd700430ce9"}
+        {"path": "עמוד-637.html", "gitBlobSha": "e33cbbbb13d8ef3bcf2edf59829ed7f7485c28ef"},
+        {"path": "styles/pages/עמוד-637.css", "gitBlobSha": "d5832de52047f2dac6d62992c341909e99ca4730"}
       ],
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
@@ -112,10 +112,10 @@
     {
       "workbookPage": 6,
       "status": "locked",
-      "reason": "עמוד 6 מאושר לפי SOURCE_OF_TRUTH.md: חישוב ריבוע של מספר בלבד; המכפלה מופיעה רק בסוגריים כהמחשה בהסבר, יש תרגילים מאתגרים עם אפשרות להיעזר במחשבון, ואין תרגילי המרה בין חזקה למכפלה; Exact A4 Preview נשמר ללא reflow.",
+      "reason": "עמוד 6 מאושר לפי SOURCE_OF_TRUTH.md: מכפלה מופיעה רק בסוגריים בהסבר; ה-A4 מנוצל באמצעות חישובי יסוד, השוואות, הסקה, חישובים מאתגרים, תיקון טעויות וחקר דפוס של ריבועים שמסתיימים ב-5; אין תרגילי המרה חזקה↔מכפלה ואין reflow.",
       "files": [
-        {"path": "עמוד-639.html", "gitBlobSha": "94f5b0fe0608c33a7c11e3994569592680e5eede"},
-        {"path": "styles/pages/עמוד-639.css", "gitBlobSha": "799b1a95087ab52dc500a35d09792cc88a1cc40a"}
+        {"path": "עמוד-639.html", "gitBlobSha": "31018b84e4d44325f06d2150f03cc46cb95d35b0"},
+        {"path": "styles/pages/עמוד-639.css", "gitBlobSha": "5e7735fc66e4aa3d3106e5982a2b62db4da9064a"}
       ],
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
