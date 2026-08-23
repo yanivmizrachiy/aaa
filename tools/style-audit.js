@@ -24,6 +24,7 @@ const truth = exists('SOURCE_OF_TRUTH.md') ? read('SOURCE_OF_TRUTH.md') : '';
 const manifest = exists('WORKBOOK_MANIFEST.json') ? json('WORKBOOK_MANIFEST.json') : null;
 const profile = exists('STYLE_PROFILE.json') ? json('STYLE_PROFILE.json') : null;
 const locks = exists('meta/approved-page-locks.json') ? json('meta/approved-page-locks.json') : null;
+const activeEnd = 20;
 
 if (truth) {
   const required = [
@@ -40,41 +41,41 @@ if (truth) {
     'תיבה בתוך תיבה',
     'AAA Exact A4 Preview',
   ];
-  for (let p = 1; p <= 13; p += 1) required.push(`## עמוד ${p} —`);
+  for (let p = 1; p <= activeEnd; p += 1) required.push(`## עמוד ${p} —`);
   const missing = required.filter((token) => !truth.includes(token));
   if (missing.length) fail(`SOURCE_OF_TRUTH.md חסר כללים מרכזיים: ${missing.join(' | ')}`);
-  else pass('SOURCE_OF_TRUTH.md כולל חוזה יחיד, כללי סגנון ועמודים 1–13.');
+  else pass(`SOURCE_OF_TRUTH.md כולל חוזה יחיד, כללי סגנון ועמודים 1–${activeEnd}.`);
 }
 
 if (manifest) {
   manifest.authority === 'SOURCE_OF_TRUTH.md' ? pass('המניפסט כפוף למקור האמת היחיד.') : fail('המניפסט אינו כפוף למקור האמת.');
-  (manifest.totalPages === 53 && Array.isArray(manifest.pages) && manifest.pages.length === 53) ? pass('המניפסט נעול ל-53 דפים.') : fail('המניפסט אינו מכיל בדיוק 53 דפים.');
+  (manifest.totalPages === 53 && Array.isArray(manifest.pages) && manifest.pages.length === 53) ? pass('המניפסט נעול ל-53 דפי התוכן הקנוניים.') : fail('המניפסט אינו מכיל בדיוק 53 דפי תוכן קנוניים.');
   const files = (manifest.pages || []).map((p) => p.file);
   files.length === new Set(files).size ? pass('אין קובצי דף כפולים במניפסט.') : fail('נמצאו קובצי דף כפולים במניפסט.');
   for (const page of manifest.pages || []) {
     if (!exists(page.file)) fail(`קובץ פעיל חסר: ${page.file}`);
     if (page.curriculumId !== 'g7.geo.pythagoras') fail(`${page.file}: curriculumId אינו פיתגורס.`);
   }
-  for (const page of (manifest.pages || []).slice(0, 13)) {
+  for (const page of (manifest.pages || []).slice(0, activeEnd)) {
     if (!exists(page.file)) continue;
-    if (!/עמוד\s+\d+\s*\/\s*53/u.test(read(page.file))) fail(`${page.file}: מונה הניווט של אחד מ-13 הדפים הראשונים אינו /53.`);
+    if (!/עמוד\s+\d+\s*\/\s*53/u.test(read(page.file))) fail(`${page.file}: מונה הניווט של אחד מ-${activeEnd} הדפים הראשונים אינו /53.`);
   }
-  if (!errors.some((m) => m.includes('מונה הניווט'))) pass('עמודים 1–13 מציגים /53.');
+  if (!errors.some((m) => m.includes('מונה הניווט'))) pass(`עמודים 1–${activeEnd} מציגים /53.`);
 }
 
 if (profile) {
   profile.authority === 'SOURCE_OF_TRUTH.md' ? pass('STYLE_PROFILE.json כפוף למקור האמת היחיד.') : fail('STYLE_PROFILE.json אינו כפוף למקור האמת.');
-  profile.scope?.expectedWorkbookPages === 53 ? pass('פרופיל הסגנון מכיר 53 דפים.') : fail('STYLE_PROFILE.json אינו נעול ל-53 דפים.');
+  profile.scope?.expectedWorkbookPages === 53 ? pass('פרופיל הסגנון מכיר 53 דפי תוכן.') : fail('STYLE_PROFILE.json אינו נעול ל-53 דפי תוכן.');
   profile.scope?.curriculumId === 'g7.geo.pythagoras' ? pass('פרופיל הסגנון מוגבל לפיתגורס.') : fail('STYLE_PROFILE.json אינו מוגבל לפיתגורס.');
   const window = profile.learningProtocol?.activeAuditWindow;
-  (window?.startPage === 1 && window?.endPage === 13) ? pass('פרופיל הסגנון מפעיל ביקורת 1–13.') : fail('חלון הביקורת בפרופיל אינו 1–13.');
+  (window?.startPage === 1 && window?.endPage === activeEnd) ? pass(`פרופיל הסגנון מפעיל ביקורת 1–${activeEnd}.`) : fail(`חלון הביקורת בפרופיל אינו 1–${activeEnd}.`);
 }
 
 if (locks) {
   locks.authority === 'SOURCE_OF_TRUTH.md' ? pass('קובץ הנעילות הוא נגזרת של מקור האמת.') : fail('קובץ הנעילות אינו כפוף למקור האמת.');
   const lockedPages = new Set((locks.pages || []).filter((p) => p.status === 'locked').map((p) => p.workbookPage));
-  for (const page of [1,2,3]) if (!lockedPages.has(page)) fail(`עמוד ${page} אינו נעול למרות שאושר.`);
-  if ([1,2,3].every((p) => lockedPages.has(p))) pass('עמודים 1–3 מוגנים בנעילות נגזרות.');
+  for (let page = 1; page <= activeEnd; page += 1) if (!lockedPages.has(page)) fail(`עמוד ${page} אינו נעול למרות שהוא בחומת 1–${activeEnd}.`);
+  if (Array.from({length: activeEnd}, (_, i) => i + 1).every((p) => lockedPages.has(p))) pass(`עמודים 1–${activeEnd} מוגנים בנעילות נגזרות.`);
 }
 
 if (exists('styles/a4-base.css')) {
@@ -87,8 +88,8 @@ if (exists('styles/topics/pythagoras-inline-units.css')) {
 }
 
 if (manifest) {
-  const legacyCounters = (manifest.pages || []).slice(13).filter((page) => exists(page.file) && !/עמוד\s+\d+\s*\/\s*53/u.test(read(page.file)));
-  if (legacyCounters.length) warn(`${legacyCounters.length} דפים מאוחרים עדיין כוללים מונה standalone ישן; זהו debt מחוץ לחלון 1–13.`);
+  const legacyCounters = (manifest.pages || []).slice(activeEnd).filter((page) => exists(page.file) && !/עמוד\s+\d+\s*\/\s*53/u.test(read(page.file)));
+  if (legacyCounters.length) warn(`${legacyCounters.length} דפים מאוחרים עדיין כוללים מונה standalone ישן; זהו debt מחוץ לחלון 1–${activeEnd}.`);
 }
 
 console.log('\n=== Pythagoras Style Audit ===');
