@@ -26,15 +26,20 @@ const manifest = readJson('WORKBOOK_MANIFEST.json');
 const locks = readJson('meta/approved-page-locks.json');
 const profile = readJson('STYLE_PROFILE.json');
 
-/* סמכות יחידה + חוזה מובייל קנוני. */
+/* סמכות יחידה + חוזה תצוגה קנוני. */
 if (!exists('SOURCE_OF_TRUTH.md')) {
   fail('חסר SOURCE_OF_TRUTH.md.');
 } else {
   const truth = read('SOURCE_OF_TRUTH.md');
   if (truth.includes('הסמכות היחידה') && truth.includes('WORKBOOK_MANIFEST.json')) pass('מקור האמת והיררכיית הסמכות מוגדרים.');
   else fail('SOURCE_OF_TRUTH.md אינו מגדיר היררכיית סמכות ברורה.');
-  if (truth.includes('AAA Exact A4 Preview') && truth.includes('aaa-exact-a4-preview')) pass('מקור האמת מגדיר Exact A4 Preview כסטנדרט המובייל.');
-  else fail('SOURCE_OF_TRUTH.md חייב להגדיר AAA Exact A4 Preview ואת aaa-exact-a4-preview.');
+
+  if (truth.includes('AAA Exact A4 Preview') && truth.includes('width=821')) pass('מקור האמת מגדיר Exact A4 Preview עם viewport קנוני 821.');
+  else fail('SOURCE_OF_TRUTH.md חייב להגדיר AAA Exact A4 Preview ואת viewport width=821.');
+
+  if (truth.includes('https://aaa-pythagoras.vercel.app/') && truth.includes('בסיום כל תיקון')) pass('מקור האמת מחייב שליחת קישור Production אחרי כל תיקון.');
+  else fail('SOURCE_OF_TRUTH.md חייב לחייב שליחת קישור Production אחרי כל תיקון.');
+
   if (/mobile-first קריא ולא A4 מוקטן|המובייל המאושר הוא responsive reflow/u.test(truth)) fail('נשאר במקור האמת ניסוח מובייל ישן שסותר Exact A4 Preview.');
 }
 
@@ -48,8 +53,19 @@ if (profile?.mobileReference?.contentReflow === 'forbidden' && profile?.mobileRe
 } else {
   fail('STYLE_PROFILE.json חייב לאסור reflow ולשמור A4-identical.');
 }
+if (profile?.mobileReference?.layoutViewportWidth === 821 && profile?.mobileReference?.viewportMeta === 'width=821, viewport-fit=cover') {
+  pass('פרופיל המובייל שומר viewport קנוני 821.');
+} else {
+  fail('STYLE_PROFILE.json חייב לשמור viewport קנוני width=821.');
+}
+if (profile?.completionLinkPolicy?.sendImmediatelyAfterEveryFix === true
+  && profile?.completionLinkPolicy?.primaryUrl === 'https://aaa-pythagoras.vercel.app/') {
+  pass('פרופיל העבודה מחייב קישור Production אחרי כל תיקון.');
+} else {
+  fail('STYLE_PROFILE.json חייב לשמור את כלל הקישור אחרי תיקון.');
+}
 
-/* entrypoint יחיד, מטמון, ו-bootstrap מוקדם למצב תצוגה. */
+/* entrypoint יחיד, viewport, מטמון וגרסאות. */
 if (!exists('index.html')) {
   fail('חסר index.html.');
 } else {
@@ -57,18 +73,18 @@ if (!exists('index.html')) {
   if (index.includes('pythagoras-workbook.js') && index.includes('styles/workbook-canonical-locks.css')) pass('index.html טוען את החוברת ואת שכבת הנעילות.');
   else fail('index.html אינו טוען את מנגנון החוברת המלא.');
 
+  const viewportOk = /<meta\s+name=["']viewport["']\s+content=["']width=821, viewport-fit=cover["']\s*\/?>/iu.test(index);
+  if (viewportOk) pass('index.html משתמש ב-viewport הקנוני width=821.');
+  else fail('index.html חייב להשתמש בדיוק ב-viewport width=821, viewport-fit=cover.');
+
   const hasNoCacheMeta = /Cache-Control[^>]*no-cache[^>]*no-store/is.test(index)
     && /Pragma[^>]*no-cache/is.test(index)
     && /Expires[^>]*0/is.test(index);
   if (hasNoCacheMeta) pass('index.html כולל no-cache/no-store.');
   else fail('index.html חייב לכלול no-cache/no-store/Pragma/Expires.');
 
-  const bootstrapOk = index.includes("classList.toggle('mobile-print-preview'")
-    && index.includes("classList.remove('mobile-reader')")
-    && index.includes('window.visualViewport?.width')
-    && index.includes('width <= 720');
-  if (bootstrapOk) pass('index.html מפעיל מוקדם mobile-print-preview ומנטרל mobile-reader.');
-  else fail('index.html חייב להפעיל mobile-print-preview מוקדם לפי visual viewport ולנטרל mobile-reader.');
+  if (!index.includes("classList.toggle('mobile-reader'") && !index.includes('.mobile-reader')) pass('index.html אינו מפעיל mobile-reader.');
+  else fail('index.html אסור להפעיל mobile-reader.');
 
   const coreAssetPatterns = [
     /styles\/a4-base\.css\?v=([^"']+)/u,
@@ -84,7 +100,7 @@ if (!exists('index.html')) {
 if (exists('pythagoras-workbook.html')) fail('אסור entrypoint כפול: pythagoras-workbook.html.');
 else pass('אין entrypoint HTML כפול.');
 
-/* runtime יחיד + מנגנון Exact A4 Preview. */
+/* runtime יחיד + התאמת קנה מידה חיצונית בלבד. */
 if (!exists('pythagoras-workbook.js')) {
   fail('חסר pythagoras-workbook.js.');
 } else {
@@ -99,29 +115,40 @@ if (!exists('pythagoras-workbook.js')) {
   if (noStoreCount >= 2) pass('HTML והמניפסט נטענים עם cache:no-store.');
   else fail('טעינות runtime אינן משתמשות כולן ב-cache:no-store.');
 
-  const exactPreviewTokens = [
-    "classList.toggle('mobile-print-preview'",
-    "classList.remove('mobile-reader')",
-    'const available = Math.max(1, wrapper.getBoundingClientRect().width)',
+  const fitTokens = [
+    "CSS.supports?.('zoom', '0.5')",
+    'const parentWidth = Math.max(1, wrapper.parentElement?.getBoundingClientRect().width || viewWidth)',
+    'const available = Math.max(1, Math.min(parentWidth - 12, viewWidth - 12))',
     'const canonicalWidth = page.offsetWidth',
     'const canonicalHeight = page.offsetHeight',
     'const scale = Math.min(1, available / canonicalWidth)',
-    'const left = Math.max(0, (available - scaledWidth) / 2)',
-    "page.style.setProperty('transform-origin', 'top left', 'important')",
+    "wrapper.style.marginInline = 'auto'",
+    "wrapper.style.maxWidth = 'calc(100vw - 12px)'",
+    'page.style.zoom = String(scale)',
     'page.style.transform = `scale(${scale})`',
   ];
-  const missing = exactPreviewTokens.filter((token) => !loader.includes(token));
-  if (!missing.length) pass('pythagoras-workbook.js מקיים Exact A4 Preview ממורכז ללא reflow.');
+  const missing = fitTokens.filter((token) => !loader.includes(token));
+  if (!missing.length) pass('pythagoras-workbook.js שומר התאמת קנה מידה חיצונית ואחידה בלבד.');
   else fail(`pythagoras-workbook.js חסר רכיבי Exact A4 Preview: ${missing.join(' | ')}`);
+
+  if (!loader.includes("classList.toggle('mobile-reader'")) pass('ה-loader אינו מפעיל mobile-reader.');
+  else fail('ה-loader אסור להפעיל mobile-reader.');
 }
 
-/* מעטפת החוברת מונעת גלילה אופקית. */
+/* מעטפת החוברת מונעת גלילה אופקית ואין בה CSS reflow ישן. */
 if (!exists('styles/pythagoras-workbook.css')) {
   fail('חסר styles/pythagoras-workbook.css.');
 } else {
   const css = read('styles/pythagoras-workbook.css');
   if (css.includes('overflow-x: hidden') && css.includes('touch-action: pan-y pinch-zoom')) pass('מעטפת החוברת מונעת גלילה אופקית ומשאירה pinch-zoom.');
   else fail('מעטפת החוברת חייבת למנוע overflow אופקי ולאפשר pinch-zoom.');
+  if (!css.includes('.mobile-reader')) pass('CSS החוברת נקי מ-mobile-reader reflow.');
+  else fail('styles/pythagoras-workbook.css עדיין מכיל mobile-reader reflow.');
+}
+if (exists('styles/workbook-canonical-locks.css')) {
+  const locksCss = read('styles/workbook-canonical-locks.css');
+  if (!locksCss.includes('.mobile-reader')) pass('שכבת הנעילות נקייה מ-mobile-reader reflow.');
+  else fail('styles/workbook-canonical-locks.css עדיין מכיל mobile-reader reflow.');
 }
 
 /* פרסום: no-store לכל נכסי העבודה. */
