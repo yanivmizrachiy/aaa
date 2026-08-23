@@ -89,9 +89,9 @@ if (['page11-top-band','page11-example-steps','top-guided-practice','direct-solu
 else fail('עמוד 11: חזר מבנה אופקי/מבזבז מקום.');
 
 const page12Required = ['answer-fit-one-digit','answer-fit-two-digit','answer-fit-symbol-square','מצלע לשטח','משטח לצלע','צלע של ריבוע היא באורך','שטח ריבוע הוא','איזה שטח מתאים לריבוע הזה?','אם שטח הריבוע הוא'];
-const page12Forbidden = ['<strong>נתון:</strong>','<strong>המטרה:</strong>','שלב 1','שלב 2','מה כותבים בתיבה?'];
-if (page12Required.every((t) => p(12).includes(t)) && page12Forbidden.every((t) => !p(12).includes(t)) && !c(12).includes('pythagoras-power-practice.css')) pass('עמוד 12: שפה טבעית של דף עבודה, 2×2 ורוחבי תשובה חכמים נשמרים.');
-else fail('עמוד 12: חזר ניסוח דמו, או שהפריסה/רוחבי התשובה נפגעו.');
+const page12Forbidden = ['<strong>נתון:</strong>','<strong>המטרה:</strong>','שלב 1','שלב 2','מה כותבים בתיבה?','task-number','task-1','task-2','task-3','task-4'];
+if (page12Required.every((t) => p(12).includes(t)) && page12Forbidden.every((t) => !p(12).includes(t)) && !c(12).includes('.task-number') && !c(12).includes('pythagoras-power-practice.css')) pass('עמוד 12: שפה טבעית, ללא מספור סעיפים, 2×2 ורוחבי תשובה חכמים נשמרים.');
+else fail('עמוד 12: חזר ניסוח דמו/מספור סעיפים, או שהפריסה/רוחבי התשובה נפגעו.');
 
 if (['page13-figure-task','page13-relation-task','page13-reverse-task','page13-generalize-task','result-below-card'].every((t) => p(13).includes(t))) pass('עמוד 13: רצף הגילוי והתוצאות מתחת נשמרים.');
 else fail('עמוד 13: רצף הגילוי נפגע.');
