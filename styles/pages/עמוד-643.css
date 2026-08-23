@@ -147,20 +147,27 @@
   line-height: 1.35;
 }
 
+/* שטח תשובה מותאם למה שהתלמיד אמור לכתוב, לא רוחב קבוע שרירותי. */
+.page-643 .answer-fit {
+  display: inline-block;
+  flex: 0 0 auto;
+  height: 31px;
+}
+
+.page-643 .answer-fit-one-digit { width: 34px; }
+.page-643 .answer-fit-two-digit { width: 46px; }
+.page-643 .answer-fit-symbol-square { width: 50px; }
+
 .page-643 .answer-underline {
   display: inline-block;
-  width: 78px;
   height: 28px;
   border-bottom: 1.6px solid var(--text-main);
+  flex: 0 0 auto;
 }
 
 .page-643 .single-completion {
   flex-wrap: wrap;
   margin-top: 12px;
-}
-
-.page-643 .compact-expression {
-  width: 135px;
 }
 
 .page-643 .reverse-prompt {
@@ -203,10 +210,6 @@
   font-size: 14px;
   line-height: 1.35;
   color: #475569;
-}
-
-.page-643 .foundation-fill {
-  height: 31px;
 }
 
 @media print {
