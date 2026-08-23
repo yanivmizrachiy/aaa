@@ -81,11 +81,14 @@ const p2 = read('עמוד-635.html');
 const p2css = read('styles/pages/עמוד-635.css');
 const p3 = read('עמוד-636.html');
 const p3css = read('styles/pages/עמוד-636.css');
+const p5 = read('עמוד-638.html');
+const p5css = read('styles/pages/עמוד-638.css');
 
 requireTokens('SOURCE_OF_TRUTH', truth, [
   '## עמוד 1 — מושגים בסיסיים',
   '## עמוד 2 — משולש ישר־זווית',
   '## עמוד 3 — הניצבים',
+  '## עמוד 5 — מושגים בסיסיים',
   'index.html` הוא **נקודת הכניסה היחידה**',
   'cache-busting אוטומטי',
   'תיבה בתוך תיבה',
@@ -207,6 +210,41 @@ requireTokens('CSS עמוד 3', p3css, [
   'grid-template-columns: repeat(3, minmax(0, 1fr));',
   '.page-636 .partner-leg-task',
   '.page-636 .quick-leg-svg .given-leg',
+  'shape-rendering: geometricPrecision;',
+]);
+
+/* עמוד 5 */
+requireTokens('עמוד 5', p5, [
+  '<h1 class="page-title">משפט פיתגורס – מושגים בסיסיים</h1>',
+  'page5-concept-line',
+  'השלימו: במשולש ישר־זווית שתי הצלעות היוצרות את הזווית הישרה נקראות',
+  'בכל משולש כתבו את שמות שני הניצבים ואת שם היתר.',
+  'היעזרו בכלל: במשולש ישר־זווית היתר הוא הצלע הארוכה ביותר.',
+  'דנה טוענת: „היתר יכול להיות שווה באורכו לאחד הניצבים.”',
+  'השלימו: היתר תמיד',
+]);
+forbidTokens('עמוד 5', p5, [
+  'התחילו תמיד מאיתור הזווית הישרה.',
+  'האם היא צודקת? נמקו.',
+  'reason-space',
+]);
+
+if (count(p5, 'triangle-card"') === 4) pass('עמוד 5: ארבעה כרטיסי משולשים בשורה הראשונה.');
+else fail(`עמוד 5: נדרשים 4 כרטיסי משולשים, נמצאו ${count(p5, 'triangle-card"')}.`);
+if (count(p5, 'class="length-card"') === 3) pass('עמוד 5: שלושה כרטיסי אורכים מגוונים.');
+else fail(`עמוד 5: נדרשים 3 כרטיסי אורכים, נמצאו ${count(p5, 'class="length-card"')}.`);
+if (count(p5, 'class="claim-option"') === 2) pass('עמוד 5: שתי אפשרויות סגורות נכון/לא נכון.');
+else fail('עמוד 5: בדיקת הטענה חייבת לכלול בדיוק נכון/לא נכון.');
+
+const page5Triangles = edgePathDsBetween(p5, 'page5-triangle-grid', 'length-cards').map(parseTrianglePath).filter(Boolean);
+if (page5Triangles.length === 4 && page5Triangles.every(isRightTriangle)) pass('עמוד 5: כל ארבעת המשולשים ישרי־זווית מדויקים מתמטית.');
+else fail(`עמוד 5: משולשי הזיהוי אינם כולם ישרי־זווית מדויקים (${page5Triangles.filter(isRightTriangle).length}/${page5Triangles.length}).`);
+
+requireTokens('CSS עמוד 5', p5css, [
+  '.page-638 .foundation-note-one-line',
+  'grid-template-columns: repeat(4, minmax(0, 1fr));',
+  '.page-638 .length-cards',
+  '.page-638 .claim-check',
   'shape-rendering: geometricPrecision;',
 ]);
 
