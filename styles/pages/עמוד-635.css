@@ -320,14 +320,6 @@
   line-height: 1.25;
 }
 
-/* גם במסך צר עמוד 2 אינו משנה מבנה פנימי; הוא נשאר A4 ומוקטן כיחידה אחת. */
-@media (max-width: 760px) {
-  .page-635 .foundation-note-one-line {
-    font-size: 14.4px;
-    gap: 4px;
-  }
-}
-
 @media print {
   .page-635 .foundation-note-one-line,
   .page-635 .mc-triangle-section,
