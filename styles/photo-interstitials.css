@@ -1,0 +1,87 @@
+/* דפי תמונה מלאים — A4 לרוחב. SOURCE_OF_TRUTH.md הוא הסמכות היחידה. */
+.photo-interstitial-page.a4-page {
+  width: 297mm;
+  height: 210mm;
+  padding: 0;
+  margin: 30px;
+  display: block;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 10px rgba(0,0,0,.15);
+  page-break-after: always;
+  position: relative;
+}
+
+.photo-interstitial-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.workbook-photo-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
+  min-width: 0;
+  overflow: visible;
+  direction: ltr;
+  scroll-margin-top: var(--pythagoras-toolbar-offset, 82px);
+}
+
+.workbook-photo-wrap > .photo-interstitial-page {
+  margin: 0 !important;
+  transform-origin: top center !important;
+  border: 1px solid rgba(203, 213, 225, .7);
+  box-shadow: 0 18px 44px rgba(15,23,42,.12), 0 2px 8px rgba(15,23,42,.06);
+}
+
+.photo-standalone-body {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: #e0e0e0;
+}
+
+@page photo-landscape {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@media print {
+  .workbook-photo-wrap,
+  .photo-interstitial-page {
+    page: photo-landscape;
+  }
+
+  .workbook-page-wrap.workbook-photo-wrap {
+    width: 297mm;
+    max-width: none;
+    height: 210mm;
+    margin: 0;
+    direction: ltr;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .workbook-photo-wrap > .photo-interstitial-page,
+  .photo-interstitial-page.a4-page {
+    width: 297mm !important;
+    height: 210mm !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    transform: none !important;
+    zoom: 1 !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    background: #000 !important;
+  }
+}
