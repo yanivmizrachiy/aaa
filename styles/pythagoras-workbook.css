@@ -210,15 +210,16 @@ html {
   display: grid;
   justify-items: center;
   gap: 26px;
-  padding: 24px 10px 56px;
+  padding: 24px 6px 56px;
   direction: ltr;
 }
 
 .workbook-page-wrap {
   position: relative;
-  width: fit-content;
-  max-width: 100%;
+  width: 100%;
+  max-width: 900px;
   min-width: 0;
+  overflow: visible;
   direction: ltr;
   scroll-margin-top: var(--pythagoras-toolbar-offset, 82px);
 }
@@ -226,7 +227,7 @@ html {
 .workbook-page-wrap > .a4-page {
   margin: 0 !important;
   direction: rtl;
-  transform-origin: top left !important;
+  transform-origin: top center !important;
   border: 1px solid rgba(203, 213, 225, 0.7);
   box-shadow:
     0 18px 44px rgba(15, 23, 42, 0.12),
@@ -235,9 +236,9 @@ html {
 
 /*
  * Canonical A4 mode:
- * The combined workbook scales each approved A4 page as one unit.
- * Viewport-responsive rules from a standalone page must not reflow the page
- * merely because the outer browser viewport is narrow.
+ * The combined workbook scales each approved A4 page as one centered unit.
+ * On narrow screens both physical sides of the page remain visible and the
+ * user scrolls vertically only.
  */
 .pythagoras-workbook-shell .page-634 .foundation-note-one-line {
   flex-wrap: nowrap;
@@ -356,11 +357,12 @@ html {
 
   .workbook-pages {
     gap: 16px;
-    padding: 12px 4px 40px;
+    padding: 12px 6px 40px;
   }
 
   .workbook-page-wrap {
-    max-width: calc(100vw - 8px);
+    width: calc(100vw - 12px);
+    max-width: calc(100vw - 12px);
   }
 
   .workbook-page-wrap > .a4-page {
