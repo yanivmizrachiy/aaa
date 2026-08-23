@@ -1,5 +1,4 @@
 @import url("../topics/pythagoras-foundations.css");
-@import url("../topics/pythagoras-power-practice.css");
 
 /* עמוד 12 — ארבע השלמות שונות, פריסה מלאה של 2×2 ללא חזרתיות מיותרת. */
 .page-643 .question-block.square-area-practice {
@@ -218,16 +217,5 @@
   .page-643 .square-task-card::after {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
-  }
-}
-
-@media (max-width: 720px) {
-  body:not(.pythagoras-workbook-shell) .page-643 .square-task-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-  }
-
-  body:not(.pythagoras-workbook-shell) .page-643 .square-task-card {
-    min-height: 300px;
   }
 }
