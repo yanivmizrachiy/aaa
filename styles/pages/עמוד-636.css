@@ -64,7 +64,6 @@
 }
 
 .page-636 .leg-svg,
-.page-636 .vertex-svg,
 .page-636 .quick-leg-svg,
 .page-636 .mcq-triangle {
   width: 100%;
@@ -75,7 +74,6 @@
 }
 
 .page-636 .leg-svg .edge,
-.page-636 .vertex-svg .edge,
 .page-636 .quick-leg-svg .edge,
 .page-636 .mcq-triangle .edge {
   fill: none;
@@ -87,7 +85,6 @@
 }
 
 .page-636 .leg-svg .mark,
-.page-636 .vertex-svg .mark,
 .page-636 .quick-leg-svg .mark,
 .page-636 .mcq-triangle .mark {
   fill: none;
@@ -109,20 +106,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  align-content: center;
-  flex-wrap: wrap;
-  gap: 3px 4px;
   text-align: center;
   font-size: 12.5px;
-  line-height: 1.28;
-}
-
-.page-636 .leg-answer-stack,
-.page-636 .equal-legs-answer,
-.page-636 .action-answer {
-  flex-direction: column;
-  flex-wrap: nowrap;
-  gap: 4px;
+  line-height: 1.34;
+  padding-inline: 2px;
 }
 
 .page-636 .answer-line,
@@ -137,7 +124,7 @@
 .page-636 .answer-line { width: 43px; }
 .page-636 .short-answer { width: 46px; }
 
-/* מידע נתון -> סימון קודקודים. */
+/* בנייה: התלמיד מצייר לפי יחס האורכים בין שני ניצבים נתונים. */
 .page-636 .vertex-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -145,13 +132,13 @@
   min-height: 0;
 }
 
-.page-636 .vertex-task {
+.page-636 .construction-task {
   min-height: 0;
   height: 100%;
   display: grid;
-  grid-template-rows: 29px minmax(0, 1fr) 27px;
-  gap: 2px;
-  padding: 5px 10px 6px;
+  grid-template-rows: 40px minmax(0, 1fr) 27px;
+  gap: 5px;
+  padding: 7px 10px 6px;
   border-top: 1px solid #dbe4ef;
   border-bottom: 1px solid #dbe4ef;
   background: transparent;
@@ -163,15 +150,16 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
-  font-size: 14.5px;
+  font-size: 13.9px;
+  line-height: 1.35;
+  text-align: center;
 }
 
-.page-636 .vertex-box {
-  fill: #fff;
-  stroke: #94a3b8;
-  stroke-width: 1.2;
-  stroke-dasharray: 3 2;
-  vector-effect: non-scaling-stroke;
+.page-636 .build-canvas {
+  min-height: 0;
+  border: 1.2px dashed #94a3b8;
+  border-radius: 10px;
+  background: #fff;
 }
 
 .page-636 .right-vertex-line {
@@ -281,7 +269,7 @@
 
 @media print {
   .page-636 .leg-card,
-  .page-636 .vertex-task,
+  .page-636 .construction-task,
   .page-636 .quick-fill-section,
   .page-636 .legs-mcq { break-inside: avoid; }
 }
