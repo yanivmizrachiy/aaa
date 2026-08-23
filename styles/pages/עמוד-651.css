@@ -1,60 +1,384 @@
 @import url("../topics/pythagoras-foundations.css");
 
 /* עמוד 9 — פעולת שורש מול משוואה ריבועית מהצורה x²=a, עם למידה עצמית דרך הצבה. */
-.page-651 .question-block { display:grid; grid-template-rows:225px 220px 250px 168px minmax(100px,1fr); gap:7px; align-content:stretch; width:100%; min-width:0; min-height:0; }
-.page-651 .question-block > * { width:100%; min-width:0; max-width:100%; min-height:0; margin:0; box-sizing:border-box; }
-.page-651 > .header-container { min-width:0; align-items:center; gap:10px; }
-.page-651 > .header-container > .page-title { flex:1 1 auto; min-width:0; max-width:calc(100% - 44px); margin:0; font-size:20px; line-height:1.1; white-space:nowrap; text-align:right; }
-.page-651 > .header-container > .page-number { flex:0 0 32px; width:32px; min-width:32px; }
-.page-651 .q-main { margin:0; min-height:21px; }
-.page-651 .q-text { font-size:13.4px; line-height:1.18; }
-.page-651 .page9-cases-task,.page-651 .page9-equation-practice,.page-651 .page9-error-task { display:grid; grid-template-rows:auto minmax(0,1fr); gap:4px; min-width:0; min-height:0; }
-.page-651 .page9-root-practice { display:grid; grid-template-rows:auto 32px minmax(0,1fr); gap:4px; min-width:0; min-height:0; }
+.page-651 .question-block {
+  display: grid;
+  grid-template-rows: 205px 205px 235px 155px minmax(112px, 1fr);
+  gap: 7px;
+  align-content: stretch;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
 
-.page-651 .page9-contrast { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:122px minmax(0,1fr); gap:7px 10px; min-width:0; min-height:0; }
-.page-651 .contrast-card { display:grid; grid-template-rows:24px auto 1fr auto; align-items:center; gap:3px; min-width:0; min-height:0; padding:6px 9px; border:1px solid var(--border-light); border-radius:8px; background:var(--bg-paper); }
-.page-651 .contrast-title { font-size:14.2px; font-weight:700; text-align:center; color:#1f2a44; }
-.page-651 .guided-line { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:4px; min-width:0; font-size:12.7px; line-height:1.16; text-align:center; }
-.page-651 .contrast-math,.page-651 .solution-values { display:flex; align-items:center; justify-content:center; gap:5px; }
-.page-651 .contrast-math { flex-direction:column; font-size:17px; }
-.page-651 .solution-values { font-size:14.5px; }
-.page-651 .solution-meaning-strip { grid-column:1/-1; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; min-width:0; min-height:0; }
-.page-651 .meaning-line { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:4px; min-width:0; min-height:0; padding:6px 8px; border-block:1px solid var(--border-light); background:var(--bg-subtle); font-size:12.4px; line-height:1.18; text-align:center; }
+.page-651 .question-block > * {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-.page-651 .digit-slot { width:32px; min-width:32px; }
-.page-651 .two-digit-slot { width:42px; min-width:42px; }
-.page-651 .signed-slot { width:42px; min-width:42px; }
-.page-651 .signed-two-digit-slot { width:52px; min-width:52px; }
-.page-651 .word-slot { width:72px; min-width:72px; }
-.page-651 .word-slot.short { width:58px; min-width:58px; }
-.page-651 .phrase-slot { width:92px; min-width:92px; }
-.page-651 .phrase-slot.wide { width:104px; min-width:104px; }
-.page-651 .formula-slot { width:76px; min-width:76px; }
-.page-651 .correction-slot { width:108px; min-width:108px; }
-.page-651 .digit-slot,.page-651 .two-digit-slot,.page-651 .signed-slot,.page-651 .signed-two-digit-slot,.page-651 .word-slot,.page-651 .phrase-slot,.page-651 .formula-slot,.page-651 .correction-slot { height:23px; border-radius:5px; flex:0 0 auto; }
+.page-651 > .header-container {
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+}
 
-.page-651 .case-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; min-width:0; min-height:0; }
-.page-651 .case-card { display:grid; grid-template-rows:27px auto minmax(0,1fr); align-items:center; justify-items:center; gap:4px; min-width:0; min-height:0; padding:7px 8px; border:1px solid var(--border-light); border-radius:8px; background:var(--bg-subtle); font-size:12.7px; line-height:1.18; text-align:center; }
-.page-651 .case-heading { font-size:16.5px; font-weight:700; }
-.page-651 .case-formulas { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:4px; min-width:0; }
-.page-651 .case-explanation { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:4px; min-width:0; font-size:12.1px; line-height:1.2; }
+.page-651 > .header-container > .page-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: calc(100% - 44px);
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-align: right;
+}
 
-.page-651 .equation-case-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); gap:7px 9px; min-width:0; min-height:0; }
-.page-651 .equation-case-card { display:grid; align-content:center; justify-items:center; gap:2px; min-width:0; min-height:0; padding:5px 7px; border:1px solid var(--border-light); border-radius:8px; background:var(--bg-paper); }
-.page-651 .practice-equation { margin-bottom:1px; font-size:16px; font-weight:700; }
-.page-651 .solution-row { display:grid; grid-template-columns:31px 17px minmax(70px,1fr); align-items:center; width:min(205px,100%); min-height:20px; column-gap:4px; font-size:13.2px; }
-.page-651 .single-result-line { display:flex; align-items:center; justify-content:center; gap:6px; min-height:30px; font-size:15px; }
-.page-651 .no-solution-line { display:flex; align-items:center; justify-content:center; min-height:33px; }
-.page-651 .result-caption { font-size:11.8px; line-height:1.15; color:#475569; text-align:center; }
+.page-651 > .header-container > .page-number {
+  flex: 0 0 32px;
+  width: 32px;
+  min-width: 32px;
+}
 
-.page-651 .negative-root-rule { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:4px; min-width:0; min-height:32px; padding:3px 8px; border-block:1px solid var(--border-light); background:var(--bg-paper); font-size:12.2px; line-height:1.16; text-align:center; }
-.page-651 .root-practice-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); gap:6px 8px; min-width:0; min-height:0; }
-.page-651 .root-practice-card { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; min-width:0; min-height:0; padding:4px 7px; border:1px solid var(--border-light); border-radius:7px; background:var(--bg-subtle); font-size:14px; white-space:nowrap; }
-.page-651 .root-status { width:92px; }
+.page-651 .q-main {
+  margin: 0;
+  min-height: 21px;
+}
 
-.page-651 .error-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; min-width:0; min-height:0; }
-.page-651 .error-card { display:grid; grid-template-rows:auto auto 1fr; align-items:center; justify-items:center; gap:4px; min-width:0; min-height:0; padding:5px 7px; border-block:1px solid var(--border-light); background:var(--bg-paper); font-size:12.2px; line-height:1.15; text-align:center; }
+.page-651 .q-text {
+  font-size: 13.4px;
+  line-height: 1.18;
+}
+
+.page-651 .page9-cases-task,
+.page-651 .page9-equation-practice,
+.page-651 .page9-error-task {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 4px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-651 .page9-root-practice {
+  display: grid;
+  grid-template-rows: auto 30px minmax(0, 1fr);
+  gap: 4px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-651 .page9-contrast {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: 110px minmax(0, 1fr);
+  gap: 7px 10px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-651 .contrast-card {
+  display: grid;
+  grid-template-rows: 22px auto 1fr auto;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+  min-height: 0;
+  padding: 5px 9px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+}
+
+.page-651 .contrast-title {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  color: #1f2a44;
+}
+
+.page-651 .guided-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-width: 0;
+  font-size: 12.5px;
+  line-height: 1.15;
+  text-align: center;
+}
+
+.page-651 .contrast-math,
+.page-651 .solution-values {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.page-651 .contrast-math {
+  flex-direction: column;
+  font-size: 16.5px;
+}
+
+.page-651 .solution-values {
+  font-size: 14.2px;
+}
+
+.page-651 .solution-meaning-strip {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-651 .meaning-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-width: 0;
+  min-height: 0;
+  padding: 5px 8px;
+  border-block: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+  font-size: 12.2px;
+  line-height: 1.16;
+  text-align: center;
+}
+
+.page-651 .digit-slot { width: 32px; min-width: 32px; }
+.page-651 .two-digit-slot { width: 42px; min-width: 42px; }
+.page-651 .signed-slot { width: 42px; min-width: 42px; }
+.page-651 .signed-two-digit-slot { width: 52px; min-width: 52px; }
+.page-651 .word-slot { width: 72px; min-width: 72px; }
+.page-651 .word-slot.short { width: 58px; min-width: 58px; }
+.page-651 .phrase-slot { width: 92px; min-width: 92px; }
+.page-651 .phrase-slot.wide { width: 104px; min-width: 104px; }
+.page-651 .formula-slot { width: 76px; min-width: 76px; }
+.page-651 .correction-slot { width: 118px; min-width: 118px; }
+
+.page-651 .digit-slot,
+.page-651 .two-digit-slot,
+.page-651 .signed-slot,
+.page-651 .signed-two-digit-slot,
+.page-651 .word-slot,
+.page-651 .phrase-slot,
+.page-651 .formula-slot,
+.page-651 .correction-slot {
+  height: 23px;
+  border-radius: 5px;
+  flex: 0 0 auto;
+}
+
+.page-651 .case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-651 .case-card {
+  display: grid;
+  grid-template-rows: 25px auto minmax(0, 1fr);
+  align-items: center;
+  justify-items: center;
+  gap: 3px;
+  min-width: 0;
+  min-height: 0;
+  padding: 6px 8px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-subtle);
+  font-size: 12.5px;
+  line-height: 1.16;
+  text-align: center;
+}
+
+.page-651 .case-heading {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.page-651 .case-formulas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-width: 0;
+}
+
+.page-651 .case-explanation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-width: 0;
+  font-size: 12px;
+  line-height: 1.18;
+}
+
+.page-651 .equation-case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 7px 9px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-651 .equation-case-card {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 2px;
+  min-width: 0;
+  min-height: 0;
+  padding: 4px 7px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background: var(--bg-paper);
+}
+
+.page-651 .practice-equation {
+  margin-bottom: 1px;
+  font-size: 15.6px;
+  font-weight: 700;
+}
+
+.page-651 .solution-row {
+  display: grid;
+  grid-template-columns: 31px 17px minmax(70px, 1fr);
+  align-items: center;
+  width: min(205px, 100%);
+  min-height: 19px;
+  column-gap: 4px;
+  font-size: 13px;
+}
+
+.page-651 .single-result-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 28px;
+  font-size: 15px;
+}
+
+.page-651 .no-solution-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 31px;
+}
+
+.page-651 .result-caption {
+  font-size: 11.6px;
+  line-height: 1.14;
+  color: #475569;
+  text-align: center;
+}
+
+/* החלק התחתון חייב להיות קריא ושלם בתוך A4 — אין חיתוך של תרגילי השורש או תיקון הטעויות. */
+.page-651 .negative-root-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-width: 0;
+  min-height: 30px;
+  padding: 2px 8px;
+  border-block: 1px solid var(--border-light);
+  background: var(--bg-paper);
+  font-size: 12px;
+  line-height: 1.14;
+  text-align: center;
+}
+
+.page-651 .root-practice-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 5px 8px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-651 .root-practice-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+  min-height: 0;
+  padding: 3px 7px;
+  border: 1px solid var(--border-light);
+  border-radius: 7px;
+  background: var(--bg-subtle);
+  font-size: 13.6px;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+.page-651 .root-status {
+  width: 92px;
+}
+
+.page-651 .page9-error-task {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.page-651 .error-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+  min-height: 0;
+}
+
+.page-651 .error-card {
+  display: grid;
+  grid-template-rows: 26px 18px minmax(28px, 1fr);
+  align-items: center;
+  justify-items: center;
+  gap: 3px;
+  min-width: 0;
+  min-height: 0;
+  padding: 5px 7px;
+  border: 1px solid var(--border-light);
+  border-radius: 7px;
+  background: var(--bg-paper);
+  font-size: 12px;
+  line-height: 1.12;
+  text-align: center;
+}
+
+.page-651 .error-card .correction-slot {
+  align-self: center;
+  height: 24px;
+}
 
 @media print {
-  .page-651 .contrast-card,.page-651 .solution-meaning-strip,.page-651 .case-card,.page-651 .equation-case-card,.page-651 .negative-root-rule,.page-651 .root-practice-card,.page-651 .error-card { break-inside:avoid; }
+  .page-651 .contrast-card,
+  .page-651 .solution-meaning-strip,
+  .page-651 .case-card,
+  .page-651 .equation-case-card,
+  .page-651 .negative-root-rule,
+  .page-651 .root-practice-card,
+  .page-651 .error-card {
+    break-inside: avoid;
+  }
 }
