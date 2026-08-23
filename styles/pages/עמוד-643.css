@@ -1,224 +1,40 @@
 @import url("../topics/pythagoras-foundations.css");
 
 /* עמוד 12 — ארבע השלמות שונות, פריסה מלאה של 2×2 ללא חזרתיות מיותרת. */
-.page-643 .question-block.square-area-practice {
-  justify-content: flex-start;
-  gap: 12px;
-  min-height: 0;
-}
+.page-643 .question-block.square-area-practice { justify-content:flex-start; gap:12px; min-height:0; }
+.page-643 .page12-intro { margin-bottom:0; flex:0 0 auto; }
+.page-643 .square-task-grid { flex:1 1 auto; min-height:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr)); gap:12px; }
+.page-643 .square-task-card { position:relative; min-height:0; border:1px solid var(--border-light); border-radius:11px; background:var(--bg-paper); padding:19px 20px 16px; display:flex; flex-direction:column; align-items:stretch; justify-content:space-between; gap:10px; overflow:hidden; }
+.page-643 .square-task-card::after { content:""; position:absolute; inset-inline-end:0; top:0; bottom:0; width:4px; background:var(--title-blue); opacity:.7; }
+.page-643 .task-number { position:absolute; top:12px; inset-inline-end:13px; width:28px; height:28px; display:flex; align-items:center; justify-content:center; border:1.4px solid var(--title-blue); border-radius:50%; color:var(--title-blue); background:var(--bg-paper); font-size:14px; font-weight:700; z-index:1; }
+.page-643 .task-prompt { padding-inline-end:38px; font-size:18px; line-height:1.5; text-align:right; }
+.page-643 .task-prompt strong { font-weight:700; }
+.page-643 .numeric-square,.page-643 .symbol-square,.page-643 .area-square,.page-643 .reverse-square { width:116px; height:116px; margin:0 auto; border:1.6px solid var(--accent-dark); background:var(--bg-subtle); position:relative; display:flex; align-items:center; justify-content:center; }
+.page-643 .numeric-square .side-label,.page-643 .symbol-side,.page-643 .reverse-side { position:absolute; bottom:-24px; left:50%; transform:translateX(-50%); white-space:nowrap; font-size:17px; }
+.page-643 .symbol-area { font-size:16px; color:#475569; }
+.page-643 .area-square { font-size:18px; font-weight:600; }
+.page-643 .task-work { display:grid; justify-items:center; gap:8px; margin-top:8px; }
+.page-643 .work-caption { direction:rtl; font-size:14px; font-weight:600; color:#475569; }
 
-.page-643 .page12-intro {
-  margin-bottom: 0;
-  flex: 0 0 auto;
-}
+/* חישוב קצר: התרגיל עם = בשורה אחת, מקום התוצאה בשורה שמתחת. */
+.page-643 .math-work { min-height:64px; display:grid; grid-template-columns:1fr; grid-auto-rows:auto; align-content:center; justify-items:center; gap:6px; font-size:22px; white-space:nowrap; }
+.page-643 .math-work > .foundation-fill { display:block; }
 
-.page-643 .square-task-grid {
-  flex: 1 1 auto;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.page-643 .square-task-card {
-  position: relative;
-  min-height: 0;
-  border: 1px solid var(--border-light);
-  border-radius: 11px;
-  background: var(--bg-paper);
-  padding: 19px 20px 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: space-between;
-  gap: 10px;
-  overflow: hidden;
-}
-
-.page-643 .square-task-card::after {
-  content: "";
-  position: absolute;
-  inset-inline-end: 0;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background: var(--title-blue);
-  opacity: .7;
-}
-
-.page-643 .task-number {
-  position: absolute;
-  top: 12px;
-  inset-inline-end: 13px;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1.4px solid var(--title-blue);
-  border-radius: 50%;
-  color: var(--title-blue);
-  background: var(--bg-paper);
-  font-size: 14px;
-  font-weight: 700;
-  z-index: 1;
-}
-
-.page-643 .task-prompt {
-  padding-inline-end: 38px;
-  font-size: 18px;
-  line-height: 1.5;
-  text-align: right;
-}
-
-.page-643 .task-prompt strong {
-  font-weight: 700;
-}
-
-.page-643 .numeric-square,
-.page-643 .symbol-square,
-.page-643 .area-square,
-.page-643 .reverse-square {
-  width: 116px;
-  height: 116px;
-  margin: 0 auto;
-  border: 1.6px solid var(--accent-dark);
-  background: var(--bg-subtle);
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.page-643 .numeric-square .side-label,
-.page-643 .symbol-side,
-.page-643 .reverse-side {
-  position: absolute;
-  bottom: -24px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  font-size: 17px;
-}
-
-.page-643 .symbol-area {
-  font-size: 16px;
-  color: #475569;
-}
-
-.page-643 .area-square {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.page-643 .task-work {
-  display: grid;
-  justify-items: center;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.page-643 .work-caption {
-  direction: rtl;
-  font-size: 14px;
-  font-weight: 600;
-  color: #475569;
-}
-
-.page-643 .math-work {
-  min-height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 22px;
-  white-space: nowrap;
-}
-
-.page-643 .final-row,
-.page-643 .single-completion {
-  min-height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 17px;
-  line-height: 1.35;
-}
-
-/* שטח תשובה מותאם למה שהתלמיד אמור לכתוב, לא רוחב קבוע שרירותי. */
-.page-643 .answer-fit {
-  display: inline-block;
-  flex: 0 0 auto;
-  height: 31px;
-}
-
-.page-643 .answer-fit-one-digit { width: 34px; }
-.page-643 .answer-fit-two-digit { width: 46px; }
-.page-643 .answer-fit-symbol-square { width: 50px; }
-
-.page-643 .answer-underline {
-  display: inline-block;
-  height: 28px;
-  border-bottom: 1.6px solid var(--text-main);
-  flex: 0 0 auto;
-}
-
-.page-643 .single-completion {
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-
-.page-643 .reverse-prompt {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 6px;
-}
-
-.page-643 .reverse-figure {
-  display: grid;
-  justify-items: center;
-  gap: 14px;
-  margin-block: auto 4px;
-}
-
-.page-643 .reverse-question {
-  font-size: 27px;
-  font-weight: 700;
-  color: var(--title-blue);
-}
-
-.page-643 .reverse-relation {
-  direction: rtl;
-  unicode-bidi: isolate;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 16px;
-}
-
-.page-643 .relation-arrow {
-  color: var(--title-blue);
-  font-size: 22px;
-}
-
-.page-643 .task-note {
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.35;
-  color: #475569;
-}
+.page-643 .final-row,.page-643 .single-completion { min-height:36px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:17px; line-height:1.35; }
+.page-643 .answer-fit { display:inline-block; flex:0 0 auto; height:31px; }
+.page-643 .answer-fit-one-digit { width:34px; }
+.page-643 .answer-fit-two-digit { width:46px; }
+.page-643 .answer-fit-symbol-square { width:50px; }
+.page-643 .answer-underline { display:inline-block; height:28px; border-bottom:1.6px solid var(--text-main); flex:0 0 auto; }
+.page-643 .single-completion { flex-wrap:wrap; margin-top:12px; }
+.page-643 .reverse-prompt { display:flex; flex-wrap:wrap; align-items:center; gap:6px; }
+.page-643 .reverse-figure { display:grid; justify-items:center; gap:14px; margin-block:auto 4px; }
+.page-643 .reverse-question { font-size:27px; font-weight:700; color:var(--title-blue); }
+.page-643 .reverse-relation { direction:rtl; unicode-bidi:isolate; display:flex; align-items:center; justify-content:center; gap:10px; font-size:16px; }
+.page-643 .relation-arrow { color:var(--title-blue); font-size:22px; }
+.page-643 .task-note { text-align:center; font-size:14px; line-height:1.35; color:#475569; }
 
 @media print {
-  .page-643 .square-task-card {
-    break-inside: avoid;
-  }
-
-  .page-643 .square-task-card::after {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
+  .page-643 .square-task-card { break-inside:avoid; }
+  .page-643 .square-task-card::after { -webkit-print-color-adjust:exact; print-color-adjust:exact; }
 }
