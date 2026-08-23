@@ -16,17 +16,8 @@ function json(file) {
   catch (error) { fail(`${file} אינו JSON תקין: ${error.message}`); return null; }
 }
 
-for (const file of [
-  'SOURCE_OF_TRUTH.md',
-  'WORKBOOK_MANIFEST.json',
-  'STYLE_PROFILE.json',
-  'STYLE_ENGINE.md',
-  'styles/a4-base.css',
-  'styles/topics/pythagoras-inline-units.css',
-  'meta/approved-page-locks.json',
-]) {
-  if (exists(file)) pass(`${file} קיים.`);
-  else fail(`חסר ${file}.`);
+for (const file of ['SOURCE_OF_TRUTH.md','WORKBOOK_MANIFEST.json','STYLE_PROFILE.json','STYLE_ENGINE.md','styles/a4-base.css','styles/topics/pythagoras-inline-units.css','meta/approved-page-locks.json']) {
+  exists(file) ? pass(`${file} קיים.`) : fail(`חסר ${file}.`);
 }
 
 const truth = exists('SOURCE_OF_TRUTH.md') ? read('SOURCE_OF_TRUTH.md') : '';
@@ -37,79 +28,67 @@ const locks = exists('meta/approved-page-locks.json') ? json('meta/approved-page
 if (truth) {
   const required = [
     'הסמכות היחידה',
-    'מקור ה־runtime היחיד',
+    'WORKBOOK_MANIFEST.json',
     'index.html` הוא **נקודת הכניסה היחידה**',
-    'שינוי ממוקד נשאר מקומי כברירת מחדל',
+    '## חוזה עריכה אטומי — חובה בכל שינוי',
+    '## מערכת למידת הסגנון — חוזה מחייב',
+    '**אין להשאיר שטח A4 גדול ריק ללא מטרה.**',
+    '**ניצול דף חכם קודם למרכוז.**',
+    '**שטח תשובה מותאם לתשובה הצפויה:**',
+    '**תוצאת חישוב נמצאת מתחת לתרגיל.**',
+    '**פתרון רב־שלבי נכתב אנכית:**',
     'תיבה בתוך תיבה',
-    'degree-answer-unit',
-    '## עמוד 1 — מושגים בסיסיים',
-    '## עמוד 2 — משולש ישר־זווית',
-    '## עמוד 3 — הניצבים',
+    'AAA Exact A4 Preview',
   ];
+  for (let p = 1; p <= 13; p += 1) required.push(`## עמוד ${p} —`);
   const missing = required.filter((token) => !truth.includes(token));
   if (missing.length) fail(`SOURCE_OF_TRUTH.md חסר כללים מרכזיים: ${missing.join(' | ')}`);
-  else pass('SOURCE_OF_TRUTH.md כולל את כל כללי היסוד והעמודים המאושרים 1–3.');
+  else pass('SOURCE_OF_TRUTH.md כולל חוזה יחיד, כללי סגנון ועמודים 1–13.');
 }
 
 if (manifest) {
-  if (manifest.authority === 'SOURCE_OF_TRUTH.md') pass('המניפסט כפוף למקור האמת היחיד.');
-  else fail('המניפסט אינו כפוף ל-SOURCE_OF_TRUTH.md.');
-  if (manifest.totalPages === 53 && Array.isArray(manifest.pages) && manifest.pages.length === 53) pass('המניפסט נעול ל-53 דפים.');
-  else fail('המניפסט אינו מכיל בדיוק 53 דפים.');
+  manifest.authority === 'SOURCE_OF_TRUTH.md' ? pass('המניפסט כפוף למקור האמת היחיד.') : fail('המניפסט אינו כפוף למקור האמת.');
+  (manifest.totalPages === 53 && Array.isArray(manifest.pages) && manifest.pages.length === 53) ? pass('המניפסט נעול ל-53 דפים.') : fail('המניפסט אינו מכיל בדיוק 53 דפים.');
   const files = (manifest.pages || []).map((p) => p.file);
-  if (files.length === new Set(files).size) pass('אין קובצי דף כפולים במניפסט.');
-  else fail('נמצאו קובצי דף כפולים במניפסט.');
-
+  files.length === new Set(files).size ? pass('אין קובצי דף כפולים במניפסט.') : fail('נמצאו קובצי דף כפולים במניפסט.');
   for (const page of manifest.pages || []) {
     if (!exists(page.file)) fail(`קובץ פעיל חסר: ${page.file}`);
     if (page.curriculumId !== 'g7.geo.pythagoras') fail(`${page.file}: curriculumId אינו פיתגורס.`);
   }
-
-  for (const page of (manifest.pages || []).slice(0, 10)) {
+  for (const page of (manifest.pages || []).slice(0, 13)) {
     if (!exists(page.file)) continue;
-    const html = read(page.file);
-    if (!/עמוד\s+\d+\s*\/\s*53/u.test(html)) fail(`${page.file}: מונה הניווט של אחד מעשרת הדפים המאושרים אינו /53.`);
+    if (!/עמוד\s+\d+\s*\/\s*53/u.test(read(page.file))) fail(`${page.file}: מונה הניווט של אחד מ-13 הדפים הראשונים אינו /53.`);
   }
-  if (!errors.some((m) => m.includes('מונה הניווט'))) pass('עשרת הדפים הראשונים המאושרים מציגים /53.');
+  if (!errors.some((m) => m.includes('מונה הניווט'))) pass('עמודים 1–13 מציגים /53.');
 }
 
 if (profile) {
-  if (profile.authority === 'SOURCE_OF_TRUTH.md') pass('STYLE_PROFILE.json כפוף למקור האמת היחיד.');
-  else fail('STYLE_PROFILE.json אינו מצהיר על SOURCE_OF_TRUTH.md כסמכות.');
-  if (profile.scope?.expectedWorkbookPages === 53) pass('פרופיל הסגנון מכיר 53 דפים.');
-  else fail('STYLE_PROFILE.json אינו נעול ל-53 דפים.');
-  if (profile.scope?.curriculumId === 'g7.geo.pythagoras') pass('פרופיל הסגנון מוגבל לפיתגורס.');
-  else fail('STYLE_PROFILE.json אינו מוגבל לפיתגורס.');
-  if (profile.learningProtocol?.targetedEditPolicy) pass('מדיניות שינוי ממוקד קיימת בפרופיל.');
-  else fail('חסרה targetedEditPolicy ב-STYLE_PROFILE.json.');
+  profile.authority === 'SOURCE_OF_TRUTH.md' ? pass('STYLE_PROFILE.json כפוף למקור האמת היחיד.') : fail('STYLE_PROFILE.json אינו כפוף למקור האמת.');
+  profile.scope?.expectedWorkbookPages === 53 ? pass('פרופיל הסגנון מכיר 53 דפים.') : fail('STYLE_PROFILE.json אינו נעול ל-53 דפים.');
+  profile.scope?.curriculumId === 'g7.geo.pythagoras' ? pass('פרופיל הסגנון מוגבל לפיתגורס.') : fail('STYLE_PROFILE.json אינו מוגבל לפיתגורס.');
+  const window = profile.learningProtocol?.activeAuditWindow;
+  (window?.startPage === 1 && window?.endPage === 13) ? pass('פרופיל הסגנון מפעיל ביקורת 1–13.') : fail('חלון הביקורת בפרופיל אינו 1–13.');
 }
 
 if (locks) {
-  if (locks.authority === 'SOURCE_OF_TRUTH.md') pass('קובץ הנעילות הוא נגזרת של מקור האמת.');
-  else fail('קובץ הנעילות אינו כפוף למקור האמת.');
-  const lockedPages = (locks.pages || []).filter((p) => p.status === 'locked').map((p) => p.workbookPage);
-  for (const page of [1, 2, 3]) {
-    if (!lockedPages.includes(page)) fail(`עמוד ${page} אינו נעול למרות שאושר.`);
-  }
-  if ([1, 2, 3].every((p) => lockedPages.includes(p))) pass('עמודים 1–3 מוגנים בנעילות נגזרות.');
+  locks.authority === 'SOURCE_OF_TRUTH.md' ? pass('קובץ הנעילות הוא נגזרת של מקור האמת.') : fail('קובץ הנעילות אינו כפוף למקור האמת.');
+  const lockedPages = new Set((locks.pages || []).filter((p) => p.status === 'locked').map((p) => p.workbookPage));
+  for (const page of [1,2,3]) if (!lockedPages.has(page)) fail(`עמוד ${page} אינו נעול למרות שאושר.`);
+  if ([1,2,3].every((p) => lockedPages.has(p))) pass('עמודים 1–3 מוגנים בנעילות נגזרות.');
 }
 
 if (exists('styles/a4-base.css')) {
   const base = read('styles/a4-base.css');
-  if (/align-items:\s*(first\s+)?baseline/u.test(base)) pass('נקודות הוראה משתמשות ב-baseline משותף.');
-  else fail('לא נמצא baseline משותף לנקודות הוראה.');
+  /align-items:\s*(first\s+)?baseline/u.test(base) ? pass('נקודות הוראה משתמשות ב-baseline משותף.') : fail('לא נמצא baseline משותף לנקודות הוראה.');
 }
-
 if (exists('styles/topics/pythagoras-inline-units.css')) {
   const units = read('styles/topics/pythagoras-inline-units.css');
-  if (units.includes('.degree-answer-unit') && units.includes('unicode-bidi: isolate')) pass('סימן המעלות מבודד נכון ב-RTL/LTR.');
-  else fail('degree-answer-unit אינו מוגדר באופן תקין.');
+  (units.includes('.degree-answer-unit') && units.includes('unicode-bidi: isolate')) ? pass('סימן המעלות מבודד נכון ב-RTL/LTR.') : fail('degree-answer-unit אינו מוגדר באופן תקין.');
 }
 
-/* דפים מאוחרים שעדיין מכילים מונה legacy אינם runtime של החוברת המאוחדת; מדווחים בלבד. */
 if (manifest) {
-  const legacyCounters = (manifest.pages || []).slice(10).filter((page) => exists(page.file) && !/עמוד\s+\d+\s*\/\s*53/u.test(read(page.file)));
-  if (legacyCounters.length) warn(`${legacyCounters.length} דפים מאוחרים עדיין כוללים מונה ניווט standalone ישן; אין לכך השפעה על runtime החוברת המאוחדת.`);
+  const legacyCounters = (manifest.pages || []).slice(13).filter((page) => exists(page.file) && !/עמוד\s+\d+\s*\/\s*53/u.test(read(page.file)));
+  if (legacyCounters.length) warn(`${legacyCounters.length} דפים מאוחרים עדיין כוללים מונה standalone ישן; זהו debt מחוץ לחלון 1–13.`);
 }
 
 console.log('\n=== Pythagoras Style Audit ===');
