@@ -240,17 +240,19 @@ requireTokens('CSS עמוד 3', p3css, [
 /* עמוד 4 */
 requireTokens('עמוד 4', p4, [
   '<h1 class="page-title">משפט פיתגורס – היתר</h1>',
-  'class="foundation-note hyp-concept"',
+  'class="hyp-summary"',
+  'היתר נמצא מול הזווית הישרה',
+  'היתר הוא הצלע הארוכה ביותר במשולש ישר־זווית',
   'כתבו מתחת לכל משולש את שם היתר.',
   'באותו משולש ABC הזווית הישרה משנה מקום.',
   'בכל שרטוט הודגשה צלע. סמנו אם הודגש היתר; אם לא, כתבו את שם היתר הנכון.',
   'הקיפו את האורך שיכול להיות היתר.',
   'סמנו בדיוק שני משפטים שתמיד נכונים במשולש ישר־זווית.',
-  'היתר נמצא מול הזווית הישרה.',
-  'היתר הוא הצלע הארוכה ביותר.',
 ]);
 forbidTokens('עמוד 4', p4, [
   '<h1 class="page-title">מושגים בסיסיים</h1>',
+  'class="foundation-note hyp-concept"',
+  'foundation-fill hyp-fill-short',
   'hyp-poster',
   'שמונה משולשים ישרי־זווית',
 ]);
@@ -278,7 +280,8 @@ else fail(`עמוד 4: משולשי בדיקת הטעות אינם כולם יש
 
 requireTokens('CSS עמוד 4', p4css, [
   '.page-637 .question-block',
-  'grid-template-rows: 42px 250px 116px 176px 96px minmax(104px, 1fr);',
+  'grid-template-rows: 34px 258px 116px 176px 96px minmax(104px, 1fr);',
+  '.page-637 .hyp-summary',
   '.page-637 .hyp-visual-grid',
   '.page-637 .hyp-switch-grid',
   '.page-637 .hyp-error-grid',
