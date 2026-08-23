@@ -250,42 +250,71 @@ function installNavigation() {
 
 function installResponsiveScaling() {
   let lastWidth = -1;
-  const resize = () => {
+
+  const applyScale = () => {
     const currentWidth = document.documentElement.clientWidth;
     if (currentWidth === lastWidth) return;
     lastWidth = currentWidth;
     const available = Math.max(1, Math.min(currentWidth - 8, 900));
+
     for (const wrapper of document.querySelectorAll('.workbook-page-wrap')) {
       const page = wrapper.querySelector('.a4-page');
       if (!page) continue;
-      page.style.transform = '';
+
+      page.style.position = 'static';
+      page.style.left = '';
+      page.style.top = '';
+      page.style.transform = 'none';
+      page.style.transformOrigin = 'top left';
       wrapper.style.width = '';
       wrapper.style.height = '';
-      const rect = page.getBoundingClientRect();
-      if (!rect.width || rect.width <= available) continue;
-      const scale = available / rect.width;
-      page.style.transformOrigin = 'top center';
+
+      const canonicalWidth = page.offsetWidth;
+      const canonicalHeight = page.offsetHeight;
+      if (!canonicalWidth || !canonicalHeight) continue;
+
+      const scale = Math.min(1, available / canonicalWidth);
+      const scaledWidth = canonicalWidth * scale;
+      const scaledHeight = canonicalHeight * scale;
+
+      wrapper.style.width = `${scaledWidth}px`;
+      wrapper.style.height = `${scaledHeight}px`;
+      page.style.position = 'absolute';
+      page.style.left = '0';
+      page.style.top = '0';
+      page.style.transformOrigin = 'top left';
       page.style.transform = `scale(${scale})`;
-      wrapper.style.width = `${rect.width * scale}px`;
-      wrapper.style.height = `${rect.height * scale}px`;
     }
   };
 
-  const observer = new ResizeObserver(resize);
-  observer.observe(document.documentElement);
-  window.addEventListener('beforeprint', () => {
+  const resetForPrint = () => {
     for (const wrapper of document.querySelectorAll('.workbook-page-wrap')) {
       const page = wrapper.querySelector('.a4-page');
-      if (page) page.style.transform = '';
+      if (page) {
+        page.style.position = '';
+        page.style.left = '';
+        page.style.top = '';
+        page.style.transform = '';
+        page.style.transformOrigin = '';
+      }
       wrapper.style.width = '';
       wrapper.style.height = '';
     }
+  };
+
+  const observer = new ResizeObserver(() => {
+    lastWidth = -1;
+    applyScale();
   });
+  observer.observe(document.documentElement);
+
+  window.addEventListener('beforeprint', resetForPrint);
   window.addEventListener('afterprint', () => {
     lastWidth = -1;
-    resize();
+    applyScale();
   });
-  resize();
+
+  applyScale();
 }
 
 async function typesetMath() {
