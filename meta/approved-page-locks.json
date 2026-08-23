@@ -6,7 +6,7 @@
   "sharedDependencies": [
     {"path":"index.html","gitBlobSha":"4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
     {"path":"WORKBOOK_MANIFEST.json","gitBlobSha":"2d3a8b91de870afb20ba85474de61c6b640ef309"},
-    {"path":"vercel.json","gitBlobSha":"b7e15d051f0d44037a37f693a9b12c1a47b37837"},
+    {"path":"vercel.json","gitBlobSha":"b96f976ed8f2b042064784dbe77f9cfba80b9971"},
     {"path":"styles/a4-base.css","gitBlobSha":"a0b1cc7042421cf91dcf17b2209249c3f3962388"},
     {"path":"styles/topics/pythagoras.css","gitBlobSha":"df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
     {"path":"styles/topics/pythagoras-foundations.css","gitBlobSha":"ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
