@@ -130,6 +130,27 @@
         {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
         {"path": "pythagoras-workbook.js", "gitBlobSha": "9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
       ]
+    },
+    {
+      "workbookPage": 7,
+      "status": "locked",
+      "reason": "עמוד 7 מאושר לפי SOURCE_OF_TRUTH.md: גשר בין ריבוע לשורש עם התאמה, תרגול מעורב, תיקון מסקנות ושרשרת/יצירה; הפריסה מבודדת מ-pythagoras-power-practice.css כדי למנוע שבירה חוזרת של התחתית, ללא overflow מוסתר וללא reflow.",
+      "files": [
+        {"path": "עמוד-640.html", "gitBlobSha": "2bfe34ce743136fea087a9ebbea2487a47f11eaa"},
+        {"path": "styles/pages/עמוד-640.css", "gitBlobSha": "fb79537cc2f862cac5856cd075d7fb4f2822b6b7"}
+      ],
+      "sharedDependencies": [
+        {"path": "index.html", "gitBlobSha": "4d25228752a1e0dd2b73156dcc63d85230fef1b3"},
+        {"path": "WORKBOOK_MANIFEST.json", "gitBlobSha": "2d3a8b91de870afb20ba85474de61c6b640ef309"},
+        {"path": "vercel.json", "gitBlobSha": "b7e15d051f0d44037a37f693a9b12c1a47b37837"},
+        {"path": "styles/a4-base.css", "gitBlobSha": "a0b1cc7042421cf91dcf17b2209249c3f3962388"},
+        {"path": "styles/topics/pythagoras.css", "gitBlobSha": "df9aea084434e0e97675c8e1eb0f8f918a2f346f"},
+        {"path": "styles/topics/pythagoras-foundations.css", "gitBlobSha": "ea7bc0c8f50e99b561c461195e749feb3cbbabf1"},
+        {"path": "styles/topics/pythagoras-inline-units.css", "gitBlobSha": "8c8852c66ad4208d3732549e6236037d9b115170"},
+        {"path": "styles/pythagoras-workbook.css", "gitBlobSha": "38bc22c9c24531da25058961b0f178083863da32"},
+        {"path": "styles/workbook-canonical-locks.css", "gitBlobSha": "15f11b0517083082972a0081f6ae4c6566dd48d7"},
+        {"path": "pythagoras-workbook.js", "gitBlobSha": "9c4db8c37818ee445d2c8f2ef94304fa6455315d"}
+      ]
     }
   ]
 }
