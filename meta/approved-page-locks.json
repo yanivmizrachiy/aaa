@@ -49,10 +49,10 @@
     {
       "workbookPage": 3,
       "status": "locked",
-      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md: ניצבים בלבד, 4 משימות זיהוי, 2 משימות קודקודים עם גאומטריה ישרת־זווית מדויקת, 3 השלמות קונקרטיות ושאלה אמריקאית אחת; פריסת A4 מלאה וללא שאלות כלליות.",
+      "reason": "עמוד 3 מאושר לפי SOURCE_OF_TRUTH.md: ניצבים בלבד, 4 משימות פתיחה מגוונות עם ארוך/קצר ושני ניצבים שווים, 2 משימות קודקודים, 3 משימות שרטוט למציאת הניצב השני ושאלה אמריקאית אחת; כל השרטוטים ישרי־זווית מדויקים ופריסת A4 נשמרת.",
       "files": [
-        {"path": "עמוד-636.html", "gitBlobSha": "d6b6423fd33859dd497f0aa8e8db6642bfbcf4a2"},
-        {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "27647c5b0b3bb8602314d192bbb2c9c073b73934"}
+        {"path": "עמוד-636.html", "gitBlobSha": "427ccd000392203c266cfcea4b3db15dae5cb466"},
+        {"path": "styles/pages/עמוד-636.css", "gitBlobSha": "a11530f2f3f96cffceef233dcbc33558c249fcc7"}
       ],
       "sharedDependencies": [
         {"path": "index.html", "gitBlobSha": "9d125de52877a7deb24bd796249002adc549a468"},
