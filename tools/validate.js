@@ -68,6 +68,14 @@ function selectors(css) {
   return out;
 }
 
+function inlineMathExpressions(html) {
+  const expressions = [];
+  const re = /\\\(([\s\S]*?)\\\)/gu;
+  let match;
+  while ((match = re.exec(html))) expressions.push(match[1]);
+  return expressions;
+}
+
 pages.forEach((page, index) => {
   const n = index + 1;
   const file = page && page.file;
@@ -80,6 +88,13 @@ pages.forEach((page, index) => {
   if (!exists(file)) { fail(`עמוד ${n}: קובץ ה-HTML חסר: ${file}`); return; }
   const html = read(file);
   check(/<main[^>]*class=["'][^"']*\ba4-page\b/u.test(html), `${file}: חסר <main class="a4-page"> — ה-loader מחלץ בדיוק אותו.`);
+
+  /* שומרי רינדור מתמטי: תקלות שכבר גרמו בפועל ל-DOM שבור/סימנים תלושים. */
+  const inlineMath = inlineMathExpressions(html);
+  check(!inlineMath.some((expr) => expr.includes('<')), `${file}: נמצא < גולמי בתוך MathJax. יש להשתמש ב-\\lt או ב-&lt; מחוץ ל-MathJax כדי למנוע פירוק HTML.`);
+  check(!inlineMath.some((expr) => /^\\(?:lt|gt)$/u.test(expr.trim())), `${file}: נמצא אופרטור MathJax בודד (\\lt/\\gt). יש להצמיד את הסימן לשורה כטקסט בטוח כדי שלא יתנתק ברינדור.`);
+  check(!html.includes('\\times'), `${file}: נמצא \\times; לפי DESIGN.md סימן הכפל בפרויקט הוא \\cdot.`);
+  check(!html.includes('×'), `${file}: נמצא ×; לפי DESIGN.md סימן הכפל בפרויקט הוא · / \\cdot.`);
 
   const match = file.match(/עמוד-(\d+)\.html$/u);
   if (!match) return;
