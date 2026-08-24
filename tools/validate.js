@@ -91,7 +91,7 @@ pages.forEach((page, index) => {
 
   /* שומרי רינדור מתמטי: תקלות שכבר גרמו בפועל ל-DOM שבור/סימנים תלושים. */
   const inlineMath = inlineMathExpressions(html);
-  check(!inlineMath.some((expr) => expr.includes('<')), `${file}: נמצא < גולמי בתוך MathJax. יש להשתמש ב-\\lt או ב-&lt; מחוץ ל-MathJax כדי למנוע פירוק HTML.`);
+  check(!inlineMath.some((expr) => /<[A-Za-z]/u.test(expr)), `${file}: נמצא < לפני אות בתוך MathJax; הדפדפן עלול לפרש זאת כתג HTML. יש להשתמש ב-\\lt.`);
   check(!inlineMath.some((expr) => /^\\(?:lt|gt)$/u.test(expr.trim())), `${file}: נמצא אופרטור MathJax בודד (\\lt/\\gt). יש להצמיד את הסימן לשורה כטקסט בטוח כדי שלא יתנתק ברינדור.`);
   check(!html.includes('\\times'), `${file}: נמצא \\times; לפי DESIGN.md סימן הכפל בפרויקט הוא \\cdot.`);
   check(!html.includes('×'), `${file}: נמצא ×; לפי DESIGN.md סימן הכפל בפרויקט הוא · / \\cdot.`);
