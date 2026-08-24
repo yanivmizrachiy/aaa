@@ -99,7 +99,8 @@
 }
 .page-642 .independent-item + .independent-item { border-right: 1px solid var(--border-light); }
 .page-642 .independent-item > div:first-child { font-size: 17px; font-weight: 600; }
-.page-642 .bound-line { display: flex; align-items: center; justify-content: center; gap: 4px; }
+.page-642 .bound-line { display: flex; align-items: center; justify-content: center; gap: 3px; flex-wrap: nowrap; }
+.page-642 .bound-line .root-slot { width: 34px; min-width: 34px; }
 
 .page-642 .calculator-grid {
   display: grid;
