@@ -24,23 +24,40 @@ const cases = [
       await page.setViewport({ width:test.width, height:test.height, deviceScaleFactor:1 });
       if (test.ua) await page.setUserAgent(test.ua);
       await page.goto('http://127.0.0.1:8080/', { waitUntil:'domcontentloaded', timeout:60000 });
-      await page.waitForSelector('.workbook-page-wrap[data-load-state="loaded"]', { timeout:30000 });
+
+      // Wait for actual settled responsive layout, not merely for HTML insertion.
+      await page.waitForFunction(() => {
+        const wrapper = document.querySelector('.workbook-page-wrap[data-load-state="loaded"]');
+        const sheet = wrapper?.querySelector('.a4-page');
+        const download = document.querySelector('#download-workbook');
+        if (!wrapper || !sheet || !download) return false;
+        const viewport = document.documentElement.clientWidth;
+        const wr = wrapper.getBoundingClientRect();
+        const dr = download.getBoundingClientRect();
+        return wr.width > 0 && wr.width <= viewport + 2
+          && dr.width > 0 && dr.left >= -1 && dr.right <= viewport + 1;
+      }, { timeout:30000, polling:'raf' });
+
       const state = await page.evaluate(() => {
         const d = document.querySelector('#download-workbook');
         const r = d?.getBoundingClientRect();
+        const first = document.querySelector('.workbook-page-wrap[data-load-state="loaded"]')?.getBoundingClientRect();
         const ids = [...document.querySelectorAll('[id]')].map((el) => el.id);
         const duplicates = [...new Set(ids.filter((id, i) => ids.indexOf(id) !== i))];
         return {
           clientWidth: document.documentElement.clientWidth,
           scrollWidth: document.documentElement.scrollWidth,
           download: r ? { left:r.left, right:r.right, top:r.top, bottom:r.bottom, width:r.width, height:r.height } : null,
+          firstPageWidth: first?.width || 0,
           text: d?.textContent?.replace(/\s+/g,' ').trim() || '',
           duplicateIds: duplicates,
           loaded: document.querySelectorAll('.workbook-page-wrap[data-load-state="loaded"]').length,
           pending: document.querySelectorAll('.workbook-page-wrap[data-load-state="pending"]').length,
         };
       });
+
       if (state.scrollWidth > state.clientWidth + 2) throw new Error(`${test.name}: horizontal overflow ${state.scrollWidth}/${state.clientWidth}`);
+      if (state.firstPageWidth > state.clientWidth + 2) throw new Error(`${test.name}: A4 wrapper not fitted (${state.firstPageWidth}/${state.clientWidth})`);
       if (!state.download) throw new Error(`${test.name}: Download missing`);
       if (state.download.left < -1 || state.download.right > state.clientWidth + 1) throw new Error(`${test.name}: Download clipped`);
       if (state.download.height < 55) throw new Error(`${test.name}: Download too small (${state.download.height}px)`);
@@ -49,9 +66,10 @@ const cases = [
 
       await page.click('#next-page');
       await page.waitForFunction(() => new URL(location.href).searchParams.get('page') === '2', { timeout:5000 });
+      await page.waitForFunction(() => document.querySelector('#workbook-page-2')?.dataset.loadState === 'loaded', { timeout:15000 });
       await page.click('#prev-page');
       await page.waitForFunction(() => new URL(location.href).searchParams.get('page') === '1', { timeout:5000 });
-      console.log(`✓ ${test.name} ${test.width}x${test.height} — loaded=${state.loaded}, pending=${state.pending}, no overflow`);
+      console.log(`✓ ${test.name} ${test.width}x${test.height} — loaded=${state.loaded}, pending=${state.pending}, responsive + navigation OK`);
       await page.close();
     }
   } finally {
