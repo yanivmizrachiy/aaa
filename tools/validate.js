@@ -45,7 +45,7 @@ for (const f of [
 if (exists('SOURCE_OF_TRUTH.md')) {
   const truth = read('SOURCE_OF_TRUTH.md');
   check(truth.includes('מקור האמת היחיד'), 'SOURCE_OF_TRUTH.md אינו מצהיר במפורש שהוא מקור האמת היחיד.');
-  check(truth.includes('ריבועי אורכי הניצבים'), 'SOURCE_OF_TRUTH.md חסר כלל הדיוק בין אורך לריבוע אורך.');
+  check(truth.includes('סכום ריבועי האורכים של שני הניצבים'), 'SOURCE_OF_TRUTH.md חסר את הניסוח התקין של משפט פיתגורס עם הבחנה בין אורך לריבוע האורך.');
 }
 if (exists('README.md')) {
   check(read('README.md').includes('SOURCE_OF_TRUTH.md'), 'README.md אינו מפנה ל-SOURCE_OF_TRUTH.md.');
