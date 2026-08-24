@@ -2,9 +2,9 @@
 /**
  * בדיקת תקינות החוברת — השער האוטומטי היחיד.
  *
- * WORKBOOK_MANIFEST.json הוא מקור האמת. הבדיקה מוודאת שהמניפסט, 53 הדפים,
- * ה-CSS שלהם ומעטפת הטעינה עקביים ביניהם ושהחוברת תיטען בדפדפן.
- * אין נעילות תוכן, אין מחרוזות פרוזה קשיחות — רק שלמות מבנית שאפשר לסמוך עליה.
+ * SOURCE_OF_TRUTH.md הוא מקור הסמכות היחיד לדרישות הפרויקט.
+ * WORKBOOK_MANIFEST.json הוא רישום runtime לסדר, זהות ומספור הדפים.
+ * הבדיקה מוודאת שמבנה החוברת, הדפים, ה-CSS ומעטפת הטעינה עקביים ושהחוברת תיטען בדפדפן.
  *
  *   node tools/validate.js   →  יוצא 0 אם תקין, 1 אם יש שגיאה.
  */
@@ -27,8 +27,11 @@ const softCheck = (cond, m) => { checks += 1; if (!cond) warnings.push(m); };
 const CURRICULUM_ID = 'g7.geo.pythagoras';
 const PRIMARY_TOPIC = 'משפט פיתגורס';
 
-/* קובצי הליבה שהחוברת לא יכולה לרוץ בלעדיהם. */
+/* קובצי הליבה שהחוברת וממשל הדרישות לא יכולים לרוץ בלעדיהם. */
 for (const f of [
+  'SOURCE_OF_TRUTH.md',
+  'README.md',
+  'DESIGN.md',
   'index.html',
   'pythagoras-workbook.js',
   'WORKBOOK_MANIFEST.json',
@@ -38,7 +41,20 @@ for (const f of [
   'styles/topics/pythagoras.css',
 ]) check(exists(f), `חסר קובץ ליבה: ${f}`);
 
-/* המניפסט — מקור האמת לסדר ולזהות הדפים. */
+/* אכיפת מקור אמת יחיד: מסמכי העזר חייבים להפנות אליו ולא להציג סמכות עצמאית. */
+if (exists('SOURCE_OF_TRUTH.md')) {
+  const truth = read('SOURCE_OF_TRUTH.md');
+  check(truth.includes('מקור האמת היחיד'), 'SOURCE_OF_TRUTH.md אינו מצהיר במפורש שהוא מקור האמת היחיד.');
+  check(truth.includes('ריבועי אורכי הניצבים'), 'SOURCE_OF_TRUTH.md חסר כלל הדיוק בין אורך לריבוע אורך.');
+}
+if (exists('README.md')) {
+  check(read('README.md').includes('SOURCE_OF_TRUTH.md'), 'README.md אינו מפנה ל-SOURCE_OF_TRUTH.md.');
+}
+if (exists('DESIGN.md')) {
+  check(read('DESIGN.md').includes('SOURCE_OF_TRUTH.md'), 'DESIGN.md אינו כפוף במפורש ל-SOURCE_OF_TRUTH.md.');
+}
+
+/* המניפסט — רישום runtime לסדר ולזהות הדפים. */
 let manifest = null;
 try { manifest = JSON.parse(read('WORKBOOK_MANIFEST.json')); }
 catch (e) { fail(`WORKBOOK_MANIFEST.json אינו JSON תקין: ${e.message}`); }
@@ -93,8 +109,8 @@ pages.forEach((page, index) => {
   const inlineMath = inlineMathExpressions(html);
   check(!inlineMath.some((expr) => /<[A-Za-z]/u.test(expr)), `${file}: נמצא < לפני אות בתוך MathJax; הדפדפן עלול לפרש זאת כתג HTML. יש להשתמש ב-\\lt.`);
   check(!inlineMath.some((expr) => /^\\(?:lt|gt)$/u.test(expr.trim())), `${file}: נמצא אופרטור MathJax בודד (\\lt/\\gt). יש להצמיד את הסימן לשורה כטקסט בטוח כדי שלא יתנתק ברינדור.`);
-  check(!html.includes('\\times'), `${file}: נמצא \\times; לפי DESIGN.md סימן הכפל בפרויקט הוא \\cdot.`);
-  check(!html.includes('×'), `${file}: נמצא ×; לפי DESIGN.md סימן הכפל בפרויקט הוא · / \\cdot.`);
+  check(!html.includes('\\times'), `${file}: נמצא \\times; לפי SOURCE_OF_TRUTH.md סימן הכפל בפרויקט הוא \\cdot.`);
+  check(!html.includes('×'), `${file}: נמצא ×; לפי SOURCE_OF_TRUTH.md סימן הכפל בפרויקט הוא · / \\cdot.`);
 
   const match = file.match(/עמוד-(\d+)\.html$/u);
   if (!match) return;
@@ -139,6 +155,6 @@ if (exists('vercel.json')) {
 console.log('=== בדיקת תקינות חוברת פיתגורס ===');
 warnings.forEach((w) => console.warn(`⚠ ${w}`));
 errors.forEach((e) => console.error(`✗ ${e}`));
-if (!errors.length) console.log(`✓ הכל תקין — ${checks} בדיקות עברו, ${pages.length} דפים מסונכרנים עם המניפסט.`);
+if (!errors.length) console.log(`✓ הכל תקין — ${checks} בדיקות עברו, ${pages.length} דפים מסונכרנים עם המניפסט ומקור האמת.`);
 console.log(`\n${checks} בדיקות · ${warnings.length} אזהרות · ${errors.length} שגיאות`);
 process.exit(errors.length ? 1 : 0);
