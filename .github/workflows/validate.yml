@@ -27,7 +27,64 @@ jobs:
       - name: Validate workbook integrity
         run: node tools/validate.js
 
-      # מקדם ל-release רק אחרי ולידציה שעברה. Production (Vercel) קורא מ-release בלבד.
+      # בונה PDF מלא ומוכן להורדה כדי שהטלפון לא יצטרך לרנדר 53 עמודים בעצמו.
+      - name: Build downloadable workbook PDF
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          npm install --no-save --package-lock=false puppeteer-core
+          node tools/dev-server.js >/tmp/pythagoras-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:8080/ >/dev/null; then break; fi
+            sleep 0.5
+          done
+          CHROME_BIN="$(command -v google-chrome || command -v chromium || command -v chromium-browser)"
+          test -n "$CHROME_BIN"
+          CHROME_BIN="$CHROME_BIN" node <<'NODE'
+          const puppeteer = require('puppeteer-core');
+          (async () => {
+            const browser = await puppeteer.launch({
+              executablePath: process.env.CHROME_BIN,
+              headless: true,
+              args: ['--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu']
+            });
+            const page = await browser.newPage();
+            await page.setViewport({ width: 1200, height: 900, deviceScaleFactor: 1 });
+            await page.goto('http://127.0.0.1:8080/', { waitUntil: 'domcontentloaded', timeout: 120000 });
+            await page.waitForFunction(() => {
+              const totalText = document.querySelector('#page-total-label')?.textContent || '';
+              const total = Number(totalText.match(/\d+/)?.[0] || 0);
+              const loaded = document.querySelectorAll('.workbook-page-wrap[data-load-state="loaded"]').length;
+              const failed = document.querySelectorAll('.workbook-page-wrap[data-load-state="failed"]').length;
+              return total > 0 && loaded === total && failed === 0;
+            }, { timeout: 180000 });
+            await page.evaluate(async () => {
+              if (document.fonts?.ready) await document.fonts.ready;
+              if (window.MathJax?.startup?.promise) await window.MathJax.startup.promise;
+            });
+            await new Promise(resolve => setTimeout(resolve, 500));
+            await page.emulateMediaType('print');
+            await page.pdf({
+              path: 'pythagoras-workbook.pdf',
+              format: 'A4',
+              printBackground: true,
+              preferCSSPageSize: true,
+              margin: { top: '0', right: '0', bottom: '0', left: '0' }
+            });
+            await browser.close();
+          })().catch((error) => { console.error(error); process.exit(1); });
+          NODE
+          test -s pythagoras-workbook.pdf
+
+      # מקדם ל-release רק אחרי ולידציה ויצירת PDF שעברו. Production (Vercel) קורא מ-release בלבד.
       - name: Promote validated main to release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: git push origin HEAD:release
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f pythagoras-workbook.pdf
+          if ! git diff --cached --quiet; then
+            git commit -m "build: refresh downloadable workbook PDF"
+          fi
+          git push origin HEAD:release
