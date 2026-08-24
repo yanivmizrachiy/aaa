@@ -9,6 +9,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: pythagoras-validate-deploy-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     runs-on: ubuntu-latest
@@ -29,8 +33,6 @@ jobs:
       - name: Validate UI performance and duplicate guards
         run: node tools/validate-ui.js
 
-      # בונה PDF מלא ומוכן להורדה כדי שהטלפון לא יצטרך לרנדר 53 עמודים בעצמו.
-      # באותו Chrome מריצים גם smoke tests עם user-agent של iPhone/Android ומסכי טאבלט/מחשב.
       - name: Browser smoke tests and downloadable PDF
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
@@ -82,7 +84,9 @@ jobs:
           NODE
           test -s pythagoras-workbook.pdf
 
-      - name: Promote validated main to release
+      # release הוא ענף generated בלבד. לאחר שכל השערים עברו, הוא מוחלף אטומית
+      # בצילום של main המאומת + ה-PDF החדש. force-with-lease מונע divergence מצטבר.
+      - name: Promote validated build to release
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
@@ -91,4 +95,5 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "build: refresh downloadable workbook PDF"
           fi
-          git push origin HEAD:release
+          git fetch origin release:refs/remotes/origin/release || true
+          git push --force-with-lease=refs/heads/release:refs/remotes/origin/release origin HEAD:release
