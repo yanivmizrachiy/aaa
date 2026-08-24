@@ -3,7 +3,7 @@
 
 .page-9 {
 	/* שלוש שורות: 287px נותן 5 שורות כתיבה מלאות בכל אזור פתרון ועדיין נשאר בתוך A4. */
-	--problem-block-height: 287px;
+	--problem-block-height: 283px;
 }
 
 .page-9 .q-main { margin-bottom: 0; }

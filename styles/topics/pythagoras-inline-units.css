@@ -1,3 +1,4 @@
+@layer topic {
 /*
  * רכיבי יחידות מתמטיות צמודות לתיבות תשובה — פיתגורס בלבד.
  * המטרה: למנוע שבירה/היפוך של ° ויחידות אחרות בתוך משפטי RTL.
@@ -25,4 +26,6 @@
 .pyt-foundation .degree-answer-unit .foundation-fill {
   margin: 0;
   flex: 0 0 auto;
+}
+
 }

@@ -29,9 +29,8 @@ WORKBOOK_MANIFEST.json          מקור האמת: סדר וזהות הדפים
 עמוד-<N>.html                   דפי מקור (כל אחד עצמאי + נטען בחוברת)
 styles/
   a4-base.css                   בסיס A4 משותף לכל הדפים
-  pythagoras-workbook.css       מעטפת החוברת (טולבר, ניווט, גלילה)
-  workbook-canonical-locks.css  שכבת אכיפה חזותית (נטענת אחרונה)
-  topics/*.css                  סגנון לפי נושא (pythagoras, geometry7, …)
+  pythagoras-workbook.css       מעטפת החוברת (טולבר, ניווט, גלילה) — לא נוגעת בתוכן דפים
+  topics/*.css                  סגנון לפי נושא, עטוף @layer topic (ה-CSS של דף תמיד גובר)
   pages/עמוד-<N>.css            CSS ייעודי לכל דף (תחום ל-.page-N)
 vendor/                         MathJax + גופן Rubik (מקומיים, ללא CDN)
 tools/

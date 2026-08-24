@@ -1,4 +1,5 @@
 @import url("./pythagoras.css");
+@layer topic {
 
 /* משפט פיתגורס — עיצוב משותף לדפי HTML חיים (שכתוב מדפי תמונת-PDF).
    Scoped ל-.pyt-live בלבד — אינו נוגע בעמוד-9..12 הקיימים.
@@ -259,4 +260,6 @@
 	font-weight: 500 !important;
 	text-align: center;
 	white-space: nowrap;
+}
+
 }

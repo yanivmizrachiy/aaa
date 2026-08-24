@@ -35,7 +35,6 @@ for (const f of [
   'vercel.json',
   'styles/a4-base.css',
   'styles/pythagoras-workbook.css',
-  'styles/workbook-canonical-locks.css',
   'styles/topics/pythagoras.css',
 ]) check(exists(f), `חסר קובץ ליבה: ${f}`);
 
