@@ -26,6 +26,16 @@
   vertical-align: middle;
 }
 
+.page-642 .ineq-sign {
+  display: inline-block;
+  flex: 0 0 auto;
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: 'PytTeX', Georgia, 'Times New Roman', serif;
+  font-size: 1em;
+  line-height: 1;
+}
+
 .page-642 .page10-worked-example {
   display: grid;
   grid-template-columns: 1.05fr .78fr 1.35fr;
