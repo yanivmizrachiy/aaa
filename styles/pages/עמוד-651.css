@@ -185,12 +185,15 @@
   justify-content: center;
   min-width: 0;
   min-height: 0;
-  padding: 8px 12px;
+  padding: 10px 16px;
   border-top: 1px solid var(--border-light);
   font-size: 14px;
-  line-height: 1.25;
+  /* גובה השורה חייב לעלות על גובה תיבות ההשלמה (23px), אחרת שורות עטופות נדחסות זו בזו */
+  line-height: 2.1;
   text-align: center;
 }
+
+.page-651 .page9-final-rule .foundation-fill { margin-inline: 4px; }
 
 @media print {
   .page-651 .page9-distinction,
