@@ -187,12 +187,43 @@ function installToolbarOffset() {
   }
 }
 
+// Once MathJax's async engine is proven to stall in this environment we stop trusting it.
+let mathAsyncBroken = false;
+
+function typesetSync(wrapper) {
+  const MJ = window.MathJax;
+  try { MJ.typesetClear?.([wrapper]); } catch (error) { /* clearing is best-effort */ }
+  MJ.typeset([wrapper]);
+}
+
 function queueTypeset(wrapper) {
   if (!wrapper || wrapper.dataset.mathState === 'ready' || wrapper.dataset.mathState === 'queued') return mathQueue;
   wrapper.dataset.mathState = 'queued';
   mathQueue = mathQueue.then(async () => {
     if (window.MathJax?.startup?.promise) await window.MathJax.startup.promise;
-    if (window.MathJax?.typesetPromise) await window.MathJax.typesetPromise([wrapper]);
+    const MJ = window.MathJax;
+    if (!MJ) { wrapper.dataset.mathState = 'failed'; return; }
+    // Async typeset first (non-blocking, chunked) — but never let it hang the booklet.
+    // MathJax 4's async path can throw an internal retryAfter() to lazily load a font
+    // range; when the booklet is framed through a same-origin embed proxy that load can
+    // never settle, so typesetPromise stays pending forever and — because MathJax
+    // serializes internally — every later page deadlocks too (raw \(…\) on the page).
+    // The moment async is proven stuck we mark it broken and render synchronously, which
+    // draws from the already-loaded base font and always completes. See SOURCE_OF_TRUTH §16.
+    if (mathAsyncBroken || !MJ.typesetPromise) {
+      if (MJ.typeset) typesetSync(wrapper);
+    } else {
+      let settled = false;
+      MJ.typesetPromise([wrapper]).then(() => { settled = true; }, () => { settled = true; });
+      await Promise.race([
+        new Promise((resolve) => {
+          const check = () => (settled ? resolve() : setTimeout(check, 60));
+          check();
+        }),
+        new Promise((resolve) => setTimeout(resolve, 1000)),
+      ]);
+      if (!settled && MJ.typeset) { mathAsyncBroken = true; typesetSync(wrapper); }
+    }
     wrapper.dataset.mathState = 'ready';
     requestAnimationFrame(refitPages);
   }).catch((error) => {
