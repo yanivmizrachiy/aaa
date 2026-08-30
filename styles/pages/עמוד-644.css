@@ -147,6 +147,8 @@
 }
 .page-644 .reverse-relation-card { background: var(--bg-paper); }
 .page-644 .reverse-relation-card .calc-line { font-size: 16.5px; }
+/* שורת דרך: מקום לתלמיד לכתוב את שלב הביניים (למשל 36+64) לפני תיבת התשובה */
+.page-644 .reverse-relation-card .work-line { width: 86%; height: 24px; border-bottom: 1.3px solid #334155; }
 
 /* — משימה 4: הכללה לאותיות — */
 .page-644 .generalize-workbench {
