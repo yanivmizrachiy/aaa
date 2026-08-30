@@ -42,6 +42,8 @@ html, body {
 .a4-page > .gz-footer {
     flex: 0 0 auto;
     margin-top: 4px;
+    /* הקו הכחול נמתח לכל רוחב דף ה־A4: מבטל את padding הצד (18mm) של .a4-page */
+    margin-inline: -18mm;
     padding-top: 3px;
     border-top: 1px solid var(--title-blue);
     text-align: center;
